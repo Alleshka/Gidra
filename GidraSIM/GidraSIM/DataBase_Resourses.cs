@@ -14,7 +14,6 @@ using System.Data.SqlClient;
 using System.Data.Linq;
 using System.Data;
 using CommonData;
-using System.Data.SqlClient;
 using GidraSIM.AdmSet;
 
 namespace GidraSIM
@@ -31,14 +30,14 @@ namespace GidraSIM
         {
             dataGrid = current_dataGrid;
             table = number_table;
-            // data_base = new ResourcesEntities();
+            data_base = new ResourcesEntities();
             sqlServer = new SqlServer();
             window = current_window;
         }
 
         public DataBase_Resourses()
         {
-            // data_base = new ResourcesEntities();
+            data_base = new ResourcesEntities();
             sqlServer = new SqlServer();
         }
 
@@ -128,87 +127,67 @@ namespace GidraSIM
         //добавляем выделенную строку в таблицу-----------------------------------------------------------------------------------------------
         public void Add_newRow()
         {
-            string sql;
-            SqlCommand add;
-            SqlConnection connection = CreateConnection(); //устанавливаем соединение с базой
-
-            switch (table)
+            try
             {
-                case 0:  //Workers
-                    {
-                        //пишем запрос
-                        sql = string.Format("INSERT INTO Workers" +
-                            "(FIO, Position, Qualification) Values(@FIO, @Position, @Qualification)");
-                        //создаем команду с параметрами
-                        add = new SqlCommand(sql, connection);
-                        add.Parameters.AddWithValue("@FIO", ((Workers)dataGrid.SelectedItem).FIO);
-                        add.Parameters.AddWithValue("@Position", ((Workers)dataGrid.SelectedItem).Position);
-                        add.Parameters.AddWithValue("@Qualification", ((Workers)dataGrid.SelectedItem).Qualification);
-                        //пытаемся выполнить запрос с текущим соединением
-                        try
+                switch (table)
+                {
+                    case 0:  //Workers
                         {
-                            add.ExecuteNonQuery();
-                            MessageBox.Show("Строка успешно добавлена в таблицу", "Все путем");
+                            ResourcesEntities db = new ResourcesEntities();
+                            db.Workers.AddObject(new Workers()
+                            {
+                                FIO = ((Workers)dataGrid.SelectedItem).FIO,
+                                Position = ((Workers)dataGrid.SelectedItem).Position,
+                                Qualification = ((Workers)dataGrid.SelectedItem).Qualification
+                            });
+                            db.SaveChanges();
+                            break;
                         }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 1:  //CAD-systems
-                    {
-                        sql = string.Format("INSERT INTO CAD_Systems" +
-                            "(Name, License_form, License_status)" +
-                            "Values(@Name,  @License_form, @License_status)");
-                        add = new SqlCommand(sql, connection);
-                        add.Parameters.AddWithValue("@Name", ((CAD_Systems)dataGrid.SelectedItem).Name);
-                        add.Parameters.AddWithValue("@License_form", ((CAD_Systems)dataGrid.SelectedItem).License_form);
-                        add.Parameters.AddWithValue("@License_status", ((CAD_Systems)dataGrid.SelectedItem).License_status);
-
-                        try
+                    case 1: //CAD-systems
                         {
-                            add.ExecuteNonQuery();
-                            MessageBox.Show("Строка успешно добавлена в таблицу", "Все путем");
+                            ResourcesEntities db = new ResourcesEntities();
+                            db.CAD_Systems.AddObject(new CAD_Systems()
+                            {
+                                Name = ((CAD_Systems)dataGrid.SelectedItem).Name,
+                                License_form = ((CAD_Systems)dataGrid.SelectedItem).License_form,
+                                License_status = ((CAD_Systems)dataGrid.SelectedItem).License_status
+                            });
+                            db.SaveChanges();
+                            break;
                         }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 2:
-                    {
-                        sql = string.Format("INSERT INTO Technical_Support" +
-                            "(Name, Processor, Processor_Memory, Diagonal, Video_card_Memory) " +
-                            "Values(@Name, @Processor, @Processor_Memory, @Diagonal, @Video_card_Memory)");
-                        add = new SqlCommand(sql, connection);
-                        add.Parameters.AddWithValue("@Name", ((Technical_Support)dataGrid.SelectedItem).Name);
-                        add.Parameters.AddWithValue("@Processor", ((Technical_Support)dataGrid.SelectedItem).Processor);
-                        add.Parameters.AddWithValue("@Processor_Memory", ((Technical_Support)dataGrid.SelectedItem).Processor_Memory);
-                        add.Parameters.AddWithValue("@Diagonal", ((Technical_Support)dataGrid.SelectedItem).Diagonal);
-                        add.Parameters.AddWithValue("@Video_card_Memory", ((Technical_Support)dataGrid.SelectedItem).Video_card_Memory);
-
-                        try
+                    case 2: // Technical_Support
                         {
-                            add.ExecuteNonQuery();
-                            MessageBox.Show("Строка успешно добавлена в таблицу", "Все путем");
+                            ResourcesEntities db = new ResourcesEntities();
+                            db.Technical_Support.AddObject(new Technical_Support()
+                            {
+                                Name = ((Technical_Support)dataGrid.SelectedItem).Name,
+                                Processor = ((Technical_Support)dataGrid.SelectedItem).Processor,
+                                Processor_Memory = ((Technical_Support)dataGrid.SelectedItem).Processor_Memory,
+                                Diagonal = ((Technical_Support)dataGrid.SelectedItem).Diagonal,
+                                Video_card_Memory = ((Technical_Support)dataGrid.SelectedItem).Video_card_Memory
+                            });
+                            db.SaveChanges();
+                            break;
                         }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 3:
-                    {
-                        sql = string.Format("INSERT INTO Methodological_Support" +
-                            "(Doc_type, Multi_client_use) Values(@Doc_type, @Multi_client_use)");
-                        add = new SqlCommand(sql, connection);
-                        add.Parameters.AddWithValue("@Doc_type", ((Methodological_Support)dataGrid.SelectedItem).Doc_type);
-                        add.Parameters.AddWithValue("@Multi_client_use", ((Methodological_Support)dataGrid.SelectedItem).Multi_client_use);
-
-                        try
+                    case 3: // Methodological_Support
                         {
-                            add.ExecuteNonQuery();
-                            MessageBox.Show("Строка успешно добавлена в таблицу", "Все путем");
+                            ResourcesEntities db = new ResourcesEntities();
+                            db.Methodological_Support.AddObject(new Methodological_Support()
+                            {
+                                Doc_type = ((Methodological_Support)dataGrid.SelectedItem).Doc_type,
+                                Multi_client_use = ((Methodological_Support)dataGrid.SelectedItem).Multi_client_use
+                            });
+                            db.SaveChanges();
+                            break;
                         }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
+                }
+                MessageBox.Show("Добавлено");
+                RefreshForm();
             }
-            connection.Close();  //завершаем соединение с базой
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //удаляем выделенную строку из таблицы----------------------------------------------------
@@ -263,6 +242,11 @@ namespace GidraSIM
 
             connection.Close();  //завершаем соединение с базой   
 
+            RefreshForm();
+        }
+
+        private void RefreshForm()
+        {
             //финт ушами
             window.Close();
             RedactTable_ResoursesDB again = new RedactTable_ResoursesDB(table);
