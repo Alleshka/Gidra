@@ -1,0 +1,14 @@
+﻿<Window x:Class="GidraSIM.AdmSet.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM.AdmSet"
+        mc:Ignorable="d"
+        Title="Settins" Height="300" Width="300">
+    <StackPanel>
+        <TextBlock>Введите имя сервера:</TextBlock>
+        <TextBox x:Name="_userPC"></TextBox>
+        <Button x:Name="SaveBtn" Click="SaveBtn_Click">Сохранить</Button>
+    </StackPanel>
+</Window>

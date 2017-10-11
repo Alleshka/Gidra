@@ -76,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdmSet\ProgrammSetting.cs" />
+    <Compile Include="AdmSet\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BlockProperties.cs" />
     <Compile Include="ChangeStruct.cs" />
     <Compile Include="CheckCorrectProcess.cs" />
@@ -143,6 +147,10 @@
     </Compile>
     <Compile Include="SubProcess.cs" />
     <Compile Include="WorksystemWithFiles.cs" />
+    <Page Include="AdmSet\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChooseTable_ResoursesDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

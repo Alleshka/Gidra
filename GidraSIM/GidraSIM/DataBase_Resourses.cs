@@ -14,12 +14,14 @@ using System.Data.SqlClient;
 using System.Data.Linq;
 using System.Data;
 using CommonData;
+using System.Data.SqlClient;
+using GidraSIM.AdmSet;
 
 namespace GidraSIM
 {
     public class DataBase_Resourses
     {
-        ResourcesEntities data_base;  //объявляем базу данных
+        ResourcesEntities data_base;  //объявляем базу данных     
         DataGrid dataGrid;               //текущий dataGrid, куда отображать таблицу
         int table;                       //номер текущей таблицы
         Window window;                   //текущее окно
@@ -29,14 +31,14 @@ namespace GidraSIM
         {
             dataGrid = current_dataGrid;
             table = number_table;
-            data_base = new ResourcesEntities();
+            // data_base = new ResourcesEntities();
             sqlServer = new SqlServer();
             window = current_window;
         }
 
         public DataBase_Resourses()
         {
-            data_base = new ResourcesEntities();
+            // data_base = new ResourcesEntities();
             sqlServer = new SqlServer();
         }
 
@@ -44,7 +46,7 @@ namespace GidraSIM
         public SqlConnection CreateConnection()
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = @"Data Source=" + sqlServer.GetServerName() + ";Initial Catalog=Resources;Integrated Security=True";
+            connection.ConnectionString = @"Data Source=" + SettingsReader.Read().NamePC + ";Initial Catalog=Resources;Integrated Security=True";
             connection.Open();
 
             return connection;

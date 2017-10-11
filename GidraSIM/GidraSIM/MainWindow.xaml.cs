@@ -18,6 +18,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
+using GidraSIM.AdmSet;
 
 using CommonData;  //пространство структур системы
 
@@ -63,6 +64,9 @@ namespace GidraSIM
             FilesWorksystem = new WorksystemWithFiles();// работа с файлами проекта
             x_tab = TabControl_Process.Margin.Left; //выясняем координаты левого верхнего угла tabControl 
             y_tab = TabControl_Process.Margin.Top;
+
+            Settings set = SettingsReader.Read();
+            if (set == null) System.Windows.Forms.MessageBox.Show($"Файл настроек не найден");
         }
 
 

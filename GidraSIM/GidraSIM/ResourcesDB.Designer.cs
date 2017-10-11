@@ -733,8 +733,6 @@ namespace GidraSIM
         partial void OnQualificationChanged();
 
         #endregion
-
-    
     }
 
     #endregion
