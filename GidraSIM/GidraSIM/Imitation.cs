@@ -167,11 +167,13 @@ namespace GidraSIM
             List<string> info_resource = db_resources.GetInfoRow(ResourceTypes.WORKER, id);
             //структура таблицы: 0 - имя, 1 - должность, 2 - квалификация
             Random rand = new Random();
-            
+
             if (info_resource[2].Contains("1")) // 1 категория
-                time -= time / rand.Next(1,5);//уменьшаем время, т.к. высокая категория\
+                time -= time / rand.Next(1, 5);//уменьшаем время, т.к. высокая категория\
             else if (info_resource[2].Contains("2")) // 2 категория
-                time = time;//базовое время подсчитано для второй категории
+            {
+                //time = time;//базовое время подсчитано для второй категории
+            }
             else if (info_resource[2].Contains("3")) // 3 категория
                 time += time / rand.Next(1, 5);//базовое время подсчитано для второй категории
             else if (info_resource[2].Contains("Ведущий")) // ведущий

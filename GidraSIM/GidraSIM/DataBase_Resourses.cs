@@ -67,7 +67,7 @@ namespace GidraSIM
         //отображаем содержимое таблицы-------------------------------------------------------------------------------------------
         public void ShowTable()
         {
-            ResourcesEntities data_base = new ResourcesEntities(SettingsReader.RConnectionString);
+            ResourcesEntities data_base = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
             switch (table)
             {
                 case 0:
@@ -110,7 +110,7 @@ namespace GidraSIM
                 {
                     case 0:  //Workers
                         {
-                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                             db.Workers.AddObject(new Workers()
                             {
                                 FIO = ((Workers)dataGrid.SelectedItem).FIO,
@@ -122,7 +122,7 @@ namespace GidraSIM
                         }
                     case 1: //CAD-systems
                         {
-                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                             db.CAD_Systems.AddObject(new CAD_Systems()
                             {
                                 Name = ((CAD_Systems)dataGrid.SelectedItem).Name,
@@ -134,7 +134,7 @@ namespace GidraSIM
                         }
                     case 2: // Technical_Support
                         {
-                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                             db.Technical_Support.AddObject(new Technical_Support()
                             {
                                 Name = ((Technical_Support)dataGrid.SelectedItem).Name,
@@ -148,7 +148,7 @@ namespace GidraSIM
                         }
                     case 3: // Methodological_Support
                         {
-                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                             db.Methodological_Support.AddObject(new Methodological_Support()
                             {
                                 Doc_type = ((Methodological_Support)dataGrid.SelectedItem).Doc_type,
@@ -172,7 +172,7 @@ namespace GidraSIM
         {
             try
             {
-                ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                 int id_delete;
 
                 switch (table) //выбираем таблицу для редактирования
@@ -217,7 +217,7 @@ namespace GidraSIM
         {
             try
             {
-                ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
                 int id_update;
 
                 switch (table) //выбираем таблицу для редактирования
@@ -276,7 +276,7 @@ namespace GidraSIM
         //берем запись из таблицы--------------------------------------------------------------------------------------
         public List<string> GetInfoRow(ResourceTypes type, int id)
         {
-            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
             List<string> resultRow = new List<string>();
             switch (type)
             {
@@ -331,7 +331,7 @@ namespace GidraSIM
         //берем первый столбец из таблицы - имя------------------------------------------------------
         public string GetRowName(ResourceTypes type, int id)
         {
-            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+            ResourcesEntities db = new ResourcesEntities(SettingsReader.ResourcesConnectionString);
             string name_from_base = null;
             switch (type)
             {

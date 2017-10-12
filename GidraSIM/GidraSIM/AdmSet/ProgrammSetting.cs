@@ -49,14 +49,14 @@ namespace GidraSIM.AdmSet
                 json.WriteObject(file, set);
             }
         }
-        public static String RConnectionString
+        public static String ResourcesConnectionString
         {
             get
             {
                 return "metadata = res://*/ResourcesDB.csdl|res://*/ResourcesDB.ssdl|res://*/ResourcesDB.msl;provider=System.Data.SqlClient;provider connection string=';data source=" + Read().NamePC + ";initial catalog=Resources;integrated security=True;multipleactiveresultsets=True;App=EntityFramework'";
             }
         }
-        public static String MConnectionString
+        public static String ModelingSessionConnectionString
         {
             get
             {

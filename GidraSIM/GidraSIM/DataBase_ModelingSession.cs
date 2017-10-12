@@ -58,7 +58,7 @@ namespace GidraSIM
         {
             try
             {
-                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.MConnectionString);
+                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.ModelingSessionConnectionString);
 
                 ConvertTimeUnits convertTime = new ConvertTimeUnits();
 
@@ -103,7 +103,7 @@ namespace GidraSIM
         {
             try
             {
-                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.MConnectionString);
+                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.ModelingSessionConnectionString);
                 ConvertTimeUnits convertTime = new ConvertTimeUnits();
                 for (int i = 0; i < project.Processes[number_saving].Procedures.Count; i++)
                 {
@@ -136,7 +136,7 @@ namespace GidraSIM
         {
             try
             {
-                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.MConnectionString);
+                ModelingSessionEntities db = new ModelingSessionEntities(SettingsReader.ModelingSessionConnectionString);
                 db.ExecuteStoreCommand("TRUNCATE TABLE Modeling_Process");
                 db.ExecuteStoreCommand("TRUNCATE TABLE ModelingProcedures");
                 db.SaveChanges();
