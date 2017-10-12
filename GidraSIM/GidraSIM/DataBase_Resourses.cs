@@ -5,11 +5,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data.Linq;
 using System.Data;
@@ -19,36 +14,20 @@ using GidraSIM.AdmSet;
 namespace GidraSIM
 {
     public class DataBase_Resourses
-    {
-        ResourcesEntities data_base;  //объявляем базу данных     
+    { 
         DataGrid dataGrid;               //текущий dataGrid, куда отображать таблицу
         int table;                       //номер текущей таблицы
         Window window;                   //текущее окно
-        SqlServer sqlServer;           //класс, возвращающий имя локального сервера
 
         public DataBase_Resourses(DataGrid current_dataGrid, int number_table, Window current_window)
         {
             dataGrid = current_dataGrid;
             table = number_table;
-            data_base = new ResourcesEntities();
-            sqlServer = new SqlServer();
             window = current_window;
         }
 
         public DataBase_Resourses()
         {
-            data_base = new ResourcesEntities();
-            sqlServer = new SqlServer();
-        }
-
-        //создаем соединение с базой данных
-        public SqlConnection CreateConnection()
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = @"Data Source=" + SettingsReader.Read().NamePC + ";Initial Catalog=Resources;Integrated Security=True";
-            connection.Open();
-
-            return connection;
         }
 
         //настраиваем dataGrid----------------------------------------------------------------------------------------------------
@@ -91,6 +70,7 @@ namespace GidraSIM
         //отображаем содержимое таблицы-------------------------------------------------------------------------------------------
         public void ShowTable()
         {
+            ResourcesEntities data_base = new ResourcesEntities(SettingsReader.RConnectionString);
             switch (table)
             {
                 case 0:
@@ -133,7 +113,7 @@ namespace GidraSIM
                 {
                     case 0:  //Workers
                         {
-                            ResourcesEntities db = new ResourcesEntities();
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
                             db.Workers.AddObject(new Workers()
                             {
                                 FIO = ((Workers)dataGrid.SelectedItem).FIO,
@@ -145,7 +125,7 @@ namespace GidraSIM
                         }
                     case 1: //CAD-systems
                         {
-                            ResourcesEntities db = new ResourcesEntities();
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
                             db.CAD_Systems.AddObject(new CAD_Systems()
                             {
                                 Name = ((CAD_Systems)dataGrid.SelectedItem).Name,
@@ -157,7 +137,7 @@ namespace GidraSIM
                         }
                     case 2: // Technical_Support
                         {
-                            ResourcesEntities db = new ResourcesEntities();
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
                             db.Technical_Support.AddObject(new Technical_Support()
                             {
                                 Name = ((Technical_Support)dataGrid.SelectedItem).Name,
@@ -171,7 +151,7 @@ namespace GidraSIM
                         }
                     case 3: // Methodological_Support
                         {
-                            ResourcesEntities db = new ResourcesEntities();
+                            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
                             db.Methodological_Support.AddObject(new Methodological_Support()
                             {
                                 Doc_type = ((Methodological_Support)dataGrid.SelectedItem).Doc_type,
@@ -193,56 +173,197 @@ namespace GidraSIM
         //удаляем выделенную строку из таблицы----------------------------------------------------
         public void Delete_row()
         {
-            int id_delete;
-            string sql;
-            SqlCommand delete;
-            SqlConnection connection = CreateConnection(); //устанавливаем соединение с базой
-
-            switch (table) //выбираем таблицу для редактирования
+            try
             {
-                case 0:
-                    {
-                        id_delete = ((Workers)dataGrid.SelectedItem).worker_id;  //берем id выделенной строки
-                        sql = string.Format("DELETE FROM Workers WHERE worker_id = '{0}'", id_delete);  //создаем запрос
-                        delete = new SqlCommand(sql, connection);  //создаем команду
-                        //пытаемся выполнить запрос с установленным соединением
-                        try { delete.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 1:
-                    {
-                        id_delete = ((CAD_Systems)dataGrid.SelectedItem).cad_id;
-                        sql = string.Format("DELETE FROM CAD_Systems WHERE cad_id = '{0}'", id_delete);
-                        delete = new SqlCommand(sql, connection);
-                        try { delete.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 2:
-                    {
-                        id_delete = ((Technical_Support)dataGrid.SelectedItem).tech_supp_id;
-                        sql = string.Format("DELETE FROM Technical_Support WHERE tech_supp_id = '{0}'", id_delete);
-                        delete = new SqlCommand(sql, connection);
-                        try { delete.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 3:
-                    {
-                        id_delete = ((Methodological_Support)dataGrid.SelectedItem).method_supp_id;
-                        sql = string.Format("DELETE FROM Methodological_Support WHERE method_supp_id = '{0}'", id_delete);
-                        delete = new SqlCommand(sql, connection);
-                        try { delete.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
+                ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                int id_delete;
+
+                switch (table) //выбираем таблицу для редактирования
+                {
+                    case 0:
+                        {
+
+                            id_delete = ((Workers)dataGrid.SelectedItem).worker_id;  //берем id выделенной строки
+                            db.DeleteObject(db.Workers.Where(j => j.worker_id == id_delete).First());
+                            break;
+                        }
+                    case 1:
+                        {
+                            id_delete = ((CAD_Systems)dataGrid.SelectedItem).cad_id;
+                            db.DeleteObject(db.CAD_Systems.Where(j => j.cad_id == id_delete).First());
+                            break;
+                        }
+                    case 2:
+                        {
+                            id_delete = ((Technical_Support)dataGrid.SelectedItem).tech_supp_id;
+                            db.DeleteObject(db.Technical_Support.Where(j => j.tech_supp_id == id_delete).First());
+                            break;
+                        }
+                    case 3:
+                        {
+                            id_delete = ((Methodological_Support)dataGrid.SelectedItem).method_supp_id;
+                            db.DeleteObject(db.Methodological_Support.Where(j => j.method_supp_id == id_delete).First());
+                            break;
+                        }
+                }
+                db.SaveChanges();
+                MessageBox.Show("Строка успешно удалена из таблицы");
+                RefreshForm();
             }
-            MessageBox.Show("Строка успешно удалена из таблицы", "Все путем");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //обновление строки--------------------------------------------------------------------------------------------
+        public void Update_row()
+        {
+            try
+            {
+                ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+                int id_update;
 
-            connection.Close();  //завершаем соединение с базой   
+                switch (table) //выбираем таблицу для редактирования
+                {
+                    case 0:
+                        {
 
-            RefreshForm();
+                            id_update = ((Workers)dataGrid.SelectedItem).worker_id;  //берем id выделенной строки
+                            Workers workers = db.Workers.Where(j => j.worker_id == id_update).First();
+                            workers.FIO = ((Workers)dataGrid.SelectedItem).FIO;
+                            workers.Position = ((Workers)dataGrid.SelectedItem).Position;
+                            workers.Qualification = ((Workers)dataGrid.SelectedItem).Qualification;
+                            db.SaveChanges();
+                            break;
+                        }
+                    case 1:
+                        {
+                            id_update = ((CAD_Systems)dataGrid.SelectedItem).cad_id;  //берем id выделенной строки
+                            CAD_Systems systems = db.CAD_Systems.Where(j => j.cad_id == id_update).First();
+                            systems.Name = ((CAD_Systems)dataGrid.SelectedItem).Name;
+                            systems.License_form = ((CAD_Systems)dataGrid.SelectedItem).License_form;
+                            systems.License_status = ((CAD_Systems)dataGrid.SelectedItem).License_status;
+                            db.SaveChanges();
+                            break;
+                        }
+                    case 2:
+                        {
+                            id_update = ((Technical_Support)dataGrid.SelectedItem).tech_supp_id;  //берем id выделенной строки
+                            Technical_Support technical_Support = db.Technical_Support.Where(j => j.tech_supp_id == id_update).First();
+                            technical_Support.Name = ((Technical_Support)dataGrid.SelectedItem).Name;
+                            technical_Support.Processor = ((Technical_Support)dataGrid.SelectedItem).Processor;
+                            technical_Support.Processor_Memory = ((Technical_Support)dataGrid.SelectedItem).Processor_Memory;
+                            technical_Support.Diagonal = ((Technical_Support)dataGrid.SelectedItem).Diagonal;
+                            technical_Support.Video_card_Memory = ((Technical_Support)dataGrid.SelectedItem).Video_card_Memory;
+                            db.SaveChanges();
+                            break;
+                        }
+                    case 3:
+                        {
+                            id_update = ((Methodological_Support)dataGrid.SelectedItem).method_supp_id;  //берем id выделенной строки
+                            Methodological_Support methodological_Support = db.Methodological_Support.Where(j => j.method_supp_id == id_update).First();
+                            methodological_Support.Doc_type = ((Methodological_Support)dataGrid.SelectedItem).Doc_type;
+                            methodological_Support.Multi_client_use = ((Methodological_Support)dataGrid.SelectedItem).Multi_client_use;
+                            db.SaveChanges();
+                            break;
+                        }
+                }
+                MessageBox.Show("Строка успешно обновлена");
+                RefreshForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //берем запись из таблицы--------------------------------------------------------------------------------------
+        public List<string> GetInfoRow(ResourceTypes type, int id)
+        {
+            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+            List<string> resultRow = new List<string>();
+            switch (type)
+            {
+                case ResourceTypes.WORKER:
+                    {
+                        if (db.Workers.Any(j => j.worker_id == id))
+                        {
+                            Workers workers = db.Workers.Where(j => j.worker_id == id).First();
+                            resultRow.Add(workers.FIO);
+                            resultRow.Add(workers.Position);
+                            resultRow.Add(workers.Qualification);
+                        }
+                        break;
+                    }
+                case ResourceTypes.CAD_SYSTEM:
+                    {
+                        if (db.CAD_Systems.Any(j => j.cad_id == id))
+                        {
+                            CAD_Systems cad = db.CAD_Systems.Where(j => j.cad_id == id).First();
+                            resultRow.Add(cad.Name);
+                            resultRow.Add(cad.License_form);
+                            resultRow.Add(cad.License_status);
+                        }
+                        break;
+                    }
+                case ResourceTypes.TECHNICAL_SUPPORT:
+                    {
+                        if (db.Technical_Support.Any(j => j.tech_supp_id == id))
+                        {
+                            Technical_Support technical = db.Technical_Support.Where(j => j.tech_supp_id == id).First();
+                            resultRow.Add(technical.Name);
+                            resultRow.Add(technical.Processor);
+                            resultRow.Add(technical.Processor_Memory);
+                            resultRow.Add(technical.Diagonal);
+                            resultRow.Add(technical.Video_card_Memory);
+                        }
+                        break;
+                    }
+                case ResourceTypes.METHODOLOGICAL_SUPPORT:
+                    {
+                        if (db.Methodological_Support.Any(j => j.method_supp_id == id))
+                        {
+                            Methodological_Support methodological = db.Methodological_Support.Where(j => j.method_supp_id == id).First();
+                            resultRow.Add(methodological.Doc_type);
+                            resultRow.Add(methodological.Multi_client_use);
+                        }
+                        break;
+                    }
+            }
+            return resultRow;
+        }
+        //берем первый столбец из таблицы - имя------------------------------------------------------
+        public string GetRowName(ResourceTypes type, int id)
+        {
+            ResourcesEntities db = new ResourcesEntities(SettingsReader.RConnectionString);
+            string name_from_base = null;
+            switch (type)
+            {
+                case ResourceTypes.WORKER:
+                    {
+                        Workers worker = db.Workers.Where(x => x.worker_id == id).First();
+                        name_from_base = worker.FIO;
+                        break;
+                    }
+                case ResourceTypes.CAD_SYSTEM:
+                    {
+                        CAD_Systems cad = db.CAD_Systems.Where(x => x.cad_id == id).First();
+                        name_from_base = cad.Name;
+                        break;
+                    }
+                case ResourceTypes.TECHNICAL_SUPPORT:
+                    {
+                        Technical_Support technical = db.Technical_Support.Where(x => x.tech_supp_id == id).First();
+                        name_from_base = technical.Name;
+                        break;
+                    }
+                case ResourceTypes.METHODOLOGICAL_SUPPORT:
+                    {
+                        Methodological_Support meh = db.Methodological_Support.Where(x => x.method_supp_id == id).First();
+                        name_from_base = meh.Doc_type;
+                        break;
+                    }
+            }
+            return name_from_base;
         }
 
         private void RefreshForm()
@@ -251,153 +372,6 @@ namespace GidraSIM
             window.Close();
             RedactTable_ResoursesDB again = new RedactTable_ResoursesDB(table);
             again.ShowDialog();
-        }
-
-        //обновление строки--------------------------------------------------------------------------------------------
-        public void Update_row()
-        {
-            int id_update;
-            string sql;
-            SqlCommand update;
-            SqlConnection connection = CreateConnection(); //устанавливаем соединение с базой
-
-            switch (table) //выбираем таблицу для редактирования
-            {
-                case 0:
-                    {
-                        id_update = ((Workers)dataGrid.SelectedItem).worker_id;  //берем id выделенной строки
-                        sql = string.Format("UPDATE Workers SET FIO ='{0}', Position = '{1}', Qualification = '{2}' WHERE worker_id = '{3}'",
-                            ((Workers)dataGrid.SelectedItem).FIO, ((Workers)dataGrid.SelectedItem).Position,
-                            ((Workers)dataGrid.SelectedItem).Qualification, id_update);  //создаем запрос
-                        update = new SqlCommand(sql, connection);  //создаем команду
-                        //пытаемся выполнить запрос с установленным соединением
-                        try { update.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 1:
-                    {
-                        id_update = ((CAD_Systems)dataGrid.SelectedItem).cad_id;  //берем id выделенной строки
-                        sql = string.Format("UPDATE CAD_Systems SET Name ='{0}', License_form = '{1}', License_status = '{2}' WHERE cad_id = '{3}'",
-                            ((CAD_Systems)dataGrid.SelectedItem).Name, ((CAD_Systems)dataGrid.SelectedItem).License_form,
-                            ((CAD_Systems)dataGrid.SelectedItem).License_status, id_update);  //создаем запрос
-                        update = new SqlCommand(sql, connection);  //создаем команду
-                        //пытаемся выполнить запрос с установленным соединением
-                        try { update.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 2:
-                    {
-                        id_update = ((Technical_Support)dataGrid.SelectedItem).tech_supp_id;  //берем id выделенной строки
-                        sql = string.Format("UPDATE Technical_Support SET Name ='{0}', Processor = '{1}', Processor_Memory = '{2}'," +
-                            "Diagonal = '{3}', Video_card_Memory = '{4}' WHERE tech_supp_id = '{5}'",
-                            ((Technical_Support)dataGrid.SelectedItem).Name, ((Technical_Support)dataGrid.SelectedItem).Processor,
-                            ((Technical_Support)dataGrid.SelectedItem).Processor_Memory, ((Technical_Support)dataGrid.SelectedItem).Diagonal,
-                            ((Technical_Support)dataGrid.SelectedItem).Video_card_Memory, id_update);  //создаем запрос
-                        update = new SqlCommand(sql, connection);  //создаем команду
-                        //пытаемся выполнить запрос с установленным соединением
-                        try { update.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-                case 3:
-                    {
-                        id_update = ((Methodological_Support)dataGrid.SelectedItem).method_supp_id;  //берем id выделенной строки
-                        sql = string.Format("UPDATE Methodological_Support SET Doc_type ='{0}', Multi_client_use = '{1}' WHERE method_supp_id = '{2}'",
-                            ((Methodological_Support)dataGrid.SelectedItem).Doc_type,
-                            ((Methodological_Support)dataGrid.SelectedItem).Multi_client_use, id_update);  //создаем запрос
-                        update = new SqlCommand(sql, connection);  //создаем команду
-                        //пытаемся выполнить запрос с установленным соединением
-                        try { update.ExecuteNonQuery(); }
-                        catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-                    }
-                    break;
-            }
-            MessageBox.Show("Строка успешно обновлена", "Все путем");
-
-            connection.Close();  //завершаем соединение с базой   
-
-            //финт ушами
-            window.Close();
-            RedactTable_ResoursesDB again = new RedactTable_ResoursesDB(table);
-            again.ShowDialog();
-        }
-
-        //берем запись из таблицы--------------------------------------------------------------------------------------
-        public List<string> GetInfoRow(ResourceTypes type, int id)
-        {
-            SqlCommand select;
-            SqlConnection connection = CreateConnection();
-            string sql;
-            switch (type)
-            {
-                case ResourceTypes.WORKER: sql = string.Format("SELECT * FROM Workers WHERE worker_id = '{0}'", id);
-                    break;
-                case ResourceTypes.CAD_SYSTEM: sql = string.Format("SELECT * FROM CAD_Systems WHERE cad_id = '{0}'", id);
-                    break;
-                case ResourceTypes.TECHNICAL_SUPPORT: sql = string.Format("SELECT * FROM Technical_Support WHERE tech_supp_id = '{0}'", id);
-                    break;
-                case ResourceTypes.METHODOLOGICAL_SUPPORT: sql = string.Format("SELECT * FROM Methodological_Support WHERE method_supp_id = '{0}'", id);
-                    break;
-                default: sql = "SELECT * FROM Workers";
-                    break;
-            }
-
-            List<string> resultRow = new List<string>();
-            select = new SqlCommand(sql, connection);
-            try
-            {
-                SqlDataReader reader = select.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    resultRow.Add(reader.GetString(1));
-                    resultRow.Add(reader.GetString(2));
-                    if (type == ResourceTypes.WORKER || type == ResourceTypes.CAD_SYSTEM || type == ResourceTypes.TECHNICAL_SUPPORT)
-                        resultRow.Add(reader.GetString(3));
-                    if (type == ResourceTypes.TECHNICAL_SUPPORT)
-                    {
-                        resultRow.Add(reader.GetString(4));
-                        resultRow.Add(reader.GetString(5));
-                    }
-                }
-                reader.Close();
-            }
-            catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-            return resultRow;
-        }
-
-        //берем первый столбец из таблицы - имя------------------------------------------------------
-        public string GetRowName(ResourceTypes type, int id)
-        {
-            SqlCommand select;
-            SqlConnection connection = CreateConnection();
-            string sql;
-            switch (type)
-            {
-                case ResourceTypes.WORKER: sql = string.Format("SELECT * FROM Workers WHERE worker_id = '{0}'", id);
-                    break;
-                case ResourceTypes.CAD_SYSTEM: sql = string.Format("SELECT * FROM CAD_Systems WHERE cad_id = '{0}'", id);
-                    break;
-                case ResourceTypes.TECHNICAL_SUPPORT: sql = string.Format("SELECT * FROM Technical_Support WHERE tech_supp_id = '{0}'", id);
-                    break;
-                case ResourceTypes.METHODOLOGICAL_SUPPORT: sql = string.Format("SELECT * FROM Methodological_Support WHERE method_supp_id = '{0}'", id);
-                    break;
-                default: sql = "SELECT * FROM Workers";
-                    break;
-            }
-            string name_from_base = null;
-            select = new SqlCommand(sql, connection);
-            try
-            {
-                SqlDataReader reader = select.ExecuteReader();
-                while (reader.Read())
-                    name_from_base = reader.GetString(1);
-                reader.Close();
-            }
-            catch (SqlException exe) { MessageBox.Show(exe.Message, "Ой!"); }
-            return name_from_base;
         }
     }
 }

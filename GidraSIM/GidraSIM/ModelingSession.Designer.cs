@@ -27,16 +27,7 @@ namespace GidraSIM
     public partial class ModelingSessionEntities : ObjectContext
     {
         #region Конструкторы
-    
-        /// <summary>
-        /// Инициализирует новый объект ModelingSessionEntities, используя строку соединения из раздела "ModelingSessionEntities" файла конфигурации приложения.
-        /// </summary>
-        public ModelingSessionEntities() : base("name=ModelingSessionEntities", "ModelingSessionEntities")
-        {
-            this.ContextOptions.LazyLoadingEnabled = true;
-            OnContextCreated();
-        }
-    
+        
         /// <summary>
         /// Инициализация нового объекта ModelingSessionEntities.
         /// </summary>

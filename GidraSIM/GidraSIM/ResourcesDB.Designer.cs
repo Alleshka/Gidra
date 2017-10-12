@@ -27,16 +27,7 @@ namespace GidraSIM
     public partial class ResourcesEntities : ObjectContext
     {
         #region Конструкторы
-    
-        /// <summary>
-        /// Инициализирует новый объект ResourcesEntities, используя строку соединения из раздела "ResourcesEntities" файла конфигурации приложения.
-        /// </summary>
-        public ResourcesEntities() : base("name=ResourcesEntities", "ResourcesEntities")
-        {
-            this.ContextOptions.LazyLoadingEnabled = true;
-            OnContextCreated();
-        }
-    
+
         /// <summary>
         /// Инициализация нового объекта ResourcesEntities.
         /// </summary>

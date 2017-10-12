@@ -140,14 +140,14 @@ namespace CommonData   //содержит общие структуры и да�
         }
     }
 
-    public class SqlServer//изменение имени сервера
-    {
-        public string GetServerName()
-        {
-           //return "USER-ПК";
-              return "(localdb)\\MSSQLLocalDB";
-        }
-    }
+    //public class SqlServer//изменение имени сервера
+    //{
+    //    public string GetServerName()
+    //    {
+    //       //return "USER-ПК";
+    //          return "DESKTOP-H4JQP0V";
+    //    }
+    //}
 
     public class ModelingResults
     {

@@ -49,6 +49,19 @@ namespace GidraSIM.AdmSet
                 json.WriteObject(file, set);
             }
         }
-
+        public static String RConnectionString
+        {
+            get
+            {
+                return "metadata = res://*/ResourcesDB.csdl|res://*/ResourcesDB.ssdl|res://*/ResourcesDB.msl;provider=System.Data.SqlClient;provider connection string=';data source=" + Read().NamePC + ";initial catalog=Resources;integrated security=True;multipleactiveresultsets=True;App=EntityFramework'";
+            }
+        }
+        public static String MConnectionString
+        {
+            get
+            {
+                return "metadata = res://*/ModelingSession.csdl|res://*/ModelingSession.ssdl|res://*/ModelingSession.msl;provider=System.Data.SqlClient;provider connection string=';data source=" + Read().NamePC + ";initial catalog=ModelingSession;integrated security=True;multipleactiveresultsets=True;App=EntityFramework';";
+            }
+        }
     }
 }

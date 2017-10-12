@@ -14,28 +14,26 @@ using System.Data.SqlClient;
 using System.Data.Linq;
 using System.Data;
 using CommonData;
+using GidraSIM.AdmSet;
 
 namespace GidraSIM
 {
     public class DataBase_ModelingSession
     {
         ModelingSessionEntities data_base; //объявляем базу данных
-        SqlServer sqlServer;               //класс, возвращающий имя локального сервера
         Project project;                   //текущий проект
         Process_ modeled_process;          //текущий процесс, который смоделировали
 
         public DataBase_ModelingSession(Project new_project, int number_process_to_base)
         {
-            data_base = new ModelingSessionEntities();  //создаем базу
-            sqlServer = new SqlServer();                
+            data_base = new ModelingSessionEntities(SettingsReader.MConnectionString);  //создаем базу            
             project = new_project;
             modeled_process = project.Processes[number_process_to_base]; //берем смоделированный процесс
         }
 
         public DataBase_ModelingSession()
         {
-            data_base = new ModelingSessionEntities();  //создаем базу
-            sqlServer = new SqlServer();    
+            data_base = new ModelingSessionEntities(SettingsReader.MConnectionString);  //создаем базу  
         }
 
         //сохраняем все в базу
@@ -55,7 +53,7 @@ namespace GidraSIM
         public SqlConnection CreateConnection()
         {
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = @"Data Source=" + sqlServer.GetServerName() + ";Initial Catalog=ModelingSession;Integrated Security=True";
+            connection.ConnectionString = @"Data Source=" + SettingsReader.Read().NamePC + ";Initial Catalog=ModelingSession;Integrated Security=True";
             connection.Open(); //открываем соединение
 
             return connection;
