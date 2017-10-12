@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Settins" Height="300" Width="300">
     <StackPanel>
-        <TextBlock>Name</TextBlock>
+        <TextBlock>DB server name</TextBlock>
         <TextBox x:Name="_userPC"></TextBox>
         <Button x:Name="SaveBtn" Click="SaveBtn_Click">Сохранить</Button>
     </StackPanel>
