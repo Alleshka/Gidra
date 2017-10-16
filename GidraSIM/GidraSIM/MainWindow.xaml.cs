@@ -889,5 +889,10 @@ namespace GidraSIM
                 message.ShowMessage(6);//сообщение о успешном открытии проекта
             }
         }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

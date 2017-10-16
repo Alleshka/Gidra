@@ -35,7 +35,7 @@
                 </MenuItem>
                 <MenuItem Header="Сохранить проект как..." />
                 <MenuItem Header="Закрыть проект" />
-                <MenuItem Header="Выход" />
+                <MenuItem Header="Выход" x:Name="ExitMenuItem" Click="ExitMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Правка" Width="70">
                 <MenuItem Header="Вырезать">
