@@ -1,0 +1,29 @@
+﻿<Window x:Class="GidraSIM.ModelingParameters"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Параметры моделирования" Height="436" Width="456" FontSize="16">
+    <Window.Background>
+        <ImageBrush ImageSource="/GidraSIM;component/Image/background.jpg" />
+    </Window.Background>
+    <Grid Background="#C5FFFFFF">
+        <Label Content="Площадь ПП, мм2" Height="28" HorizontalAlignment="Left" Margin="12,2,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Normal" />
+        <Label Content="Число слоев ПП" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="12,84,0,0" Name="label2" VerticalAlignment="Top" />
+        <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,6,0,0" Name="textBox_BoardSquare" Text="0" VerticalAlignment="Top" Width="134" />
+        <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,87,0,0" Name="textBox_Layers" Text="0" VerticalAlignment="Top" Width="134" />
+        <Label Content="Общая площать элементов ПП, мм2" FontWeight="Normal" Height="28" HorizontalAlignment="Left" Margin="12,40,0,0" Name="label6" VerticalAlignment="Top" />
+        <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,45,0,0" Name="textBox_SquareElements" Text="0" VerticalAlignment="Top" Width="134" />
+        <Separator Height="19" HorizontalAlignment="Left" Margin="12,138,0,0" Name="separator1" VerticalAlignment="Top" Width="129" MinHeight="5" MinWidth="5" Padding="5" Background="Black" FontSize="72" />
+        <Label Content="Элементы ПП" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="159,130,0,0" Name="label3" VerticalAlignment="Top" FontStyle="Normal" FontStretch="Normal" />
+        <Separator Background="Black" FontSize="72" Height="19" HorizontalAlignment="Left" Margin="287,138,0,0" MinHeight="5" MinWidth="5" Name="separator2" Padding="5" VerticalAlignment="Top" Width="145" />
+        <Button Content="Сохранить" Height="39" HorizontalAlignment="Left" Margin="84,342,0,0" Name="button_Save" VerticalAlignment="Top" Width="102" Click="button_Save_Click" />
+        <Button Content="Отмена" Height="39" HorizontalAlignment="Left" Margin="232,342,0,0" Name="button_Cancel" VerticalAlignment="Top" Width="102" Click="button_Cancel_Click" />
+        <Label Content="Двухполюсники" FontWeight="Normal" Height="31" HorizontalAlignment="Left" Margin="14,171,0,0" Name="label8" VerticalAlignment="Top" />
+        <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,171,0,0" Name="textBox_TwoPolus" Text="0" VerticalAlignment="Top" Width="134" />
+	    <Label Content="Трехполюсники" FontWeight="Normal" Height="38" HorizontalAlignment="Left" Margin="14,208,0,0" Name="label7" VerticalAlignment="Top" />
+		<TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,213,0,0" Name="textBox_ThreePolus" Text="0" VerticalAlignment="Top" Width="134" />
+        <Label Content="Микросхемы" FontWeight="Normal" Height="38" HorizontalAlignment="Left" Margin="14,246,0,0" Name="label12" VerticalAlignment="Top" />
+	    <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="292,257,0,0" Name="textbox_Chip" Text="0" VerticalAlignment="Top" Width="134" />
+        <Label Content="Прочее" FontWeight="Normal" Height="39" HorizontalAlignment="Left" Margin="15,290,0,0" Name="labe16" VerticalAlignment="Top" />
+        <TextBox FontSize="16" Height="28" HorizontalAlignment="Left" Margin="291,301,0,0" Name="textbox_Other" Text="0" VerticalAlignment="Top" Width="134" />
+	 </Grid>
+</Window>

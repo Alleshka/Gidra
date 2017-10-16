@@ -18,7 +18,7 @@
                         <Image Source="file:///H:/GidraSIM/GidraSIM/Image/NewProject.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Открыть проект" x:Name="OpenProjectMenuItem" Click="OpenProjectMenuItem_Click">
+                <MenuItem Header="Открыть проект">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Folder.png" />
                     </MenuItem.Icon>

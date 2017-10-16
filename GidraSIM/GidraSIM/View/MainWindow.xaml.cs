@@ -795,7 +795,39 @@ namespace GidraSIM
 //открытие проекта----------------------------------------------------------------------------------------------------------------
         private void OpenProject(object sender, RoutedEventArgs e)  //открыть проект
         {
-            OpenProject();
+    	    if (project_create)   ///если проект уже создан
+            {
+                message.ShowError(7); //ошибка, проект уже создан, сначала закройте проект, а потом открывате 
+                return;
+            }
+            message.ShowMessage(5);//сообщение о процессе загрузки проекта            
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "СИМ |*.gsim" + "|Все файлы (*.*)|*.* ";   // задаем допустимые расширения открываемых файлов
+            myDialog.CheckFileExists = true;
+            myDialog.Multiselect = false;     //нельзя выбрать сразу несколько
+
+            if (myDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string way = myDialog.FileName.Substring(0, myDialog.FileName.Length - myDialog.SafeFileName.Length - 1); // -1 для того, чтобы убрать "//"
+                FilesWorksystem.UpdateWay(way, myDialog.SafeFileName);                //обновляем путь
+                project = FilesWorksystem.OpenProject(myDialog.FileName);                     // открываем проект
+                find = new Find();
+                changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
+                showProperties = new BlockProperties(grid_Properties, ref project);   
+                RecreateProjectFromOpened renessans = new RecreateProjectFromOpened(ref project, ref TabControl_Process);//воссоздаем проект
+
+                how_many_process = project.Processes.Count;
+                currentTab = TabControl_Process.Items[0] as TabItem; //какую выбрали вкладку 
+                currentTab.IsSelected = true;                             //сделали ее активной 
+                current_process = TabControl_Process.SelectedIndex;
+                canvas_process = currentTab.Content as Canvas;            //берем канву вкладки
+                changeStruct.ChangeNumberProcess(current_process);
+                drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem);
+
+                project_create = true;//проект открыт, а значит создан!
+                message.ShowMessage(6);//сообщение о успешном открытии проекта
+            }
+            
         }
 
 //вводим параметры моделирования
@@ -847,47 +879,6 @@ namespace GidraSIM
         {
             About about = new About();
             about.Show();
-        }
-
-        private void OpenProjectMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenProject();
-        }
-
-        private void OpenProject()
-        {
-            if (project_create)   ///если проект уже создан
-            {
-                message.ShowError(7); //ошибка, проект уже создан, сначала закройте проект, а потом открывате 
-                return;
-            }
-            message.ShowMessage(5);//сообщение о процессе загрузки проекта            
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "СИМ |*.gsim" + "|Все файлы (*.*)|*.* ";   // задаем допустимые расширения открываемых файлов
-            myDialog.CheckFileExists = true;
-            myDialog.Multiselect = false;     //нельзя выбрать сразу несколько
-
-            if (myDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string way = myDialog.FileName.Substring(0, myDialog.FileName.Length - myDialog.SafeFileName.Length - 1); // -1 для того, чтобы убрать "//"
-                FilesWorksystem.UpdateWay(way, myDialog.SafeFileName);                //обновляем путь
-                project = FilesWorksystem.OpenProject(myDialog.FileName);                     // открываем проект
-                find = new Find();
-                changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
-                showProperties = new BlockProperties(grid_Properties, ref project);
-                RecreateProjectFromOpened renessans = new RecreateProjectFromOpened(ref project, ref TabControl_Process);//воссоздаем проект
-
-                how_many_process = project.Processes.Count;
-                currentTab = TabControl_Process.Items[0] as TabItem; //какую выбрали вкладку 
-                currentTab.IsSelected = true;                             //сделали ее активной 
-                current_process = TabControl_Process.SelectedIndex;
-                canvas_process = currentTab.Content as Canvas;            //берем канву вкладки
-                changeStruct.ChangeNumberProcess(current_process);
-                drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem);
-
-                project_create = true;//проект открыт, а значит создан!
-                message.ShowMessage(6);//сообщение о успешном открытии проекта
-            }
         }
     }
 }
