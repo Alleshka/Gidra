@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.IO;
 using System.Xml;
-using System.Windows.Shapes;
-using System.Windows.Controls;
-
-using CommonData;
 
 namespace GidraSIM
 {
