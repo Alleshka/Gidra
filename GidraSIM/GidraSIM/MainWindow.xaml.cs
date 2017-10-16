@@ -887,5 +887,11 @@ namespace GidraSIM
            // DataBase_ModelingSession data_base = new DataBase_ModelingSession();
           //  data_base.ClearTables();
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
     }
 }

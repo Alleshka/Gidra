@@ -80,7 +80,7 @@
                         <Image Source="/GidraSIM;component/Image/help.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="О программе GigraSIM" />
+                <MenuItem Header="О программе GigraSIM" Click="About_Click" />
             </MenuItem>
         </Menu>
         <Menu HorizontalAlignment="Left" Margin="0,25,0,602" Name="menu2" Width="1173" FontSize="16" Background="#DAFFFFFF" Grid.ColumnSpan="3" IsEnabled="True">
