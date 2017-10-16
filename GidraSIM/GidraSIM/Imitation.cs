@@ -201,9 +201,9 @@ namespace GidraSIM
                     exist_technical = true;
                     //структура таблицы: 0 - имя, 1 - частота, 2 - объесм память процесора, 3 - диагональ монитора, 4 - объем памяти видеокарты
                     info_resource = db_resources.GetInfoRow(ResourceTypes.TECHNICAL_SUPPORT, current_resource.id);
-                    double frequency = Convert.ToDouble(info_resource[1]);//частота
-                    double memory_proc = Convert.ToDouble(info_resource[2]);//объем памяти процессора
-                    double memory_video = Convert.ToDouble(info_resource[4]);//объем памяти ведеокарты
+                    double frequency = Convert.ToDouble(info_resource[1], System.Globalization.CultureInfo.InvariantCulture);//частота
+                    double memory_proc = Convert.ToDouble(info_resource[2], System.Globalization.CultureInfo.InvariantCulture);//объем памяти процессора
+                    double memory_video = Convert.ToDouble(info_resource[4], System.Globalization.CultureInfo.InvariantCulture);//объем памяти ведеокарты
                     //базовые параметры: 
                     double base_frequency = 1.5;//частота
                     double base_memory_proc = 2;//объем памяти процессора
@@ -258,9 +258,9 @@ namespace GidraSIM
                     exist_technical = true;
                      //структура таблицы: 0 - имя, 1 - частота, 2 - объесм память процесора, 3 - диагональ монитора, 4 - объем памяти видеокарты
                     info_resource = db_resources.GetInfoRow(ResourceTypes.TECHNICAL_SUPPORT, current_resource.id);
-                    double frequency = Convert.ToDouble(info_resource[1]);//частота
-                    double memory_proc = Convert.ToDouble(info_resource[2]);//объем памяти процессора
-                    double memory_video = Convert.ToDouble(info_resource[4]);//объем памяти ведеокарты
+                    double frequency = Convert.ToDouble(info_resource[1], System.Globalization.CultureInfo.InvariantCulture);//частота
+                    double memory_proc = Convert.ToDouble(info_resource[2], System.Globalization.CultureInfo.InvariantCulture);//объем памяти процессора
+                    double memory_video = Convert.ToDouble(info_resource[4], System.Globalization.CultureInfo.InvariantCulture);//объем памяти ведеокарты
                 //базовые параметры: 
                     double base_frequency = 1.5;//частота
                     double base_memory_proc = 2;//объем памяти процессора
@@ -319,9 +319,9 @@ namespace GidraSIM
                     exist_technical = true;
                     //структура таблицы: 0 - имя, 1 - частота, 2 - объесм память процесора, 3 - диагональ монитора, 4 - объем памяти видеокарты
                     info_resource = db_resources.GetInfoRow(ResourceTypes.TECHNICAL_SUPPORT, current_resource.id);
-                    double frequency = Convert.ToDouble(info_resource[1]);//частота
-                    double memory_proc = Convert.ToDouble(info_resource[2]);//объем памяти процессора
-                    double memory_video = Convert.ToDouble(info_resource[4]);//объем памяти ведеокарты
+                    double frequency = Convert.ToDouble(info_resource[1], System.Globalization.CultureInfo.InvariantCulture);//частота
+                    double memory_proc = Convert.ToDouble(info_resource[2], System.Globalization.CultureInfo.InvariantCulture);//объем памяти процессора
+                    double memory_video = Convert.ToDouble(info_resource[4], System.Globalization.CultureInfo.InvariantCulture);//объем памяти ведеокарты
                     //базовые параметры: 
                     double base_frequency = 1.5;//частота
                     double base_memory_proc = 2;//объем памяти процессора

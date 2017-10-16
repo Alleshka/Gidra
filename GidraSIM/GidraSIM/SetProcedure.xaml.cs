@@ -87,7 +87,7 @@ namespace GidraSIM
             {
                 ConvertTimeUnits convert = new ConvertTimeUnits();
                 procedure.is_common = false;
-                procedure.Time_in_days = convert.ConvertToDays(comboBox_TimeUnit.SelectedIndex, Convert.ToDouble(textBox_NotCommonTime.Text));
+                procedure.Time_in_days = convert.ConvertToDays(comboBox_TimeUnit.SelectedIndex, Convert.ToDouble(textBox_NotCommonTime.Text, System.Globalization.CultureInfo.InvariantCulture));
             }
             project.Processes[num_process].Procedures[num_procedure] = procedure;
             this.Close();
