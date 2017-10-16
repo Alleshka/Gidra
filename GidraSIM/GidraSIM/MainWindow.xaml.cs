@@ -762,12 +762,12 @@ namespace GidraSIM
         //вызов справки------------------------------------------------------------------------------------------------------------------------
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            drawing.DropShadowBlock(current_block);
+            // drawing.DropShadowBlock(current_block); <--- Не понял, для чего это, но без этого программа не крашится при открытии справки 
             try
             {
                 Process SysInfo = new Process();
                 SysInfo.StartInfo.ErrorDialog = true;
-                SysInfo.StartInfo.FileName = "HelpGidraSIM.chm";//файл со справкой 
+                SysInfo.StartInfo.FileName = "HelpGidraSIM.chm"; //файл со справкой <--- Пихнём в установщик
                 SysInfo.Start();
             }
             catch (Exception ex)
