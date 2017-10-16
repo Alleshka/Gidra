@@ -285,38 +285,46 @@ namespace GidraSIM
         //создание блока------------------------------------------------------------------------------------------------------------------
         private void CreateBlock(Point point)
         {
-            if (TabControl_Process.Items.Count > 0) //если открыт один или больше процессов
+            try
             {
-                int number = 0;
-                string name = null;
-                if (CurrentObject == ObjectTypes.PROCEDURE)
+                if (TabControl_Process.Items.Count > 0) //если открыт один или больше процессов
                 {
-                    Procedure procedure = new Procedure();
-                    procedure.Name = "Процедура" + Convert.ToString(project.Processes[current_process].Procedures.Count + 1);
-                    project.Processes[current_process].Procedures.Add(procedure);
-                    number = project.Processes[current_process].Procedures.Count - 1;
-                }
-                else if (CurrentObject == ObjectTypes.RESOURCE)
-                {
-                    Resource resource = new Resource();
-                    project.Processes[current_process].Resources.Add(resource);
-                    number = project.Processes[current_process].Resources.Count - 1;
-                }
-                else if (CurrentObject == ObjectTypes.SUBPROCESS)
-                {
-                    SubProcess subProcess = new SubProcess();
-                    SetSubProcess window = new SetSubProcess(project, current_process);
-                    window.ShowDialog();
-                    subProcess.number_in_processes = window.chosen_process_number;
-                    project.Processes[current_process].SubProcesses.Add(subProcess);
-                    name = project.Processes[window.chosen_process_number].Name;
-                    project.Processes[window.chosen_process_number].IsSub = current_process;
-                    number = project.Processes[current_process].SubProcesses.Count - 1;
-                }
+                    int number = 0;
+                    string name = null;
+                    if (CurrentObject == ObjectTypes.PROCEDURE)
+                    {
+                        Procedure procedure = new Procedure();
+                        procedure.Name = "Процедура" + Convert.ToString(project.Processes[current_process].Procedures.Count + 1);
+                        project.Processes[current_process].Procedures.Add(procedure);
+                        number = project.Processes[current_process].Procedures.Count - 1;
+                    }
+                    else if (CurrentObject == ObjectTypes.RESOURCE)
+                    {
+                        Resource resource = new Resource();
+                        project.Processes[current_process].Resources.Add(resource);
+                        number = project.Processes[current_process].Resources.Count - 1;
+                    }
+                    else if (CurrentObject == ObjectTypes.SUBPROCESS)
+                    {
+                        SubProcess subProcess = new SubProcess();
+                        SetSubProcess window = new SetSubProcess(project, current_process);
+                        window.ShowDialog();
+                        subProcess.number_in_processes = window.chosen_process_number;
+                        if (subProcess.number_in_processes == -1) throw new Exception("Не выбрано подпроцесса");
+                        project.Processes[current_process].SubProcesses.Add(subProcess);
+                        name = project.Processes[window.chosen_process_number].Name;
+                        project.Processes[window.chosen_process_number].IsSub = current_process;
+                        number = project.Processes[current_process].SubProcesses.Count - 1;
+                    }
 
-                drawing.AddBlock(CurrentObject, point, number, name); //добавляем блоки
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[project.Processes[current_process].images_in_tabItem.Count - 1].image);
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[project.Processes[current_process].images_in_tabItem.Count - 1].label);
+                    drawing.AddBlock(CurrentObject, point, number, name); //добавляем блоки
+                    canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[project.Processes[current_process].images_in_tabItem.Count - 1].image);
+                    canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[project.Processes[current_process].images_in_tabItem.Count - 1].label);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
 
