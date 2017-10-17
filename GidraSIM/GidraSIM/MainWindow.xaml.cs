@@ -595,7 +595,8 @@ namespace GidraSIM
                 TabControl_Toolbar.Visibility = System.Windows.Visibility.Hidden;
         }
 
-//Запускаем проверку построения процесса
+
+        //Запускаем проверку построения процесса
         private void StartCheck_Click(object sender, RoutedEventArgs e)
         {
             if (!project_create) //проект еще не создан
@@ -676,12 +677,11 @@ namespace GidraSIM
         //иконки-------------------------------------------------------------------------------------------------------------------------------
         private void Create_Project_Click(object sender, RoutedEventArgs e)
         {
-            CreateProject_menu(sender, e);
+            CreateProject();
         }
-
         private void CreateProcess_Click(object sender, RoutedEventArgs e)
         {
-            CreateProcess_menu_Click(sender, e);
+            CreateProcess();
         }  
 
         //удаление объекта: блока или связи
@@ -727,24 +727,24 @@ namespace GidraSIM
             y_tab = TabControl_Process.Margin.Top;
         }
 
-//сохранение проекта--------------------------------------------------------------------------------------------------------------------
+        //сохранение проекта--------------------------------------------------------------------------------------------------------------------
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
             SaveProject();
         }
-
         private void SaveProject_menu_Click(object sender, RoutedEventArgs e)//сохранение проекта
         {
             SaveProject();
         }
 
-//открытие проекта----------------------------------------------------------------------------------------------------------------
+
+        //открытие проекта----------------------------------------------------------------------------------------------------------------
         private void OpenProject(object sender, RoutedEventArgs e)  //открыть проект
         {
             OpenProject();
         }
 
-//вводим параметры моделирования
+        //вводим параметры моделирования
         private void ParametersModeling_Menu_Click(object sender, RoutedEventArgs e)
         {
             if (!project_create) //проект еще не создан
@@ -817,7 +817,8 @@ namespace GidraSIM
                 message.ShowError(7); //ошибка, проект уже создан, сначала закройте проект, а потом открывате 
                 return;
             }
-            message.ShowMessage(5);//сообщение о процессе загрузки проекта            
+
+            message.ShowMessage(5); //сообщение о процессе загрузки проекта            
             OpenFileDialog myDialog = new OpenFileDialog();
             myDialog.Filter = "СИМ |*.gsim" + "|Все файлы (*.*)|*.* ";   // задаем допустимые расширения открываемых файлов
             myDialog.CheckFileExists = true;
@@ -843,6 +844,7 @@ namespace GidraSIM
 
                 project_create = true;//проект открыт, а значит создан!
                 message.ShowMessage(6);//сообщение о успешном открытии проекта
+                CreateProcess_menu.IsEnabled = true;
             }
         }
 
