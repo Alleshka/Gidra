@@ -537,69 +537,13 @@ namespace GidraSIM
         //---МЕНЮ--------------------------------------------------------------------------------------------------------------------------
         private void CreateProject_menu(object sender, RoutedEventArgs e)   //создать проект
         {
-            CreateProject window = new CreateProject(ref FilesWorksystem);
-            window.ShowDialog();
-
-            project = new Project(window.NamePr, window.WayFile);
-            CreateProcess_menu.IsEnabled = true;
+            CreateProject();
         }
 
         //создание нового процесса---------------------------------------------------------------------------------------------------
         private void CreateProcess_menu_Click(object sender, RoutedEventArgs e)
         {
-            if (project == null)//проект еще не создан
-            {
-                message.ShowError(18);
-                return;
-            }
-            
-            CreateProcess window = new CreateProcess(how_many_process + 1);   //вызов диалога нового процесса
-            window.ShowDialog();
-            Process_ process = new Process_(window.NamePr);
-            project.Processes.Add(process);
-            current_process = project.Processes.Count - 1;  //берем последний добаввелнный процесс
-            find = new Find();
-            changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
-            showProperties = new BlockProperties(grid_Properties, ref project);
-
-            canvas_process = new Canvas(); //новая канва для рисования процесса 
-
-            drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem); //говорим, что будем рисовать тут             
-
-            StructureObject begin = new StructureObject();  //создаем объект "Начало"
-            begin.Type = ObjectTypes.BEGIN;
-            begin.number = -2;
-            begin.point = new Point(25, TabControl_Process.Height / 2);
-
-            StructureObject end = new StructureObject();   //создаем объект "Конец"
-            end.Type = ObjectTypes.END;
-            end.number = -2;
-            end.point = new Point(TabControl_Process.Width - 25, TabControl_Process.Height / 2);
-
-            project.Processes[current_process].StructProcess.Add(begin);  //добавляем объект "Начало" в структуру процесса
-            project.Processes[current_process].StructProcess.Add(end);    //добавляем объект "Конец" в структуру процесса
-
-            currentTab = new TabItem();
-            TabControl_Process.Items.Add(currentTab); //добавили новую вкладку 
-            currentTab = TabControl_Process.Items[how_many_process ] as TabItem; //берем только что добавленную вкладку 
-            currentTab.Header = new TextBlock { Text = process.Name };            
-
-            drawing.AddBeginEnd(TabControl_Process.Width, TabControl_Process.Height); //создание начала и конца  
-
-            for (int i = 0; i < project.Processes[current_process].images_in_tabItem.Count; i++)   //кладем начало и конец в канву
-            {
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].image);
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].label);
-            }
-            currentTab.Content = canvas_process;
-            currentTab.IsSelected = true; //сделали вкладку активной 
-            how_many_process++;
-
-    //дерево процессов
-            TreeViewItem item = new TreeViewItem();
-            item.Header = project.Processes[current_process].Name;
-            treeView_structure.Items.Add(item);
-            project_create = true;              //процесс создали, меняем флаг
+            CreateProcess();
         }
 
         private void Redact_ResoursesDB_menu_Click(object sender, RoutedEventArgs e)
@@ -786,18 +730,12 @@ namespace GidraSIM
 //сохранение проекта--------------------------------------------------------------------------------------------------------------------
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
-            if (!project_create) //проект еще не создан
-            {
-                message.ShowError(17);
-                return;
-            }
-            FilesWorksystem.SaveProject(ref project);
-            message.ShowMessage(4);
+            SaveProject();
         }
 
         private void SaveProject_menu_Click(object sender, RoutedEventArgs e)//сохранение проекта
         {
-            SaveProject_Click(sender, e);
+            SaveProject();
         }
 
 //открытие проекта----------------------------------------------------------------------------------------------------------------
@@ -862,6 +800,16 @@ namespace GidraSIM
             OpenProject();
         }
 
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        // -------------------------------------------- Это можно бы вынести отсюда -------------------------------------------------------------
+
+        /// <summary>
+        /// Открыть проект
+        /// </summary>
         private void OpenProject()
         {
             if (project_create)   ///если проект уже создан
@@ -898,9 +846,94 @@ namespace GidraSIM
             }
         }
 
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Создание проекта
+        /// </summary>
+        private void CreateProject()
         {
-            this.Close();
+            CreateProject window = new CreateProject(ref FilesWorksystem);
+            window.ShowDialog();
+
+            project = new Project(window.NamePr, window.WayFile);
+            CreateProcess_menu.IsEnabled = true;
+
+            CreateProcess(); // Тут же вызываем окно создания процесса 
+            SaveProject(); // Тут же сохраняем, чтобы появился файл проекта
         }
+
+        /// <summary>
+        /// Создание процесса
+        /// </summary>
+        private void CreateProcess()
+        {
+            if (project == null)//проект еще не создан
+            {
+                message.ShowError(18);
+                return;
+            }
+
+            CreateProcess window = new CreateProcess(how_many_process + 1);   //вызов диалога нового процесса
+            window.ShowDialog();
+            Process_ process = new Process_(window.NamePr);
+            project.Processes.Add(process);
+            current_process = project.Processes.Count - 1;  //берем последний добаввелнный процесс
+            find = new Find();
+            changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
+            showProperties = new BlockProperties(grid_Properties, ref project);
+
+            canvas_process = new Canvas(); //новая канва для рисования процесса 
+
+            drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem); //говорим, что будем рисовать тут             
+
+            StructureObject begin = new StructureObject();  //создаем объект "Начало"
+            begin.Type = ObjectTypes.BEGIN;
+            begin.number = -2;
+            begin.point = new Point(25, TabControl_Process.Height / 2);
+
+            StructureObject end = new StructureObject();   //создаем объект "Конец"
+            end.Type = ObjectTypes.END;
+            end.number = -2;
+            end.point = new Point(TabControl_Process.Width - 25, TabControl_Process.Height / 2);
+
+            project.Processes[current_process].StructProcess.Add(begin);  //добавляем объект "Начало" в структуру процесса
+            project.Processes[current_process].StructProcess.Add(end);    //добавляем объект "Конец" в структуру процесса
+
+            currentTab = new TabItem();
+            TabControl_Process.Items.Add(currentTab); //добавили новую вкладку 
+            currentTab = TabControl_Process.Items[how_many_process] as TabItem; //берем только что добавленную вкладку 
+            currentTab.Header = new TextBlock { Text = process.Name };
+
+            drawing.AddBeginEnd(TabControl_Process.Width, TabControl_Process.Height); //создание начала и конца  
+
+            for (int i = 0; i < project.Processes[current_process].images_in_tabItem.Count; i++)   //кладем начало и конец в канву
+            {
+                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].image);
+                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].label);
+            }
+            currentTab.Content = canvas_process;
+            currentTab.IsSelected = true; //сделали вкладку активной 
+            how_many_process++;
+
+            //дерево процессов
+            TreeViewItem item = new TreeViewItem();
+            item.Header = project.Processes[current_process].Name;
+            treeView_structure.Items.Add(item);
+            project_create = true;              //процесс создали, меняем флаг
+        }
+
+        /// <summary>
+        /// Сохранение проекта
+        /// </summary>
+        private void SaveProject()
+        {
+            if (!project_create) //проект еще не создан
+            {
+                message.ShowError(17);
+                return;
+            }
+            FilesWorksystem.SaveProject(ref project);
+            message.ShowMessage(4);
+        }
+
     }
 }

@@ -98,12 +98,12 @@
                     </Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Name="CreateProcess" Click="CreateProcess_Click">
+            <MenuItem Name="CreateProcessItem" Click="CreateProcess_Click">
                 <MenuItem.Icon>
                     <Image Source="/GidraSIM;component/Image/NewProcess.png"  ToolTip="Создать новый процесс" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Name="SaveProject" Click="SaveProject_Click">
+            <MenuItem Name="SaveProjectItem" Click="SaveProject_Click">
                 <MenuItem.Icon>
                     <Image Source="/GidraSIM;component/Image/Save.png" ToolTip="Сохранить проект(Ctrl+S)"  />
                 </MenuItem.Icon>
