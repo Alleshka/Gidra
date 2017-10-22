@@ -1,0 +1,19 @@
+﻿<Window x:Class="GidraSIM.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM"
+        mc:Ignorable="d"
+        Title="Window1" Height="300" Width="300">
+    <Grid>
+        <DockPanel>
+            <Button DockPanel.Dock="Top" Background="LightGreen">TopButton</Button>
+            <Button DockPanel.Dock="Top" Background="LightGreen">TopButton</Button>
+            <Button DockPanel.Dock="Bottom" Background="LightBlue">BottomButton</Button>
+            <Button DockPanel.Dock="Left" Background="Aqua">LeftButton</Button>
+            <Button DockPanel.Dock="Right" Background="Gold">RightButton</Button>
+            <Button Background="LightCyan">Свободное пространство</Button>
+        </DockPanel>
+    </Grid>
+</Window>
