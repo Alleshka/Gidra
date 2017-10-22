@@ -12,20 +12,43 @@ namespace GidraSIM
 {
     public class DrawShema
     {
+        /// <summary>
+        /// Поле в котором произволится отрисовка графики
+        /// </summary>
         Canvas scene;
+
+        /// <summary>
+        /// Элементы которые нужно отрисовать
+        /// </summary>
         List<BlockObject> blocks;
 
+        /// <summary>
+        /// Иниализация поля и элементов
+        /// </summary>
+        /// <param name="canva">Поле в котором произволится отрисовка графики</param>
+        /// <param name="new_blocks">Элементы которые нужно отрисовать</param>
         public void ChangeCanva(Canvas canva, ref List<BlockObject> new_blocks)
         {
             scene = canva;
             blocks = new_blocks;
         }
 
+        /// <summary>
+        /// Иниализация элементов
+        /// </summary>
+        /// <param name="new_blocks">Элементы которые нужно отрисовать</param>
         public void ChangeImagesInTabItem(ref List<BlockObject> new_blocks)
         {
             blocks = new_blocks;
         }
 
+        /// <summary>
+        /// Создание нового элемента
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="point"></param>
+        /// <param name="number_in_type"></param>
+        /// <param name="name_subprocess"></param>
         public void CreateImage(ObjectTypes type, Point point, int number_in_type, string name_subprocess)
         {
             string Way = "";

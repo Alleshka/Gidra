@@ -54,6 +54,16 @@ namespace GidraSIM
 
             Settings set = SettingsReader.Read();
             if (set == null) System.Windows.Forms.MessageBox.Show($"Файл настроек не найден");
+
+            
+            // Привязка команд
+            CommandBinding bindNew = new CommandBinding(ApplicationCommands.New);
+            bindNew.Executed += Create_Project_Executed;
+            this.CommandBindings.Add(bindNew);
+
+            CommandBinding bindSave = new CommandBinding(ApplicationCommands.Save);
+            bindSave.Executed += Save_Project_Executed;
+            this.CommandBindings.Add(bindSave);
         }
 
 
@@ -274,7 +284,7 @@ namespace GidraSIM
                 message.ShowError(10);       //пытается поставить блоки слишком близко к границе
                 return false;
             }
-            if ((pt.Y < (rast / 2)) || (pt.Y > (TabControl_Process.Height - rast / 2)))
+            if ((pt.Y < (rast / 2)) || (pt.Y > (TabControl_Process.ActualHeight - rast / 2)))
             {
                 message.ShowError(10);       //пытается поставить блоки слишком близко к границе
                 return false;
@@ -675,7 +685,7 @@ namespace GidraSIM
 
 
         //иконки-------------------------------------------------------------------------------------------------------------------------------
-        private void Create_Project_Click(object sender, RoutedEventArgs e)
+        private void Create_Project_Executed(object sender, RoutedEventArgs e)
         {
             CreateProject();
         }
@@ -737,11 +747,7 @@ namespace GidraSIM
         }
 
         //сохранение проекта--------------------------------------------------------------------------------------------------------------------
-        private void SaveProject_Click(object sender, RoutedEventArgs e)
-        {
-            SaveProject();
-        }
-        private void SaveProject_menu_Click(object sender, RoutedEventArgs e)//сохранение проекта
+        private void Save_Project_Executed(object sender, RoutedEventArgs e)
         {
             SaveProject();
         }
@@ -763,33 +769,6 @@ namespace GidraSIM
             }
             ModelingParameters window = new ModelingParameters(ref project.modelingProperties);
             window.ShowDialog();
-        }
-
-
-        //нажатие какой-либо клавиши
-        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-
-            if (e.Key == (Key.LeftCtrl & Key.S))//сохранение открытого файла
-                SaveProject_menu_Click(sender, e);
-            switch (e.Key)
-            {
-                case Key.Delete://удаление объекта: блока или связи
-                    {
-                        Delete_Click(sender, e);
-                        break;
-                    }
-                case Key.F1://выхов справки
-                    {
-                        Help_Click(sender, e);
-                        break;
-                    }
-                case Key.M://моделирование
-                    {
-                        break;
-                    }
-            }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -870,6 +849,7 @@ namespace GidraSIM
 
             CreateProcess(); // Тут же вызываем окно создания процесса 
             SaveProject(); // Тут же сохраняем, чтобы появился файл проекта
+            
         }
 
         /// <summary>

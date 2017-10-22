@@ -65,7 +65,7 @@ namespace GidraSIM
                 for (int num_struct = 0; num_struct < project.Processes[num_proc].images_in_tabItem.Count; num_struct++)//идем по структуре
                 {
                     if (project.Processes[num_proc].images_in_tabItem[num_struct].object_of_block.Type == ObjectTypes.BEGIN)
-                        drawing.AddBeginEnd(TabControlMain.Width, TabControlMain.Height);
+                        drawing.AddBeginEnd(TabControlMain.ActualWidth, TabControlMain.ActualHeight);
                     else if (project.Processes[num_proc].images_in_tabItem[num_struct].object_of_block.Type != ObjectTypes.BEGIN &&
                              project.Processes[num_proc].images_in_tabItem[num_struct].object_of_block.Type != ObjectTypes.END)  ///рисуем все блоки, кроме бегина и энда
                         drawing.AddBlock(project.Processes[num_proc].images_in_tabItem[num_struct].object_of_block.Type,

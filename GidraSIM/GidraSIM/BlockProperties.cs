@@ -25,7 +25,7 @@ namespace GidraSIM
             project = new_project;
             dataBase = new DataBase_Resourses();
 
-            text_wight = (int)grid_properties.Width / 2;
+            text_wight = (int)grid_properties.ActualWidth / 2;
         }
 
         //какие свойства выводить (по типу блока)

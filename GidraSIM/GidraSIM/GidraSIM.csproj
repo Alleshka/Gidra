@@ -152,6 +152,7 @@
       <DependentUpon>SetSubProcess.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubProcess.cs" />
+    <Compile Include="WindowCommands.cs" />
     <Compile Include="WorksystemWithFiles.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
