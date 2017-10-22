@@ -25,6 +25,7 @@ namespace GidraSIM
             types.Add("Методологическое обеспечение");
             comboBox1.ItemsSource = types;
             selectedId = -1;
+            comboBox1.IsEnabled = true;
         }
 
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)

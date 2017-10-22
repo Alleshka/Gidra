@@ -57,13 +57,16 @@ namespace GidraSIM
 
             
             // Привязка команд
-            CommandBinding bindNew = new CommandBinding(ApplicationCommands.New);
-            bindNew.Executed += Create_Project_Executed;
-            this.CommandBindings.Add(bindNew);
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Project_Executed));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Project_Executed));
 
-            CommandBinding bindSave = new CommandBinding(ApplicationCommands.Save);
-            bindSave.Executed += Save_Project_Executed;
-            this.CommandBindings.Add(bindSave);
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Arrow, Arrow_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Procedure, Procedure_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Connect, Connect_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
+            
         }
 
 
@@ -489,7 +492,7 @@ namespace GidraSIM
         }
 
         //кнопки на панели инструментов-------------------------------------------------------------------------------------------------------------
-        private void button_procedure_Click(object sender, RoutedEventArgs e)  //добавление процедуры
+        private void Procedure_Executed(object sender, RoutedEventArgs e)  //добавление процедуры
         {
             if (!project_create) //проект еще не создан
             {
@@ -497,10 +500,13 @@ namespace GidraSIM
                 return;
             }
             CurrentObject = ObjectTypes.PROCEDURE;
+
+            ChangeButtonMark(button_procedure);
+
             drawing.DropShadowBlock(current_block);
         }
 
-        private void button_resourse_Click(object sender, RoutedEventArgs e)  //добавление ресурса
+        private void Resourse_Executed(object sender, RoutedEventArgs e)  //добавление ресурса
         {
             if (!project_create) //проект еще не создан
             {
@@ -508,10 +514,13 @@ namespace GidraSIM
                 return;
             }
             CurrentObject = ObjectTypes.RESOURCE;
+
+            ChangeButtonMark(button_resourse);
+
             drawing.DropShadowBlock(current_block);
         }
 
-        private void button_connect_Click(object sender, RoutedEventArgs e)   //добавление связи
+        private void Connect_Executed(object sender, RoutedEventArgs e)   //добавление связи
         {
             if (!project_create) //проект еще не создан
             {
@@ -519,10 +528,15 @@ namespace GidraSIM
                 return;
             }
             CurrentObject = ObjectTypes.CONNECT;
+
+            ChangeButtonMark(button_connect);
+
             drawing.DropShadowBlock(current_block);
         }
 
-        private void button_arrow_Click(object sender, RoutedEventArgs e)    //выбор указателя
+
+
+        private void Arrow_Executed(object sender, RoutedEventArgs e)    //выбор указателя
         {
             if (!project_create) //проект еще не создан
             {
@@ -530,10 +544,13 @@ namespace GidraSIM
                 return;
             }
             CurrentObject = ObjectTypes.CURSOR;
+
+            ChangeButtonMark(button_arrow);
+
             drawing.DropShadowBlock(current_block);
         }
 
-        private void button_SubProcess_Click(object sender, RoutedEventArgs e)  //добавление подпроцесса
+        private void SubProcess_Executed(object sender, RoutedEventArgs e)  //добавление подпроцесса
         {
             if (!project_create) //проект еще не создан
             {
@@ -541,7 +558,21 @@ namespace GidraSIM
                 return;
             }
             CurrentObject = ObjectTypes.SUBPROCESS;
+
+            ChangeButtonMark(button_SubProcess);
+
             drawing.DropShadowBlock(current_block);
+        }
+
+        private void ChangeButtonMark(System.Windows.Controls.Button thusButton)
+        {
+            foreach (System.Windows.Controls.Button button in leftButtons.Children)
+            {
+                button.IsEnabled = true;
+                (button.Content as UIElement).Opacity = 0.8;
+            }
+            thusButton.IsEnabled = false;
+            (thusButton.Content as UIElement).Opacity = 0.2;
         }
 
         //---МЕНЮ--------------------------------------------------------------------------------------------------------------------------
@@ -754,7 +785,7 @@ namespace GidraSIM
 
 
         //открытие проекта----------------------------------------------------------------------------------------------------------------
-        private void OpenProject(object sender, RoutedEventArgs e)  //открыть проект
+        private void Open_Project_Executed(object sender, RoutedEventArgs e)  //открыть проект
         {
             OpenProject();
         }
@@ -781,11 +812,6 @@ namespace GidraSIM
         {
             About about = new About();
             about.Show();
-        }
-
-        private void OpenProjectMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenProject();
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)

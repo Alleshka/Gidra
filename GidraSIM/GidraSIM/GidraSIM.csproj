@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="DataBase_ModelingSession.cs" />
     <Compile Include="Imitation.cs" />
+    <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Modeling.xaml.cs">
       <DependentUpon>Modeling.xaml</DependentUpon>
     </Compile>
