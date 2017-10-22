@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GidraSIM
+namespace GidraSIM.AdmSet
 {
     /// <summary>
     /// Логика взаимодействия для Window1.xaml

@@ -8,6 +8,6 @@
     <Grid Background="#C5FFFFFF">
         <Label Content="Имя процесса" Height="44" HorizontalAlignment="Left" Margin="0,30,0,0" Name="label1" VerticalAlignment="Top" FontSize="16" />
         <TextBox Height="34" HorizontalAlignment="Left" Margin="120,30,0,0" Name="textBox_NameProcess" Text="" VerticalAlignment="Top" Width="314" FontSize="16" />
-        <Button Content="Создать" Height="32" HorizontalAlignment="Center" Margin="0,113,0,30" Name="button_Create" VerticalAlignment="Bottom" Width="144" Click="button_Create_Click" FontSize="16" />
+        <Button Content="Создать" Height="32" HorizontalAlignment="Center" Margin="0,0,0,10" Name="button_Create" VerticalAlignment="Bottom" Width="94" Click="button_Create_Click" FontSize="16" />
     </Grid>
 </Window>

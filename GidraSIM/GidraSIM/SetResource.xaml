@@ -1,15 +1,26 @@
 ﻿<Window x:Class="GidraSIM.SetResource"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Свойства ресурса" Height="346" Width="419" FontSize="16">
+        Title="Свойства ресурса" Height="350" Width="400" FontSize="16" IsEnabled="False" MinWidth="200" MinHeight="200">
     <Window.Background>
-        <ImageBrush ImageSource="/GidraSIM;component/Image/background.jpg" />
+        <ImageBrush ImageSource="/GidraSIM;component/Image/background.jpg" Stretch="UniformToFill" />
     </Window.Background>
     <Grid Background="#C7FFFFFF">
-        <Label Content="Тип ресурса" Height="37" HorizontalAlignment="Left" Margin="15,12,0,0" Name="label1" VerticalAlignment="Top" FontSize="16" Width="113" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="141,17,0,0" Name="comboBox1" VerticalAlignment="Top" Width="171" SelectionChanged="comboBox1_SelectionChanged" />
-        <DataGrid AutoGenerateColumns="False" Height="185" HorizontalAlignment="Left" Margin="15,55,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="366" CanUserAddRows="True" CanUserDeleteRows="True" />
-        <Button Content="Сохранить" Height="37" HorizontalAlignment="Left" Margin="72,258,0,0" Name="button_SaveResource" VerticalAlignment="Top" Width="97" Click="button_SaveResource_Click" />
-        <Button Content="Отмена" Height="37" HorizontalAlignment="Left" Margin="232,258,0,0" Name="button_Cancel" VerticalAlignment="Top" Width="89" Click="button_Cancel_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="57"/>
+        </Grid.RowDefinitions>
+        <Label Content="Тип ресурса" Height="37" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label1" VerticalAlignment="Top" FontSize="16" Width="113" Grid.ColumnSpan="2" />
+        <ComboBox Height="23" Margin="5,17,10,0" Name="comboBox1" VerticalAlignment="Top" SelectionChanged="comboBox1_SelectionChanged" Grid.Column="1" />
+        <DataGrid AutoGenerateColumns="False" Margin="10,5,10,0" Name="dataGrid1" CanUserAddRows="True" CanUserDeleteRows="True" Grid.Row="1" Grid.ColumnSpan="2" />
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0" Width="206" Height="52">
+            <Button Content="Сохранить" Height="37" Margin="5,5,5,10" Name="button_SaveResource" VerticalAlignment="Top" Width="97" Click="button_SaveResource_Click" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
+            <Button Content="Отмена" Height="37" HorizontalAlignment="Left" Margin="5,5,5,10" Name="button_Cancel" VerticalAlignment="Top" Width="89" Click="button_Cancel_Click" Grid.Row="2" Grid.Column="1" />
+        </StackPanel>
     </Grid>
 </Window>
