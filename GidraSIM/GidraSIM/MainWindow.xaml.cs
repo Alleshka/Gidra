@@ -49,8 +49,8 @@ namespace GidraSIM
             message = new Messages(ref LabelMessageSystem, ref LabelMessageError, ref TabControl_Error);
             drawing = new DrawShema();
             FilesWorksystem = new WorksystemWithFiles();// работа с файлами проекта
-            x_tab = TabControl_Process.Margin.Left; //выясняем координаты левого верхнего угла tabControl 
-            y_tab = TabControl_Process.Margin.Top;
+            x_tab = 78;
+            y_tab = 56;
 
             Settings set = SettingsReader.Read();
             if (set == null) System.Windows.Forms.MessageBox.Show($"Файл настроек не найден");
@@ -269,7 +269,7 @@ namespace GidraSIM
                 }
             }
             //если пользователь пытается поставить блок за границы поля
-            if ((pt.X < (rast / 2)) || (pt.X > (TabControl_Process.Width - rast / 2)))
+            if ((pt.X < (rast / 2)) || (pt.X > (TabControl_Process.ActualWidth - rast / 2)))
             {
                 message.ShowError(10);       //пытается поставить блоки слишком близко к границе
                 return false;
@@ -723,8 +723,17 @@ namespace GidraSIM
         //Если изменили размеры окна, меняем x_tab и y_tab----------------------------------------------------------------------------------------
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            x_tab = TabControl_Process.Margin.Left; //выясняем координаты левого верхнего угла tabControl 
-            y_tab = TabControl_Process.Margin.Top;
+            //x_tab = TabControl_Process.Margin.Left; //выясняем координаты левого верхнего угла tabControl 
+            //y_tab = TabControl_Process.Margin.Top;
+        }
+
+        /// <summary>
+        /// Поиск значения переменных x_tab и y_tab
+        /// </summary>
+        private void CalculateXY()
+        {
+            //this.x_tab = TabControl_Process.
+            //this.canvas_process.
         }
 
         //сохранение проекта--------------------------------------------------------------------------------------------------------------------
@@ -890,12 +899,12 @@ namespace GidraSIM
             StructureObject begin = new StructureObject();  //создаем объект "Начало"
             begin.Type = ObjectTypes.BEGIN;
             begin.number = -2;
-            begin.point = new Point(25, TabControl_Process.Height / 2);
+            begin.point = new Point(25, TabControl_Process.ActualHeight / 2);
 
             StructureObject end = new StructureObject();   //создаем объект "Конец"
             end.Type = ObjectTypes.END;
             end.number = -2;
-            end.point = new Point(TabControl_Process.Width - 25, TabControl_Process.Height / 2);
+            end.point = new Point(TabControl_Process.ActualWidth - 25, TabControl_Process.ActualHeight / 2);
 
             project.Processes[current_process].StructProcess.Add(begin);  //добавляем объект "Начало" в структуру процесса
             project.Processes[current_process].StructProcess.Add(end);    //добавляем объект "Конец" в структуру процесса
@@ -905,7 +914,7 @@ namespace GidraSIM
             currentTab = TabControl_Process.Items[how_many_process] as TabItem; //берем только что добавленную вкладку 
             currentTab.Header = new TextBlock { Text = process.Name };
 
-            drawing.AddBeginEnd(TabControl_Process.Width, TabControl_Process.Height); //создание начала и конца  
+            drawing.AddBeginEnd(TabControl_Process.ActualWidth, TabControl_Process.ActualHeight); //создание начала и конца  
 
             for (int i = 0; i < project.Processes[current_process].images_in_tabItem.Count; i++)   //кладем начало и конец в канву
             {

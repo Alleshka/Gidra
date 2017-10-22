@@ -6,8 +6,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="/GidraSIM;component/Image/background3.jpg" Stretch="UniformToFill" />
         </Grid.Background>
-        
+
         <DockPanel>
+           
             <Menu Height="25" DockPanel.Dock="Top" Name="menu1" VerticalAlignment="Top" Background="White" FontSize="16" >
                 <MenuItem Header="Файл" Width="60">
                     <MenuItem Header="Создать проект"  Click="CreateProject_menu">
@@ -178,7 +179,7 @@
                                 <ImageBrush ImageSource="/GidraSIM;component/Image/Arrow.png" />
                             </Button.Background>
                         </Button>
-                       <!-- Выбор процедуры -->
+                        <!-- Выбор процедуры -->
                         <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_procedure" VerticalAlignment="Top" Width="35" Foreground="Black" OpacityMask="{x:Null}" ToolTip="Процедура" Click="button_procedure_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/GidraSIM;component/Image/ProcedureButton.png" />
@@ -196,7 +197,7 @@
                                 <ImageBrush ImageSource="/GidraSIM;component/Image/Connect.png" />
                             </Button.Background>
                         </Button>
-                         <!-- Вложенный процесс -->
+                        <!-- Вложенный процесс -->
                         <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_SubProcess" ToolTip="Вложенный процесс" VerticalAlignment="Bottom" Width="35" Click="button_SubProcess_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/GidraSIM;component/Image/SubProcessButton.png" />
@@ -243,7 +244,7 @@
 
             <!-- Основная панель -->
             <TabControl 
-                Margin="0,5,0,5" 
+                Margin="0,5" 
                 Name="TabControl_Process" 
                 Background="#DAFFFFFF" 
                 MouseDown="TabControl_Process_MouseDown" 
@@ -256,9 +257,9 @@
 
         </DockPanel>
 
-        
-        
-        
-        
+
+
+
+
     </Grid>
 </Window>
