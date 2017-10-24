@@ -815,6 +815,8 @@ namespace GidraSIM
             if (project_create)   ///если проект уже создан
             {
                 message.ShowError(7); //ошибка, проект уже создан, сначала закройте проект, а потом открывате 
+                //TODO сделать что-то другое
+                System.Windows.MessageBox.Show("Проект уже создан, сначала закройте проект");
                 return;
             }
 
