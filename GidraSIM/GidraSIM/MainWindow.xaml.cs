@@ -69,7 +69,8 @@ namespace GidraSIM
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Connect, Connect_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
-            
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
         }
 
 
@@ -646,7 +647,7 @@ namespace GidraSIM
 
 
         //Запускаем проверку построения процесса
-        private void StartCheck_Click(object sender, RoutedEventArgs e)
+        private void StartCheck_Executed(object sender, RoutedEventArgs e)
         {
             if (!project_create) //проект еще не создан
             {
@@ -682,31 +683,21 @@ namespace GidraSIM
                 message.ShowError(1);
             }
         }
-        private void StartCheck_Menu_Click(object sender, RoutedEventArgs e)//выбрали пункт меню Начать проверку
-        {
-            StartCheck_Click(sender, e);//Запускаем проверку построения процесса
-        }
+        
 
-        private void StartModeling_Click(object sender, RoutedEventArgs e)//Запускаем моделирование процесса
+        private void StartModeling_Executed(object sender, RoutedEventArgs e)//Запускаем моделирование процесса
         {
             if (!project_create) //проект еще не создан
             {
                 message.ShowError(17);
                 return;
             }
-            StartCheck_Click(sender, e);//Запускаем проверку построения процесса
+            StartCheck_Executed(sender, e);//Запускаем проверку построения процесса
             Modeling window = new Modeling(ref project, current_process);
             if (window.stop)
                 message.ShowError(19);
             else
                 window.ShowDialog();
-        }
-
-        private void StartModeling_Menu_Click(object sender, RoutedEventArgs e)//выбрали пункт меню Начать моделирование
-        {
-            StartCheck_Click(sender, e);//Запускаем проверку построения процесса
-            Modeling window = new Modeling(ref project, current_process);
-            window.ShowDialog();
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить

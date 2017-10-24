@@ -9,6 +9,8 @@ namespace GidraSIM
         public static RoutedCommand Resourse { get; set; }
         public static RoutedCommand Connect { get; set; }
         public static RoutedCommand SubProcess { get; set; }
+        public static RoutedCommand StartCheck { get; set; }
+        public static RoutedCommand StartModeling { get; set; }
 
         static MainWindowCommands()
         {
@@ -31,6 +33,14 @@ namespace GidraSIM
             inputs = new InputGestureCollection();
             inputs.Add(new KeyGesture(Key.T, ModifierKeys.Alt, "Alt+T"));
             SubProcess = new RoutedCommand("SubProcess", typeof(MainWindowCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.F4, ModifierKeys.None, "F4"));
+            StartCheck = new RoutedCommand("StartCheck", typeof(MainWindowCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.F5, ModifierKeys.None, "F5"));
+            StartModeling = new RoutedCommand("StartCheck", typeof(MainWindowCommands), inputs);
         }
     }
 }

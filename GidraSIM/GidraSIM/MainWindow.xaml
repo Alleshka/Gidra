@@ -65,8 +65,8 @@
                     <MenuItem Header="Панель элементов" Name="Toolbar_menu" Click="Toolbar_menu_Click" IsChecked="True" IsCheckable="True"/>
                 </MenuItem>
                 <MenuItem Header="Моделирование" Width="140">
-                    <MenuItem Header="Проверка корректности процесса" Name="StartCheck_Menu" Click="StartCheck_Menu_Click" />
-                    <MenuItem Header="Запуск моделирование" Name="StartModeling_Menu" Click="StartModeling_Menu_Click" />
+                    <MenuItem Header="Проверка корректности процесса" Name="StartCheck_Menu" Command="command:MainWindowCommands.StartCheck" />
+                    <MenuItem Header="Запуск моделирование" Name="StartModeling_Menu" Command="command:MainWindowCommands.StartModeling" />
                     <MenuItem Header="Параметры моделирования" Name="ParametersModeling_Menu" Click="ParametersModeling_Menu_Click"/>
                 </MenuItem>
                 <MenuItem Header="Данные" Width="80">
@@ -137,12 +137,12 @@
                         <Image Source="/GidraSIM;component/Image/front.png" ToolTip="Вернуть (Ctrl+Y)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="" Name="StartCheck" Click="StartCheck_Click">
+                <MenuItem Header="" Name="StartCheck" Command="command:MainWindowCommands.StartCheck">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Check.png" ToolTip="Отладка (F4)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="" Name="StartModeling" Click="StartModeling_Click">
+                <MenuItem Header="" Name="StartModeling" Command="command:MainWindowCommands.StartModeling">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Model.png" ToolTip="Запустить моделирование (F5)" />
                     </MenuItem.Icon>
