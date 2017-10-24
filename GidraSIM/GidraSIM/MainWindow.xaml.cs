@@ -54,13 +54,16 @@ namespace GidraSIM
 
             Settings set = SettingsReader.Read();
             if (set == null) System.Windows.Forms.MessageBox.Show($"Файл настроек не найден");
-
+           
+            // Привязка команд            
             
-            // Привязка команд
+            // Стандартные команды
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Project_Executed));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Project_Executed));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
 
+            // Кастомные команды
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Arrow, Arrow_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Procedure, Procedure_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
@@ -138,6 +141,11 @@ namespace GidraSIM
                     grid_Properties.Children.Clear();//очищаем блок свойств
                     drawing.DropShadowBlock(current_block);//снимаем тень с текущего блока
                     drawing.DropShadowLine(ref project.Processes[current_process].connection_lines, current_connect);//снимаем тень с текущей линии
+                    
+                    // снять фокус с текущего блока
+                    current_block = -1;
+                    // снять фокус с текущей линии
+                    current_connect = -1;
                 }
             }
             else if (CurrentObject == ObjectTypes.CONNECT)   //создание связи
@@ -701,7 +709,7 @@ namespace GidraSIM
             window.ShowDialog();
         }
 
-        private void Delete_menu_Click(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
+        private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
         {
             if (!project_create) //проект еще не создан
             {
@@ -724,20 +732,7 @@ namespace GidraSIM
         {
             CreateProcess();
         }  
-
-        //удаление объекта: блока или связи
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            if (!project_create) //проект еще не создан
-            {
-                message.ShowError(17);
-                return;
-            }
-            if (current_block != -1)
-                DeleteBlock();
-            else if (current_connect != -1)
-                DeleteConnect();
-        }
+      
 
         //вызов справки------------------------------------------------------------------------------------------------------------------------
         private void Help_Click(object sender, RoutedEventArgs e)

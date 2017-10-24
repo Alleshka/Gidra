@@ -52,7 +52,7 @@
                             <Image Source="/GidraSIM;component/Image/Paste.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Удалить" Name="Delete_menu" Click="Delete_menu_Click">
+                    <MenuItem Header="Удалить" Name="Delete_menu" Command="Delete">
                         <MenuItem.Icon>
                             <Image Source="/GidraSIM;component/Image/RecycleBin.png" />
                         </MenuItem.Icon>
@@ -122,7 +122,7 @@
                         <Image Source="/GidraSIM;component/Image/Paste.png" ToolTip="Вставить (Ctrl+V)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem ToolTip="Удалить (Del)" Name="Delete" Click="Delete_Click">
+                <MenuItem ToolTip="Удалить (Del)" Name="Delete" Command="Delete">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/RecycleBin.png" />
                     </MenuItem.Icon>
@@ -175,7 +175,7 @@
                 <TabItem Header="Панель инструментов" Name="Toolbar">
                     <StackPanel x:Name="leftButtons">
                         <!-- Указатель -->
-                        <Button Height="35" HorizontalAlignment="Stretch" Margin="5,5,0,0" Name="button_arrow" VerticalAlignment="Stretch" Width="35" ToolTip="Курсор" Command="command:MainWindowCommands.Arrow" BorderThickness="1" IsEnabled="False">
+                        <Button Height="35" HorizontalAlignment="Stretch" Margin="5,5,0,0" Name="button_arrow" VerticalAlignment="Stretch" Width="35" ToolTip="Курсор  (Alt+Q)" Command="command:MainWindowCommands.Arrow" BorderThickness="1" IsEnabled="False">
                             <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.2">
                                 <StackPanel.Background>
                                     <ImageBrush ImageSource="/GidraSIM;component/Image/Arrow.png" />
@@ -183,7 +183,7 @@
                             </StackPanel>
                         </Button>
                         <!-- Выбор процедуры -->
-                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_procedure" VerticalAlignment="Top" Width="35" Foreground="Black" OpacityMask="{x:Null}" ToolTip="Процедура" Command="command:MainWindowCommands.Procedure">
+                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_procedure" VerticalAlignment="Top" Width="35" Foreground="Black" OpacityMask="{x:Null}" ToolTip="Добавить процедуру  (Alt+W)" Command="command:MainWindowCommands.Procedure">
                             <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
                                 <StackPanel.Background>
                                     <ImageBrush ImageSource="/GidraSIM;component/Image/ProcedureButton.png" />
@@ -191,7 +191,7 @@
                             </StackPanel>
                         </Button>
                         <!-- Выбор ресурса -->
-                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_resourse" VerticalAlignment="Top" Width="35" ToolTip="Ресурс" Command="command:MainWindowCommands.Resourse">
+                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_resourse" VerticalAlignment="Top" Width="35" ToolTip="Добавить ресурс (Alt+E)" Command="command:MainWindowCommands.Resourse">
                             <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
                                 <StackPanel.Background>
                                     <ImageBrush ImageSource="/GidraSIM;component/Image/Resourse.png" />
@@ -199,7 +199,7 @@
                             </StackPanel>
                         </Button>
                         <!-- Соединение блоков -->
-                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_connect" VerticalAlignment="Top" Width="35" ToolTip="Соединение" Command="command:MainWindowCommands.Connect">
+                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_connect" VerticalAlignment="Top" Width="35" ToolTip="Добавить соединение (Alt+R)" Command="command:MainWindowCommands.Connect">
                             <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
                                 <StackPanel.Background>
                                     <ImageBrush ImageSource="/GidraSIM;component/Image/Connect.png" />
@@ -207,7 +207,7 @@
                             </StackPanel>
                         </Button>
                         <!-- Вложенный процесс -->
-                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_SubProcess" ToolTip="Вложенный процесс" VerticalAlignment="Bottom" Width="35" Command="command:MainWindowCommands.SubProcess">
+                        <Button Height="35" HorizontalAlignment="Left" Margin="5,5,0,0" Name="button_SubProcess" ToolTip="Добавить вложенный процесс (Alt+T)" VerticalAlignment="Bottom" Width="35" Command="command:MainWindowCommands.SubProcess">
                             <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
                                 <StackPanel.Background>
                                     <ImageBrush ImageSource="/GidraSIM;component/Image/SubProcessButton.png" />
