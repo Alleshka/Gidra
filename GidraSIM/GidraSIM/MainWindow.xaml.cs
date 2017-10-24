@@ -203,8 +203,8 @@ namespace GidraSIM
                     if (project.Processes[current_process].images_in_tabItem[what_block].object_of_block.Type == ObjectTypes.SUBPROCESS)//если подпроцесс
                     {
                         SetSubProcess window = new SetSubProcess(project, current_process);
-                        project.Processes[current_process].SubProcesses[project.Processes[current_process].images_in_tabItem[what_block].object_of_block.number].number_in_processes = window.chosen_process_number;
-                        project.Processes[current_process].images_in_tabItem[what_block].label.Text = project.Processes[window.chosen_process_number].Name;
+                        project.Processes[current_process].SubProcesses[project.Processes[current_process].images_in_tabItem[what_block].object_of_block.number].number_in_processes = window.ChoosenProcessNumber;
+                        project.Processes[current_process].images_in_tabItem[what_block].label.Text = project.Processes[window.ChoosenProcessNumber].Name;
                     }
                     else if (project.Processes[current_process].images_in_tabItem[what_block].object_of_block.Type == ObjectTypes.PROCEDURE)//если процедура
                     {
@@ -331,11 +331,11 @@ namespace GidraSIM
                         SubProcess subProcess = new SubProcess();
                         SetSubProcess window = new SetSubProcess(project, current_process);
                         window.ShowDialog();
-                        subProcess.number_in_processes = window.chosen_process_number;
+                        subProcess.number_in_processes = window.ChoosenProcessNumber;
                         if (subProcess.number_in_processes == -1) throw new Exception("Не выбрано подпроцесса");
                         project.Processes[current_process].SubProcesses.Add(subProcess);
-                        name = project.Processes[window.chosen_process_number].Name;
-                        project.Processes[window.chosen_process_number].IsSub = current_process;
+                        name = project.Processes[window.ChoosenProcessNumber].Name;
+                        project.Processes[window.ChoosenProcessNumber].IsSub = current_process;
                         number = project.Processes[current_process].SubProcesses.Count - 1;
                     }
 

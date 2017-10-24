@@ -10,11 +10,19 @@ namespace GidraSIM
     {
         Project project;
         int current_process;
-        public int chosen_process_number;
+        /// <summary>
+        /// выбранный 
+        /// </summary>
+        public int ChoosenProcessNumber
+        {
+            get;
+            private set;
+        }
 
         public SetSubProcess(Project new_project, int number_process)
         {
             InitializeComponent();
+            ChoosenProcessNumber = -1;
             project = new_project;
             current_process = number_process;
             FillComboBox();
@@ -33,9 +41,9 @@ namespace GidraSIM
         private void button_Ok_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox_SelectProcess.SelectedIndex >= current_process)
-                chosen_process_number = comboBox_SelectProcess.SelectedIndex + 1;
+                ChoosenProcessNumber = comboBox_SelectProcess.SelectedIndex + 1;
             else
-                chosen_process_number = comboBox_SelectProcess.SelectedIndex;
+                ChoosenProcessNumber = comboBox_SelectProcess.SelectedIndex;
             this.Close();
         }
     }
