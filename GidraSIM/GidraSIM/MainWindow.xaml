@@ -97,7 +97,7 @@
                         </Image>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="CreateProcessItem" Click="CreateProcess_Click">
+                <MenuItem Name="CreateProcessItem" Header="" Click="CreateProcess_Click">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/NewProcess.png"  ToolTip="Создать новый процесс" />
                     </MenuItem.Icon>
@@ -107,47 +107,47 @@
                         <Image Source="/GidraSIM;component/Image/Save.png" ToolTip="Сохранить проект(Ctrl+S)"  />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Header="">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Cut.png" ToolTip="Вырезать (Ctrl+X)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Header="">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Copy.png" ToolTip="Копировать (Ctrl+C)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Header="">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Paste.png" ToolTip="Вставить (Ctrl+V)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem ToolTip="Удалить (Del)" Name="Delete" Command="Delete">
+                <MenuItem Header="" ToolTip="Удалить (Del)" Name="Delete" Command="Delete">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/RecycleBin.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Header="">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/back.png" ToolTip="Отменить (Ctrl+Z)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Header="">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/front.png" ToolTip="Вернуть (Ctrl+Y)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="StartCheck" Click="StartCheck_Click">
+                <MenuItem Header="" Name="StartCheck" Click="StartCheck_Click">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Check.png" ToolTip="Отладка (F4)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="StartModeling" Click="StartModeling_Click">
+                <MenuItem Header="" Name="StartModeling" Click="StartModeling_Click">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/Model.png" ToolTip="Запустить моделирование (F5)" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="Help" Click="Help_Click">
+                <MenuItem Header="" Name="Help" Click="Help_Click">
                     <MenuItem.Icon>
                         <Image Source="/GidraSIM;component/Image/help.png" />
                     </MenuItem.Icon>
@@ -246,7 +246,7 @@
             <!-- Нижняя панель -->
             <TabControl DockPanel.Dock="Bottom"  Height="150" Name="TabControl_Error" Background="#BBFFFFFF" VerticalAlignment="Bottom" Margin="0,0,0,5">
                 <TabItem Header="Список ошибок" Name="Error" FontSize="14">
-                    <Label Content="" Name="LabelMessageError" />
+                    <Label Content="" Name="LabelMessageError"/>
                 </TabItem>
                 <TabItem Header="Системные сообщения" Name="Message" FontSize="14">
                     <Label Content="" Name="LabelMessageSystem" />
