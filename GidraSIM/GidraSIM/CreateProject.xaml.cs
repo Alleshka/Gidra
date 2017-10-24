@@ -21,7 +21,10 @@ namespace GidraSIM
             // WayFile = textBox_WayProject.Text;
 
             if (FilesWs.CheckWay(WayFile, NamePr))
+            {
+                this.DialogResult = true;
                 this.Close();
+            }
             else
                 System.Windows.MessageBox.Show("Каталог с именем " + NamePr + " уже существует.");
         }

@@ -854,13 +854,14 @@ namespace GidraSIM
         private void CreateProject()
         {
             CreateProject window = new CreateProject(ref FilesWorksystem);
-            window.ShowDialog();
+            if (window.ShowDialog() == true)
+            {
+                project = new Project(window.NamePr, window.WayFile);
+                CreateProcess_menu.IsEnabled = true;
 
-            project = new Project(window.NamePr, window.WayFile);
-            CreateProcess_menu.IsEnabled = true;
-
-            CreateProcess(); // Тут же вызываем окно создания процесса 
-            SaveProject(); // Тут же сохраняем, чтобы появился файл проекта
+                CreateProcess(); // Тут же вызываем окно создания процесса 
+                SaveProject(); // Тут же сохраняем, чтобы появился файл проекта
+            }
             
         }
 
