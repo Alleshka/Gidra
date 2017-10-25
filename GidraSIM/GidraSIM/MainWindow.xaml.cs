@@ -85,12 +85,15 @@ namespace GidraSIM
         //изменение вкладки--------------------------------------------------------------------------------------------------------------------------
         private void TabControl_Process_SelectionChanged(object sender, SelectionChangedEventArgs e)//выбор вкладки 
         {
-            currentTab = TabControl_Process.SelectedValue as TabItem; //какую выбрали вкладку 
-            currentTab.IsSelected = true;                             //сделали ее активной 
-            current_process = TabControl_Process.SelectedIndex;
-            canvas_process = currentTab.Content as Canvas;            //берем канву вкладки
-            changeStruct.ChangeNumberProcess(current_process);
-            drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem);
+            if (project != null)
+            {
+                currentTab = TabControl_Process.SelectedValue as TabItem; //какую выбрали вкладку 
+                currentTab.IsSelected = true;                             //сделали ее активной 
+                current_process = TabControl_Process.SelectedIndex;
+                canvas_process = currentTab.Content as Canvas;            //берем канву вкладки
+                changeStruct.ChangeNumberProcess(current_process);
+                drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem);
+            }
         }
 
         //действия на поле------------------------------------------------------------------------------------------------------------
@@ -802,7 +805,13 @@ namespace GidraSIM
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            CloseProject();
             this.Close();
+        }
+
+        private void CloseProjectMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CloseProject();
         }
 
         // -------------------------------------------- Это можно бы вынести отсюда -------------------------------------------------------------
@@ -945,6 +954,20 @@ namespace GidraSIM
         {
             SettingsView _set = new SettingsView();
             _set.ShowDialog(); //показываем строку подключения
+        }
+
+        private void CloseProject()
+        {
+            SaveProject(); // Сохраняем текущий проект (не знаю надо ли)
+
+            CreateProcess_menu.IsEnabled = false; // Убирем возможность создания процесса
+
+            // Обнуляем всё, что можно
+            project_create = false;
+            project = null;
+            current_process = -1;
+
+            TabControl_Process.Items.Clear();
         }
     }
 }

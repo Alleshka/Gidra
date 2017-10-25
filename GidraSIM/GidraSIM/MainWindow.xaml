@@ -33,7 +33,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Сохранить проект как..." />
-                    <MenuItem Header="Закрыть проект" />
+                    <MenuItem Header="Закрыть проект" x:Name="CloseProjectMenuItem" Click="CloseProjectMenuItem_Click"/>
                     <MenuItem Header="Выход" x:Name="ExitMenuItem" Click="ExitMenuItem_Click"/>
                 </MenuItem>
                 <MenuItem Header="Правка" Width="70">

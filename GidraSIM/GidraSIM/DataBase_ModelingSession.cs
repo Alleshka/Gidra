@@ -30,8 +30,8 @@ namespace GidraSIM
                     if (modeled_process.SubProcesses.Count > 0) //если есть вложенные процессы
                         for (int j = 0; j < modeled_process.SubProcesses.Count; j++) //идем по вложенным и пишем их и их процедуры в базу
                             SaveToBase(modeled_process.SubProcesses[j].number_in_processes); //уопачки рекурсия!
-                }
-                MessageBox.Show("Результаты моделирования успешно записаны в базу данных", "Все хорошо");
+                    MessageBox.Show("Результаты моделирования успешно записаны в базу данных", "Все хорошо");
+                }           
             }
             catch (Exception ex)
             {
