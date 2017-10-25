@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows.Forms;
 using GidraSIM.AdmSet;
+using System.Linq;
 
 using CommonData;  //пространство структур системы
 
@@ -931,63 +932,73 @@ namespace GidraSIM
         /// </summary>
         private void CreateProcess()
         {
-            if (project == null)//проект еще не создан
+            try
             {
-                message.ShowError(18);
-                return;
+                if (project == null)//проект еще не создан
+                {
+                    message.ShowError(18);
+                    return;
+                }
+
+                how_many_process = project.Processes == null ? 0 : project.Processes.Count; // Считаем количество процессов
+
+                CreateProcess window = new CreateProcess(how_many_process + 1);   //вызов диалога нового процесса
+                window.ShowDialog();
+
+                if ((project.Processes.Any(x => x.Name == window.NamePr))) throw new Exception("Процесс с именем «" + window.NamePr + "» уже существует");
+
+                Process_ process = new Process_(window.NamePr);
+
+                project.Processes.Add(process);
+                current_process = project.Processes.Count - 1;  //берем последний добаввелнный процесс
+
+                find = new Find();
+                changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
+                showProperties = new BlockProperties(grid_Properties, ref project);
+
+                canvas_process = new Canvas(); //новая канва для рисования процесса 
+
+                drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem); //говорим, что будем рисовать тут             
+
+                StructureObject begin = new StructureObject();  //создаем объект "Начало"
+                begin.Type = ObjectTypes.BEGIN;
+                begin.number = -2;
+                begin.point = new Point(25, TabControl_Process.ActualHeight / 2);
+
+                StructureObject end = new StructureObject();   //создаем объект "Конец"
+                end.Type = ObjectTypes.END;
+                end.number = -2;
+                end.point = new Point(TabControl_Process.ActualWidth - 25, TabControl_Process.ActualHeight / 2);
+
+                project.Processes[current_process].StructProcess.Add(begin);  //добавляем объект "Начало" в структуру процесса
+                project.Processes[current_process].StructProcess.Add(end);    //добавляем объект "Конец" в структуру процесса
+
+                currentTab = new TabItem();
+                TabControl_Process.Items.Add(currentTab); //добавили новую вкладку 
+                currentTab = TabControl_Process.Items[how_many_process] as TabItem; //берем только что добавленную вкладку 
+                currentTab.Header = new TextBlock { Text = process.Name };
+
+                drawing.AddBeginEnd(TabControl_Process.ActualWidth, TabControl_Process.ActualHeight); //создание начала и конца  
+
+                for (int i = 0; i < project.Processes[current_process].images_in_tabItem.Count; i++)   //кладем начало и конец в канву
+                {
+                    canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].image);
+                    canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].label);
+                }
+                currentTab.Content = canvas_process;
+                currentTab.IsSelected = true; //сделали вкладку активной 
+                how_many_process = project.Processes.Count;
+
+                //дерево процессов
+                TreeViewItem item = new TreeViewItem();
+                item.Header = project.Processes[current_process].Name;
+                treeView_structure.Items.Add(item);
+                project_create = true;              //процесс создали, меняем флаг
             }
-
-            how_many_process = project.Processes == null ? 0 : project.Processes.Count; // Считаем количество процессов
-
-            CreateProcess window = new CreateProcess(how_many_process + 1);   //вызов диалога нового процесса
-            window.ShowDialog();
-
-            Process_ process = new Process_(window.NamePr);
-            project.Processes.Add(process);
-            current_process = project.Processes.Count - 1;  //берем последний добаввелнный процесс
-
-            find = new Find();
-            changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
-            showProperties = new BlockProperties(grid_Properties, ref project);
-
-            canvas_process = new Canvas(); //новая канва для рисования процесса 
-
-            drawing.ChangeCanva(canvas_process, ref project.Processes[current_process].images_in_tabItem); //говорим, что будем рисовать тут             
-
-            StructureObject begin = new StructureObject();  //создаем объект "Начало"
-            begin.Type = ObjectTypes.BEGIN;
-            begin.number = -2;
-            begin.point = new Point(25, TabControl_Process.ActualHeight / 2);
-
-            StructureObject end = new StructureObject();   //создаем объект "Конец"
-            end.Type = ObjectTypes.END;
-            end.number = -2;
-            end.point = new Point(TabControl_Process.ActualWidth - 25, TabControl_Process.ActualHeight / 2);
-
-            project.Processes[current_process].StructProcess.Add(begin);  //добавляем объект "Начало" в структуру процесса
-            project.Processes[current_process].StructProcess.Add(end);    //добавляем объект "Конец" в структуру процесса
-
-            currentTab = new TabItem();
-            TabControl_Process.Items.Add(currentTab); //добавили новую вкладку 
-            currentTab = TabControl_Process.Items[how_many_process] as TabItem; //берем только что добавленную вкладку 
-            currentTab.Header = new TextBlock { Text = process.Name };
-
-            drawing.AddBeginEnd(TabControl_Process.ActualWidth, TabControl_Process.ActualHeight); //создание начала и конца  
-
-            for (int i = 0; i < project.Processes[current_process].images_in_tabItem.Count; i++)   //кладем начало и конец в канву
+            catch (Exception ex)
             {
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].image);
-                canvas_process.Children.Add(project.Processes[current_process].images_in_tabItem[i].label);
+                System.Windows.MessageBox.Show(ex.Message);
             }
-            currentTab.Content = canvas_process;
-            currentTab.IsSelected = true; //сделали вкладку активной 
-            how_many_process = project.Processes.Count;
-
-            //дерево процессов
-            TreeViewItem item = new TreeViewItem();
-            item.Header = project.Processes[current_process].Name;
-            treeView_structure.Items.Add(item);
-            project_create = true;              //процесс создали, меняем флаг
         }
 
         /// <summary>

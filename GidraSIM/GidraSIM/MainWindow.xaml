@@ -272,7 +272,7 @@
                         <MenuItem Header="Добавить процесс" x:Name="CreateProcessContextItem" Click="CreateProcessContextItem_Click"></MenuItem>
                         <MenuItem Header="Удалить процесс" x:Name="DelProcessContextItem" Click="DelProcessContextItem_Click"></MenuItem>
                         <MenuItem Header="Закрыть проект" x:Name="CloseProjectContextMenu" Click="CloseProjectContextMenu_Click"></MenuItem>
-                        <MenuItem Header="Удалить проект" x:Name="DelProjectContextItem" Click="DelProjectContextItem_Click"></MenuItem>
+                       <!-- <MenuItem Header="Удалить проект" x:Name="DelProjectContextItem" Click="DelProjectContextItem_Click"></MenuItem> -->
                     </ContextMenu>
                 </TabControl.ContextMenu>
             </TabControl>
