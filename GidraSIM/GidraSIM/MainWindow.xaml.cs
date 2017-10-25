@@ -38,8 +38,7 @@ namespace GidraSIM
         int current_connect;  //номер линии, которая сейчас выделена
         int previous_connect; //номер линии, которая была выделена ранее
         int left_neibour_image_number = -1;
-        int right_neibour_image_number = -1;
-        
+        int right_neibour_image_number = -1;        
 
         public MainWindow()
         {
@@ -71,6 +70,8 @@ namespace GidraSIM
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
+
+            HideContextMenu();
         }
 
 
@@ -546,8 +547,6 @@ namespace GidraSIM
             drawing.DropShadowBlock(current_block);
         }
 
-
-
         private void Arrow_Executed(object sender, RoutedEventArgs e)    //выбор указателя
         {
             if (!project_create) //проект еще не создан
@@ -814,6 +813,32 @@ namespace GidraSIM
             CloseProject();
         }
 
+        private void CreateProcessContextItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProcess();
+        }
+
+        private void DelProcessContextItem_Click(object sender, RoutedEventArgs e)
+        {
+            DelProcess();
+        }
+
+        private void DelProjectContextItem_Click(object sender, RoutedEventArgs e)
+        {
+            DelProject();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsView _set = new SettingsView();
+            _set.ShowDialog(); //показываем строку подключения
+        }
+
+        private void CloseProjectContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            CloseProject();
+        }
+
         // -------------------------------------------- Это можно бы вынести отсюда -------------------------------------------------------------
 
         /// <summary>
@@ -857,6 +882,8 @@ namespace GidraSIM
                 message.ShowMessage(6);//сообщение о успешном открытии проекта
                 CreateProcess_menu.IsEnabled = true;
             }
+
+            ShowContextMenu();
         }
 
         /// <summary>
@@ -873,7 +900,30 @@ namespace GidraSIM
                 CreateProcess(); // Тут же вызываем окно создания процесса 
                 SaveProject(); // Тут же сохраняем, чтобы появился файл проекта
             }
-            
+
+            ShowContextMenu();
+        }
+
+        /// <summary>
+        /// Удаление проекта
+        /// </summary>
+        private void DelProject()
+        {
+            if (project != null)
+            {
+                String path = project.WayProject + "//" + project.NameProject; // Путь до папки
+                CloseProject(); // Закрываем проект
+
+                // Удаляем папку проекта
+                System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo(path);
+                directoryInfo.Delete(true);
+
+                HideContextMenu();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Проект не создан");
+            }
         }
 
         /// <summary>
@@ -887,11 +937,15 @@ namespace GidraSIM
                 return;
             }
 
+            how_many_process = project.Processes == null ? 0 : project.Processes.Count; // Считаем количество процессов
+
             CreateProcess window = new CreateProcess(how_many_process + 1);   //вызов диалога нового процесса
             window.ShowDialog();
+
             Process_ process = new Process_(window.NamePr);
             project.Processes.Add(process);
             current_process = project.Processes.Count - 1;  //берем последний добаввелнный процесс
+
             find = new Find();
             changeStruct = new ChangeStruct(ref project, ref drawing, current_process);
             showProperties = new BlockProperties(grid_Properties, ref project);
@@ -927,13 +981,38 @@ namespace GidraSIM
             }
             currentTab.Content = canvas_process;
             currentTab.IsSelected = true; //сделали вкладку активной 
-            how_many_process++;
+            how_many_process = project.Processes.Count;
 
             //дерево процессов
             TreeViewItem item = new TreeViewItem();
             item.Header = project.Processes[current_process].Name;
             treeView_structure.Items.Add(item);
             project_create = true;              //процесс создали, меняем флаг
+        }
+
+        /// <summary>
+        /// Удаление процесса
+        /// </summary>
+        private void DelProcess()
+        {
+            if (project == null)
+            {
+                System.Windows.MessageBox.Show("Невозможно для пустого проекта");
+                return;
+            }
+
+            if (project.Processes.Count == 1)
+            {
+                System.Windows.MessageBox.Show("Чтобы удалить последний процесс, запустите удаление проекта");
+                return;
+            }
+
+            int select = TabControl_Process.SelectedIndex;
+            int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
+
+            project.Processes.RemoveAt(select); // Удаляем выделенный процесс
+            TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1]; 
+            TabControl_Process.Items.RemoveAt(select); // Удаляем вкладку
         }
 
         /// <summary>
@@ -950,16 +1029,11 @@ namespace GidraSIM
             message.ShowMessage(4);
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsView _set = new SettingsView();
-            _set.ShowDialog(); //показываем строку подключения
-        }
-
+        /// <summary>
+        /// Закрыть проект
+        /// </summary>
         private void CloseProject()
         {
-            SaveProject(); // Сохраняем текущий проект (не знаю надо ли)
-
             CreateProcess_menu.IsEnabled = false; // Убирем возможность создания процесса
 
             // Обнуляем всё, что можно
@@ -968,6 +1042,25 @@ namespace GidraSIM
             current_process = -1;
 
             TabControl_Process.Items.Clear();
+
+            HideContextMenu();
+        }
+
+        /// <summary>
+        /// Скрыть контекстное меню
+        /// </summary>
+        private void HideContextMenu()
+        {
+            TabContextMenu.IsEnabled = false;
+            TabContextMenu.Visibility = Visibility.Collapsed;
+        }
+        /// <summary>
+        /// Скрыть контекстное меню
+        /// </summary>
+        private void ShowContextMenu()
+        {
+            TabContextMenu.IsEnabled = true;
+            TabContextMenu.Visibility = Visibility.Visible;
         }
     }
 }
