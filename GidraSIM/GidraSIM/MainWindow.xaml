@@ -73,6 +73,8 @@
                     <MenuItem Header="Редактировать базу данных ресурсов" Click="Redact_ResoursesDB_menu_Click"/>
                     <MenuItem Header="Просмотреть данные сеанса моделирования" Click="See_ModelSessionDB_menu_Click" />
                 </MenuItem>
+                <MenuItem x:Name="Settings" Header="Настройки" Width="94" Click="Settings_Click">
+                </MenuItem>
                 <MenuItem Header="Справка" Width="80">
                     <MenuItem Header="Просмотр справки" InputGestureText="F1" Name="Help_menu" Click="Help_menu_Click">
                         <MenuItem.Icon>

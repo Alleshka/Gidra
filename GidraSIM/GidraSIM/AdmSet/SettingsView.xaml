@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.AdmSet"
         mc:Ignorable="d"
-        Title="Settins" Height="300" Width="300">
+        Title="Settins" Height="114.285" Width="300" WindowStyle="ToolWindow">
     <StackPanel>
-        <TextBlock>DB server name</TextBlock>
-        <TextBox x:Name="_userPC"></TextBox>
-        <Button x:Name="SaveBtn" Click="SaveBtn_Click">Сохранить</Button>
+        <TextBlock Margin="10,0">DB server name</TextBlock>
+        <TextBox x:Name="_userPC" Margin="10,0"></TextBox>
+        <Separator Height="14" Margin="10,0" Visibility="Hidden"/>
+        <Grid Height="23" Margin="10,0">
+            <Button x:Name="CloseBtn" Content="Отмена" Margin="10,0,0,0" HorizontalAlignment="Left" Click="CloseBtn_Click" />
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Content="Сохранить" Margin="0,0,10,0" HorizontalAlignment="Right"/>
+        </Grid>
+        
     </StackPanel>
 </Window>

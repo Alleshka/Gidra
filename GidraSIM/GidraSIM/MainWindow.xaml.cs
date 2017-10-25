@@ -941,5 +941,10 @@ namespace GidraSIM
             message.ShowMessage(4);
         }
 
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsView _set = new SettingsView();
+            _set.ShowDialog(); //показываем строку подключения
+        }
     }
 }

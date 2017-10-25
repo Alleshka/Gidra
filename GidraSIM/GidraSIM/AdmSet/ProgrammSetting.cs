@@ -15,16 +15,51 @@ namespace GidraSIM.AdmSet
 
     public class SettingsReader
     {
+        private static string settingsFile = "Settings.json";
+        private static string settingsDirectory = "Adm";
+
+        /// <summary>
+        /// попытка чтения с созданием директории при необходимости
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <returns>возвращает true, если удалось прочитать в файл</returns>
+        public static bool TryRead(out Settings settings)
+        {
+            settings = null;
+            try
+            {
+                // Открываем файл
+                using (FileStream file = new FileStream(String.Format("{0}//{1}", settingsDirectory, settingsFile), FileMode.Open))
+                {
+                    DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Settings)); // Создаём сериализатор
+                    settings =  (Settings)json.ReadObject(file); // Считываем настройки их файла 
+                    if (settings != null)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (FileNotFoundException) // Если файл не найден
+            {
+                return false;
+            }
+            catch (DirectoryNotFoundException) // Если папка не создана
+            {
+                Directory.CreateDirectory(settingsDirectory); // Создаём папку 
+                return false;
+            }
+        }
+
         /// <summary>
         /// Считывание настрек из файла 
         /// </summary>
         /// <returns></returns>
-        public static Settings Read()
+        public static Settings Read() //TODO возможно, эта функция слишком много себе позволяет
         {
             try
             {
                 // Открываем файл
-                using (FileStream file = new FileStream("Adm//Settings.json", FileMode.Open))
+                using (FileStream file = new FileStream(String.Format("{0}//{1}",settingsDirectory, settingsFile), FileMode.Open))
                 {
                     DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Settings)); // Создаём сериализатор
                     return (Settings)json.ReadObject(file); // Считываем настройки их файла 
@@ -38,7 +73,7 @@ namespace GidraSIM.AdmSet
             }
             catch (DirectoryNotFoundException) // Если папка не создана
             {
-                Directory.CreateDirectory("Adm"); // Создаём папку 
+                Directory.CreateDirectory(settingsDirectory); // Создаём папку 
                 SettingsView _set = new SettingsView();
                 _set.ShowDialog(); // Просим пользователя ввести настройки 
                 return Read();
@@ -50,8 +85,8 @@ namespace GidraSIM.AdmSet
         /// <param name="set">Структура с настройками</param>
         public static void Save(Settings set)
         {
-            if (!Directory.Exists("Adm")) Directory.CreateDirectory("Adm"); // Создаём папку, если не создана
-            using (FileStream file = new FileStream("Adm//Settings.json", FileMode.OpenOrCreate))
+            if (!Directory.Exists(settingsDirectory)) Directory.CreateDirectory(settingsDirectory); // Создаём папку, если не создана
+            using (FileStream file = new FileStream(String.Format("{0}//{1}", settingsDirectory, settingsFile), FileMode.OpenOrCreate))
             {
                 DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Settings)); // Создаём сериализатор
                 json.WriteObject(file, set); // Записываем в файл

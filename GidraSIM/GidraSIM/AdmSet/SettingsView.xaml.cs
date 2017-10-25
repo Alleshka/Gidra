@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 
 namespace GidraSIM.AdmSet
@@ -11,7 +12,17 @@ namespace GidraSIM.AdmSet
         public SettingsView()
         {
             InitializeComponent();
-            _userPC.Text = Environment.MachineName;
+
+            Settings settings;
+            //попытка чтения без рекурсии
+            if(SettingsReader.TryRead(out settings))
+            {
+                _userPC.Text = settings.NamePC;
+            }
+            else
+            {
+                _userPC.Text = Environment.MachineName;
+            }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -20,6 +31,13 @@ namespace GidraSIM.AdmSet
             {
                 NamePC = _userPC.Text
             });
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
             this.Close();
         }
     }
