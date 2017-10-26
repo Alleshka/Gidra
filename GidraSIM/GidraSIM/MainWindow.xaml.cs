@@ -1106,9 +1106,9 @@ namespace GidraSIM
         /// </summary>
         private void RefreshStructArea()
         {
+            treeView_structure.Items.Clear();
             if (project != null)
-            {
-                treeView_structure.Items.Clear();
+            {           
                 foreach (var process in project.Processes)
                 {
                     //дерево процессов
