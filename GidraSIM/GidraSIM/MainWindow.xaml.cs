@@ -840,6 +840,11 @@ namespace GidraSIM
             CloseProject();
         }
 
+        private void CloseProcessContextItem_Click(object sender, RoutedEventArgs e)
+        {
+            CloseProcess();
+        }
+
         // -------------------------------------------- Это можно бы вынести отсюда -------------------------------------------------------------
 
         /// <summary>
@@ -885,6 +890,7 @@ namespace GidraSIM
             }
 
             ShowContextMenu();
+            RefreshStructArea();
         }
 
         /// <summary>
@@ -903,6 +909,7 @@ namespace GidraSIM
             }
 
             ShowContextMenu();
+            RefreshStructArea();
         }
 
         /// <summary>
@@ -920,6 +927,7 @@ namespace GidraSIM
                 directoryInfo.Delete(true);
 
                 HideContextMenu();
+                RefreshStructArea();
             }
             else
             {
@@ -989,10 +997,8 @@ namespace GidraSIM
                 currentTab.IsSelected = true; //сделали вкладку активной 
                 how_many_process = project.Processes.Count;
 
-                //дерево процессов
-                TreeViewItem item = new TreeViewItem();
-                item.Header = project.Processes[current_process].Name;
-                treeView_structure.Items.Add(item);
+                RefreshStructArea(); // Обновляем структуру проекта
+
                 project_create = true;              //процесс создали, меняем флаг
             }
             catch (Exception ex)
@@ -1024,6 +1030,26 @@ namespace GidraSIM
             project.Processes.RemoveAt(select); // Удаляем выделенный процесс
             TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1]; 
             TabControl_Process.Items.RemoveAt(select); // Удаляем вкладку
+
+            RefreshStructArea();
+        }
+
+        /// <summary>
+        /// Закрыть процесс без удаления
+        /// </summary>
+        private void CloseProcess()
+        {
+            //if (project == null)
+            //{
+            //    System.Windows.MessageBox.Show("Невозможно для пустого проекта");
+            //    return;
+            //}
+
+            //int select = TabControl_Process.SelectedIndex;
+            //int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
+
+            //TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1];
+            //TabControl_Process.Items.RemoveAt(select); // Закрываем вкладку
         }
 
         /// <summary>
@@ -1055,6 +1081,7 @@ namespace GidraSIM
             TabControl_Process.Items.Clear();
 
             HideContextMenu();
+            RefreshStructArea();
         }
 
         /// <summary>
@@ -1072,6 +1099,24 @@ namespace GidraSIM
         {
             TabContextMenu.IsEnabled = true;
             TabContextMenu.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Обновить окно структура
+        /// </summary>
+        private void RefreshStructArea()
+        {
+            if (project != null)
+            {
+                treeView_structure.Items.Clear();
+                foreach (var process in project.Processes)
+                {
+                    //дерево процессов
+                    TreeViewItem item = new TreeViewItem();
+                    item.Header = process.Name;
+                    treeView_structure.Items.Add(item);
+                }
+            }
         }
     }
 }

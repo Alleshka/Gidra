@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.AdmSet"
         mc:Ignorable="d"
-        Title="Settins" Height="114.285" Width="300" WindowStyle="ToolWindow">
+        Title="Settings" Height="114.285" Width="300" WindowStyle="ToolWindow">
     <StackPanel>
         <TextBlock Margin="10,0">DB server name</TextBlock>
         <TextBox x:Name="_userPC" Margin="10,0"></TextBox>
