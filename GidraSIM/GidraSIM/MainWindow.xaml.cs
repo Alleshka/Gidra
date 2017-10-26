@@ -1039,17 +1039,17 @@ namespace GidraSIM
         /// </summary>
         private void CloseProcess()
         {
-            //if (project == null)
-            //{
-            //    System.Windows.MessageBox.Show("Невозможно для пустого проекта");
-            //    return;
-            //}
+            if (project == null)
+            {
+                System.Windows.MessageBox.Show("Невозможно для пустого проекта");
+                return;
+            }
 
-            //int select = TabControl_Process.SelectedIndex;
-            //int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
+            int select = TabControl_Process.SelectedIndex;
+            int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
 
-            //TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1];
-            //TabControl_Process.Items.RemoveAt(select); // Закрываем вкладку
+            TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1];
+            TabControl_Process.Items.RemoveAt(select); // Закрываем вкладку
         }
 
         /// <summary>
