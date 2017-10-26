@@ -87,7 +87,7 @@ namespace GidraSIM
         //изменение вкладки--------------------------------------------------------------------------------------------------------------------------
         private void TabControl_Process_SelectionChanged(object sender, SelectionChangedEventArgs e)//выбор вкладки 
         {
-            if (project != null)
+            if ((project != null)&&(TabControl_Process.SelectedValue != null))
             {
                 currentTab = TabControl_Process.SelectedValue as TabItem; //какую выбрали вкладку 
                 currentTab.IsSelected = true;                             //сделали ее активной 
@@ -1025,11 +1025,13 @@ namespace GidraSIM
             }
 
             int select = TabControl_Process.SelectedIndex;
-            int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
-
-            project.Processes.RemoveAt(select); // Удаляем выделенный процесс
-            TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1]; 
+            int newselect = select != 0 ? select - 1 : 0; // Выбираем новую вкладку
+           
+            project.Processes.RemoveAt(select); // Удаляем выделенный процесс 
+            TabControl_Process.SelectedItem = TabControl_Process.Items[newselect];
             TabControl_Process.Items.RemoveAt(select); // Удаляем вкладку
+
+
 
             RefreshStructArea();
         }
@@ -1046,9 +1048,9 @@ namespace GidraSIM
             }
 
             int select = TabControl_Process.SelectedIndex;
-            int newselect = select == 0 ? select - 1 : 0; // Выбираем новую вкладку
+            int newselect = select != 0 ? select - 1 : 0; // Выбираем новую вкладку
 
-            TabControl_Process.SelectedItem = TabControl_Process.Items[select - 1];
+            TabControl_Process.SelectedItem = TabControl_Process.Items[newselect];
             TabControl_Process.Items.RemoveAt(select); // Закрываем вкладку
         }
 
