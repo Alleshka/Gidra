@@ -103,6 +103,9 @@
     <Compile Include="DataBase_ModelingSession.cs" />
     <Compile Include="Imitation.cs" />
     <Compile Include="MainWindowCommands.cs" />
+    <Compile Include="ModelDrawer.xaml.cs">
+      <DependentUpon>ModelDrawer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modeling.xaml.cs">
       <DependentUpon>Modeling.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModelDrawer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modeling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
