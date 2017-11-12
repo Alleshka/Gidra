@@ -6,28 +6,30 @@
              xmlns:local="clr-namespace:GidraSIM"
              mc:Ignorable="d" 
              >
-    <Canvas x:Name="field" Height="800" Width="600">
+    <Canvas  x:Name="field" Background="Transparent" Height="800" Width="600">
 
         <!--Процесс 2-->
-        <Path Fill="White" Stroke="Black" Canvas.Left="350" Canvas.Top="100" Panel.ZIndex="1">
-            <Path.Data>
-                <GeometryGroup FillRule="Nonzero">
-                    <RectangleGeometry Rect="0,0,100,60" RadiusX="10" RadiusY="10"></RectangleGeometry>
-                    <RectangleGeometry Rect="3,3,94,54" RadiusX="7" RadiusY="7"></RectangleGeometry>
-                </GeometryGroup>
-            </Path.Data>
-        </Path>
-        <Path Fill="Black" Canvas.Left="350" Canvas.Top="130" Panel.ZIndex="1">
-            <Path.Data>
-                <EllipseGeometry RadiusX="4" RadiusY="4"></EllipseGeometry>
-            </Path.Data>
-        </Path>
-        <Path Fill="Green" Canvas.Left="450" Canvas.Top="130" Panel.ZIndex="1">
-            <Path.Data>
-                <EllipseGeometry RadiusX="4" RadiusY="4"></EllipseGeometry>
-            </Path.Data>
-        </Path>
-        <Label Canvas.Left="354" Canvas.Top="116" Panel.ZIndex="1">Процесс 2</Label>
+        <Canvas Canvas.Left="350" Canvas.Top="100">
+            <Path Fill="White" Stroke="Black" Panel.ZIndex="1">
+                <Path.Data>
+                    <GeometryGroup FillRule="Nonzero">
+                        <RectangleGeometry Rect="0,0,100,60" RadiusX="10" RadiusY="10"></RectangleGeometry>
+                        <RectangleGeometry Rect="3,3,94,54" RadiusX="7" RadiusY="7"></RectangleGeometry>
+                    </GeometryGroup>
+                </Path.Data>
+            </Path>
+            <Path Fill="Black" Canvas.Left="0" Canvas.Top="30" Panel.ZIndex="1">
+                <Path.Data>
+                    <EllipseGeometry RadiusX="4" RadiusY="4"></EllipseGeometry>
+                </Path.Data>
+            </Path>
+            <Path Fill="Green" Canvas.Left="100" Canvas.Top="30" Panel.ZIndex="1">
+                <Path.Data>
+                    <EllipseGeometry RadiusX="4" RadiusY="4"></EllipseGeometry>
+                </Path.Data>
+            </Path>
+            <Label Canvas.Left="5" Canvas.Top="16" Panel.ZIndex="1">Процесс 2</Label>
+        </Canvas>
 
         <!--Процесс 1-->
         <Path Fill="White" Stroke="Black" Canvas.Left="80" Canvas.Top="50" Panel.ZIndex="1">

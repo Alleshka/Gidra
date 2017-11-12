@@ -87,6 +87,16 @@
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BlockProperties.cs" />
+    <Compile Include="BlocksWPF\BlockWPF.cs" />
+    <Compile Include="BlocksWPF\ConnectionWPF.cs" />
+    <Compile Include="BlocksWPF\EndBlockWPF.cs" />
+    <Compile Include="BlocksWPF\GSFigure.cs" />
+    <Compile Include="BlocksWPF\ProcConnectionWPF.cs" />
+    <Compile Include="BlocksWPF\ProcessWPF.cs" />
+    <Compile Include="BlocksWPF\ResConnectionWPF.cs" />
+    <Compile Include="BlocksWPF\ResourceWPF.cs" />
+    <Compile Include="BlocksWPF\StartBlockWPF.cs" />
+    <Compile Include="BlocksWPF\SubProcessWPF.cs" />
     <Compile Include="ChangeStruct.cs" />
     <Compile Include="CheckCorrectProcess.cs" />
     <Compile Include="ChooseTable_ResoursesDB.xaml.cs">
@@ -186,6 +196,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModelDrawer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Modeling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
