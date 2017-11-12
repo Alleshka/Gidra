@@ -114,6 +114,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelingSession.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Block.cs" />
+    <Compile Include="Model\EndBlock.cs" />
+    <Compile Include="Model\IBlock.cs" />
+    <Compile Include="Model\IProcedure.cs" />
+    <Compile Include="Model\IResource.cs" />
+    <Compile Include="Model\Procedure.cs" />
+    <Compile Include="Model\Process.cs" />
+    <Compile Include="Model\Resource.cs" />
+    <Compile Include="Model\StartBlock.cs" />
+    <Compile Include="Model\TestRootProcess.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="QuantityPins.xaml.cs">
       <DependentUpon>QuantityPins.xaml</DependentUpon>
     </Compile>
