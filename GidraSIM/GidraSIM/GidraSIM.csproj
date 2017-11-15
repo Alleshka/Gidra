@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>hydra.ico</ApplicationIcon>
+    <ApplicationIcon>hydra2r.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -409,6 +409,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="hydra.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hydra2r.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
