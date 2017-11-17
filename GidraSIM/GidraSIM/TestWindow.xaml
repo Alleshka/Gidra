@@ -1,0 +1,23 @@
+﻿<Window x:Class="GidraSIM.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="600" Width="800">
+    <DockPanel>
+        <StackPanel HorizontalAlignment="Left" Margin="0">
+            <Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
+            <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
+            <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
+            <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
+            <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
+        </StackPanel>
+        <TabControl x:Name="testTabControl" Margin="0,0,5,5" Panel.ZIndex="10">
+            <TabItem Header="Процесс 1" >
+                <local:DrawArea x:Name="drawArea"></local:DrawArea>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

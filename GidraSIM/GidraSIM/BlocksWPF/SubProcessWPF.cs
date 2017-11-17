@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace GidraSIM.BlocksWPF
 {
-    public class SubProcessWPF : ProcessWPF
+    public class SubProcessWPF : ProcedureWPF
     {
         private const int BORDER = 3;
 

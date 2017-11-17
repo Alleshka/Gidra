@@ -73,6 +73,10 @@ namespace GidraSIM
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
 
             HideContextMenu();
+
+            // test
+            TestWindow test = new TestWindow();
+            test.Show();
         }
 
 

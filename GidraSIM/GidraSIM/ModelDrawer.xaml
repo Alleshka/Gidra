@@ -65,25 +65,29 @@
                     <PathFigure StartPoint="0, 0">
                         <BezierSegment Point1="170,0" Point2="0 50" Point3="170,50" />
                     </PathFigure>
+                    
                     <PathFigure StartPoint="160, 45">
                         <LineSegment Point="170, 50"></LineSegment>
                         <LineSegment Point="160, 55"></LineSegment>
                     </PathFigure>
+
                 </PathGeometry>
             </Path.Data>
         </Path>
 
         <!--Ресурс-Процесс1-->
-        <Path Stroke="Gray" StrokeThickness="2" Canvas.Left="130" Canvas.Top="110">
-            <Path.Data>
-                <PathGeometry>
-                    <PathFigure StartPoint="0, 0" IsClosed="False">
-                        <LineSegment Point="120,110"></LineSegment>
-                    </PathFigure>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
-
+        <Canvas Canvas.Left="0" Canvas.Top="0">
+            <Path Stroke="Gray" StrokeThickness="2">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="250, 250" IsClosed="False">
+                            <LineSegment Point="130,80"></LineSegment>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+        
         <!--Ресурс-Процесс2-->
         <Path Stroke="Gray" StrokeThickness="2" Canvas.Left="400" Canvas.Top="160">
             <Path.Data>

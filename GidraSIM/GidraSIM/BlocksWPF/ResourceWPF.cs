@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Shapes;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 
 namespace GidraSIM.BlocksWPF
 {
@@ -12,14 +11,19 @@ namespace GidraSIM.BlocksWPF
         private const int IMG_SIZE = 30;
         private const int IMG_LEFT = 3;
         private const int IMG_TOP = 27;
-        private const string IMG_SOURCE = "Image/Resourse.png";
+        private const string IMG_SOURCE = "/Image/Resourse.png";
 
-        public ResourceWPF(Point position, string processName) : base(position, processName)
+        // Соединения с процедурами
+        private List<ResConnectionWPF> resPuts;
+
+        public ResourceWPF(Point position, string resourceName) : base(position, resourceName)
         {
+            this.resPuts = new List<ResConnectionWPF>();
+
             MakeIMG();
 
             // установить ZIndex
-            SetZIngex();
+            //SetZIngex();
         }
 
         private void MakeIMG()
@@ -39,6 +43,26 @@ namespace GidraSIM.BlocksWPF
             Canvas.SetLeft(img, IMG_LEFT);
             // добавление
             this.Children.Add(img);
+        }
+
+        protected override void UpdateConnectoins()
+        {
+            if (resPuts != null)
+            {
+                foreach (ResConnectionWPF connection in resPuts)
+                {
+                    connection.Refresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Добавить соединение с процессом
+        /// </summary>
+        /// <param name="connectoin"></param>
+        public void AddResPutConnection(ResConnectionWPF connectoin)
+        {
+            resPuts.Add(connectoin);
         }
     }
 }

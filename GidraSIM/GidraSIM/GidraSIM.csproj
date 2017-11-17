@@ -91,8 +91,9 @@
     <Compile Include="BlocksWPF\ConnectionWPF.cs" />
     <Compile Include="BlocksWPF\EndBlockWPF.cs" />
     <Compile Include="BlocksWPF\GSFigure.cs" />
+    <Compile Include="BlocksWPF\ISelectable.cs" />
     <Compile Include="BlocksWPF\ProcConnectionWPF.cs" />
-    <Compile Include="BlocksWPF\ProcessWPF.cs" />
+    <Compile Include="BlocksWPF\ProcedureWPF.cs" />
     <Compile Include="BlocksWPF\ResConnectionWPF.cs" />
     <Compile Include="BlocksWPF\ResourceWPF.cs" />
     <Compile Include="BlocksWPF\StartBlockWPF.cs" />
@@ -111,6 +112,9 @@
       <DependentUpon>CreateProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase_ModelingSession.cs" />
+    <Compile Include="DrawArea.xaml.cs">
+      <DependentUpon>DrawArea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Imitation.cs" />
     <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Modeling.xaml.cs">
@@ -163,6 +167,9 @@
       <DependentUpon>SetSubProcess.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubProcess.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorksystemWithFiles.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
@@ -181,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SetSubProcess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
