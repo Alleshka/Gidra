@@ -8,7 +8,9 @@ namespace GidraSIM.Model
 {
     class EndBlock:Block
     {
-        public EndBlock(int inNumber):base(inNumber, 0)
+        public override string Description => "End block";
+
+        public EndBlock(int inNumber, ITokensCollector collector):base(inNumber, 0, collector)
         {
 
         }

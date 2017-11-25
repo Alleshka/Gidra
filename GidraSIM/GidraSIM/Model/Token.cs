@@ -9,7 +9,37 @@ namespace GidraSIM.Model
     /// <summary>
     /// токнен, который гуляет по сетке
     /// </summary>
-    class Token
+    public class Token
     {
+        public double BornTime
+        {
+            get;
+            private set;
+        }
+
+        public double Complexity
+        {
+            get;
+            private set;
+        }
+
+        public double Progress
+        {
+            get;
+            set;
+        }
+
+        public string Description
+        {
+            get;
+            set;
+        }
+
+        public Token(double bornTime, double complexity)
+        {
+            BornTime = bornTime;
+            Complexity = complexity;
+            Progress = 0;
+        }
     }
 }

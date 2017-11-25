@@ -5,10 +5,33 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    class Procedure : Block
+    public class Procedure : Block, IProcedure
     {
-        public Procedure(int inNumber, int outNumber) : base(inNumber, outNumber)
+        protected ConnectionManager connectionManager = ConnectionManager.GetInstance();
+
+        public override string Description => "Procedure";
+
+        List<IResource> resources = new List<IResource>();
+
+        public Procedure(int inQuantity, int outQuantity, ITokensCollector collector) : base(inQuantity, outQuantity, collector)
         {
+        }
+
+        public void AddResorce(IResource resource)
+        {
+            resources.Add(resource);
+        }
+
+        public override void Update(double dt)
+        {
+            
+            foreach(var resource in resources)
+            {
+                //если ресурс недоступен, то ничего не делать
+                if (resource.TryGetResource() == false)
+                    return;
+            }
+            base.Update(dt);
         }
     }
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    interface IProcedure:IBlock
+    public interface IProcedure:IBlock
     {
-        void Connect(Resource resource);
+        void AddResorce(IResource resource);
     }
 }

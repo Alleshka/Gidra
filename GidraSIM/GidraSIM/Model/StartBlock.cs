@@ -8,8 +8,22 @@ namespace GidraSIM.Model
 {
     class StartBlock:Block
     {
-        public StartBlock(int outNumber):base(0, outNumber)
+
+        public override string Description => "Start block";
+
+        //тестовый блок
+        public StartBlock(int outNumber, ITokensCollector collector):base(0, outNumber, collector)
         {
+            for(int i=0; i< outNumber; i++)
+            {
+                
+                outputs[i] = new Token(0, 1.0);
+            }
+        }
+
+        public override void Update(double dt)
+        {
+            base.Update(dt);
         }
     }
 }

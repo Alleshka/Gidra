@@ -6,91 +6,90 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Model
 {
-    class Block: IBlock
+    public class Block: IBlock
     {
         public int OutputQuantity { get; protected set; }
         public int InputQuantity { get; protected set; }
 
+        public virtual string Description
+        {
+            get
+            {
+                return "Block";
+            }
+        }
+
         protected Queue<Token>[] inputQueue;
 
-        /// <summary>
+        /*/// <summary>
         /// пары объект-блок
         /// </summary>
-        protected Tuple<IBlock,int>[] outputs;
+        protected Tuple<IBlock,int>[] outputs;*/
+        protected Token[] outputs;
+        protected ITokensCollector collector;
 
-        /// <summary>
-        /// нужно ли проверить на всех входах ли есть токен
-        /// </summary>
-        protected bool needToCheckInputs = true;
+        protected double globalTime;
 
-        /// <summary>
-        /// на всеъ входах есть токен
-        /// </summary>
-        protected bool allInputsFilled = false;
 
-        public Block(int inNumber, int outNumber)
+        public Block(int inQuantiry, int outQuantity, ITokensCollector collector)
         {
-            this.InputQuantity = inNumber;
-            this.OutputQuantity = outNumber;
+            this.InputQuantity = inQuantiry;
+            this.OutputQuantity = outQuantity;
             inputQueue = new Queue<Token>[InputQuantity];
-            outputs = new Tuple<IBlock, int>[OutputQuantity];
+            for(int i=0; i<InputQuantity; i++)
+            {
+                inputQueue[i] = new Queue<Token>();
+            }
+
+            outputs = new Token[OutputQuantity];
+            this.collector = collector;
         }
 
         public void AddToken(Token token, int inputNumber)
         {
             inputQueue[inputNumber].Enqueue(token);
-            needToCheckInputs = true;
+            globalTime = token.BornTime;
         }
 
-        public bool AllInputesFilled()
-        {
-            if (needToCheckInputs)
-            {
-                int count = 0;
-                for (int i = 0; i< this.InputQuantity; i++)
-                {
-                    if (inputQueue[i].Count > 0)
-                        count++;
-                }
-                if (count == InputQuantity)
-                    allInputsFilled = true;
-                else
-                    allInputsFilled = false;
-            }
-            //только что посчитали, ничего считать не надо пока новые не придут
-            needToCheckInputs = false;
-
-            return allInputsFilled;
-        }
-
-        public void Connect(int outputNumber, IBlock block, int blockInputNumber)
-        {
-            outputs[outputNumber] = new Tuple<IBlock, int>(block, blockInputNumber);
-        }
-
-        /// <summary>
-        /// отправить токен с указанного выхода
-        /// </summary>
-        /// <param name="token"></param>
-        /// <param name="outputNumber"></param>
-        void SendTokenFromOutput(Token token, int outputNumber)
-        {
-            var ep = outputs[outputNumber];
-            ep.Item1.AddToken(token, ep.Item2);
-        }
 
         public virtual void Update(double dt)
         {
+            bool wasTokens = false;
             //просто тупая очистка всех входных очередей
             foreach(var q in inputQueue)
             {
-                q.Clear();
+                if (q.Count != 0)
+                {
+                    var token = q.Dequeue();
+                    token.Progress = 1.0;
+                    token.Description = this.Description;
+                    //сброс в мусорку
+                    collector.Collect(token);
+                    wasTokens = true;
+                }
             }
-
-            for( int i=0;  i< OutputQuantity; i++)
+            //выдать, если хоть что-то было на входе
+            //просто для теста, в еральном блоке иначе
+            if (wasTokens && false)
             {
-                SendTokenFromOutput(new Token(), i);
+                for (int i = 0; i < OutputQuantity; i++)
+                {
+                    outputs[i] = new Token(this.globalTime, 1.0);
+                }
             }
+        }
+
+        public void ClearOutputs()
+        {
+            for (int i = 0; i < OutputQuantity; i++)
+            {
+                outputs[i] = null;
+            }
+        }
+
+        public Token GetOutputToken(int port)
+        {
+            return outputs[port];
         }
     }
 }

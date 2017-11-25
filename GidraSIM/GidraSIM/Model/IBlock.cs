@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Model
 {
-    interface IBlock
+    public interface IBlock
     {
         void AddToken(Token token, int inputNumber);
-        bool AllInputesFilled();
+        //bool AllInputesFilled();
 
         int OutputQuantity { get;}
         int InputQuantity { get;}
-        void Connect(int outputNumber, IBlock block, int blockInputNumber);
+        // void Connect(int outputNumber, IBlock block, int blockInputNumber);
         void Update(double dt);
+        Token GetOutputToken(int port);
+        void ClearOutputs();
+        string Description { get; }
     }
 }

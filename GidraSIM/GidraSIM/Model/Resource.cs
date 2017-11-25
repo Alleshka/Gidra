@@ -5,16 +5,16 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    class Resource : IResource
+    public class Resource : IResource
     {
         public void ReleaseResource()
         {
-            throw new NotImplementedException();
+            //do nothing
         }
 
         public bool TryGetResource()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    public interface IResource
+    public interface ITokensCollector
     {
-        bool TryGetResource();
-        void ReleaseResource();
+        List<Token> GetHistory();
+        void Collect(Token token);
     }
 }

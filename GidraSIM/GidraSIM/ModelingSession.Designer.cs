@@ -27,7 +27,16 @@ namespace GidraSIM
     public partial class ModelingSessionEntities : ObjectContext
     {
         #region Конструкторы
-        
+    
+        /// <summary>
+        /// Инициализирует новый объект ModelingSessionEntities, используя строку соединения из раздела "ModelingSessionEntities" файла конфигурации приложения.
+        /// </summary>
+        public ModelingSessionEntities() : base("name=ModelingSessionEntities", "ModelingSessionEntities")
+        {
+            this.ContextOptions.LazyLoadingEnabled = true;
+            OnContextCreated();
+        }
+    
         /// <summary>
         /// Инициализация нового объекта ModelingSessionEntities.
         /// </summary>
@@ -151,7 +160,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -170,7 +179,7 @@ namespace GidraSIM
                 {
                     Onresults_idChanging(value);
                     ReportPropertyChanging("results_id");
-                    _results_id = StructuralObject.SetValidValue(value);
+                    _results_id = StructuralObject.SetValidValue(value, "results_id");
                     ReportPropertyChanged("results_id");
                     Onresults_idChanged();
                 }
@@ -195,7 +204,7 @@ namespace GidraSIM
             {
                 OnName_processChanging(value);
                 ReportPropertyChanging("Name_process");
-                _Name_process = StructuralObject.SetValidValue(value, false);
+                _Name_process = StructuralObject.SetValidValue(value, false, "Name_process");
                 ReportPropertyChanged("Name_process");
                 OnName_processChanged();
             }
@@ -219,7 +228,7 @@ namespace GidraSIM
             {
                 OnParent_process_idChanging(value);
                 ReportPropertyChanging("Parent_process_id");
-                _Parent_process_id = StructuralObject.SetValidValue(value, false);
+                _Parent_process_id = StructuralObject.SetValidValue(value, false, "Parent_process_id");
                 ReportPropertyChanged("Parent_process_id");
                 OnParent_process_idChanged();
             }
@@ -243,7 +252,7 @@ namespace GidraSIM
             {
                 OnAllTimeChanging(value);
                 ReportPropertyChanging("AllTime");
-                _AllTime = StructuralObject.SetValidValue(value, false);
+                _AllTime = StructuralObject.SetValidValue(value, false, "AllTime");
                 ReportPropertyChanged("AllTime");
                 OnAllTimeChanged();
             }
@@ -267,7 +276,7 @@ namespace GidraSIM
             {
                 OnAccidentsChanging(value);
                 ReportPropertyChanging("Accidents");
-                _Accidents = StructuralObject.SetValidValue(value, false);
+                _Accidents = StructuralObject.SetValidValue(value, false, "Accidents");
                 ReportPropertyChanged("Accidents");
                 OnAccidentsChanged();
             }
@@ -291,7 +300,7 @@ namespace GidraSIM
             {
                 OnProcedures_numberChanging(value);
                 ReportPropertyChanging("Procedures_number");
-                _Procedures_number = StructuralObject.SetValidValue(value);
+                _Procedures_number = StructuralObject.SetValidValue(value, "Procedures_number");
                 ReportPropertyChanged("Procedures_number");
                 OnProcedures_numberChanged();
             }
@@ -315,7 +324,7 @@ namespace GidraSIM
             {
                 OnSubprocesses_numberChanging(value);
                 ReportPropertyChanging("Subprocesses_number");
-                _Subprocesses_number = StructuralObject.SetValidValue(value);
+                _Subprocesses_number = StructuralObject.SetValidValue(value, "Subprocesses_number");
                 ReportPropertyChanged("Subprocesses_number");
                 OnSubprocesses_numberChanged();
             }
@@ -326,7 +335,6 @@ namespace GidraSIM
 
         #endregion
 
-    
     }
     
     /// <summary>
@@ -360,7 +368,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -379,7 +387,7 @@ namespace GidraSIM
                 {
                     Onprosedure_idChanging(value);
                     ReportPropertyChanging("prosedure_id");
-                    _prosedure_id = StructuralObject.SetValidValue(value);
+                    _prosedure_id = StructuralObject.SetValidValue(value, "prosedure_id");
                     ReportPropertyChanged("prosedure_id");
                     Onprosedure_idChanged();
                 }
@@ -404,7 +412,7 @@ namespace GidraSIM
             {
                 OnName_processChanging(value);
                 ReportPropertyChanging("Name_process");
-                _Name_process = StructuralObject.SetValidValue(value, false);
+                _Name_process = StructuralObject.SetValidValue(value, false, "Name_process");
                 ReportPropertyChanged("Name_process");
                 OnName_processChanged();
             }
@@ -428,7 +436,7 @@ namespace GidraSIM
             {
                 OnName_procedureChanging(value);
                 ReportPropertyChanging("Name_procedure");
-                _Name_procedure = StructuralObject.SetValidValue(value, false);
+                _Name_procedure = StructuralObject.SetValidValue(value, false, "Name_procedure");
                 ReportPropertyChanged("Name_procedure");
                 OnName_procedureChanged();
             }
@@ -452,7 +460,7 @@ namespace GidraSIM
             {
                 OnType_procedureChanging(value);
                 ReportPropertyChanging("Type_procedure");
-                _Type_procedure = StructuralObject.SetValidValue(value, false);
+                _Type_procedure = StructuralObject.SetValidValue(value, false, "Type_procedure");
                 ReportPropertyChanged("Type_procedure");
                 OnType_procedureChanged();
             }
@@ -476,7 +484,7 @@ namespace GidraSIM
             {
                 OnCalculated_TimeChanging(value);
                 ReportPropertyChanging("Calculated_Time");
-                _Calculated_Time = StructuralObject.SetValidValue(value, false);
+                _Calculated_Time = StructuralObject.SetValidValue(value, false, "Calculated_Time");
                 ReportPropertyChanged("Calculated_Time");
                 OnCalculated_TimeChanged();
             }
@@ -487,10 +495,8 @@ namespace GidraSIM
 
         #endregion
 
-    
     }
 
     #endregion
 
-    
 }
