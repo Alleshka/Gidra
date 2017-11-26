@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Model
 {
-    class StartBlock:Block
+    public class StartBlock:Block
     {
 
         public override string Description => "Start block";
@@ -16,14 +16,14 @@ namespace GidraSIM.Model
         {
             for(int i=0; i< outNumber; i++)
             {
-                
-                outputs[i] = new Token(0, 1.0);
+                var token =
+                outputs[i] = new Token(0, 1.0) { Parent = this };
             }
         }
 
         public override void Update(double dt)
         {
-            base.Update(dt);
+            //base.Update(dt);
         }
     }
 }

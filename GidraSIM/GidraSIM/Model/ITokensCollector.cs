@@ -9,5 +9,10 @@ namespace GidraSIM.Model
     {
         List<Token> GetHistory();
         void Collect(Token token);
+
+        double GlobalTime
+        {
+            get; set;
+        }
     }
 }

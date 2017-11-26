@@ -9,6 +9,11 @@ namespace GidraSIM.Model
     {
         List<Token> history = new List<Token>();
 
+        public double GlobalTime
+        {
+            get; set;
+        }
+
         public void Collect(Token token)
         {
             history.Add(token);

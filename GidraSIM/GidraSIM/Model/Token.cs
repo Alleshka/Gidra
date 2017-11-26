@@ -17,6 +17,12 @@ namespace GidraSIM.Model
             private set;
         }
 
+        public double ProcessStartTime
+        {
+            get;
+            set;
+        }
+
         public double Complexity
         {
             get;
@@ -30,6 +36,18 @@ namespace GidraSIM.Model
         }
 
         public string Description
+        {
+            get;
+            set;
+        }
+
+        public IBlock Parent
+        {
+            get;
+            set;
+        }
+
+        public IBlock ProcessedByBlock
         {
             get;
             set;
