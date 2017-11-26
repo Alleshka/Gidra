@@ -55,6 +55,7 @@ namespace GidraSIM.BlocksWPF
             {
                 line = new Line();
                 line.Stroke = stroke;
+                line.StrokeThickness = THICKNESS;
                 SetLinePoints(startPoint, endPoint);
 
                 this.Children.Add(line);

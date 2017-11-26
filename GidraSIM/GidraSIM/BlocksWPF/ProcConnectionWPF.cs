@@ -19,7 +19,25 @@ namespace GidraSIM.BlocksWPF
         private const int ARROW_HEIGHT = 10;
         private const int ARROW_WIDTH = 15;
 
-        public ProcConnectionWPF(BlockWPF startBlock, BlockWPF endBlock) : base(startBlock, endBlock)
+        private const int R = 10;
+        private const int dX = 20;
+        private const int dY = 80;
+
+        /// <summary>
+        /// Позиция начала относительно координат блока
+        /// </summary>
+        private Point relativeStartPosition;
+
+        /// <summary>
+        /// Позиция конца относительно координат блока
+        /// </summary>
+        private Point relativeEndPosition;
+
+        public ProcConnectionWPF(
+            BlockWPF startBlock, 
+            BlockWPF endBlock, 
+            Point relativeStartPosition, 
+            Point relativeEndPosition) : base(startBlock, endBlock)
         {
             // startBlock неможет быть EndBlockWPF или ResourceWPF
             if ((startBlock is EndBlockWPF) || (startBlock is ResourceWPF))
@@ -32,23 +50,25 @@ namespace GidraSIM.BlocksWPF
                 throw new ArgumentException("Неверное значение", "endBlock");
             }
 
-            MakeLine();
+            this.relativeStartPosition = relativeStartPosition;
+            this.relativeEndPosition = relativeEndPosition;
 
-            // установить ZIndex
-            //SetZIngex();
+            MakeLine();
+            
             SetZIndex(this, 1);
         }
 
         protected override void MakeLine()
         {
-            Point startPoint = startBlock.RightPosition;
-            Point endPoint = endBlock.LeftPosition;
+            Point startPoint = startBlock.Position + (Vector)relativeStartPosition;
+            Point endPoint = endBlock.Position + (Vector)relativeEndPosition;
 
             if (bezierLinePF == null)
             {
                 // path тела линии
                 Path linePath = new Path();
                 linePath.Stroke = stroke;
+                linePath.StrokeThickness = THICKNESS;
                 // содержимое path
                 
                 // кривая
@@ -85,11 +105,58 @@ namespace GidraSIM.BlocksWPF
             }
             else
             {
-                // TODO: Сделать нормальную кривую
+                double minY = Math.Min(startPoint.Y, endPoint.Y);
+
                 result.Add(
-                    new BezierSegment(
-                        new Point(endPoint.X, startPoint.Y),
-                        new Point(startPoint.X, endPoint.Y),
+                    new LineSegment(
+                        new Point(startPoint.X + dX - R, startPoint.Y), 
+                        true));
+                result.Add(
+                    new ArcSegment(
+                        new Point(startPoint.X + dX, startPoint.Y - R),
+                        new Size(R, R),
+                        0,
+                        false,
+                        SweepDirection.Counterclockwise,
+                        true));
+                result.Add(
+                    new LineSegment(
+                        new Point(startPoint.X + dX , minY - dY + R),
+                        true));
+                result.Add(
+                    new ArcSegment(
+                        new Point(startPoint.X + dX - R, minY - dY),
+                        new Size(R, R),
+                        0,
+                        false,
+                        SweepDirection.Counterclockwise,
+                        true));
+                result.Add(
+                    new LineSegment(
+                        new Point(endPoint.X - dX + R, minY - dY),
+                        true));
+                result.Add(
+                    new ArcSegment(
+                        new Point(endPoint.X - dX, minY - dY + R),
+                        new Size(R, R),
+                        0,
+                        false,
+                        SweepDirection.Counterclockwise,
+                        true));
+                result.Add(
+                    new LineSegment(
+                        new Point(endPoint.X - dX, endPoint.Y - R),
+                        true));
+                result.Add(
+                    new ArcSegment(
+                        new Point(endPoint.X - dX + R, endPoint.Y),
+                        new Size(R, R),
+                        0,
+                        false,
+                        SweepDirection.Counterclockwise,
+                        true));
+                result.Add(
+                    new LineSegment(
                         new Point(endPoint.X, endPoint.Y),
                         true));
             }
@@ -111,8 +178,8 @@ namespace GidraSIM.BlocksWPF
         {
             if (bezierLinePF != null)
             {
-                Point startPoint = startBlock.RightPosition;
-                Point endPoint = endBlock.LeftPosition;
+                Point startPoint = startBlock.Position + (Vector)relativeStartPosition;
+                Point endPoint = endBlock.Position + (Vector)relativeEndPosition;
 
                 // кривая
                 bezierLinePF.StartPoint = startPoint;

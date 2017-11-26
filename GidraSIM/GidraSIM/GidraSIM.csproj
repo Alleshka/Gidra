@@ -89,6 +89,7 @@
     <Compile Include="BlockProperties.cs" />
     <Compile Include="BlocksWPF\BlockWPF.cs" />
     <Compile Include="BlocksWPF\ConnectionWPF.cs" />
+    <Compile Include="BlocksWPF\ConnectPointWPF.cs" />
     <Compile Include="BlocksWPF\EndBlockWPF.cs" />
     <Compile Include="BlocksWPF\GSFigure.cs" />
     <Compile Include="BlocksWPF\ISelectable.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="BlocksWPF\ProcedureWPF.cs" />
     <Compile Include="BlocksWPF\ResConnectionWPF.cs" />
     <Compile Include="BlocksWPF\ResourceWPF.cs" />
+    <Compile Include="BlocksWPF\RoundBlockWPF.cs" />
+    <Compile Include="BlocksWPF\SquareBlockWPF.cs" />
     <Compile Include="BlocksWPF\StartBlockWPF.cs" />
     <Compile Include="BlocksWPF\SubProcessWPF.cs" />
     <Compile Include="ChangeStruct.cs" />

@@ -38,6 +38,7 @@ namespace GidraSIM
         }
 
         GSFigure selectedFigure;
+        ConnectPointWPF selectedPoint;
 
         public DrawArea()
         {
@@ -53,12 +54,14 @@ namespace GidraSIM
         {
             // Вычисление координат
             Point cursorPoint = e.GetPosition(workArea);
-            Point procedurePosition = (Point)(cursorPoint - new Point(ProcedureWPF.WIDTH / 2, ProcedureWPF.HEIGHT / 2));
+            Point procedurePosition = (Point)(cursorPoint - new Point(ProcedureWPF.DEFAULT_WIDTH / 2, ProcedureWPF.DEFAULT_HEIGHT / 2));
 
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
-            workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура"));
+            workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
         }
+
+        private static Random rand = new Random();
 
         /// <summary>
         /// добавление подпроцессов
@@ -69,11 +72,11 @@ namespace GidraSIM
         {
             // Вычисление координат
             Point cursorPoint = e.GetPosition(workArea);
-            Point subProcessPosition = (Point)(cursorPoint - new Point(SubProcessWPF.WIDTH / 2, SubProcessWPF.HEIGHT / 2));
+            Point subProcessPosition = (Point)(cursorPoint - new Point(SubProcessWPF.DEFAULT_WIDTH / 2, SubProcessWPF.DEFAULT_HEIGHT / 2));
 
             // Добавление
             // TODO: Ввод имени подпроцесса и связь с моделью
-            workArea.Children.Add(new SubProcessWPF(subProcessPosition, "Подпроцесс"));
+            workArea.Children.Add(new SubProcessWPF(subProcessPosition, "Подпроцесс", rand.Next(1, 11), rand.Next(1, 11)));
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace GidraSIM
         {
             // Вычисление координат
             Point cursorPoint = e.GetPosition(workArea);
-            Point resourcePosition = (Point)(cursorPoint - new Point(ResourceWPF.WIDTH / 2, ResourceWPF.HEIGHT / 2));
+            Point resourcePosition = (Point)(cursorPoint - new Point(ResourceWPF.DEFAULT_WIDTH / 2, ResourceWPF.DEFAULT_HEIGHT / 2));
 
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
@@ -136,6 +139,10 @@ namespace GidraSIM
                     BlockWPF block = figure as BlockWPF;
                     if (block.IsMouseOver)
                     {
+
+                        // гдето тут пехнём костыль
+
+
                         if (selectedFigure != null)
                         {
                             // Соединение
@@ -155,6 +162,27 @@ namespace GidraSIM
                         // Выделение первого блока
                         block.Select();
                         selectedFigure = block;
+
+                        // при выделении процедуры/подпроцесса поверяем выделена ли точка выхода
+                        if (selectedFigure is ProcedureWPF)
+                        {
+                            foreach(UIElement child in selectedFigure.Children)
+                            {
+                                if (child.IsMouseOver)
+                                {
+                                    if (child is ConnectPointWPF)
+                                    {
+                                        ConnectPointWPF point = child as ConnectPointWPF;
+                                        if (point.ConnectType == ConnectPointWPF_Type.outPut)
+                                        {
+                                            selectedPoint = point;
+                                            selectedPoint.Select();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                         IsSomeFigureSelected = true;
                     }
                 }
@@ -162,7 +190,7 @@ namespace GidraSIM
 
             if (!IsSomeFigureSelected)
             {
-                // Небыло выделено ниодного элемента
+                // Небыло выделено ни одного элемента
                 // следовательно необходимо снять выделение
                 Unsellect();
             }
@@ -175,6 +203,8 @@ namespace GidraSIM
         {
             if (selectedFigure != null) selectedFigure.UnSelect();
             selectedFigure = null;
+            if (selectedPoint != null) selectedPoint.UnSelect();
+            selectedPoint = null;
         }
 
         /// <summary>
@@ -316,7 +346,7 @@ namespace GidraSIM
         private void MakeStartAndEnd()
         {
             double bord = 5;
-            double d = BlockWPF.HEIGHT / 2.0;
+            double d = SquareBlockWPF.DEFAULT_HEIGHT / 2.0;
             double x = workArea.ActualWidth;
             double y = workArea.ActualHeight / 2.0;
 
@@ -384,7 +414,44 @@ namespace GidraSIM
 
             // TODO: Добавить обработку и вывод ошибок
 
-            ProcConnectionWPF connection = new ProcConnectionWPF(block1, block2);
+
+            // расчёт локальных смещений
+            Point a = block1.RightPosition - (Vector)block1.Position;
+            Point b = block2.LeftPosition - (Vector)block2.Position;
+            
+            if((selectedPoint == null) && !(block1 is StartBlockWPF)) return false; // случай, когда выбран блок, но не выбрана точка из которой будет выходить соединение
+
+            if (selectedPoint != null) a = selectedPoint.Position;
+
+            // если второй блок ProcedureWPF, то для соединения, необходимо, 
+            // чтобы была выбрана одна из точек входа этого блока
+            if (block2 is ProcedureWPF)
+            {
+                bool someSelect = false;
+
+                foreach (UIElement child in block2.Children)
+                {
+                    if (child.IsMouseOver)
+                    {
+                        if (child is ConnectPointWPF)
+                        {
+                            
+                            ConnectPointWPF point = child as ConnectPointWPF;
+                            if (point.ConnectType == ConnectPointWPF_Type.inPut)
+                            {
+                                //selectedPoint = point;
+                                //selectedPoint.Select();
+                                b = point.Position;
+                                someSelect = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!someSelect) return false;
+            }
+
+            ProcConnectionWPF connection = new ProcConnectionWPF(block1, block2, a, b);
 
             if (block1 is StartBlockWPF)
             {

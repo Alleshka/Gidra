@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace GidraSIM.BlocksWPF
 {
-    public class ResourceWPF : BlockWPF
+    public class ResourceWPF : SquareBlockWPF
     {
         private const int IMG_SIZE = 30;
         private const int IMG_LEFT = 3;

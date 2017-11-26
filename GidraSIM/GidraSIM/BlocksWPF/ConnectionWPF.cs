@@ -27,14 +27,6 @@ namespace GidraSIM.BlocksWPF
 
         protected abstract void MakeLine();
 
-        protected virtual void SetZIngex()
-        {
-            foreach (UIElement child in this.Children)
-            {
-                Canvas.SetZIndex(child, ZINDEX);
-            }
-        }
-
         public abstract void Refresh();
     }
 }

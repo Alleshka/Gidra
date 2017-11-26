@@ -16,6 +16,53 @@ namespace GidraSIM.BlocksWPF
     /// </summary>
     public abstract class GSFigure : Canvas, ISelectable
     {
+        public const int POINT_SIZE = 4; // возможно стоит вывести все константы в одно место
+
+
+        /// <summary>
+        /// Координата верхнего левого угла блока
+        /// </summary>
+        public Point Position { get; protected set; }
+
+        /// <summary>
+        /// Координата центра блока
+        /// </summary>
+        public virtual Point MidPosition
+        {
+            get
+            {
+                return new Point(
+                    Position.X + this.ActualWidth / 2,
+                    Position.Y + this.ActualHeight / 2);
+            }
+        }
+
+        /// <summary>
+        /// Координата центра левой стороны блока
+        /// </summary>
+        public virtual Point LeftPosition
+        {
+            get
+            {
+                return new Point(
+                    Position.X,
+                    Position.Y + this.ActualHeight / 2);
+            }
+        }
+
+        /// <summary>
+        /// Координата центра правой стороны блока
+        /// </summary>
+        public virtual Point RightPosition
+        {
+            get
+            {
+                return new Point(
+                    Position.X + this.ActualWidth,
+                    Position.Y + this.ActualHeight / 2);
+            }
+        }
+
         protected static Brush stroke = Brushes.Black;
 
         private bool isSelectable;
@@ -53,13 +100,7 @@ namespace GidraSIM.BlocksWPF
                 shadow.Color = shadowColor;
                 shadow.BlurRadius = SHADOW_BLUR_RADIUS;
 
-                foreach(UIElement body in this.Children)
-                {
-                    if (!(body is TextBlock))
-                    {
-                        body.Effect = shadow;
-                    }
-                }
+                this.Effect = shadow;
 
                 IsSelected = true;
             }
@@ -69,13 +110,7 @@ namespace GidraSIM.BlocksWPF
         {
             if (IsSelectable)
             {
-                foreach (UIElement body in this.Children)
-                {
-                    if(!(body is TextBlock))
-                    {
-                        body.Effect = null;
-                    } 
-                }
+                this.Effect = null;
 
                 IsSelected = false;
             }

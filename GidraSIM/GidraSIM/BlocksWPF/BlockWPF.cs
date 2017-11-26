@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows.Input;
 
@@ -11,78 +10,18 @@ namespace GidraSIM.BlocksWPF
     /// </summary>
     public abstract class BlockWPF : GSFigure
     {
-        // Константные параметры блока
-        public const int HEIGHT = 60;
-        public const int WIDTH = 100;
-        public const int RADIUS = 10;
-
-        public const int POINT_SIZE = 4;
-
-        protected const int ZINDEX = 3;
-
-        protected const int TEXT_WIDTH = 90;
-        protected const int TEXT_LEFT = 5;
-        protected const int TEXT_TOP = 16;
-
-        /// <summary>
-        /// Координата верхнего левого угла блока
-        /// </summary>
-        public Point Position { get; protected set; }
+        protected const int ZINDEX = 10;
 
         public bool IsMovable { get; private set; }
-
-        /// <summary>
-        /// Координата центра блока
-        /// </summary>
-        public virtual Point MidPosition
-        {
-            get
-            {
-                return new Point(
-                    Position.X + WIDTH / 2,
-                    Position.Y + HEIGHT / 2 );
-            }
-        }
-
-        /// <summary>
-        /// Координата центра левой стороны блока
-        /// </summary>
-        public virtual Point LeftPosition
-        {
-            get
-            {
-                return new Point(
-                    Position.X ,
-                    Position.Y + HEIGHT / 2);
-            }
-        }
-
-        /// <summary>
-        /// Координата центра правой стороны блока
-        /// </summary>
-        public virtual Point RightPosition
-        {
-            get
-            {
-                return new Point(
-                    Position.X + WIDTH,
-                    Position.Y + HEIGHT / 2);
-            }
-        }
 
         public void Move()
         {
             Canvas.SetTop(this, Position.Y);
             Canvas.SetLeft(this, Position.X);
-
             this.UpdateConnectoins();
         }
 
-        protected static Brush fill = Brushes.White;
-        protected static Brush inPointFill = Brushes.Black;
-        protected static Brush outPointFill = Brushes.Green;
-
-        public BlockWPF(Point position, string processName)
+        public BlockWPF(Point position)
         {
             this.Position = position;
             this.Move();
@@ -91,51 +30,16 @@ namespace GidraSIM.BlocksWPF
             // построить блок
             this.MakeBody();
 
-            // построить заголовок
-            this.MakeTitle(processName);
-
-            SetZIndex(this, 10);
+            SetZIndex(this, ZINDEX);
         }
 
-        protected virtual void MakeBody()
-        {
-            // path тела процесса
-            Path bodyPath = new Path();
-            bodyPath.Stroke = stroke;
-            bodyPath.Fill = fill;
-            // содержимое path
-            bodyPath.Data = new RectangleGeometry(new Rect(new Size(WIDTH, HEIGHT)), RADIUS, RADIUS);
-            // добавление
-            this.Children.Add(bodyPath);
-        }
-
-        protected virtual void MakeTitle(string processName)
-        {
-            // подпись
-            TextBlock processNameLabel = new TextBlock();
-            processNameLabel.Text = processName;
-            processNameLabel.TextWrapping = TextWrapping.Wrap;
-            processNameLabel.Width = TEXT_WIDTH;
-            // позиция
-            Canvas.SetTop(processNameLabel, TEXT_TOP);
-            Canvas.SetLeft(processNameLabel, TEXT_LEFT);
-            // добавление
-            this.Children.Add(processNameLabel);
-        }
-
-        protected virtual void SetZIngex()
-        {
-            foreach (UIElement child in this.Children)
-            {
-                Canvas.SetZIndex(child, ZINDEX);
-            }
-        }
+        protected abstract void MakeBody();
 
         protected abstract void UpdateConnectoins();
 
-        //
-        //      Drag&Drop
-        //
+        /////////////////////////////////////////////////////////////////////////
+        //                            Drag&Drop                                //
+        /////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Запрешает перемещение блока
         /// </summary>
@@ -216,7 +120,7 @@ namespace GidraSIM.BlocksWPF
             this.Position = (point - relativeMousePos);
             Move();
         }
-
+        
         /// <summary>
         /// это вспомогательная функция, ей место в общей библиотеке. Оставлю пока это здесь.
         /// Метод находит родителя по типу в визуальном дереве

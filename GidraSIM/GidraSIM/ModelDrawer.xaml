@@ -9,8 +9,8 @@
     <Canvas  x:Name="field" Background="Transparent" Height="800" Width="600">
 
         <!--Процесс 2-->
-        <Canvas Canvas.Left="350" Canvas.Top="100">
-            <Path Fill="White" Stroke="Black" Panel.ZIndex="1">
+        <Canvas Canvas.Left="350" Canvas.Top="100" Panel.ZIndex="1">
+            <Path Fill="White" Stroke="Black" >
                 <Path.Data>
                     <GeometryGroup FillRule="Nonzero">
                         <RectangleGeometry Rect="0,0,100,60" RadiusX="10" RadiusY="10"></RectangleGeometry>
@@ -65,7 +65,7 @@
                     <PathFigure StartPoint="0, 0">
                         <BezierSegment Point1="170,0" Point2="0 50" Point3="170,50" />
                     </PathFigure>
-                    
+
                     <PathFigure StartPoint="160, 45">
                         <LineSegment Point="170, 50"></LineSegment>
                         <LineSegment Point="160, 55"></LineSegment>
@@ -75,6 +75,45 @@
             </Path.Data>
         </Path>
 
+        <Canvas Canvas.Left="306" Canvas.Top="130.5">
+            <Path Stroke="Red" StrokeThickness="2" >
+                <Path.Data>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigure StartPoint="100,100" IsClosed="False">
+                                <ArcSegment Point="110,90"
+                                        Size="10,10" IsLargeArc="False"
+                                        SweepDirection="Counterclockwise"/>
+                            </PathFigure>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <!--Процесс-Процесс-->
+        <Path Stroke="Black" StrokeThickness="2" Canvas.Left="0" Canvas.Top="0">
+            <Path.Data>
+                <PathGeometry >
+                    <PathFigure StartPoint="450, 130">
+                        <BezierSegment Point1="470,130" Point2="470,110" Point3="470,110" />
+                        <LineSegment Point="470,50"/>
+                        <BezierSegment Point1="470,50" Point2="470,30" Point3="450,30" />
+                        <LineSegment Point="80, 30"/>
+                        <BezierSegment Point1="60,30" Point2="60,50" Point3="60,50" />
+                        <LineSegment Point="60,60"/>
+                        <BezierSegment Point1="60,80" Point2="60,80" Point3="80,80" />
+                    </PathFigure>
+                    
+                    <PathFigure StartPoint="70,75">
+                        <LineSegment Point="80, 80"></LineSegment>
+                        <LineSegment Point="70,85"></LineSegment>
+                    </PathFigure>
+
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        
         <!--Ресурс-Процесс1-->
         <Canvas Canvas.Left="0" Canvas.Top="0">
             <Path Stroke="Gray" StrokeThickness="2">
@@ -87,7 +126,7 @@
                 </Path.Data>
             </Path>
         </Canvas>
-        
+
         <!--Ресурс-Процесс2-->
         <Path Stroke="Gray" StrokeThickness="2" Canvas.Left="400" Canvas.Top="160">
             <Path.Data>

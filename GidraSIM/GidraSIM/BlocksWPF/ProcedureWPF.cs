@@ -7,8 +7,10 @@ using System;
 
 namespace GidraSIM.BlocksWPF
 {
-    public class ProcedureWPF : BlockWPF
+    public class ProcedureWPF : SquareBlockWPF
     {
+        public const int POINT_MARGIN = 5;
+
         //Входы
         private List<ProcConnectionWPF> inPuts;
 
@@ -18,35 +20,71 @@ namespace GidraSIM.BlocksWPF
         // Соединения с ресурсами
         private List<ResConnectionWPF> resPuts;
 
-        public ProcedureWPF(Point position, string processName) : base(position, processName)
+
+        // константы для определения высоты блока
+
+        public ProcedureWPF(Point position, string processName, int inputCount, int outputCount) : base(position, processName)
         {
             this.outPuts = new List<ProcConnectionWPF>();
             this.inPuts = new List<ProcConnectionWPF>();
             this.resPuts = new List<ResConnectionWPF>();
 
-            // точка входа
-            MakePoint(inPointFill, HEIGHT / 2, 0);
+            // проверка корректности inputCount и outputCount (TODO: переписать через исключения)
+            if (inputCount < 1) inputCount = 1;
+            if (outputCount < 1) outputCount = 1;
+            if (inputCount > 10) inputCount = 10;
+            if (outputCount > 10) outputCount = 10;
+
+            // перерасчёт высоты блока
+            int maxCount = Math.Max(inputCount, outputCount);
+            if(DEFAULT_HEIGHT < (2*maxCount*POINT_MARGIN + 2*RADIUS))
+            {
+                SetHeight(2 * maxCount * POINT_MARGIN + 2 * RADIUS);
+            }
+
+            // TODO: переписать код рисования точек
+            // точки входа
+            //MakePoint(inPointFill, DEFAULT_HEIGHT / 2, 0);
+            double x = 0;
+            double y = (GetHeight() / 2.0) - POINT_MARGIN * (inputCount - 1);
+            
+            for (int i = 0; i < inputCount; i++)
+            {
+                this.Children.Add(new ConnectPointWPF(
+                    new Point(x, y),
+                    inPointFill,
+                    ConnectPointWPF_Type.inPut,
+                    this));
+
+                y += 2.0 * POINT_MARGIN;
+            }
 
             // точка выхода
-            MakePoint(outPointFill, HEIGHT / 2, WIDTH);
+            //MakePoint(outPointFill, DEFAULT_HEIGHT / 2, DEFAULT_WIDTH);
+            x = DEFAULT_WIDTH;
+            y = (GetHeight() / 2.0) - POINT_MARGIN * (outputCount - 1);
+            for (int i = 0; i < outputCount; i++)
+            {
+                this.Children.Add(new ConnectPointWPF(
+                    new Point(x, y),
+                    outPointFill,
+                    ConnectPointWPF_Type.outPut,
+                    this));
 
-            // установить ZIndex
-            //SetZIngex();          
+                y += 2.0 * POINT_MARGIN;
+            }
         }
 
-        protected virtual void MakePoint(Brush fill, double setTop, double setLeft)
+        protected virtual void SetHeight(double height)
         {
-            // path точки 
-            Path pointPath = new Path();
-            pointPath.Fill = fill;
-            // позиция
-            Canvas.SetTop(pointPath, setTop);
-            Canvas.SetLeft(pointPath, setLeft);
-            // содержимое path
-            pointPath.Data = new EllipseGeometry(new Point(0, 0), POINT_SIZE, POINT_SIZE);
-            // добавление
-            this.Children.Add(pointPath);
+            this.bodyGeometry.Rect = new Rect(new Size(DEFAULT_WIDTH, height));
         }
+
+        protected virtual double GetHeight()
+        {
+            return this.bodyGeometry.Rect.Height;
+        }
+
 
         protected override void UpdateConnectoins()
         {
