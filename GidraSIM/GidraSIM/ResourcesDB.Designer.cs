@@ -27,7 +27,16 @@ namespace GidraSIM
     public partial class ResourcesEntities : ObjectContext
     {
         #region Конструкторы
-
+    
+        /// <summary>
+        /// Инициализирует новый объект ResourcesEntities, используя строку соединения из раздела "ResourcesEntities" файла конфигурации приложения.
+        /// </summary>
+        public ResourcesEntities() : base("name=ResourcesEntities", "ResourcesEntities")
+        {
+            this.ContextOptions.LazyLoadingEnabled = true;
+            OnContextCreated();
+        }
+    
         /// <summary>
         /// Инициализация нового объекта ResourcesEntities.
         /// </summary>
@@ -193,7 +202,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -212,7 +221,7 @@ namespace GidraSIM
                 {
                     Oncad_idChanging(value);
                     ReportPropertyChanging("cad_id");
-                    _cad_id = StructuralObject.SetValidValue(value);
+                    _cad_id = StructuralObject.SetValidValue(value, "cad_id");
                     ReportPropertyChanged("cad_id");
                     Oncad_idChanged();
                 }
@@ -237,7 +246,7 @@ namespace GidraSIM
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -261,7 +270,7 @@ namespace GidraSIM
             {
                 OnLicense_formChanging(value);
                 ReportPropertyChanging("License_form");
-                _License_form = StructuralObject.SetValidValue(value, false);
+                _License_form = StructuralObject.SetValidValue(value, false, "License_form");
                 ReportPropertyChanged("License_form");
                 OnLicense_formChanged();
             }
@@ -285,7 +294,7 @@ namespace GidraSIM
             {
                 OnLicense_statusChanging(value);
                 ReportPropertyChanging("License_status");
-                _License_status = StructuralObject.SetValidValue(value, false);
+                _License_status = StructuralObject.SetValidValue(value, false, "License_status");
                 ReportPropertyChanged("License_status");
                 OnLicense_statusChanged();
             }
@@ -296,7 +305,6 @@ namespace GidraSIM
 
         #endregion
 
-    
     }
     
     /// <summary>
@@ -326,7 +334,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -345,7 +353,7 @@ namespace GidraSIM
                 {
                     Onmethod_supp_idChanging(value);
                     ReportPropertyChanging("method_supp_id");
-                    _method_supp_id = StructuralObject.SetValidValue(value);
+                    _method_supp_id = StructuralObject.SetValidValue(value, "method_supp_id");
                     ReportPropertyChanged("method_supp_id");
                     Onmethod_supp_idChanged();
                 }
@@ -370,7 +378,7 @@ namespace GidraSIM
             {
                 OnDoc_typeChanging(value);
                 ReportPropertyChanging("Doc_type");
-                _Doc_type = StructuralObject.SetValidValue(value, false);
+                _Doc_type = StructuralObject.SetValidValue(value, false, "Doc_type");
                 ReportPropertyChanged("Doc_type");
                 OnDoc_typeChanged();
             }
@@ -394,7 +402,7 @@ namespace GidraSIM
             {
                 OnMulti_client_useChanging(value);
                 ReportPropertyChanging("Multi_client_use");
-                _Multi_client_use = StructuralObject.SetValidValue(value, false);
+                _Multi_client_use = StructuralObject.SetValidValue(value, false, "Multi_client_use");
                 ReportPropertyChanged("Multi_client_use");
                 OnMulti_client_useChanged();
             }
@@ -405,7 +413,6 @@ namespace GidraSIM
 
         #endregion
 
-    
     }
     
     /// <summary>
@@ -441,7 +448,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -460,7 +467,7 @@ namespace GidraSIM
                 {
                     Ontech_supp_idChanging(value);
                     ReportPropertyChanging("tech_supp_id");
-                    _tech_supp_id = StructuralObject.SetValidValue(value);
+                    _tech_supp_id = StructuralObject.SetValidValue(value, "tech_supp_id");
                     ReportPropertyChanged("tech_supp_id");
                     Ontech_supp_idChanged();
                 }
@@ -485,7 +492,7 @@ namespace GidraSIM
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -509,7 +516,7 @@ namespace GidraSIM
             {
                 OnProcessorChanging(value);
                 ReportPropertyChanging("Processor");
-                _Processor = StructuralObject.SetValidValue(value, false);
+                _Processor = StructuralObject.SetValidValue(value, false, "Processor");
                 ReportPropertyChanged("Processor");
                 OnProcessorChanged();
             }
@@ -533,7 +540,7 @@ namespace GidraSIM
             {
                 OnProcessor_MemoryChanging(value);
                 ReportPropertyChanging("Processor_Memory");
-                _Processor_Memory = StructuralObject.SetValidValue(value, false);
+                _Processor_Memory = StructuralObject.SetValidValue(value, false, "Processor_Memory");
                 ReportPropertyChanged("Processor_Memory");
                 OnProcessor_MemoryChanged();
             }
@@ -557,7 +564,7 @@ namespace GidraSIM
             {
                 OnDiagonalChanging(value);
                 ReportPropertyChanging("Diagonal");
-                _Diagonal = StructuralObject.SetValidValue(value, false);
+                _Diagonal = StructuralObject.SetValidValue(value, false, "Diagonal");
                 ReportPropertyChanged("Diagonal");
                 OnDiagonalChanged();
             }
@@ -581,7 +588,7 @@ namespace GidraSIM
             {
                 OnVideo_card_MemoryChanging(value);
                 ReportPropertyChanging("Video_card_Memory");
-                _Video_card_Memory = StructuralObject.SetValidValue(value, false);
+                _Video_card_Memory = StructuralObject.SetValidValue(value, false, "Video_card_Memory");
                 ReportPropertyChanged("Video_card_Memory");
                 OnVideo_card_MemoryChanged();
             }
@@ -592,7 +599,6 @@ namespace GidraSIM
 
         #endregion
 
-    
     }
     
     /// <summary>
@@ -622,7 +628,7 @@ namespace GidraSIM
 
         #endregion
 
-        #region Свойства-примитивы
+        #region Простые свойства
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -641,7 +647,7 @@ namespace GidraSIM
                 {
                     Onworker_idChanging(value);
                     ReportPropertyChanging("worker_id");
-                    _worker_id = StructuralObject.SetValidValue(value);
+                    _worker_id = StructuralObject.SetValidValue(value, "worker_id");
                     ReportPropertyChanged("worker_id");
                     Onworker_idChanged();
                 }
@@ -666,7 +672,7 @@ namespace GidraSIM
             {
                 OnFIOChanging(value);
                 ReportPropertyChanging("FIO");
-                _FIO = StructuralObject.SetValidValue(value, false);
+                _FIO = StructuralObject.SetValidValue(value, false, "FIO");
                 ReportPropertyChanged("FIO");
                 OnFIOChanged();
             }
@@ -690,7 +696,7 @@ namespace GidraSIM
             {
                 OnPositionChanging(value);
                 ReportPropertyChanging("Position");
-                _Position = StructuralObject.SetValidValue(value, false);
+                _Position = StructuralObject.SetValidValue(value, false, "Position");
                 ReportPropertyChanged("Position");
                 OnPositionChanged();
             }
@@ -714,7 +720,7 @@ namespace GidraSIM
             {
                 OnQualificationChanging(value);
                 ReportPropertyChanging("Qualification");
-                _Qualification = StructuralObject.SetValidValue(value, true);
+                _Qualification = StructuralObject.SetValidValue(value, true, "Qualification");
                 ReportPropertyChanged("Qualification");
                 OnQualificationChanged();
             }
@@ -724,9 +730,9 @@ namespace GidraSIM
         partial void OnQualificationChanged();
 
         #endregion
+
     }
 
     #endregion
 
-    
 }
