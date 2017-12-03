@@ -13,7 +13,8 @@
             <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
             <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
-            <Button x:Name="TestBtn" Content="Test" Width="74" Click="TestBtn_Click"/>
+            <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="TestBtn_Click"/>
+            
         </StackPanel>
         <TabControl x:Name="testTabControl" Margin="0,0,5,5" Panel.ZIndex="10">
             <TabItem Header="Процесс 1" >

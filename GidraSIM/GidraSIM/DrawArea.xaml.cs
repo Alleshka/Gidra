@@ -58,8 +58,10 @@ namespace GidraSIM
 
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
-            workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
+            //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
+            workArea.Children.Add(new ProcedureWPF(procedurePosition, "Фикс. процедура (10)", 1, 1));
         }
+
 
         private static Random rand = new Random();
 

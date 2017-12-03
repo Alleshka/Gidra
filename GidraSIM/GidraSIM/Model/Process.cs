@@ -53,12 +53,21 @@ namespace GidraSIM.Model
         }
 
         /// <summary>
+        /// индикатор токена на 0 выходе последнего блока
+        /// </summary>
+        public bool EndBlockHasOutputToken
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
         /// осуществляет обработку и пееремещеник блоков внутри себя
         /// </summary>
         /// <param name="globalTime"></param>
         public override void Update(double globalTime)
         {
-
+            EndBlockHasOutputToken = false;
             //апдейт блоков
             for (int i = 0; i < Blocks.Count; i++)
             {
@@ -67,11 +76,30 @@ namespace GidraSIM.Model
             //перемещение токенов
             Connections.MoveTokens();
 
+            if(EndBlock.GetOutputToken(0) != null)
+            {
+                EndBlockHasOutputToken = true;
+            }
+
             //апдейт блоков
             for (int i = 0; i < Blocks.Count; i++)
             {
                 Blocks[i].ClearOutputs();
             }
+        }
+
+        public override void AddToken(Token token, int inputNumber)
+        {
+            if (inputNumber != 0)
+                throw new ArgumentOutOfRangeException("Процесс содержит только один вход!");
+            StartBlock.AddToken(token, 0);
+        }
+
+        public override Token GetOutputToken(int port)
+        {
+            if (port != 0)
+                throw new ArgumentOutOfRangeException("Процесс содержит только один выход!");
+            return EndBlock.GetOutputToken(0);
         }
     }
 }

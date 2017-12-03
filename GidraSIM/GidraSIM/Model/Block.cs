@@ -45,7 +45,7 @@ namespace GidraSIM.Model
             this.collector = collector;
         }
 
-        public void AddToken(Token token, int inputNumber)
+        public virtual void AddToken(Token token, int inputNumber)
         {
             inputQueue[inputNumber].Enqueue(token);
         }
@@ -86,7 +86,7 @@ namespace GidraSIM.Model
             }
         }
 
-        public Token GetOutputToken(int port)
+        public virtual Token GetOutputToken(int port)
         {
             return outputs[port];
         }

@@ -112,18 +112,21 @@ namespace GidraSIM
             //drawArea.Children;
             converter.Map(drawArea.Children, process);
             //добавляем на стартовый блок токен
-            process.StartBlock.AddToken(new Token(0, 100), 0);
-            for(double i=0;i<1000 ;i+=1)
+            process.AddToken(new Token(0, 100), 0);
+            double i = 0;
+            for(i=0;i<1000 ;i+=1)
             {
                 process.Update(i);
                 //на конечном блоке на выходе появился токен
-                if(process.EndBlock.GetOutputToken(0) != null)
-                if(process.EndBlock.GetOutputToken(0).Progress >=0.99)
+                if(process.EndBlockHasOutputToken)
                 {
                     break;
                 }
             }
-            MessageBox.Show(process.Collector.GetHistory().Count.ToString());
+
+            //выводим число токенов и время затраченное (в заголовке)
+            MessageBox.Show(process.Collector.GetHistory().Count.ToString(), i.ToString());
+            process.Collector.GetHistory().Clear();
         }
     }
 }
