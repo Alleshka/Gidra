@@ -14,7 +14,7 @@ namespace GidraSIM.Model
         int OutputQuantity { get;}
         int InputQuantity { get;}
         // void Connect(int outputNumber, IBlock block, int blockInputNumber);
-        void Update(double dt);
+        void Update(double globalTime);
         Token GetOutputToken(int port);
         void ClearOutputs();
         string Description { get; }

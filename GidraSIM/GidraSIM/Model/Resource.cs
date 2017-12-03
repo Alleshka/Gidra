@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    public class Resource : IResource
+    public abstract class Resource : IResource
     {
         public void ReleaseResource()
         {

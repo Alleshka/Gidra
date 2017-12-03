@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    interface IConnectionManager
+    public interface IConnectionManager
     {
         void Connect(IBlock block1, int outPort, IBlock block2, int inPort);
         void Connect(IProcedure procedure, IResource resource);

@@ -28,7 +28,7 @@ namespace GidraSIM.Model
         protected Token[] outputs;
         protected ITokensCollector collector;
 
-        protected double globalTime;
+        //protected double globalTime;
 
 
         public Block(int inQuantiry, int outQuantity, ITokensCollector collector)
@@ -48,11 +48,10 @@ namespace GidraSIM.Model
         public void AddToken(Token token, int inputNumber)
         {
             inputQueue[inputNumber].Enqueue(token);
-            globalTime = token.BornTime;
         }
 
 
-        public virtual void Update(double dt)
+        public virtual void Update(double globalTime)
         {
             bool wasTokens = false;
             //просто тупая очистка всех входных очередей
@@ -74,7 +73,7 @@ namespace GidraSIM.Model
             {
                 for (int i = 0; i < OutputQuantity; i++)
                 {
-                    outputs[i] = new Token(this.globalTime, 1.0);
+                    outputs[i] = new Token(globalTime, 1.0);
                 }
             }
         }

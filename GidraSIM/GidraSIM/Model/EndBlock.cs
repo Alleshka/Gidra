@@ -15,7 +15,7 @@ namespace GidraSIM.Model
 
         }
 
-        public override void Update(double dt)
+        public override void Update(double globalTime)
         {
             //просто тупая очистка всех входных очередей
             foreach (var q in inputQueue)

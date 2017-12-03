@@ -9,13 +9,14 @@ namespace GidraSIM.Model
     public class FixedTimeBlock:Block
     {
         public double FixedTime { get; protected set; }
+        public double prevTime = 0;
 
         public FixedTimeBlock(ITokensCollector collector, double fixedTime):base(1,1,collector)
         {
             FixedTime = fixedTime;
         }
 
-        public override void Update(double dt)
+        public override void Update(double globalTime)
         {
             if (inputQueue[0].Count > 0)
             {
@@ -26,18 +27,19 @@ namespace GidraSIM.Model
                 {
                     token.Progress = 1;
                     token.ProcessedByBlock = this;
-                    token.ProcessStartTime = this.collector.GlobalTime;
+                    token.ProcessStartTime = globalTime;
                 } 
 
                 //времени прошло больше чем фиксирвоаннное время
-                if(this.collector.GlobalTime - token.ProcessStartTime >= FixedTime)
+                if(globalTime - token.ProcessStartTime >= FixedTime)
                 {
                     inputQueue[0].Dequeue();
                     collector.Collect(token);
 
-                    outputs[0] = new Token(collector.GlobalTime, 0.0) { Parent = this };
+                    outputs[0] = new Token(globalTime, 0.0) { Parent = this };
                 }
             }
+            prevTime = globalTime;
         }
     }
 }

@@ -5,26 +5,23 @@ using System.Text;
 
 namespace GidraSIM.Model
 {
-    /// <summary>
-    /// сраный синглтон
-    /// </summary>
     public class ConnectionManager : IConnectionManager
     {
         Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>> connections = new Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>>();
         HashSet<Tuple<IProcedure, IResource>> resorcesConnections = new HashSet<Tuple<IProcedure, IResource>>();
 
-        static ConnectionManager instance = null;
-        protected ConnectionManager()
+        //static ConnectionManager instance = null;
+        public ConnectionManager()
         {
             
         }
 
-        public static ConnectionManager GetInstance()
+        /*public static ConnectionManager GetInstance()
         {
             if (instance == null)
                 instance = new ConnectionManager();
             return instance;
-        }
+        }*/
 
         public void Connect(IBlock block1, int outPort, IBlock block2, int inPort)
         {

@@ -7,7 +7,7 @@ namespace GidraSIM.Model
 {
     public class Procedure : Block, IProcedure
     {
-        protected ConnectionManager connectionManager = ConnectionManager.GetInstance();
+        //protected ConnectionManager connectionManager = new ConnectionManager();
 
         public override string Description => "Procedure";
 
@@ -22,7 +22,7 @@ namespace GidraSIM.Model
             resources.Add(resource);
         }
 
-        public override void Update(double dt)
+        public override void Update(double globalTime)
         {
             
             foreach(var resource in resources)
@@ -31,7 +31,7 @@ namespace GidraSIM.Model
                 if (resource.TryGetResource() == false)
                     return;
             }
-            base.Update(dt);
+            base.Update(globalTime);
         }
     }
 }

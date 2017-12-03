@@ -162,6 +162,7 @@
     <Compile Include="Model\IResource.cs" />
     <Compile Include="Model\ITokensCollector.cs" />
     <Compile Include="Model\Procedure.cs" />
+    <Compile Include="Model\Process.cs" />
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\StartBlock.cs" />
     <Compile Include="Model\TestRootProcedure.cs" />
@@ -209,6 +210,8 @@
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility\IViewModelConverter.cs" />
+    <Compile Include="Utility\ViewModelConverter.cs" />
     <Compile Include="WorksystemWithFiles.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>

@@ -21,7 +21,7 @@ namespace GidraSIM.Model
             }
         }
 
-        public override void Update(double dt)
+        public override void Update(double gloablTime)
         {
             //base.Update(dt);
         }
