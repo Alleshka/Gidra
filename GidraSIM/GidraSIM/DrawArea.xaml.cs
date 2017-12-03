@@ -473,5 +473,11 @@ namespace GidraSIM
             workArea.Children.Add(connection);
             return true;
         }
+
+        //TODO это явно неправильно, нужно что-то поумнее
+        public UIElementCollection Children
+        {
+            get => workArea.Children;
+        }
     }
 }

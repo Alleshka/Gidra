@@ -36,7 +36,7 @@ namespace GidraSIM.Model
                     inputQueue[0].Dequeue();
                     collector.Collect(token);
 
-                    outputs[0] = new Token(globalTime, 0.0) { Parent = this };
+                    outputs[0] = new Token(globalTime, token.Complexity) { Parent = this };
                 }
             }
             prevTime = globalTime;

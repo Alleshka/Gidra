@@ -12,22 +12,22 @@ namespace GidraSIM.BlocksWPF
         public const int POINT_MARGIN = 5;
 
         //Входы
-        private List<ProcConnectionWPF> inPuts;
+        private List<ProcConnectionWPF> inputs;
 
         // Выходы
-        private List<ProcConnectionWPF> outPuts;
+        private List<ProcConnectionWPF> outputs;
 
         // Соединения с ресурсами
-        private List<ResConnectionWPF> resPuts;
+        private List<ResConnectionWPF> resputs;
 
 
         // константы для определения высоты блока
 
         public ProcedureWPF(Point position, string processName, int inputCount, int outputCount) : base(position, processName)
         {
-            this.outPuts = new List<ProcConnectionWPF>();
-            this.inPuts = new List<ProcConnectionWPF>();
-            this.resPuts = new List<ResConnectionWPF>();
+            this.outputs = new List<ProcConnectionWPF>();
+            this.inputs = new List<ProcConnectionWPF>();
+            this.resputs = new List<ResConnectionWPF>();
 
             // проверка корректности inputCount и outputCount (TODO: переписать через исключения)
             if (inputCount < 1) inputCount = 1;
@@ -88,23 +88,23 @@ namespace GidraSIM.BlocksWPF
 
         protected override void UpdateConnectoins()
         {
-            if (inPuts != null)
+            if (inputs != null)
             {
-                foreach (ProcConnectionWPF connection in inPuts)
+                foreach (ProcConnectionWPF connection in inputs)
                 {
                     connection.Refresh();
                 }
             }
-            if (outPuts != null)
+            if (outputs != null)
             {
-                foreach (ProcConnectionWPF connection in outPuts)
+                foreach (ProcConnectionWPF connection in outputs)
                 {
                     connection.Refresh();
                 }
             }
-            if (resPuts != null)
+            if (resputs != null)
             {
-                foreach (ResConnectionWPF connection in resPuts)
+                foreach (ResConnectionWPF connection in resputs)
                 {
                     connection.Refresh();
                 }
@@ -117,7 +117,7 @@ namespace GidraSIM.BlocksWPF
         /// <param name="connectoin"></param>
         public void AddInPutConnection(ProcConnectionWPF connectoin)
         {
-            inPuts.Add(connectoin);
+            inputs.Add(connectoin);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace GidraSIM.BlocksWPF
         /// <param name="connectoin"></param>
         public void AddOutPutConnection(ProcConnectionWPF connectoin)
         {
-            outPuts.Add(connectoin);
+            outputs.Add(connectoin);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace GidraSIM.BlocksWPF
         /// <param name="connectoin"></param>
         public void AddResPutConnection(ResConnectionWPF connectoin)
         {
-            resPuts.Add(connectoin);
+            resputs.Add(connectoin);
         }
     }
 }

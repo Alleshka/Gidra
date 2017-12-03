@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using GidraSIM.BlocksWPF;
+using GidraSIM.Utility;
+using GidraSIM.Model;
 
 namespace GidraSIM
 {
@@ -20,6 +22,8 @@ namespace GidraSIM
     /// </summary>
     public partial class TestWindow : Window
     {
+        Process process = new Process(new TokensCollector());
+
         public TestWindow()
         {
             InitializeComponent();
@@ -100,6 +104,26 @@ namespace GidraSIM
         private void button5_Click(object sender, RoutedEventArgs e)
         {
             drawArea.SelectSubProcessMode();
+        }
+
+        private void TestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModelConverter converter = new ViewModelConverter();
+            //drawArea.Children;
+            converter.Map(drawArea.Children, process);
+            //добавляем на стартовый блок токен
+            process.StartBlock.AddToken(new Token(0, 100), 0);
+            for(double i=0;i<1000 ;i+=1)
+            {
+                process.Update(i);
+                //на конечном блоке на выходе появился токен
+                if(process.EndBlock.GetOutputToken(0) != null)
+                if(process.EndBlock.GetOutputToken(0).Progress >=0.99)
+                {
+                    break;
+                }
+            }
+            MessageBox.Show(process.Collector.GetHistory().Count.ToString());
         }
     }
 }

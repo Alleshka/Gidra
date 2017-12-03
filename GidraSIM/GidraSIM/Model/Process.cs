@@ -16,6 +16,22 @@ namespace GidraSIM.Model
             get;
             protected set;
         }
+        public ITokensCollector Collector
+        {
+            get => collector;
+        }
+
+        public IBlock StartBlock
+        {
+            get;
+            set;
+        }
+
+        public IBlock EndBlock
+        {
+            get;
+            set;
+        }
 
         public Process(ITokensCollector collector):base(1,1, collector)
         {
@@ -36,6 +52,10 @@ namespace GidraSIM.Model
             protected set;
         }
 
+        /// <summary>
+        /// осуществляет обработку и пееремещеник блоков внутри себя
+        /// </summary>
+        /// <param name="globalTime"></param>
         public override void Update(double globalTime)
         {
 

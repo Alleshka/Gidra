@@ -28,5 +28,15 @@ namespace GidraSIM.BlocksWPF
         protected abstract void MakeLine();
 
         public abstract void Refresh();
+
+        public BlockWPF StartBlock
+        {
+            get => startBlock;
+        }
+
+        public BlockWPF EndBlock
+        {
+            get => endBlock;
+        }
     }
 }
