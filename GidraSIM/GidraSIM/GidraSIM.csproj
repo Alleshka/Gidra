@@ -153,6 +153,7 @@
       <DependentUpon>ModelingSession.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Block.cs" />
+    <Compile Include="Model\CadResource.cs" />
     <Compile Include="Model\ConnectionManager.cs" />
     <Compile Include="Model\FixedTimeBlock.cs" />
     <Compile Include="Model\IBlock.cs" />
@@ -163,8 +164,11 @@
     <Compile Include="Model\Procedure.cs" />
     <Compile Include="Model\Process.cs" />
     <Compile Include="Model\Resource.cs" />
+    <Compile Include="Model\SchemaCreationProcedure.cs" />
+    <Compile Include="Model\TechincalSupportResource.cs" />
     <Compile Include="Model\Token.cs" />
     <Compile Include="Model\TokensCollector.cs" />
+    <Compile Include="Model\WorkerResource.cs" />
     <Compile Include="QuantityPins.xaml.cs">
       <DependentUpon>QuantityPins.xaml</DependentUpon>
     </Compile>

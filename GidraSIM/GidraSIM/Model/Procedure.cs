@@ -11,7 +11,7 @@ namespace GidraSIM.Model
 
         public override string Description => "Procedure";
 
-        List<IResource> resources = new List<IResource>();
+        protected List<IResource> resources = new List<IResource>();
 
         public Procedure(int inQuantity, int outQuantity, ITokensCollector collector) : base(inQuantity, outQuantity, collector)
         {
