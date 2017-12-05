@@ -18,11 +18,11 @@ namespace ConsoleApp1
             procedure.AddResorce(new WorkerResource() { Name = "Test", Position = "Работяга", WorkerQualification = WorkerResource.Qualification.SecondCategory });
             procedure.AddResorce(new TechincalSupportResource() { Frequency = 1.5, Ram = 2, Vram = 1 });
             procedure.AddToken(new Token(0, 10), 0);
-            double i = 0;
             Token token = null;
-            for (i = 0; i <= 10 && token== null; i += 1)
+            ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
+            for (modelingTime.Now = 0; modelingTime.Now <= 10 && token== null; modelingTime.Now += modelingTime.Delta)
             {
-                procedure.Update(i);
+                procedure.Update(modelingTime);
 
                 token = procedure.GetOutputToken(0);
                 procedure.ClearOutputs();

@@ -13,13 +13,12 @@ namespace GidraSIM.Core.Model.Procedures
     /// </summary>
     public class PaperworkProcedure : Procedure
     {
-        private double prevTime = -1;
         public PaperworkProcedure(ITokensCollector collector) : base(1, 1, collector)
         {
 
         }
 
-        public override void Update(double globalTime)
+        public override void Update(ModelingTime modelingTime)
         {
             // Смотрим, есть ли что на входе
             if (inputQueue[0].Count > 0)
@@ -45,7 +44,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (token.Progress < 0.01)
                 {
                     token.ProcessedByBlock = this;
-                    token.ProcessStartTime = globalTime;
+                    token.ProcessStartTime = modelingTime.Now;
                     // Блокируем ресурсы
 
                     if (worker.TryGetResource())
@@ -123,7 +122,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (resourceCount == 2)
                 {
                     // Обновляем прогресс задачи
-                    token.Progress += (globalTime - prevTime) / time;
+                    token.Progress += modelingTime.Delta / time;
                 }
 
                 // Задача выполнена
@@ -132,7 +131,7 @@ namespace GidraSIM.Core.Model.Procedures
                     inputQueue[0].Dequeue();
                     collector.Collect(token);
 
-                    outputs[0] = new Token(globalTime, token.Complexity) { Parent = this };
+                    outputs[0] = new Token(modelingTime.Now, token.Complexity) { Parent = this };
 
                     // Освобождаем ресурсы
                     worker.ReleaseResource();
@@ -140,7 +139,6 @@ namespace GidraSIM.Core.Model.Procedures
                     if(metod!=null) metod.ReleaseResource();
                 }
 
-                prevTime = globalTime;
             }
         }
     }

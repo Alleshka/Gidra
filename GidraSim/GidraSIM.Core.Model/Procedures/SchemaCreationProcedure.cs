@@ -9,7 +9,6 @@ namespace GidraSIM.Core.Model.Procedures
 {
     public class SchemaCreationProcedure : Procedure
     {
-        private double prevTime = -1;
 
         public SchemaCreationProcedure (ITokensCollector collector) : base(1, 1, collector)
         {
@@ -17,7 +16,7 @@ namespace GidraSIM.Core.Model.Procedures
             
         }
 
-        public override void Update(double globalTime)
+        public override void Update(ModelingTime modelingTime)
         {
             //првоеряем, есть ли вообще что-то на входе
             if (inputQueue[0].Count > 0)
@@ -40,7 +39,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (token.Progress < 0.01)
                 {
                     token.ProcessedByBlock = this;
-                    token.ProcessStartTime = globalTime;
+                    token.ProcessStartTime = modelingTime.Now;
                     //блокируем ресурсы для него
 
                     //пробуем взять рабочего
@@ -130,7 +129,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (resourceCount == 3)
                 {
                     //обновляем прогресс задачи
-                    token.Progress += (globalTime - prevTime)/time; //делим общее время на dt
+                    token.Progress += modelingTime.Delta/time; //делим общее время на dt
                 }
 
                 //задача выполнена
@@ -139,7 +138,7 @@ namespace GidraSIM.Core.Model.Procedures
                     inputQueue[0].Dequeue();
                     collector.Collect(token);
 
-                    outputs[0] = new Token(globalTime, token.Complexity) { Parent = this };
+                    outputs[0] = new Token(modelingTime.Now, token.Complexity) { Parent = this };
 
                     //освобождаем все ресурсы
                     worker.ReleaseResource();
@@ -149,7 +148,6 @@ namespace GidraSIM.Core.Model.Procedures
                 }
 
             }
-            prevTime = globalTime;
         }
     }
 }

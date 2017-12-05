@@ -65,13 +65,13 @@ namespace GidraSIM.Core.Model
         /// осуществляет обработку и пееремещеник блоков внутри себя
         /// </summary>
         /// <param name="globalTime"></param>
-        public override void Update(double globalTime)
+        public override void Update(ModelingTime modelingTime)
         {
             EndBlockHasOutputToken = false;
             //апдейт блоков
             for (int i = 0; i < Blocks.Count; i++)
             {
-                Blocks[i].Update(globalTime);
+                Blocks[i].Update(modelingTime);
             }
             //перемещение токенов
             Connections.MoveTokens();

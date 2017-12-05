@@ -22,7 +22,7 @@ namespace GidraSIM.Core.Model.Procedures
             resources.Add(resource);
         }
 
-        public override void Update(double globalTime)
+        public override void Update(ModelingTime modelingTime)
         {
             
             foreach(var resource in resources)
@@ -31,7 +31,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (resource.TryGetResource() == false)
                     return;
             }
-            base.Update(globalTime);
+            base.Update(modelingTime);
         }
     }
 }

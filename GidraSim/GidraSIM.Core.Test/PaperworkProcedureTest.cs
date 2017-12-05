@@ -32,7 +32,7 @@ namespace GidraSIM.Core.Test
             // act 
             try
             {
-                paperworkProcedure.Update(0);
+                paperworkProcedure.Update(new ModelingTime() { Delta = 1, Now = 0});
             }
             catch (ArgumentNullException)
             {
@@ -64,17 +64,17 @@ namespace GidraSIM.Core.Test
             Token token = null;
 
             // act
-            double i = 0;
-            for (i = 0; i < 10 && token==null; i+=1)
+            ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
+            for (modelingTime.Now = 0; modelingTime.Now< 10 && token==null; modelingTime.Now+=modelingTime.Delta)
             {
-                paperworkProcedure.Update(i);
+                paperworkProcedure.Update(modelingTime);
                 token = paperworkProcedure.GetOutputToken(0);
                 paperworkProcedure.ClearOutputs();
             }
 
             // Asserts
             Assert.AreNotEqual(token, null);
-            if (i < 1 || i > 30) Assert.Fail();
+            if (modelingTime.Now < 1 || modelingTime.Now > 30) Assert.Fail();
         }
     }
 }

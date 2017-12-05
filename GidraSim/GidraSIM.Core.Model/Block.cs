@@ -51,7 +51,7 @@ namespace GidraSIM.Core.Model
         }
 
 
-        public virtual void Update(double globalTime)
+        public virtual void Update(ModelingTime modelingTime)
         {
             bool wasTokens = false;
             //просто тупая очистка всех входных очередей
@@ -73,7 +73,7 @@ namespace GidraSIM.Core.Model
             {
                 for (int i = 0; i < OutputQuantity; i++)
                 {
-                    outputs[i] = new Token(globalTime, 1.0);
+                    outputs[i] = new Token(modelingTime.Now, 1.0);
                 }
             }
         }

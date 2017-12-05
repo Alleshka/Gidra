@@ -36,11 +36,11 @@ namespace GidraSIM.Core.Test
             procedure.AddToken(new Token(0, 10), 0);
 
             //сам тест
-            double i = 0;
             Token token = null;
-            for (i = 0; i <= 10 && token == null; i += 1)
+            ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
+            for ( modelingTime.Now= 0; modelingTime.Now <= 10 && token == null; modelingTime.Now += modelingTime.Delta)
             {
-                procedure.Update(i);
+                procedure.Update(modelingTime);
 
                 token = procedure.GetOutputToken(0);
                 procedure.ClearOutputs();
@@ -49,7 +49,7 @@ namespace GidraSIM.Core.Test
             if (token == null)
                 Assert.Fail();
             //процервка времени выполнения процедуры
-                if (i < 9.1 || i > 10.1)//для образцовых моделей со сложностью 10 ремя долнжо быть 10
+                if (modelingTime.Now < 9.1 || modelingTime.Now > 10.1)//для образцовых моделей со сложностью 10 ремя долнжо быть 10
                     Assert.Fail();
 
         }
