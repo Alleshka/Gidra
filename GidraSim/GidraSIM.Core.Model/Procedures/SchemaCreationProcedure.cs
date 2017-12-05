@@ -123,7 +123,9 @@ namespace GidraSIM.Core.Model.Procedures
                 if(methodSupport != null)
                 {
                     time -= 0.01 * rand.NextDouble();//от 0 до 15 минут
+                    methodSupport.ReleaseResource();
                 }
+
 
                 //если все ресурсы взяли, то выполняем задачу
                 if (resourceCount == 3)
