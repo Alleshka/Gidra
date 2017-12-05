@@ -120,10 +120,9 @@ namespace GidraSIM.Core.Model.Procedures
                 //влияение методичики (необязательный ресурс)
                 var methodSupport = resources.Find(res => res is MethodolgicalSupportResource) as MethodolgicalSupportResource;
                 //если есть методичка, то время немного экономится
-                if(methodSupport != null)
+                if((methodSupport!=null)&&(methodSupport.TryGetResource()))
                 {
-                    time -= 0.01 * rand.NextDouble();//от 0 до 15 минут
-                    methodSupport.ReleaseResource();
+                    time -= 0.01 * rand.NextDouble(); //от 0 до 15 минут
                 }
 
 
@@ -146,6 +145,7 @@ namespace GidraSIM.Core.Model.Procedures
                     worker.ReleaseResource();
                     cad.ReleaseResource();
                     computer.ReleaseResource();
+                    if (methodSupport != null) methodSupport.ReleaseResource();
                 }
 
             }

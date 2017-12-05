@@ -49,6 +49,7 @@
     <Compile Include="IResource.cs" />
     <Compile Include="ITokensCollector.cs" />
     <Compile Include="Procedures\FixedTimeBlock.cs" />
+    <Compile Include="Procedures\PaperworkProcedure.cs" />
     <Compile Include="Procedures\Procedure.cs" />
     <Compile Include="Procedures\SchemaCreationProcedure.cs" />
     <Compile Include="Process.cs" />

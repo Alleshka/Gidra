@@ -9,7 +9,7 @@ namespace GidraSIM.Core.Model.Procedures
 {
 
     /// <summary>
-    ///  case "Согласование документации с заказчиком"
+    /// case "Оформление документации":
     /// </summary>
     public class PaperworkProcedure : Procedure
     {
@@ -107,18 +107,17 @@ namespace GidraSIM.Core.Model.Procedures
                     time += (base_memory_video - memory_video) / 100000;
                     //диагональ влияет только на качество выполняемой исполнотелем работы, которое не считается в данной работе
                 }
-
                 #endregion
+
                 #region MetodImpact
-                #endregion
-
                 // Влияние методички (необязательный ресурс)
+                var metod = resources.Find(res => res is MethodolgicalSupportResource) as MethodolgicalSupportResource;
                 // методологическое обеспечение увеличивает качество и чуть-чуть уменьшает время
-                if (resources.Find(res => res is MethodolgicalSupportResource) is MethodolgicalSupportResource metod)
+                if ((metod!=null)&&(metod.TryGetResource()))
                 {
                     time -= 0.01 * rand.NextDouble(); //от 0 до 15 минут
-                    metod.ReleaseResource();
                 }
+                #endregion
 
                 // Если все ресурсы взяли, то выполняем задачу
                 if (resourceCount == 2)
@@ -126,6 +125,7 @@ namespace GidraSIM.Core.Model.Procedures
                     // Обновляем прогресс задачи
                     token.Progress += (globalTime - prevTime) / time;
                 }
+
                 // Задача выполнена
                 if(token.Progress >= 0.99)
                 {
@@ -137,6 +137,7 @@ namespace GidraSIM.Core.Model.Procedures
                     // Освобождаем ресурсы
                     worker.ReleaseResource();
                     comp.ReleaseResource();
+                    if(metod!=null) metod.ReleaseResource();
                 }
 
                 prevTime = globalTime;
