@@ -11,8 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-using GidraSIM.BlocksWPF;
+using GidraSIM.GUI.Core.BlocksWPF;
 
 namespace GidraSIM
 {

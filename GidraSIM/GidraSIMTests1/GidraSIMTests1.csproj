@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GidraSIM.Core.Model\GidraSIM.Core.Model.csproj">
+      <Project>{49f3ef53-5534-4d59-acf3-d2c50d83cce8}</Project>
+      <Name>GidraSIM.Core.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GidraSIM\GidraSIM.csproj">
       <Project>{A853B33D-DD65-4B14-BCE4-C50BD3321FDB}</Project>
       <Name>GidraSIM</Name>

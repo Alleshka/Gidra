@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GidraSIM", "GidraSIM\GidraSIM.csproj", "{A853B33D-DD65-4B14-BCE4-C50BD3321FDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GidraSIMTests1", "GidraSIMTests1\GidraSIMTests1.csproj", "{415428EF-564E-4EF3-BE14-2562EF51F3CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{E10E71F4-7AC4-44FA-AAA1-D7A06675FDB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GidraSIM.Core.Model", "GidraSIM.Core.Model\GidraSIM.Core.Model.csproj", "{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GidraSIM.GUI.Core", "GidraSIM.CoreGUI\GidraSIM.GUI.Core.csproj", "{73B2445E-E1D6-4526-BE09-FE306AC960BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +44,22 @@ Global
 		{E10E71F4-7AC4-44FA-AAA1-D7A06675FDB9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E10E71F4-7AC4-44FA-AAA1-D7A06675FDB9}.Release|x86.ActiveCfg = Release|Any CPU
 		{E10E71F4-7AC4-44FA-AAA1-D7A06675FDB9}.Release|x86.Build.0 = Release|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Debug|x86.Build.0 = Debug|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Release|x86.ActiveCfg = Release|Any CPU
+		{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}.Release|x86.Build.0 = Release|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{73B2445E-E1D6-4526-BE09-FE306AC960BF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E10E71F4-7AC4-44FA-AAA1-D7A06675FDB9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp1</RootNamespace>
-    <AssemblyName>ConsoleApp1</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <ProjectGuid>{49F3EF53-5534-4D59-ACF3-D2C50D83CCE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GidraSIM.Core.Model</RootNamespace>
+    <AssemblyName>GidraSIM.Core.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,21 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Block.cs" />
+    <Compile Include="ConnectionManager.cs" />
+    <Compile Include="IBlock.cs" />
+    <Compile Include="IConnectionManager.cs" />
+    <Compile Include="IProcedure.cs" />
+    <Compile Include="IResource.cs" />
+    <Compile Include="ITokensCollector.cs" />
+    <Compile Include="Procedures\FixedTimeBlock.cs" />
+    <Compile Include="Procedures\Procedure.cs" />
+    <Compile Include="Procedures\SchemaCreationProcedure.cs" />
+    <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GidraSIM.Core.Model\GidraSIM.Core.Model.csproj">
-      <Project>{49f3ef53-5534-4d59-acf3-d2c50d83cce8}</Project>
-      <Name>GidraSIM.Core.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GidraSIM\GidraSIM.csproj">
-      <Project>{a853b33d-dd65-4b14-bce4-c50bd3321fdb}</Project>
-      <Name>GidraSIM</Name>
-    </ProjectReference>
+    <Compile Include="Resources\CadResource.cs" />
+    <Compile Include="Resources\MethodolgicalSupportResource.cs" />
+    <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\TechincalSupportResource.cs" />
+    <Compile Include="Resources\WorkerResource.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokensCollector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

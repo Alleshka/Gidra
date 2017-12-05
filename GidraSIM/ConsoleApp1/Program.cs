@@ -1,6 +1,6 @@
-﻿using GidraSIM.Model;
-using GidraSIM.Model.Procedures;
-using GidraSIM.Model.Resources;
+﻿using GidraSIM.Core.Model;
+using GidraSIM.Core.Model.Procedures;
+using GidraSIM.Core.Model.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;

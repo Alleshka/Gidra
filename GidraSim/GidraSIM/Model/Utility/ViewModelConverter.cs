@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using GidraSIM.Core.Model;
-using GidraSIM.Core.Model.Procedures;
-using GidraSIM.GUI.Core.BlocksWPF;
+using GidraSIM.Model;
+using GidraSIM.Model.Procedures;
+using GidraSIM.BlocksWPF;
 
 namespace GidraSIM.Utility
 {

@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GidraSIM.Model.Procedures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSIM.Model.Resources;
+using GidraSIM.Core.Model;
+using GidraSIM.Core.Model.Resources;
+using GidraSIM.Core.Model.Procedures;
 
 namespace GidraSIM.Model.Procedures.Tests
 {

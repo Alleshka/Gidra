@@ -108,20 +108,6 @@
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BlockProperties.cs" />
-    <Compile Include="BlocksWPF\BlockWPF.cs" />
-    <Compile Include="BlocksWPF\ConnectionWPF.cs" />
-    <Compile Include="BlocksWPF\ConnectPointWPF.cs" />
-    <Compile Include="BlocksWPF\EndBlockWPF.cs" />
-    <Compile Include="BlocksWPF\GSFigure.cs" />
-    <Compile Include="BlocksWPF\ISelectable.cs" />
-    <Compile Include="BlocksWPF\ProcConnectionWPF.cs" />
-    <Compile Include="BlocksWPF\ProcedureWPF.cs" />
-    <Compile Include="BlocksWPF\ResConnectionWPF.cs" />
-    <Compile Include="BlocksWPF\ResourceWPF.cs" />
-    <Compile Include="BlocksWPF\RoundBlockWPF.cs" />
-    <Compile Include="BlocksWPF\SquareBlockWPF.cs" />
-    <Compile Include="BlocksWPF\StartBlockWPF.cs" />
-    <Compile Include="BlocksWPF\SubProcessWPF.cs" />
     <Compile Include="ChangeStruct.cs" />
     <Compile Include="CheckCorrectProcess.cs" />
     <Compile Include="ChooseTable_ResoursesDB.xaml.cs">
@@ -152,24 +138,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelingSession.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Block.cs" />
-    <Compile Include="Model\Resources\CadResource.cs" />
-    <Compile Include="Model\ConnectionManager.cs" />
-    <Compile Include="Model\Procedures\FixedTimeBlock.cs" />
-    <Compile Include="Model\IBlock.cs" />
-    <Compile Include="Model\IConnectionManager.cs" />
-    <Compile Include="Model\IProcedure.cs" />
-    <Compile Include="Model\IResource.cs" />
-    <Compile Include="Model\ITokensCollector.cs" />
-    <Compile Include="Model\Procedures\Procedure.cs" />
-    <Compile Include="Model\Process.cs" />
-    <Compile Include="Model\Resources\MethodolgicalSupportResource.cs" />
-    <Compile Include="Model\Resources\Resource.cs" />
-    <Compile Include="Model\Procedures\SchemaCreationProcedure.cs" />
-    <Compile Include="Model\Resources\TechincalSupportResource.cs" />
-    <Compile Include="Model\Token.cs" />
-    <Compile Include="Model\TokensCollector.cs" />
-    <Compile Include="Model\Resources\WorkerResource.cs" />
     <Compile Include="QuantityPins.xaml.cs">
       <DependentUpon>QuantityPins.xaml</DependentUpon>
     </Compile>
@@ -474,6 +442,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="hydra2r.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GidraSIM.Core.Model\GidraSIM.Core.Model.csproj">
+      <Project>{49f3ef53-5534-4d59-acf3-d2c50d83cce8}</Project>
+      <Name>GidraSIM.Core.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GidraSIM.CoreGUI\GidraSIM.GUI.Core.csproj">
+      <Project>{73b2445e-e1d6-4526-be09-fe306ac960bf}</Project>
+      <Name>GidraSIM.GUI.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
