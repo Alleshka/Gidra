@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GidraSIM.Model.Resources;
 
-namespace GidraSIM.Model
+namespace GidraSIM.Model.Procedures
 {
     public class SchemaCreationProcedure : Procedure
     {
-        private double prevTime;
+        private double prevTime = -1;
 
         public SchemaCreationProcedure (ITokensCollector collector) : base(1, 1, collector)
         {
@@ -21,14 +22,15 @@ namespace GidraSIM.Model
             //првоеряем, есть ли вообще что-то на входе
             if (inputQueue[0].Count > 0)
             {
+                Random rand = new Random();
                 //смотрим на первыйтокен
                 var token = inputQueue[0].Peek();
 
                 var worker = resources.Find(res => res is WorkerResource)  as WorkerResource;
                 var cad = resources.Find(res => res is CadResource) as CadResource;
-                var techSupport = resources.Find(res => res is TechincalSupportResource) as TechincalSupportResource;
+                var computer = resources.Find(res => res is TechincalSupportResource) as TechincalSupportResource;
 
-                if (worker == null || cad == null || techSupport == null)
+                if (worker == null || cad == null || computer == null)
                     throw new ArgumentNullException("SchemaCreationProcedure - не присустствуют все ресурсы");
 
                 int resourceCount = 0;
@@ -62,13 +64,13 @@ namespace GidraSIM.Model
                     }
 
                     //пробеум взять методичку
-                    if (techSupport.TryGetResource())
+                    if (computer.TryGetResource())
                     {
                         resourceCount++;
                     }
                     else
                     {
-                        techSupport.ReleaseResource();
+                        computer.ReleaseResource();
                     }
 
                 }
@@ -80,24 +82,55 @@ namespace GidraSIM.Model
                 }
 
                 //общее время, которое должно бытьл затрачено на процедуру
-                double time = 0;
-                //TODO брать это из ресурсов
-                double frequency = techSupport.Frequency;
-                double memory_proc = techSupport.Ram;
-                double memory_video = techSupport.Vram;
+                double time = token.Complexity;
+
+                //влияние ПК на скорость работы
+                double frequency = computer.Frequency;
+                double memory_proc = computer.Ram;
+                double memory_video = computer.Vram;
                                                                                                                             //базовые параметры: 
                 double base_frequency = 1.5;//частота
                 double base_memory_proc = 2;//объем памяти процессора
                 double base_memory_video = 1;//объем памяти ведеокарты
                                                 //выражения полученные аналитическим способом
-                time += (base_frequency - techSupport.Frequency) / 1000; //порядок влияния на время
-                time += (base_memory_proc - techSupport.Ram) / 10000;
-                time += (base_memory_video - techSupport.Vram) / 10000; //TODO ээ, нулевое влияние времени в случае если всё также????
+                time += (base_frequency - computer.Frequency) / 1000; //порядок влияния на время
+                time += (base_memory_proc - computer.Ram) / 10000;
+                time += (base_memory_video - computer.Vram) / 10000; //TODO ээ, нулевое влияние времени в случае если всё также????
 
-                //TODO добавить влияние категории рабочего на скорость работы
+                //влияние рабочего на скорость работы
+                switch(worker.WorkerQualification)
+                {
+                    case WorkerResource.Qualification.LeadCategory:
+                        time -= time / rand.Next(1, 4);
+                        break;
+                    case WorkerResource.Qualification.FirstCategory:
+                        time -= time / rand.Next(1, 5);//уменьшаем время, т.к. высокая категория\
+                        break;
+                    case WorkerResource.Qualification.SecondCategory:
+                        //базовое время подсчитано для второй категории
+                        break;
+                    case WorkerResource.Qualification.ThirdCategory:
+                        time += time / rand.Next(1, 5);
+                        break;
+                    case WorkerResource.Qualification.NoCategory:
+                        time += time / rand.Next(1, 4);
+                        break;
+                }
 
-                //обновляем прогресс задачи
-                token.Progress += time /(globalTime - prevTime); //делим общее время на dt
+                //влияение методичики (необязательный ресурс)
+                var methodSupport = resources.Find(res => res is MethodolgicalSupportResource) as MethodolgicalSupportResource;
+                //если есть методичка, то время немного экономится
+                if(methodSupport != null)
+                {
+                    time -= 0.01 * rand.NextDouble();//от 0 до 15 минут
+                }
+
+                //если все ресурсы взяли, то выполняем задачу
+                if (resourceCount == 3)
+                {
+                    //обновляем прогресс задачи
+                    token.Progress += (globalTime - prevTime)/time; //делим общее время на dt
+                }
 
                 //задача выполнена
                 if (token.Progress >= 0.99)
@@ -110,14 +143,9 @@ namespace GidraSIM.Model
                     //освобождаем все ресурсы
                     worker.ReleaseResource();
                     cad.ReleaseResource();
-                    techSupport.ReleaseResource();
+                    computer.ReleaseResource();
                 }
 
-                //все ресурсы взяли
-                if (resourceCount == 3)
-                {
-                    
-                }
             }
             prevTime = globalTime;
         }

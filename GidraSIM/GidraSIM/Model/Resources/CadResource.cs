@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GidraSIM.Model
+namespace GidraSIM.Model.Resources
 {
     public class CadResource:Resource
     {
+        //TODO добавить типы лицензии
+
+        //TODO добавить правила лицензирования
     }
 }

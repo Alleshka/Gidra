@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using GidraSIM.Model;
+using GidraSIM.Model.Procedures;
 using GidraSIM.BlocksWPF;
 
 namespace GidraSIM.Utility

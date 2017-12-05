@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GidraSIM.Model
+namespace GidraSIM.Model.Procedures
 {
     public class FixedTimeBlock:Block
     {

@@ -153,22 +153,23 @@
       <DependentUpon>ModelingSession.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Block.cs" />
-    <Compile Include="Model\CadResource.cs" />
+    <Compile Include="Model\Resources\CadResource.cs" />
     <Compile Include="Model\ConnectionManager.cs" />
-    <Compile Include="Model\FixedTimeBlock.cs" />
+    <Compile Include="Model\Procedures\FixedTimeBlock.cs" />
     <Compile Include="Model\IBlock.cs" />
     <Compile Include="Model\IConnectionManager.cs" />
     <Compile Include="Model\IProcedure.cs" />
     <Compile Include="Model\IResource.cs" />
     <Compile Include="Model\ITokensCollector.cs" />
-    <Compile Include="Model\Procedure.cs" />
+    <Compile Include="Model\Procedures\Procedure.cs" />
     <Compile Include="Model\Process.cs" />
-    <Compile Include="Model\Resource.cs" />
-    <Compile Include="Model\SchemaCreationProcedure.cs" />
-    <Compile Include="Model\TechincalSupportResource.cs" />
+    <Compile Include="Model\Resources\MethodolgicalSupportResource.cs" />
+    <Compile Include="Model\Resources\Resource.cs" />
+    <Compile Include="Model\Procedures\SchemaCreationProcedure.cs" />
+    <Compile Include="Model\Resources\TechincalSupportResource.cs" />
     <Compile Include="Model\Token.cs" />
     <Compile Include="Model\TokensCollector.cs" />
-    <Compile Include="Model\WorkerResource.cs" />
+    <Compile Include="Model\Resources\WorkerResource.cs" />
     <Compile Include="QuantityPins.xaml.cs">
       <DependentUpon>QuantityPins.xaml</DependentUpon>
     </Compile>
