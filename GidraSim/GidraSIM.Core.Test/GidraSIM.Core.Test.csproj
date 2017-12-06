@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElectricalSchemeSimulationTest.cs" />
     <Compile Include="PaperworkProcedureTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaCreationProcedureTests.cs" />
