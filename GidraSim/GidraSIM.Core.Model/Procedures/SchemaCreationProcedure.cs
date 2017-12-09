@@ -84,6 +84,8 @@ namespace GidraSIM.Core.Model.Procedures
                 double time = token.Complexity;
 
                 //влияние ПК на скорость работы
+                #region PC impact
+
                 double frequency = computer.Frequency;
                 double memory_proc = computer.Ram;
                 double memory_video = computer.Vram;
@@ -95,8 +97,11 @@ namespace GidraSIM.Core.Model.Procedures
                 time += (base_frequency - computer.Frequency) / 1000; //порядок влияния на время
                 time += (base_memory_proc - computer.Ram) / 10000;
                 time += (base_memory_video - computer.Vram) / 10000; //TODO ээ, нулевое влияние времени в случае если всё также????
+                #endregion
 
                 //влияние рабочего на скорость работы
+                #region Worker impact
+
                 switch(worker.WorkerQualification)
                 {
                     case WorkerResource.Qualification.LeadCategory:
@@ -115,14 +120,18 @@ namespace GidraSIM.Core.Model.Procedures
                         time += time / rand.Next(1, 4);
                         break;
                 }
+                #endregion
 
                 //влияение методичики (необязательный ресурс)
+                #region Methodical region
+
                 var methodSupport = resources.Find(res => res is MethodolgicalSupportResource) as MethodolgicalSupportResource;
                 //если есть методичка, то время немного экономится
                 if((methodSupport!=null)&&(methodSupport.TryGetResource()))
                 {
                     time -= 0.01 * rand.NextDouble(); //от 0 до 15 минут
                 }
+                #endregion
 
 
                 //если все ресурсы взяли, то выполняем задачу

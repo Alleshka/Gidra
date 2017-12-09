@@ -1,12 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GidraSIM.Core.Model;
-using GidraSIM.Core.Model.Resources;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GidraSIM.Core.Model.Procedures;
+using GidraSIM.Core.Model.Resources;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.Core.Test
 {
@@ -21,7 +17,7 @@ namespace GidraSIM.Core.Test
                 Assert.Fail();*/
 
             schemaCreationProcedure = new SchemaCreationProcedure(new TokensCollector());
-            if (schemaCreationProcedure == null)
+            if(schemaCreationProcedure == null)
                 Assert.Fail();
         }
 
@@ -36,9 +32,9 @@ namespace GidraSIM.Core.Test
             procedure.AddToken(new Token(0, 10), 0);
 
             //сам тест
-            Token token = null;
             ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
-            for ( modelingTime.Now= 0; modelingTime.Now <= 10 && token == null; modelingTime.Now += modelingTime.Delta)
+            Token token = null;
+            for (modelingTime.Now = 0; modelingTime.Now <= 10 && token == null; modelingTime.Now += modelingTime.Delta)
             {
                 procedure.Update(modelingTime);
 
@@ -49,8 +45,8 @@ namespace GidraSIM.Core.Test
             if (token == null)
                 Assert.Fail();
             //процервка времени выполнения процедуры
-                if (modelingTime.Now < 9.1 || modelingTime.Now > 10.1)//для образцовых моделей со сложностью 10 ремя долнжо быть 10
-                    Assert.Fail();
+            if (modelingTime.Now < 9.1 || modelingTime.Now > 10.1)//для образцовых моделей со сложностью 10 ремя долнжо быть 10
+                Assert.Fail();
 
         }
     }

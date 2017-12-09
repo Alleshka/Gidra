@@ -17,13 +17,13 @@ namespace GidraSIM.Core.Test
         {
             // arrange
             ElectricalSchemeSimulation electricalScheme = new ElectricalSchemeSimulation(new TokensCollector());
-            electricalScheme.AddToken(new Token(0, 10), 0);
+            electricalScheme.AddToken(new Token(bornTime: 0, complexity: 100), 0);
 
             electricalScheme.AddResorce(new WorkerResource()
             {
                 Name = "Alleshka",
                 Position = "Работяга",
-                WorkerQualification = WorkerResource.Qualification.FirstCategory
+                WorkerQualification = WorkerResource.Qualification.SecondCategory
             });
 
 
@@ -40,7 +40,7 @@ namespace GidraSIM.Core.Test
 
             // act
             ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
-            for (modelingTime.Now = 0; modelingTime.Now < 10 && token == null; modelingTime.Now += modelingTime.Delta)
+            for (modelingTime.Now = 0; modelingTime.Now < 100 && token == null; modelingTime.Now += modelingTime.Delta)
             {
                 electricalScheme.Update(modelingTime);
                 token = electricalScheme.GetOutputToken(0);
@@ -49,7 +49,7 @@ namespace GidraSIM.Core.Test
 
             // Asserts
             Assert.AreNotEqual(token, null);
-            if (modelingTime.Now < 0.91 || modelingTime.Now > 1.01)//для образцовых моделей со сложностью 10 ремя долнжо быть 10
+            if (modelingTime.Now < 9.99 || modelingTime.Now > 10.01)//для образцовых моделей со сложностью 100 ремя долнжо быть 10
                 Assert.Fail();
         }
     }

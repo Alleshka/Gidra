@@ -49,6 +49,7 @@
     <Compile Include="IResource.cs" />
     <Compile Include="ITokensCollector.cs" />
     <Compile Include="ModelingTime.cs" />
+    <Compile Include="Procedures\ArrangementProcedure.cs" />
     <Compile Include="Procedures\ElectricalSchemeSimulation.cs" />
     <Compile Include="Procedures\FixedTimeBlock.cs" />
     <Compile Include="Procedures\PaperworkProcedure.cs" />

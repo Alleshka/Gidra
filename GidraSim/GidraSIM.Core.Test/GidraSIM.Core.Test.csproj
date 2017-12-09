@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ElectricalSchemeSimulationTest.cs" />
     <Compile Include="PaperworkProcedureTest.cs" />
+    <Compile Include="ArrangementProcedureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaCreationProcedureTests.cs" />
   </ItemGroup>

@@ -1,18 +1,16 @@
-﻿using System;
+﻿using GidraSIM.Core.Model.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    /// <summary>
-    /// case "Моделирование электрической схемы"
-    /// </summary>
-    public class ElectricalSchemeSimulation : Procedure
+    ///Компоновка
+    public class ArrangementProcedure : Procedure
     {
-        public ElectricalSchemeSimulation(ITokensCollector collector) : base(1, 1, collector)
+        public ArrangementProcedure(ITokensCollector collector) : base(1, 1, collector)
         {
 
         }
@@ -30,7 +28,7 @@ namespace GidraSIM.Core.Model.Procedures
 
                 if (worker == null || cad == null || comp == null)
                 {
-                    StringBuilder message = new StringBuilder("Моделирование электрической схемы. Ошибка: ");
+                    StringBuilder message = new StringBuilder("Компоновка электрической схемы. Ошибка: ");
                     if (worker == null) message.Append(Environment.NewLine + "Отсутствует ресурс типа \"Исполнитель\"");
                     if (cad == null) message.Append(Environment.NewLine + "Отсутствует ресурс типа \"САПР\"");
                     if (comp == null) message.Append(Environment.NewLine + "Отсутствует ресурс типа \"Техническое обеспечение\"");
@@ -39,7 +37,7 @@ namespace GidraSIM.Core.Model.Procedures
 
                 int resourceCount = 0;
 
-                if (token.Progress < 0.01)
+                if (token.Progress < 0.001)
                 {
                     token.ProcessedByBlock = this;
                     token.ProcessStartTime = modelingTime.Now;
@@ -68,7 +66,7 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 3;
                 }
 
-                double time = token.Complexity / 10;
+                double time = token.Complexity / 100;//базовое время
 
                 // Влияние ПК
                 #region PcImpact
@@ -83,44 +81,16 @@ namespace GidraSIM.Core.Model.Procedures
 
                 // Влияние рабочего
                 #region WorkerImpact
-                switch (worker.WorkerQualification)
-                {
-                    case WorkerResource.Qualification.LeadCategory:
-                        time -= time / rand.Next(1, 4);
-                        break;
-                    case WorkerResource.Qualification.FirstCategory:
-                        time -= time / rand.Next(1, 5);//уменьшаем время, т.к. высокая категория\
-                        break;
-                    case WorkerResource.Qualification.SecondCategory:
-                        //базовое время подсчитано для второй категории
-                        break;
-                    case WorkerResource.Qualification.ThirdCategory:
-                        time += time / rand.Next(1, 5);
-                        break;
-                    case WorkerResource.Qualification.NoCategory:
-                        time += time / rand.Next(1, 4);
-                        break;
-                }
+                //временная задержка для анализа полученного результата
+                time += 0.02 * rand.NextDouble(); //30(0,02 дня) минут - максимальное время для анализа
                 #endregion
-
-                //влияение методичики (необязательный ресурс)
-                #region Methodical region
-
-                var methodSupport = resources.Find(res => res is MethodolgicalSupportResource) as MethodolgicalSupportResource;
-                //если есть методичка, то время немного экономится
-                if ((methodSupport != null) && (methodSupport.TryGetResource()))
-                {
-                    time -= 0.01 * rand.NextDouble(); //от 0 до 15 минут
-                }
-                #endregion
-
 
                 if (resourceCount == 3)
                 {
                     token.Progress += modelingTime.Delta/time;
                 }
 
-                if (token.Progress > 0.99)
+                if (token.Progress > 0.999)
                 {
                     inputQueue[0].Dequeue();
                     collector.Collect(token);
@@ -131,10 +101,8 @@ namespace GidraSIM.Core.Model.Procedures
                     worker.ReleaseResource();
                     comp.ReleaseResource();
                     cad.ReleaseResource();
-                    if (methodSupport != null) methodSupport.ReleaseResource();
                 }
             }
         }
-
     }
 }
