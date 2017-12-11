@@ -67,6 +67,13 @@ namespace GidraSIM.Core.Model
         /// <param name="globalTime"></param>
         public override void Update(ModelingTime modelingTime)
         {
+            //апдейт блоков пост-фактум
+            for (int i = 0; i < Blocks.Count; i++)
+            {
+                Blocks[i].ClearOutputs();
+            }
+
+
             EndBlockHasOutputToken = false;
             //апдейт блоков
             for (int i = 0; i < Blocks.Count; i++)
@@ -81,11 +88,7 @@ namespace GidraSIM.Core.Model
                 EndBlockHasOutputToken = true;
             }
 
-            //апдейт блоков
-            for (int i = 0; i < Blocks.Count; i++)
-            {
-                Blocks[i].ClearOutputs();
-            }
+            
         }
 
         public override void AddToken(Token token, int inputNumber)

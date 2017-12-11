@@ -32,5 +32,6 @@ namespace GidraSIM.Core.Model.Procedures.Tests
             Assert.AreNotEqual(token, null);
             if (modelingTime.Now < 99 || modelingTime.Now > 100) Assert.Fail();//ровно 100 для сложности 1
         }
+
     }
 }

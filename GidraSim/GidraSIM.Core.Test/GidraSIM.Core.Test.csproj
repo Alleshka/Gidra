@@ -55,6 +55,7 @@
     <Compile Include="FormingDocumentationProcedureTests.cs" />
     <Compile Include="DocumentationCoordinationProcedureTests.cs" />
     <Compile Include="ClientCoordinationPrrocedureTests.cs" />
+    <Compile Include="ProcessTests.cs" />
     <Compile Include="SampleTestingProcedureTests.cs" />
     <Compile Include="TracingProcedureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

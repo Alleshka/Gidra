@@ -19,7 +19,7 @@ namespace GidraSIM.Core.Model.Procedures
 
         public override void Update(ModelingTime modelingTime)
         {
-            if (inputQueue.Count() > 0)
+            if (inputQueue[0].Count() > 0)
             {
                 Random rand = new Random();
                 var token = inputQueue[0].Peek();
