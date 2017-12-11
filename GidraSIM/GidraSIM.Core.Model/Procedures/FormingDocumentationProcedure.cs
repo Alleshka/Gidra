@@ -26,7 +26,7 @@ namespace GidraSIM.Core.Model.Procedures
 
                 if (worker == null || comp == null)
                 {
-                    StringBuilder message = new StringBuilder("Моделирование электрической схемы. Ошибка: ");
+                    StringBuilder message = new StringBuilder("Оформление документации схемы. Ошибка: ");
                     if (worker == null) message.Append(Environment.NewLine + "Отсутствует ресурс типа \"Исполнитель\"");
                     if (comp == null) message.Append(Environment.NewLine + "Отсутствует ресурс типа \"Техническое обеспечение\"");
                     throw new ArgumentNullException(message.ToString());

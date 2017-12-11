@@ -50,11 +50,14 @@
     <Compile Include="ITokensCollector.cs" />
     <Compile Include="ModelingTime.cs" />
     <Compile Include="Procedures\ArrangementProcedure.cs" />
+    <Compile Include="Procedures\ClientCoordinationPrrocedure.cs" />
+    <Compile Include="Procedures\DocumentationCoordinationProcedure.cs" />
     <Compile Include="Procedures\ElectricalSchemeSimulation.cs" />
     <Compile Include="Procedures\FixedTimeBlock.cs" />
     <Compile Include="Procedures\FormingDocumentationProcedure.cs" />
     <Compile Include="Procedures\PaperworkProcedure.cs" />
     <Compile Include="Procedures\Procedure.cs" />
+    <Compile Include="Procedures\SampleTestingProcedure.cs" />
     <Compile Include="Procedures\SchemaCreationProcedure.cs" />
     <Compile Include="Procedures\TracingProcedure.cs" />
     <Compile Include="Process.cs" />
