@@ -52,6 +52,7 @@
     <Compile Include="ElectricalSchemeSimulationTest.cs" />
     <Compile Include="PaperworkProcedureTest.cs" />
     <Compile Include="ArrangementProcedureTests.cs" />
+    <Compile Include="FormingDocumentationProcedureTests.cs" />
     <Compile Include="TracingProcedureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaCreationProcedureTests.cs" />
