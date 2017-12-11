@@ -55,6 +55,7 @@
     <Compile Include="Procedures\PaperworkProcedure.cs" />
     <Compile Include="Procedures\Procedure.cs" />
     <Compile Include="Procedures\SchemaCreationProcedure.cs" />
+    <Compile Include="Procedures\TracingProcedure.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CadResource.cs" />
