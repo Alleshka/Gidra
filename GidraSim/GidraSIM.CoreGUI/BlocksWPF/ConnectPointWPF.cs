@@ -37,6 +37,11 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             // добавление
             this.Children.Add(pointPath);
         }
+
+        public override void Remove()
+        {
+            // его нельзя удалить (возможно стоит врубить сюда throw исключения)
+        }
     }
 
     public enum ConnectPointWPF_Type { inPut, outPut}

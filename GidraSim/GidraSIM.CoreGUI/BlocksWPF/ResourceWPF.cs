@@ -64,5 +64,26 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             resPuts.Add(connectoin);
         }
+
+        public override void RemoveConnection(ConnectionWPF connection)
+        {
+            if (connection is ResConnectionWPF)
+            {
+                ResConnectionWPF resConnection = connection as ResConnectionWPF;
+
+                resPuts.Remove(resConnection);
+            }
+        }
+
+        public override void RemoveAllConnections()
+        {
+            if (resPuts != null)
+            {
+                while (resPuts.Count != 0)
+                {
+                    resPuts[0].Remove();
+                }
+            }
+        }
     }
 }

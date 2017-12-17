@@ -115,5 +115,34 @@ namespace GidraSIM.GUI.Core.BlocksWPF
                 IsSelected = false;
             }
         }
+
+        /// <summary>
+        /// удаляет текущий блок из родительского канваса
+        /// </summary>
+        public abstract void Remove();
+
+
+        /// <summary>
+        /// это вспомогательная функция, ей место в общей библиотеке. Оставлю пока это здесь.
+        /// Метод находит родителя по типу в визуальном дереве
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        protected static T FindVisualParent<T>(DependencyObject element) where T : UIElement
+        {
+            var parent = element;
+            while (parent != null)
+            {
+                var correctlyTyped = parent as T;
+                if (correctlyTyped != null)
+                {
+                    return correctlyTyped;
+                }
+
+                parent = VisualTreeHelper.GetParent(parent) as UIElement;
+            }
+            return null;
+        }
     }
 }

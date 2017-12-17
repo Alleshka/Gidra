@@ -355,6 +355,12 @@ namespace GidraSIM
             workArea.Children.Add(new EndBlockWPF(new Point(x - bord - 2 * d, y - d)));
         }
 
+        /// <summary>
+        /// Соединение 2х блоков
+        /// </summary>
+        /// <param name="block1"></param>
+        /// <param name="block2"></param>
+        /// <returns></returns>
         private bool Connect(BlockWPF block1, BlockWPF block2)
         {
             if( (block1 != null) && (block2 != null) )
@@ -480,5 +486,19 @@ namespace GidraSIM
         {
             get => workArea.Children;
         }
+
+        /// <summary>
+        /// Удаляет вылеленный элемент (работает в режиме указателя)
+        /// </summary>
+        public void DeleteSelected()
+        {
+            // работает в режиме указателя
+            if (mode == Mode.Arrow)
+            {
+                selectedFigure?.Remove();
+            }
+        }
+
+
     }
 }

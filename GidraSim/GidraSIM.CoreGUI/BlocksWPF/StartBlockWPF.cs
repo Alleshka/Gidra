@@ -41,5 +41,26 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             outPuts.Add(connectoin);
         }
+
+        public override void RemoveConnection(ConnectionWPF connection)
+        {
+            if (connection is ProcConnectionWPF)
+            {
+                ProcConnectionWPF procConnection = connection as ProcConnectionWPF;
+
+                outPuts.Remove(procConnection);
+            }
+        }
+
+        public override void RemoveAllConnections()
+        {
+            outPuts?.ForEach(connection => connection.Remove());
+            outPuts?.Clear();
+        }
+
+        public override void Remove()
+        {
+            // его нельзя удалить (возможно стоит врубить сюда throw исключения)
+        }
     }
 }

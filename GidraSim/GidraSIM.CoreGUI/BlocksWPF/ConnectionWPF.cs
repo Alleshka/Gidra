@@ -38,5 +38,26 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             get => endBlock;
         }
+
+        public void ClearConnections()
+        {
+            // удалить ссылку в начальном блоке
+            startBlock.RemoveConnection(this);
+
+            //  удалить ссылку в конечном блоке
+            endBlock.RemoveConnection(this);
+        }
+
+        /// <summary>
+        ///  удаляет текущий блок из родительского канваса
+        /// </summary>
+        public override void Remove()
+        {
+            Canvas parrent = FindVisualParent<Canvas>(this.Parent);
+
+            this.ClearConnections();
+
+            parrent.Children.Remove(this);
+        }
     }
 }

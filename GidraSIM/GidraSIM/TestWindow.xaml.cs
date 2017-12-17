@@ -27,6 +27,15 @@ namespace GidraSIM
         public TestWindow()
         {
             InitializeComponent();
+
+
+            //
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
+        }
+
+        private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
+        {
+            drawArea.DeleteSelected();
         }
 
         /// <summary>

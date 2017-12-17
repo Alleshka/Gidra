@@ -120,28 +120,32 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             this.Position = (point - relativeMousePos);
             Move();
         }
-        
-        /// <summary>
-        /// это вспомогательная функция, ей место в общей библиотеке. Оставлю пока это здесь.
-        /// Метод находит родителя по типу в визуальном дереве
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        private static T FindVisualParent<T>(DependencyObject element) where T : UIElement
-        {
-            var parent = element;
-            while (parent != null)
-            {
-                var correctlyTyped = parent as T;
-                if (correctlyTyped != null)
-                {
-                    return correctlyTyped;
-                }
 
-                parent = VisualTreeHelper.GetParent(parent) as UIElement;
-            }
-            return null;
+
+
+
+        public override void Remove()
+        {
+            Canvas parrent = FindVisualParent<Canvas>(this.Parent);
+
+            // удалить соединения этого блока с остальными
+            RemoveAllConnections();
+
+            // удалить блок
+            parrent.Children.Remove(this);
         }
+
+
+        /// <summary>
+        /// Уделяет ифнормацию о текущим соединении из блока
+        /// </summary>
+        /// <param name="connection"></param>
+        public abstract void RemoveConnection(ConnectionWPF connection);
+
+        /// <summary>
+        /// Уделяет всю ифнормацию о соединенях из блока
+        /// </summary>
+        /// <param name="connection"></param>
+        public abstract void RemoveAllConnections();
     }
 }
