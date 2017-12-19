@@ -19,6 +19,11 @@ namespace GidraSIM.Core.Model
             }
         }
 
+        public override string ToString()
+        {
+            return this.Description;
+        }
+
         protected Queue<Token>[] inputQueue;
 
         /*/// <summary>

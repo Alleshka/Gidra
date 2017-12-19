@@ -58,7 +58,17 @@ namespace GidraSIM
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
             //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
-            workArea.Children.Add(new ProcedureWPF(procedurePosition, "Фикс. процедура (10)", 1, 1));
+
+            TestProcedureSelectionDialog dialog = new TestProcedureSelectionDialog();
+
+            if(dialog.ShowDialog() == true)
+            {
+                var block = dialog.SelectedBlock;
+                var procedure = new ProcedureWPF(procedurePosition, block.ToString(), block.InputQuantity, block.OutputQuantity);
+                workArea.Children.Add(procedure);
+            }
+
+            //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Фикс. процедура (10)", 1, 1));
         }
 
 
@@ -414,6 +424,8 @@ namespace GidraSIM
 
         private bool ProcConnect(BlockWPF block1, BlockWPF block2)
         {
+            int aPort = 0, bPort = 0;
+
             if ((block1 is ResourceWPF) || 
                 (block1 is EndBlockWPF) || 
                 (block2 is ResourceWPF) ||
@@ -428,7 +440,11 @@ namespace GidraSIM
             
             if((selectedPoint == null) && !(block1 is StartBlockWPF)) return false; // случай, когда выбран блок, но не выбрана точка из которой будет выходить соединение
 
-            if (selectedPoint != null) a = selectedPoint.Position;
+            if (selectedPoint != null)
+            {
+                a = selectedPoint.Position;
+                aPort = selectedPoint.Port;
+            }
 
             // если второй блок ProcedureWPF, то для соединения, необходимо, 
             // чтобы была выбрана одна из точек входа этого блока
@@ -449,6 +465,7 @@ namespace GidraSIM
                                 //selectedPoint = point;
                                 //selectedPoint.Select();
                                 b = point.Position;
+                                bPort = point.Port;
                                 someSelect = true;
                             }
                         }
@@ -458,7 +475,7 @@ namespace GidraSIM
                 if (!someSelect) return false;
             }
 
-            ProcConnectionWPF connection = new ProcConnectionWPF(block1, block2, a, b);
+            ProcConnectionWPF connection = new ProcConnectionWPF(block1, block2, a, b, aPort, bPort);
 
             if (block1 is StartBlockWPF)
             {

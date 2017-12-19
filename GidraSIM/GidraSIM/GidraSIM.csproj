@@ -177,6 +177,9 @@
       <DependentUpon>SetSubProcess.xaml</DependentUpon>
     </Compile>
     <Compile Include="SubProcess.cs" />
+    <Compile Include="TestProcedureSelectionDialog.xaml.cs">
+      <DependentUpon>TestProcedureSelectionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SetSubProcess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestProcedureSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

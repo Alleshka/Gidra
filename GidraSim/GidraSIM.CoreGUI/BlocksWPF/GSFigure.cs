@@ -16,7 +16,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     /// </summary>
     public abstract class GSFigure : Canvas, ISelectable
     {
-        public const int POINT_SIZE = 4; // возможно стоит вывести все константы в одно место
+        public const int POINT_SIZE = 5; // возможно стоит вывести все константы в одно место
 
 
         /// <summary>

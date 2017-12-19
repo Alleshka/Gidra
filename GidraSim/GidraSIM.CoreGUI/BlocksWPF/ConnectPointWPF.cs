@@ -18,9 +18,12 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         /// </summary>
         public ProcedureWPF Owner { get; private set; }
 
-        public ConnectPointWPF(Point position, Brush fill, ConnectPointWPF_Type connectType, ProcedureWPF owner)
+        public int Port { get; private set; }
+
+        public ConnectPointWPF(Point position, int port, Brush fill, ConnectPointWPF_Type connectType, ProcedureWPF owner)
         {
             this.Position = position;
+            this.Port = port;
             this.ConnectType = connectType;
             this.Owner = owner;
 

@@ -10,6 +10,8 @@ namespace GidraSIM.Core.Model.Procedures
     {
         public double FixedTime { get; protected set; }
 
+        public override string Description => "Блок фиксированного времени";
+
         public FixedTimeBlock(ITokensCollector collector, double fixedTime):base(1,1,collector)
         {
             FixedTime = fixedTime;

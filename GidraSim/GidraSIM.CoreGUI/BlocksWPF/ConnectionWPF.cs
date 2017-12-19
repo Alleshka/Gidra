@@ -17,7 +17,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         // блоки, к которым соединяются
         protected BlockWPF startBlock;
+        protected int startBlockPort;
         protected BlockWPF endBlock;
+        protected int endBlockPort;
 
         public ConnectionWPF(BlockWPF startBlock, BlockWPF endBlock)
         {

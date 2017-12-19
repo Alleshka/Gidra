@@ -33,11 +33,17 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         /// </summary>
         private Point relativeEndPosition;
 
+        public int StartPort { get; private set; }
+
+        public int EndPort { get; private set; }
+
         public ProcConnectionWPF(
             BlockWPF startBlock, 
             BlockWPF endBlock, 
             Point relativeStartPosition, 
-            Point relativeEndPosition) : base(startBlock, endBlock)
+            Point relativeEndPosition,
+            int startPort = 0,
+            int endPort = 0) : base(startBlock, endBlock)
         {
             // startBlock неможет быть EndBlockWPF или ResourceWPF
             if ((startBlock is EndBlockWPF) || (startBlock is ResourceWPF))
@@ -52,6 +58,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
             this.relativeStartPosition = relativeStartPosition;
             this.relativeEndPosition = relativeEndPosition;
+
+            this.StartPort = startPort;
+            this.EndPort = endPort;
 
             MakeLine();
             

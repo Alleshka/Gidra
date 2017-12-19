@@ -9,7 +9,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 {
     public class ProcedureWPF : SquareBlockWPF
     {
-        public const int POINT_MARGIN = 5;
+        public const int POINT_MARGIN = 7;
 
         //Входы
         private List<ProcConnectionWPF> inputs;
@@ -52,6 +52,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             {
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),
+                    i,
                     inPointFill,
                     ConnectPointWPF_Type.inPut,
                     this));
@@ -67,6 +68,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             {
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),
+                    i,
                     outPointFill,
                     ConnectPointWPF_Type.outPut,
                     this));
