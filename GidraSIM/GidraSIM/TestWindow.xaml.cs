@@ -121,7 +121,7 @@ namespace GidraSIM
             //drawArea.Children;
             converter.Map(drawArea.Children, process);
             //добавляем на стартовый блок токен
-            process.AddToken(new Token(0, 100), 0);
+            process.AddToken(new Token(0, 10), 0);
             //double i = 0;
             ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
             for(modelingTime.Now=0;modelingTime.Now<1000 ;modelingTime.Now+=modelingTime.Delta)
@@ -137,9 +137,11 @@ namespace GidraSIM
             //TODO сделать DataBinding
             listBox1.Items.Clear();
             process.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+
             //выводим число токенов и время затраченное (в заголовке)
             MessageBox.Show(modelingTime.Now.ToString());
             process.Collector.GetHistory().Clear();
+            process = new Process(new TokensCollector());
         }
     }
 }

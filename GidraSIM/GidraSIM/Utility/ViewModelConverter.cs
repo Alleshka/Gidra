@@ -12,11 +12,17 @@ namespace GidraSIM.Utility
 {
     public class ViewModelConverter : IViewModelConverter
     {
+        public ViewModelConverter()
+        {
+
+        }
+
         public void Map(UIElementCollection uIElementCollection, Process process)
         {
-            Dictionary<ProcedureWPF, FixedTimeBlock> procedures = new Dictionary<ProcedureWPF, FixedTimeBlock>();
+            Dictionary<ProcedureWPF, IBlock> procedures = new Dictionary<ProcedureWPF, IBlock>();
             foreach (var element in uIElementCollection)
             {
+                //смотрим все соединения процедур
                 if(element is ProcConnectionWPF)
                 {
                     var connection = (element as ProcConnectionWPF);
@@ -29,63 +35,74 @@ namespace GidraSIM.Utility
                     //обработка стартового блока
                     if(connection.StartBlock  is StartBlockWPF)
                     {
-                        //если в первый раз такое встречаем
+                        IBlock block;
+
+                        //если в первый раз встерчаем блок
                         if (!(procedures.ContainsKey(connection.EndBlock as ProcedureWPF)))
                         {
-                            //для примера 10 единиц
-                            FixedTimeBlock block = new FixedTimeBlock(process.Collector, 10);
+                            //первого нет, второй значимый
+                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
+
+                            //добавляем его в список
                             procedures.Add(connection.EndBlock as ProcedureWPF, block);
+
+                            //добавляем его в список всех блоков процесса
                             process.Blocks.Add(block);
-                            process.StartBlock = block;
                         }
+                        //иначе просто берём из базы
+                        else
+                            block = procedures[connection.EndBlock as ProcedureWPF];
+
+                        process.StartBlock = block;
                         //соединение будет когда-то потом
                     }
+                    //обработка конечного блока
                     else if(connection.EndBlock is EndBlockWPF)
                     {
+                        IBlock block = null;
+
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.StartBlock as ProcedureWPF)))
                         {
-                            //для примера 10 единиц
-                            FixedTimeBlock block = new FixedTimeBlock(process.Collector, 10);
+                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
                             procedures.Add(connection.StartBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
-                            process.EndBlock = block;
                         }
                         else
                         {
-                            FixedTimeBlock block = procedures[connection.StartBlock as ProcedureWPF];
-                            process.Blocks.Add(block);
-                            process.EndBlock = block;
+                            block = procedures[connection.StartBlock as ProcedureWPF];
                         }
+                        process.EndBlock = block;
                         //соединение будет когда-то потом
                     }
-                    //обработка
+                    //обработка всех остальных блоков
                     else 
                     {
+                        IBlock block = null;
 
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.StartBlock as ProcedureWPF)))
                         {
-                            //для примера 10 единиц
-                            FixedTimeBlock block = new FixedTimeBlock(process.Collector, 10);
+                            block = this.ConvertWpfBlockToModel(connection.StartBlock as ProcedureWPF, process.Collector);
                             procedures.Add(connection.StartBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.EndBlock as ProcedureWPF)))
                         {
-                            //для примера 10 единиц
-                            FixedTimeBlock block = new FixedTimeBlock(process.Collector, 10);
+                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
                             procedures.Add(connection.EndBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
+                        
 
                         //к счастью там только один вход и выход
-                        process.Connections.Connect(procedures[connection.StartBlock as ProcedureWPF], 0,
-                            procedures[connection.EndBlock as ProcedureWPF], 0);
+                        process.Connections.Connect(procedures[connection.StartBlock as ProcedureWPF], connection.StartPort,
+                            procedures[connection.EndBlock as ProcedureWPF], connection.EndPort);
 
                     }
                 }
+                //сотрим соединения ресурсов
                 else if (element is ResConnectionWPF)
                 {
                     var connection = (element as ResConnectionWPF);
@@ -93,6 +110,26 @@ namespace GidraSIM.Utility
 
                 }
                 
+            }
+        }
+
+        private IBlock ConvertWpfBlockToModel(ProcedureWPF procedureWPF, ITokensCollector collector)
+        {
+            if(procedureWPF.ProcedurePrototype is FixedTimeBlock)
+            {
+                return new FixedTimeBlock(collector, 10);
+            }
+            else if(procedureWPF.ProcedurePrototype is QualityCheckProcedure)
+            {
+                return new QualityCheckProcedure(collector);
+            }
+            else if(procedureWPF.ProcedurePrototype == null)
+            {
+                throw new NullReferenceException("Для процедуры WPF не указан прототип");
+            }
+            else
+            {
+                throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
             }
         }
     }

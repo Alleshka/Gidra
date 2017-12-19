@@ -65,6 +65,7 @@ namespace GidraSIM
             {
                 var block = dialog.SelectedBlock;
                 var procedure = new ProcedureWPF(procedurePosition, block.ToString(), block.InputQuantity, block.OutputQuantity);
+                procedure.ProcedurePrototype = block;
                 workArea.Children.Add(procedure);
             }
 

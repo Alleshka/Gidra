@@ -4,6 +4,7 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Collections.Generic;
 using System;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
@@ -20,6 +21,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         // Соединения с ресурсами
         private List<ResConnectionWPF> resputs;
 
+        public IBlock ProcedurePrototype { get; set; }
 
         // константы для определения высоты блока
 
