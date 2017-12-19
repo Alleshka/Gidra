@@ -14,8 +14,11 @@
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
             <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
             <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="TestBtn_Click"/>
-            
+
         </StackPanel>
+
+        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="5,5,10,10"></ListBox>
+
         <TabControl x:Name="testTabControl" Margin="0,0,5,5" Panel.ZIndex="10">
             <TabItem Header="Процесс 1" >
                 <local:DrawArea x:Name="drawArea"></local:DrawArea>

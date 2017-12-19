@@ -134,8 +134,11 @@ namespace GidraSIM
                 }
             }
 
+            //TODO сделать DataBinding
+            listBox1.Items.Clear();
+            process.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
             //выводим число токенов и время затраченное (в заголовке)
-            MessageBox.Show(process.Collector.GetHistory().Count.ToString(), modelingTime.Now.ToString());
+            MessageBox.Show(modelingTime.Now.ToString());
             process.Collector.GetHistory().Clear();
         }
     }

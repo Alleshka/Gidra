@@ -97,5 +97,19 @@ namespace GidraSIM.Core.Model
             Complexity = complexity;
             Progress = 0;
         }
+
+        public override string ToString()
+        {
+            return String.Format("Token:born time={0},start time= {1},end time= {2}," +
+                "compl={3}, descr={4}, by {5},progr = {6},parent={7}",
+                this.BornTime,
+                this.ProcessStartTime,
+                this.ProcessEndTime,
+                this.Complexity,
+                this.Description,
+                this.ProcessedByBlock,
+                this.Progress,
+                this.Parent);
+        }
     }
 }

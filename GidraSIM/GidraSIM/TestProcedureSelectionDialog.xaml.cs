@@ -26,6 +26,8 @@ namespace GidraSIM
             TokensCollector temp = new TokensCollector();
             InitializeComponent();
             listBox1.Items.Add(new FixedTimeBlock(temp,10));
+            listBox1.SelectedIndex = 0;
+            this.button.Focus();
         }
 
         public IBlock SelectedBlock { get => listBox1.SelectedItem as IBlock; }

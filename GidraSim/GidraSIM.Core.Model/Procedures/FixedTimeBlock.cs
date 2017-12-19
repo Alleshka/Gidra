@@ -35,6 +35,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if(modelingTime.Now - token.ProcessStartTime >= FixedTime)
                 {
                     inputQueue[0].Dequeue();
+                    token.ProcessEndTime = modelingTime.Now;
                     collector.Collect(token);
 
                     outputs[0] = new Token(modelingTime.Now, token.Complexity) { Parent = this };
