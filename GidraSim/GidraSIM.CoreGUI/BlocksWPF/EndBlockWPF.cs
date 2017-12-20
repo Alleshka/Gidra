@@ -8,7 +8,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 {
     public class EndBlockWPF : RoundBlockWPF
     {
-        private const string IMG_SOURCE = "/Image/End.png";
+        private const string IMG_SOURCE = "✔";
 
 
         //Входы

@@ -180,11 +180,6 @@
     <Compile Include="TestProcedureSelectionDialog.xaml.cs">
       <DependentUpon>TestProcedureSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestWindow.xaml.cs">
-      <DependentUpon>TestWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utility\IViewModelConverter.cs" />
-    <Compile Include="Utility\ViewModelConverter.cs" />
     <Compile Include="WorksystemWithFiles.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
@@ -259,10 +254,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestProcedureSelectionDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

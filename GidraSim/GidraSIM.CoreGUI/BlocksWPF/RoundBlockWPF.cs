@@ -41,23 +41,34 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         public RoundBlockWPF(Point position) : base(position)
         {
-
+            this.Width = IMG_SIZE;
+            this.Height = IMG_SIZE;
         }
 
-        protected void MakeBody(string IMG_SOURCE)
+        protected void MakeBody(string unicodeIcon)
         {
-            // изображение
-            Image img = new Image();
-            BitmapImage bm = new BitmapImage();
-            bm.BeginInit();
-            bm.UriSource = new Uri(IMG_SOURCE, UriKind.Relative);
-            bm.EndInit();
-            img.Source = bm;
-            // размеры
-            img.Height = IMG_SIZE;
-            img.Width = IMG_SIZE;
-            // добавление
-            this.Children.Add(img);
+            Brush fill = Brushes.Black;
+            //круг для фона
+            Ellipse ellipse = new Ellipse();
+            ellipse.Width = IMG_SIZE;
+            ellipse.Height = IMG_SIZE;
+            ellipse.Stroke = stroke;
+            ellipse.Fill = fill;
+            
+            this.Children.Add(ellipse);
+
+            // иконка
+            TextBlock icon = new TextBlock();
+            icon.Text = unicodeIcon;
+            icon.TextWrapping = TextWrapping.Wrap;
+            icon.Foreground = Brushes.White;
+            icon.FontSize = IMG_SIZE*2/3;
+            icon.Width = ellipse.Width;
+            icon.Height = ellipse.Height;
+            icon.HorizontalAlignment = HorizontalAlignment.Center;
+            icon.VerticalAlignment = VerticalAlignment.Center;
+            this.Children.Add(icon);
+
         }
 
         protected override void MakeBody()

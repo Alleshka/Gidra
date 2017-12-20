@@ -74,9 +74,6 @@ namespace GidraSIM
 
             HideContextMenu();
 
-            // test
-            TestWindow test = new TestWindow();
-            test.Show();
         }
 
 

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
+using GidraSIM.GUI.Core;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
@@ -11,7 +12,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         private const int IMG_SIZE = 30;
         private const int IMG_LEFT = 3;
         private const int IMG_TOP = 27;
-        private const string IMG_SOURCE = "/Image/Resourse.png";
+        private const string IMG_SOURCE = "pack://application:,,,//Image//Resourse.png";
 
         // Соединения с процедурами
         private List<ResConnectionWPF> resPuts;
@@ -28,21 +29,39 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         private void MakeIMG()
         {
-            // изображение
-            Image img = new Image();
-            BitmapImage bm = new BitmapImage();
-            bm.BeginInit();
-            bm.UriSource = new Uri(IMG_SOURCE, UriKind.Relative);
-            bm.EndInit();
-            img.Source = bm;
-            // размеры
-            img.Height = IMG_SIZE;
-            img.Width = IMG_SIZE;
-            // позиция
-            Canvas.SetTop(img, IMG_TOP);
-            Canvas.SetLeft(img, IMG_LEFT);
+            //FIXME тут что-то всё сломалось, так что добавлю лучше юникод
+
+            //// изображение
+            //Image img = new Image();
+            //Image image = new Image();
+            //BitmapImage bm = new BitmapImage();
+            //bm.BeginInit();
+            //bm.UriSource = new Uri(IMG_SOURCE);
+            //bm.EndInit();
+            //img.Source = bm;
+            //// размеры
+            //img.Height = IMG_SIZE;
+            //img.Width = IMG_SIZE;
+            //// позиция
+            //Canvas.SetTop(img, IMG_TOP);
+            //Canvas.SetLeft(img, IMG_LEFT);
             // добавление
-            this.Children.Add(img);
+            //this.Children.Add(img);
+
+            //"⚙"
+            // иконка
+            TextBlock icon = new TextBlock();
+            icon.Text = "⚙";
+            icon.TextWrapping = TextWrapping.Wrap;
+            icon.Foreground = System.Windows.Media.Brushes.Black;
+            icon.FontSize = IMG_SIZE * 2 / 3;
+            icon.Width = IMG_SIZE;
+            icon.Height = IMG_SIZE;
+            icon.HorizontalAlignment = HorizontalAlignment.Center;
+            icon.VerticalAlignment = VerticalAlignment.Center;
+            Canvas.SetTop(icon, IMG_TOP);
+            Canvas.SetLeft(icon, IMG_LEFT);
+            this.Children.Add(icon);
         }
 
         protected override void UpdateConnectoins()
