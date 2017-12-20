@@ -25,6 +25,8 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         protected static Brush inPointFill = Brushes.Black;
         protected static Brush outPointFill = Brushes.Green;
 
+        public string BlockName { get; private set; }
+
         public override Point MidPosition
         {
             get
@@ -59,6 +61,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             // построить заголовок
             this.MakeTitle(squareBlockName);
+            BlockName = squareBlockName;
         }
 
 

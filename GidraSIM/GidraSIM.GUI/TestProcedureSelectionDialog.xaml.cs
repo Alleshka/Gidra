@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
+using GidraSIM.GUI.Core.BlocksWPF;
+using GidraSIM.GUI.Core.BlocksWPF.ViewModel;
 
 namespace GidraSIM.GUI
 {
@@ -21,20 +23,22 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestProcedureSelectionDialog : Window
     {
-        public TestProcedureSelectionDialog()
+        public TestProcedureSelectionDialog(Point position)
         {
             TokensCollector temp = new TokensCollector();
             InitializeComponent();
-            listBox1.Items.Add(new FixedTimeBlock(temp,10));
-            listBox1.Items.Add(new QualityCheckProcedure(temp));
+            listBox1.Items.Add( new FixedTimeBlockViewModel(position,"Блок фикс времени"));
+            listBox1.Items.Add(new QualityCheckProcedureViewModel(position, "Проверка качества"));
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
 
-        public IBlock SelectedBlock { get => listBox1.SelectedItem as IBlock; }
+        public BlockWPF SelectedBlock { get; private set; }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            SelectedBlock = listBox1.SelectedItem as BlockWPF;
+            listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }
     }

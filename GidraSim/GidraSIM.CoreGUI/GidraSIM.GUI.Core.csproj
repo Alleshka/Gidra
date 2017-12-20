@@ -62,6 +62,8 @@
     <Compile Include="BlocksWPF\SquareBlockWPF.cs" />
     <Compile Include="BlocksWPF\StartBlockWPF.cs" />
     <Compile Include="BlocksWPF\SubProcessWPF.cs" />
+    <Compile Include="BlocksWPF\ViewModel\FixedTimeBlockViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModel\QualityCheckProcedureViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

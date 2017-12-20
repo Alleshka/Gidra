@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF;
+using GidraSIM.GUI.Core.BlocksWPF.ViewModel;
 
 namespace GidraSIM.GUI.Utility
 {
@@ -115,15 +116,15 @@ namespace GidraSIM.GUI.Utility
 
         private IBlock ConvertWpfBlockToModel(ProcedureWPF procedureWPF, ITokensCollector collector)
         {
-            if(procedureWPF.ProcedurePrototype is FixedTimeBlock)
+            if(procedureWPF is FixedTimeBlockViewModel)
             {
                 return new FixedTimeBlock(collector, 10);
             }
-            else if(procedureWPF.ProcedurePrototype is QualityCheckProcedure)
+            else if(procedureWPF is QualityCheckProcedureViewModel)
             {
                 return new QualityCheckProcedure(collector);
             }
-            else if(procedureWPF.ProcedurePrototype == null)
+            else if(procedureWPF == null)
             {
                 throw new NullReferenceException("Для процедуры WPF не указан прототип");
             }
