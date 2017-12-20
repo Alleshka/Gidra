@@ -8,7 +8,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 {
     public class StartBlockWPF : RoundBlockWPF
     {
-        private const string IMG_SOURCE = " 💡";//костыль с пробелом
+        private const string IMG_SOURCE = "💡";//костыль с пробелом
 
 
         // Выходы

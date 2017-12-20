@@ -63,12 +63,14 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             icon.TextWrapping = TextWrapping.Wrap;
             icon.Foreground = Brushes.White;
             icon.FontSize = IMG_SIZE*2/3;
-            icon.Width = ellipse.Width;
-            icon.Height = ellipse.Height;
             icon.HorizontalAlignment = HorizontalAlignment.Center;
             icon.VerticalAlignment = VerticalAlignment.Center;
-            this.Children.Add(icon);
 
+            Grid iconGrid = new Grid();
+            iconGrid.Height = IMG_SIZE;
+            iconGrid.Width = IMG_SIZE;
+            iconGrid.Children.Add(icon);
+            this.Children.Add(iconGrid);
         }
 
         protected override void MakeBody()
