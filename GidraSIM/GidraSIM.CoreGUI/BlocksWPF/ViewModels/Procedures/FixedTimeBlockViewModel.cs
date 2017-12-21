@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using GidraSIM.GUI.Core.BlocksWPF;
 
-namespace GidraSIM.GUI.Core.BlocksWPF.ViewModel
+namespace GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures
+
 {
     public class FixedTimeBlockViewModel : ProcedureWPF
     {

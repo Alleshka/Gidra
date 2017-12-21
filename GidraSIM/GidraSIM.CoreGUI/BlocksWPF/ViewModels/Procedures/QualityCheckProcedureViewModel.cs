@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GidraSIM.GUI.Core.BlocksWPF.ViewModel
+namespace GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures
 {
     public class QualityCheckProcedureViewModel : ProcedureWPF
     {

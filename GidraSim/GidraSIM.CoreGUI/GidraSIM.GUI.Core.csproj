@@ -62,8 +62,12 @@
     <Compile Include="BlocksWPF\SquareBlockWPF.cs" />
     <Compile Include="BlocksWPF\StartBlockWPF.cs" />
     <Compile Include="BlocksWPF\SubProcessWPF.cs" />
-    <Compile Include="BlocksWPF\ViewModel\FixedTimeBlockViewModel.cs" />
-    <Compile Include="BlocksWPF\ViewModel\QualityCheckProcedureViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Procedures\FixedTimeBlockViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Procedures\QualityCheckProcedureViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Procedures\SchemaCreationProcedureViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Resources\CadResourceViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Resources\TechincalSupportResourceViewModel.cs" />
+    <Compile Include="BlocksWPF\ViewModels\Resources\WorkerResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

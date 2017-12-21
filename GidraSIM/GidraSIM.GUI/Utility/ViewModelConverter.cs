@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
+using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModel;
+using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
+using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 
 namespace GidraSIM.GUI.Utility
 {
@@ -21,6 +23,7 @@ namespace GidraSIM.GUI.Utility
         public void Map(UIElementCollection uIElementCollection, Process process)
         {
             Dictionary<ProcedureWPF, IBlock> procedures = new Dictionary<ProcedureWPF, IBlock>();
+            Dictionary<ResourceWPF, IResource> resources = new Dictionary<ResourceWPF, IResource>();
             foreach (var element in uIElementCollection)
             {
                 //смотрим все соединения процедур
@@ -106,9 +109,44 @@ namespace GidraSIM.GUI.Utility
                 //сотрим соединения ресурсов
                 else if (element is ResConnectionWPF)
                 {
-                    var connection = (element as ResConnectionWPF);
-                    //TODO типа можно здесь всё обработать
 
+                    var connection = (element as ResConnectionWPF);
+                    ProcedureWPF procedure;
+                    ResourceWPF resourceWPF;
+                    if (connection.StartBlock is ProcedureWPF)
+                    {
+                        procedure = connection.StartBlock as ProcedureWPF;
+                        resourceWPF = connection.EndBlock as ResourceWPF;
+                    }
+                    else
+                    {
+                        procedure = connection.EndBlock as ProcedureWPF;
+                        resourceWPF = connection.StartBlock as ResourceWPF;
+                    }
+                    IBlock block = null;
+
+                    //если в первый раз такое встречаем
+                    if (!(procedures.ContainsKey(procedure)))
+                    {
+                        block = this.ConvertWpfBlockToModel(procedure, process.Collector);
+                        procedures.Add(procedure, block);
+                        process.Blocks.Add(block);
+                    }
+                    else
+                        block = procedures[procedure];
+
+                    IResource resource = null; ;
+                    //если в первый раз такое встречаем
+                    if (!(resources.ContainsKey(resourceWPF)))
+                    {
+                        resource = this.ConvertWpfResourcekToModel(resourceWPF);
+                        resources.Add(resourceWPF, resource);
+                        process.Resources.Add(resource);
+                    }
+                    else
+                        resource = resources[resourceWPF];
+
+                    (block as IProcedure).AddResorce(resource);
                 }
                 
             }
@@ -124,6 +162,10 @@ namespace GidraSIM.GUI.Utility
             {
                 return new QualityCheckProcedure(collector);
             }
+            else if (procedureWPF is SchemaCreationProcedureViewModel)
+            {
+                return new SchemaCreationProcedure(collector);
+            }
             else if(procedureWPF == null)
             {
                 throw new NullReferenceException("Для процедуры WPF не указан прототип");
@@ -131,6 +173,28 @@ namespace GidraSIM.GUI.Utility
             else
             {
                 throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
+            }
+        }
+
+        private IResource ConvertWpfResourcekToModel(ResourceWPF resourceWPF)
+        {
+            if (resourceWPF == null)
+                throw new ArgumentNullException();
+            else if( resourceWPF is CadResourceViewModel)
+            {
+                return new CadResource() { };
+            }
+            else if( resourceWPF is WorkerResourceViewModel)
+            {
+                return new WorkerResource() { Name = "Name", WorkerQualification = WorkerResource.Qualification.SecondCategory};
+            }
+            else if(resourceWPF is TechincalSupportResourceViewModel)
+            {
+                return new TechincalSupportResource() { Frequency = 2, Ram = 2, Vram = 2, Count = 1 };
+            }
+            else
+            {
+                throw new NotImplementedException("Данный тип ресурса пока не поддерживается конвертером");
             }
         }
     }

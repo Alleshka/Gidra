@@ -102,7 +102,14 @@ namespace GidraSIM.GUI
 
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
-            workArea.Children.Add(new ResourceWPF(resourcePosition, "Ресурс"));
+            //workArea.Children.Add(new ResourceWPF(resourcePosition, "Ресурс"));
+            TestResourceSelectionDialog dialog = new TestResourceSelectionDialog(resourcePosition);
+
+            if (dialog.ShowDialog() == true)
+            {
+                var resource = dialog.SelectedResource;
+                workArea.Children.Add(resource);
+            }
         }
 
         /// <summary>
