@@ -68,7 +68,7 @@ namespace GidraSIM.GUI.Utility
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.StartBlock as ProcedureWPF)))
                         {
-                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
+                            block = this.ConvertWpfBlockToModel(connection.StartBlock as ProcedureWPF, process.Collector);
                             procedures.Add(connection.StartBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
