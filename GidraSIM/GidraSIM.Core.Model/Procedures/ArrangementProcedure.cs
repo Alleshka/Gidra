@@ -10,6 +10,8 @@ namespace GidraSIM.Core.Model.Procedures
     ///Компоновка
     public class ArrangementProcedure : Procedure
     {
+        public override string Description => "Компоновка";
+
         public ArrangementProcedure(ITokensCollector collector) : base(1, 1, collector)
         {
 

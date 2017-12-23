@@ -27,6 +27,7 @@ namespace GidraSIM.GUI
             listBox1.Items.Add(new CadResourceViewModel(position, "CAD"));
             listBox1.Items.Add(new WorkerResourceViewModel(position, "Работник"));
             listBox1.Items.Add(new TechincalSupportResourceViewModel(position, "Рабочая станция"));
+            listBox1.Items.Add(new MethodolgicalSupportResourceViewModel(position, "Методологическое обеспечение"));
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
@@ -40,4 +41,6 @@ namespace GidraSIM.GUI
             this.DialogResult = true;
         }
     }
+
+
 }

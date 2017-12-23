@@ -13,6 +13,8 @@ namespace GidraSIM.Core.Model.Procedures
     /// </summary>
     public class PaperworkProcedure : Procedure
     {
+        public override string Description => "Оформление документации";
+
         public PaperworkProcedure(ITokensCollector collector) : base(1, 1, collector)
         {
 
@@ -71,19 +73,19 @@ namespace GidraSIM.Core.Model.Procedures
                 // Влияние рабочего на скорость работы
                 switch (worker.WorkerQualification)
                 {
-                    case WorkerResource.Qualification.LeadCategory:
+                    case Qualification.LeadCategory:
                         time -= time / rand.Next(1, 4);
                         break;
-                    case WorkerResource.Qualification.FirstCategory:
+                    case Qualification.FirstCategory:
                         time -= time / rand.Next(1, 5);//уменьшаем время, т.к. высокая категория\
                         break;
-                    case WorkerResource.Qualification.SecondCategory:
+                    case Qualification.SecondCategory:
                         //базовое время подсчитано для второй категории
                         break;
-                    case WorkerResource.Qualification.ThirdCategory:
+                    case Qualification.ThirdCategory:
                         time += time / rand.Next(1, 5);
                         break;
-                    case WorkerResource.Qualification.NoCategory:
+                    case Qualification.NoCategory:
                         time += time / rand.Next(1, 4);
                         break;
                 }

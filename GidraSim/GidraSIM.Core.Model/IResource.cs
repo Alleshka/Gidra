@@ -9,5 +9,6 @@ namespace GidraSIM.Core.Model
     {
         bool TryGetResource();
         void ReleaseResource();
+        string Description { get; set; }
     }
 }

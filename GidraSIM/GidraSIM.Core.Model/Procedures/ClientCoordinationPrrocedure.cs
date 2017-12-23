@@ -8,6 +8,8 @@ namespace GidraSIM.Core.Model.Procedures
 {
     public class ClientCoordinationPrrocedure:Procedure
     {
+        public override string Description => "Согласование доков с заказчиком";
+
         public ClientCoordinationPrrocedure(ITokensCollector collector):base(1,1,collector)
         {
 

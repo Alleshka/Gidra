@@ -8,16 +8,13 @@ using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources
 {
-    public class CadResourceViewModel : ResourceWPF
+    public class MethodolgicalSupportResourceViewModel : ResourceWPF
     {
-        public CadResource Model { get; set; }
-
-        public CadResourceViewModel(Point position, string resourceName) : base(position, resourceName)
+        public MethodolgicalSupportResourceViewModel(Point position, string resourceName) : base(position, resourceName)
         {
-            Model = new CadResource();
+            Model = new MethodolgicalSupportResource();
         }
-
-        public int Count => Model.Count;
+        public MethodolgicalSupportResource Model { get; set; }
         public string Description => Model.Description;
     }
 }

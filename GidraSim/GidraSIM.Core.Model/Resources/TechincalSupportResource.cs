@@ -11,6 +11,7 @@ namespace GidraSIM.Core.Model.Resources
         public TechincalSupportResource()
         {
             Count = 1;
+            Description = "Компьютер";
         }
 
         public double Frequency

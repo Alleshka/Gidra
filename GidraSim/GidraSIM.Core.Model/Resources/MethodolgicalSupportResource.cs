@@ -13,5 +13,10 @@ namespace GidraSIM.Core.Model.Resources
         /// </summary>
         /// <returns></returns>
         public override bool TryGetResource() => true;
+
+        public MethodolgicalSupportResource()
+        {
+            Description = "Гугл";
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace GidraSIM.Core.Test
             {
                 Name = "Alleshka",
                 Position = "Работяга",
-                WorkerQualification = WorkerResource.Qualification.SecondCategory
+                WorkerQualification = Qualification.SecondCategory
             });
 
 

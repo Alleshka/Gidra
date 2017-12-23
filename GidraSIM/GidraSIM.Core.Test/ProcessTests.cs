@@ -32,7 +32,6 @@ namespace GidraSIM.Core.Model.Tests
             process.StartBlock = subprocess;
             process.EndBlock = procedure2;
 
-            Token token = null;
 
 
             //act

@@ -166,7 +166,44 @@ namespace GidraSIM.GUI.Utility
             {
                 return new SchemaCreationProcedure(collector);
             }
-            else if(procedureWPF == null)
+            else if (procedureWPF is ArrangementProcedureViewModel)
+            {
+                return new ArrangementProcedure(collector);
+            }
+            else if (procedureWPF is ClientCoordinationPrrocedureViewModel)
+            {
+                return new ClientCoordinationPrrocedure(collector);
+            }
+            else if (procedureWPF is DocumentationCoordinationProcedureViewModel)
+            {
+                return new DocumentationCoordinationProcedure(collector);
+            }
+            else if (procedureWPF is ElectricalSchemeSimulationViewModel)
+            {
+                return new ElectricalSchemeSimulation(collector);
+            }
+            else if (procedureWPF is FormingDocumentationProcedureViewModel)
+            {
+                return new FormingDocumentationProcedure(collector);
+            }
+            else if (procedureWPF is PaperworkProcedureViewModel)
+            {
+                return new PaperworkProcedure(collector);
+            }
+            else if (procedureWPF is QualityCheckProcedureViewModel)
+            {
+                return new QualityCheckProcedure(collector);
+            }
+            else if (procedureWPF is SampleTestingProcedureViewModel)
+            {
+                return new SampleTestingProcedure(collector);
+            }
+            else if (procedureWPF is TracingProcedureViewModel)
+            {
+                return new TracingProcedure(collector);
+            }
+
+            else if (procedureWPF == null)
             {
                 throw new NullReferenceException("Для процедуры WPF не указан прототип");
             }
@@ -182,15 +219,19 @@ namespace GidraSIM.GUI.Utility
                 throw new ArgumentNullException();
             else if( resourceWPF is CadResourceViewModel)
             {
-                return new CadResource() { };
+                return (resourceWPF as CadResourceViewModel).Model;
             }
             else if( resourceWPF is WorkerResourceViewModel)
             {
-                return new WorkerResource() { Name = "Name", WorkerQualification = WorkerResource.Qualification.SecondCategory};
+                return (resourceWPF as WorkerResourceViewModel).Model;
             }
             else if(resourceWPF is TechincalSupportResourceViewModel)
             {
-                return new TechincalSupportResource() { Frequency = 2, Ram = 2, Vram = 2, Count = 1 };
+                return (resourceWPF as TechincalSupportResourceViewModel).Model;
+            }
+            else if (resourceWPF is MethodolgicalSupportResourceViewModel)
+            {
+                return (resourceWPF as MethodolgicalSupportResourceViewModel).Model;
             }
             else
             {

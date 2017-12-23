@@ -8,6 +8,8 @@ namespace GidraSIM.Core.Model.Procedures
 {
     public class DocumentationCoordinationProcedure: Procedure
     {
+        public override string Description => "Согласование с нормоконтролем";
+
         public DocumentationCoordinationProcedure(ITokensCollector collector):base(1,1,collector)
         {
 

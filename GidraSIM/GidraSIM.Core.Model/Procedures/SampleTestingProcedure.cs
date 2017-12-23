@@ -8,6 +8,8 @@ namespace GidraSIM.Core.Model.Procedures
 {
     public class SampleTestingProcedure:Procedure
     {
+        public override string Description => "Тестирование образца";
+
         public SampleTestingProcedure(ITokensCollector collector):base(1,1,collector)
         {
 

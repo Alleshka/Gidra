@@ -27,7 +27,7 @@ namespace GidraSIM.Core.Model.Procedures.Tests
             {
                 Name = "Alleshka",
                 Position = "Работяга",
-                WorkerQualification = WorkerResource.Qualification.FirstCategory
+                WorkerQualification = Qualification.FirstCategory
             });
             procedure.AddResorce(new CadResource()
             {

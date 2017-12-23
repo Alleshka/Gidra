@@ -10,6 +10,8 @@ namespace GidraSIM.Core.Model.Procedures
     ///Компоновка
     public class TracingProcedure : Procedure
     {
+        public override string Description => "Трассировка";
+
         public TracingProcedure(ITokensCollector collector) : base(1, 1, collector)
         {
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +8,32 @@ using System.Threading.Tasks;
 namespace GidraSIM.Core.Model.Resources
 {
     
+    public enum Qualification
+    {
+        [Description("Без категории")]
+        NoCategory,
+        [Description("Первая категория")]
+        FirstCategory,
+        [Description("Вторая категория")]
+        SecondCategory,
+        [Description("Третья категория")]
+        ThirdCategory,
+        [Description("Ведущий специалист")]
+        LeadCategory//Ведущий инженеар, например
+    };
+
+
     public class WorkerResource: Resource
     {
-        public enum Qualification
+
+        public WorkerResource()
         {
-            NoCategory,
-            FirstCategory,
-            SecondCategory,
-            ThirdCategory,
-            LeadCategory//Ведущий инженеар, например
-        };
+            Name = "Михалыч";
+            Position = "Работяга";
+            Description = "Простой работник";
+        }
+
+
         public Qualification WorkerQualification
         {
             get;

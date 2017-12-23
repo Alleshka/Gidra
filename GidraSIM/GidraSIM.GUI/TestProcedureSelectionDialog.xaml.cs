@@ -29,6 +29,16 @@ namespace GidraSIM.GUI
             listBox1.Items.Add( new FixedTimeBlockViewModel(position,"Блок фикс времени"));
             listBox1.Items.Add(new QualityCheckProcedureViewModel(position, "Проверка качества"));
             listBox1.Items.Add(new SchemaCreationProcedureViewModel(position, "Проектирование эл схемы"));
+
+            listBox1.Items.Add(new ArrangementProcedureViewModel(position, "Компоновка"));
+            listBox1.Items.Add(new ClientCoordinationPrrocedureViewModel(position, "Согласование доков с заказчиком"));
+            listBox1.Items.Add(new DocumentationCoordinationProcedureViewModel(position, "Согласование с нормоконтролем"));
+            listBox1.Items.Add(new ElectricalSchemeSimulationViewModel(position, "Моделирование эл схемы"));
+            listBox1.Items.Add(new FormingDocumentationProcedureViewModel(position, "Формирование документации"));
+            listBox1.Items.Add(new PaperworkProcedureViewModel(position, "Оформление документации"));
+            listBox1.Items.Add(new SampleTestingProcedureViewModel(position, "Тестирование образца"));
+            listBox1.Items.Add(new TracingProcedureViewModel(position, "Трассировка"));
+
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
