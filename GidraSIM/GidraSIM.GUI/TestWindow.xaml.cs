@@ -33,10 +33,13 @@ namespace GidraSIM.GUI
             InitializeComponent();
 
             //добавление первого процесса
+
+            var drawArea = new DrawArea();
+            drawArea.Processes = processes;
             //добавляем область рисования
-            drawAreas.Add(new DrawArea());
+            drawAreas.Add(drawArea);
             //запихиваем область рисования во вкладку
-            (this.testTabControl.Items[0] as TabItem).Content = drawAreas[0];
+            (this.testTabControl.Items[0] as TabItem).Content = drawArea;
             //переименовываем вкладку
             (this.testTabControl.Items[0] as TabItem).Header = mainProcess;
             //доабавляем процесс в список
@@ -168,11 +171,14 @@ namespace GidraSIM.GUI
             //TODO сделать DataBinding
             listBox1.Items.Clear();
             mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+            mainProcess.Collector.GetHistory().Clear();
 
             //выводим число токенов и время затраченное (в заголовке)
             MessageBox.Show(modelingTime.Now.ToString());
-            mainProcess.Collector.GetHistory().Clear();
-            mainProcess = new Process(new TokensCollector());
+            foreach(var process in processes)
+            {
+                process.ClearProcess();
+            }
         }
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
@@ -187,6 +193,8 @@ namespace GidraSIM.GUI
             testTabControl.SelectedItem = tabItem;
             //теперь создаём область рисования
             var drawArea = new DrawArea();
+            //добавляем ссылку на все ресурсы
+            drawArea.Processes = processes;
             //добавляем в список
             drawAreas.Add(drawArea);
             //добавляем на вкладку

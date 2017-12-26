@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GidraSIM.Core.Model;
 using GidraSIM.GUI.Core.BlocksWPF;
 
 namespace GidraSIM.GUI
@@ -24,6 +25,8 @@ namespace GidraSIM.GUI
         enum Mode { Arrow, Procedure, Resourse , Connect , SubProcess }
 
         Mode mode = (Mode)10;
+
+        public List<Process> Processes { get; set; }
 
         private bool AllChildrenIsSelectable
         {
@@ -86,7 +89,13 @@ namespace GidraSIM.GUI
 
             // Добавление
             // TODO: Ввод имени подпроцесса и связь с моделью
-            workArea.Children.Add(new SubProcessWPF(subProcessPosition, "Подпроцесс", rand.Next(1, 11), rand.Next(1, 11)));
+            TestSubProcessSelectionDialog dialog = new TestSubProcessSelectionDialog(subProcessPosition, Processes);
+            if (dialog.ShowDialog() == true)
+            {
+                var process = dialog.SelectedProcess;
+                workArea.Children.Add(process);
+            }
+            //workArea.Children.Add(new SubProcessWPF(subProcessPosition, "Подпроцесс", rand.Next(1, 11), rand.Next(1, 11)));
         }
 
         /// <summary>
