@@ -91,6 +91,16 @@ namespace GidraSIM.Core.Model
             
         }
 
+        /// <summary>
+        /// очистить всё содержимое процесса
+        /// </summary>
+        public void ClearProcess()
+        {
+            Connections.GetAllConnections().Clear();
+            Blocks.Clear();
+            Resources.Clear();
+        }
+
         public override void AddToken(Token token, int inputNumber)
         {
             if (inputNumber != 0)

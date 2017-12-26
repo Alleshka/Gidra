@@ -171,11 +171,14 @@ namespace GidraSIM.GUI
             //TODO сделать DataBinding
             listBox1.Items.Clear();
             mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+            mainProcess.Collector.GetHistory().Clear();
 
             //выводим число токенов и время затраченное (в заголовке)
             MessageBox.Show(modelingTime.Now.ToString());
-            mainProcess.Collector.GetHistory().Clear();
-            mainProcess = new Process(new TokensCollector());
+            foreach(var process in processes)
+            {
+                process.ClearProcess();
+            }
         }
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
