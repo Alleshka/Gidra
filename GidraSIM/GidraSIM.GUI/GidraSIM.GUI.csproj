@@ -74,6 +74,9 @@
     <Compile Include="TestResourceSelectionDialog.xaml.cs">
       <DependentUpon>TestResourceSelectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestSubProcessSelectionDialog.xaml.cs">
+      <DependentUpon>TestSubProcessSelectionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TestResourceSelectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestSubProcessSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

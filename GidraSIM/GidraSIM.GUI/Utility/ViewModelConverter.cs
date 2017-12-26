@@ -154,11 +154,11 @@ namespace GidraSIM.GUI.Utility
 
         private IBlock ConvertWpfBlockToModel(ProcedureWPF procedureWPF, ITokensCollector collector)
         {
-            if(procedureWPF is FixedTimeBlockViewModel)
+            if (procedureWPF is FixedTimeBlockViewModel)
             {
                 return new FixedTimeBlock(collector, 10);
             }
-            else if(procedureWPF is QualityCheckProcedureViewModel)
+            else if (procedureWPF is QualityCheckProcedureViewModel)
             {
                 return new QualityCheckProcedure(collector);
             }
@@ -202,6 +202,9 @@ namespace GidraSIM.GUI.Utility
             {
                 return new TracingProcedure(collector);
             }
+
+            else if (procedureWPF is SubProcessWPF)
+                return procedureWPF.ProcedurePrototype;
 
             else if (procedureWPF == null)
             {

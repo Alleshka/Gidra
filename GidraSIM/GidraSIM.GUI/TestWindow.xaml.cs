@@ -33,10 +33,13 @@ namespace GidraSIM.GUI
             InitializeComponent();
 
             //добавление первого процесса
+
+            var drawArea = new DrawArea();
+            drawArea.Processes = processes;
             //добавляем область рисования
-            drawAreas.Add(new DrawArea());
+            drawAreas.Add(drawArea);
             //запихиваем область рисования во вкладку
-            (this.testTabControl.Items[0] as TabItem).Content = drawAreas[0];
+            (this.testTabControl.Items[0] as TabItem).Content = drawArea;
             //переименовываем вкладку
             (this.testTabControl.Items[0] as TabItem).Header = mainProcess;
             //доабавляем процесс в список
@@ -187,6 +190,8 @@ namespace GidraSIM.GUI
             testTabControl.SelectedItem = tabItem;
             //теперь создаём область рисования
             var drawArea = new DrawArea();
+            //добавляем ссылку на все ресурсы
+            drawArea.Processes = processes;
             //добавляем в список
             drawAreas.Add(drawArea);
             //добавляем на вкладку

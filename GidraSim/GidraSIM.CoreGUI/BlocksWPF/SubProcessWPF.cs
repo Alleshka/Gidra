@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
@@ -8,7 +9,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     {
         private const int BORDER = 3;
 
-        public SubProcessWPF(Point position, string processName, int inputCount, int outputCount) : base(position, processName, inputCount, outputCount)
+        public SubProcessWPF(Point position, string processName) : base(position, processName, 1, 1)
         {
 
         }
