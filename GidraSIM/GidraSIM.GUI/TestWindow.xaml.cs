@@ -22,11 +22,25 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestWindow : Window
     {
-        Process process = new Process(new TokensCollector());
+        //переменная для именования процессов
+        int processNamesCounter = 1;
+        Process mainProcess = new Process(new TokensCollector()) { Description = "Процесс 1" };
+        List<Process> processes = new List<Process>();
+        List<DrawArea> drawAreas = new List<DrawArea>();
 
         public TestWindow()
         {
             InitializeComponent();
+
+            //добавление первого процесса
+            //добавляем область рисования
+            drawAreas.Add(new DrawArea());
+            //запихиваем область рисования во вкладку
+            (this.testTabControl.Items[0] as TabItem).Content = drawAreas[0];
+            //переименовываем вкладку
+            (this.testTabControl.Items[0] as TabItem).Header = mainProcess;
+            //доабавляем процесс в список
+            processes.Add(mainProcess);
 
 
             //
@@ -35,6 +49,8 @@ namespace GidraSIM.GUI
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
         {
+            //берём от текущей вкладки
+            var drawArea = (testTabControl.SelectedItem as TabItem).Content as DrawArea;
             drawArea.DeleteSelected();
         }
 
@@ -70,14 +86,16 @@ namespace GidraSIM.GUI
         
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            drawArea.SelectProcedureMode();
+            //меняем режим для всехна процедуры
+            drawAreas.ForEach(area => area.SelectProcedureMode());
             //testTabControl.MouseLeftButtonDown -= Cursor_MouseDown;
             //testTabControl.MouseLeftButtonDown += Procedure_MouseDown;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            drawArea.SelectArrowMode();
+            //меняем режим для всех на выделение
+            drawAreas.ForEach(area => area.SelectArrowMode());
             //testTabControl.MouseLeftButtonDown -= Procedure_MouseDown;
             //testTabControl.MouseLeftButtonDown += Cursor_MouseDown;
         }
@@ -93,7 +111,8 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            drawArea.SelectResourseMode();
+            //меняем режим для всех на ресурсы
+            drawAreas.ForEach(area => area.SelectResourseMode());
         }
         /// <summary>
         /// связи
@@ -102,7 +121,8 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void button4_Click(object sender, RoutedEventArgs e)
         {
-            drawArea.SelectConnectMode();
+            //меняем для всех на связи
+            drawAreas.ForEach(area => area.SelectConnectMode());
         }
 
         /// <summary>
@@ -112,23 +132,24 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void button5_Click(object sender, RoutedEventArgs e)
         {
-            drawArea.SelectSubProcessMode();
+            //меняем для всех на подпроцессы
+            drawAreas.ForEach(area => area.SelectSubProcessMode());
         }
 
         private void TestBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModelConverter converter = new ViewModelConverter();
-            //drawArea.Children;
-            converter.Map(drawArea.Children, process);
+            //запихиваем содержимое главной области рисования в процесс
+            converter.Map(drawAreas[0].Children, mainProcess);
             //добавляем на стартовый блок токен
-            process.AddToken(new Token(0, 10), 0);
+            mainProcess.AddToken(new Token(0, 10), 0);
             //double i = 0;
             ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
             for(modelingTime.Now=0;modelingTime.Now<1000 ;modelingTime.Now+=modelingTime.Delta)
             {
-                process.Update(modelingTime);
+                mainProcess.Update(modelingTime);
                 //на конечном блоке на выходе появился токен
-                if(process.EndBlockHasOutputToken)
+                if(mainProcess.EndBlockHasOutputToken)
                 {
                     break;
                 }
@@ -136,12 +157,53 @@ namespace GidraSIM.GUI
 
             //TODO сделать DataBinding
             listBox1.Items.Clear();
-            process.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+            mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
 
             //выводим число токенов и время затраченное (в заголовке)
             MessageBox.Show(modelingTime.Now.ToString());
-            process.Collector.GetHistory().Clear();
-            process = new Process(new TokensCollector());
+            mainProcess.Collector.GetHistory().Clear();
+            mainProcess = new Process(new TokensCollector());
+        }
+
+        private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
+        {
+            //создаём новый процесс
+            var process = new Process(mainProcess.Collector) { Description = "Процесс "+ (++this.processNamesCounter)};
+            //добавляем в список всех процессов
+            processes.Add(process);
+            //надеюсь, что заголовок будет содержать название
+            var tabItem = new TabItem() { Header = process};
+            //переключаемся на новую вкладку, чтобы не было проблем с добавлением
+            testTabControl.SelectedItem = tabItem;
+            //теперь создаём область рисования
+            var drawArea = new DrawArea();
+            //добавляем в список
+            drawAreas.Add(drawArea);
+            //добавляем на вкладку
+            tabItem.Content = drawArea;
+            //и добавляем вкладку
+            testTabControl.Items.Add(tabItem);
+        }
+
+        private void testTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //try
+            //{
+            //    MessageBox.Show("Selected tab " + (testTabControl.SelectedItem as TabItem).Header.ToString());
+            //}
+            //catch( InvalidOperationException )
+            //{
+            //    //
+            //}
+            var drawArea = (testTabControl.SelectedItem as TabItem).Content as DrawArea;
+            
+
+            drawAreas.ForEach(area => area.Unsellect());
+            //drawAreas.ForEach(area => area.HideElements());
+
+            //drawArea.ShowElements();
+
+            //drawAreas.ForEach(area => area.UpdateLayout());
         }
     }
 }

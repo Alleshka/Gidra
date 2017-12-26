@@ -216,7 +216,7 @@ namespace GidraSIM.GUI
         /// <summary>
         /// снять выделение
         /// </summary>
-        private void Unsellect()
+        public void Unsellect()
         {
             if (selectedFigure != null) selectedFigure.UnSelect();
             selectedFigure = null;

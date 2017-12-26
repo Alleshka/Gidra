@@ -13,10 +13,8 @@ namespace GidraSIM.Core.Model
 
         public virtual string Description
         {
-            get
-            {
-                return "Block";
-            }
+            get;
+            set;
         }
 
         public override string ToString()

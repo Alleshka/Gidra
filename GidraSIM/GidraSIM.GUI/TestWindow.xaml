@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="TestWindow" Height="600" Width="800">
     <DockPanel>
+        <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Процесс">
+                <MenuItem  Header="Новый процесс" Click="CreateProcessButton_Click" />
+            </MenuItem>
+            <MenuItem Header="Настройки"/>
+        </Menu>
         <StackPanel HorizontalAlignment="Left" Margin="0">
             <Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
             <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
@@ -19,9 +26,9 @@
 
         <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="5,5,10,10"></ListBox>
 
-        <TabControl x:Name="testTabControl" Margin="0,0,5,5" Panel.ZIndex="10">
+        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged">
             <TabItem Header="Процесс 1" >
-                <local:DrawArea x:Name="drawArea"></local:DrawArea>
+                <!--<local:DrawArea x:Name="drawArea"></local:DrawArea>-->
             </TabItem>
         </TabControl>
     </DockPanel>
