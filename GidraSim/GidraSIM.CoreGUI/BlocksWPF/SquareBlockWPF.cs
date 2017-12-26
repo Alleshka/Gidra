@@ -4,12 +4,14 @@ using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
     /// <summary>
     /// Абстрактный класс для квадратных блоков
     /// </summary>
+    [DataContract]
     public abstract class SquareBlockWPF : BlockWPF
     {
         // Константные параметры блока

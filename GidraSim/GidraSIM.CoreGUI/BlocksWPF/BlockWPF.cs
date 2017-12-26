@@ -2,12 +2,14 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Input;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
     /// <summary>
     /// Абстрактный класс для блоков
     /// </summary>
+    [DataContract]
     public abstract class BlockWPF : GSFigure
     {
         protected const int ZINDEX = 10;

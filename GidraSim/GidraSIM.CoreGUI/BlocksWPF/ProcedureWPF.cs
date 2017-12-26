@@ -5,9 +5,11 @@ using System.Windows.Media;
 using System.Collections.Generic;
 using System;
 using GidraSIM.Core.Model;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
+    [DataContract]
     public class ProcedureWPF : SquareBlockWPF
     {
         public const int POINT_MARGIN = 7;
@@ -88,7 +90,6 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             return this.bodyGeometry.Rect.Height;
         }
-
 
         protected override void UpdateConnectoins()
         {

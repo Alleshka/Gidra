@@ -215,5 +215,52 @@ namespace GidraSIM.GUI
 
             //drawAreas.ForEach(area => area.UpdateLayout());
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModelConverter converter = new ViewModelConverter();
+
+                //запихиваем содержимое области рисования в процесс
+                foreach (var item in testTabControl.Items)
+                {
+                    var tab = item as TabItem;
+                    var drawArea = tab.Content as DrawArea;
+                    converter.Save(drawArea.Children, tab.Header as Process, "testsave.json");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            //создаём новый процесс
+            var process = new Process(mainProcess.Collector) { Description = "Процесс " + (++this.processNamesCounter) };
+            //добавляем в список всех процессов
+            processes.Add(process);
+            //надеюсь, что заголовок будет содержать название
+            var tabItem = new TabItem() { Header = process };
+            //переключаемся на новую вкладку, чтобы не было проблем с добавлением
+            testTabControl.SelectedItem = tabItem;
+            ViewModelConverter converter = new ViewModelConverter();
+            //теперь создаём область рисования
+            var drawArea = new DrawArea();
+            //добавляем в список
+            drawAreas.Add(drawArea);
+            //добавляем на вкладку
+            tabItem.Content = drawArea;
+            //и добавляем вкладку
+            testTabControl.Items.Add(tabItem);
+
+            var k = converter.Load("testsave.json");
+            foreach (var t in k)
+            {
+                drawArea.Children.Add(t);
+            }
+        }
     }
 }
