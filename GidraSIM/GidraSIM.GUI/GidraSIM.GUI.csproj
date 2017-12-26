@@ -81,7 +81,9 @@
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility\IProjectSaver.cs" />
     <Compile Include="Utility\IViewModelConverter.cs" />
+    <Compile Include="Utility\ProjectSaver.cs" />
     <Compile Include="Utility\ViewModelConverter.cs" />
     <Page Include="DrawArea.xaml">
       <Generator>MSBuild:Compile</Generator>

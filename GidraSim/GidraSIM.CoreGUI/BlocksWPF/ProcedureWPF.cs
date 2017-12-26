@@ -14,6 +14,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     {
         public const int POINT_MARGIN = 7;
 
+        public int InputCount { get; set; }
+        public int OutputCount { get; set; }
+
         //Входы
         private List<ProcConnectionWPF> inputs;
 
@@ -29,6 +32,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         public ProcedureWPF(Point position, string processName, int inputCount, int outputCount) : base(position, processName)
         {
+            this.InputCount = inputCount;
+            this.OutputCount = outputCount;
+
             this.outputs = new List<ProcConnectionWPF>();
             this.inputs = new List<ProcConnectionWPF>();
             this.resputs = new List<ResConnectionWPF>();

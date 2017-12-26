@@ -213,10 +213,11 @@ namespace GidraSIM.GUI
             //{
             //    //
             //}
-            var drawArea = (testTabControl.SelectedItem as TabItem).Content as DrawArea;
-            
-
-            drawAreas.ForEach(area => area.Unsellect());
+            if (testTabControl.Items.Count > 0)
+            {
+                var drawArea = (testTabControl.SelectedItem as TabItem).Content as DrawArea;
+                drawAreas.ForEach(area => area.Unsellect());
+            }
             //drawAreas.ForEach(area => area.HideElements());
 
             //drawArea.ShowElements();
@@ -228,15 +229,8 @@ namespace GidraSIM.GUI
         {
             try
             {
-                ViewModelConverter converter = new ViewModelConverter();
-
-                //запихиваем содержимое области рисования в процесс
-                foreach (var item in testTabControl.Items)
-                {
-                    var tab = item as TabItem;
-                    var drawArea = tab.Content as DrawArea;
-                    converter.Save(drawArea.Children, tab.Header as Process, "testsave.json");
-                }
+                ProjectSaver saver = new ProjectSaver();
+                saver.SaveProject(testTabControl, "testsave.json");
             }
             catch (Exception ex)
             {
@@ -246,28 +240,42 @@ namespace GidraSIM.GUI
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            //создаём новый процесс
-            var process = new Process(mainProcess.Collector) { Description = "Процесс " + (++this.processNamesCounter) };
-            //добавляем в список всех процессов
-            processes.Add(process);
-            //надеюсь, что заголовок будет содержать название
-            var tabItem = new TabItem() { Header = process };
-            //переключаемся на новую вкладку, чтобы не было проблем с добавлением
-            testTabControl.SelectedItem = tabItem;
-            ViewModelConverter converter = new ViewModelConverter();
-            //теперь создаём область рисования
-            var drawArea = new DrawArea();
-            //добавляем в список
-            drawAreas.Add(drawArea);
-            //добавляем на вкладку
-            tabItem.Content = drawArea;
-            //и добавляем вкладку
-            testTabControl.Items.Add(tabItem);
+            // Удаляем все элементы
+            testTabControl.Items.Clear();
+            processes.Clear();
+            drawAreas.Clear();
 
-            var k = converter.Load("testsave.json");
-            foreach (var t in k)
+            // Выгружаем проект
+            ProjectSaver saver = new ProjectSaver();
+            var temp = saver.LoadProject("testsave.json"); // Считываем сохранение
+
+            // Проходим по считанным процессам
+            foreach (var proc in temp.SaveList)
             {
-                drawArea.Children.Add(t);
+                // Создаём новый процесс
+                var process = new Process(mainProcess.Collector) { Description = proc.NameProcess };
+                processes.Add(process); // Добавляем в список
+
+                var tabItem = new TabItem() { Header = process };
+                testTabControl.SelectedItem = tabItem;
+
+                // Создаём область рисование
+                var drawArea = new DrawArea
+                {
+                    Processes = processes
+                };
+
+                //добавляем в список
+                drawAreas.Add(drawArea);
+                //добавляем на вкладку
+                tabItem.Content = drawArea;
+                //и добавляем вкладку
+                testTabControl.Items.Add(tabItem);
+
+                foreach (var block in saver.LoadProcess(proc))
+                {
+                    drawArea.Children.Add(block);
+                }
             }
         }
     }
