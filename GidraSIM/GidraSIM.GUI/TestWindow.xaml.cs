@@ -139,8 +139,18 @@ namespace GidraSIM.GUI
         private void TestBtn_Click(object sender, RoutedEventArgs e)
         {
             ViewModelConverter converter = new ViewModelConverter();
-            //запихиваем содержимое главной области рисования в процесс
-            converter.Map(drawAreas[0].Children, mainProcess);
+
+            //запихиваем содержимое области рисования в процесс
+            foreach (var item in testTabControl.Items)
+            {
+                var tab = item as TabItem;
+                var drawArea = tab.Content as DrawArea;
+                converter.Map( drawArea.Children, tab.Header as Process);
+            }
+
+            ////запихиваем содержимое главной области рисования в процесс
+            //converter.Map(drawAreas[0].Children, mainProcess);
+
             //добавляем на стартовый блок токен
             mainProcess.AddToken(new Token(0, 10), 0);
             //double i = 0;
