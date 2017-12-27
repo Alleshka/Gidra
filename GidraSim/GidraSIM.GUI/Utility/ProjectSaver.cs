@@ -87,6 +87,11 @@ namespace GidraSIM.GUI.Utility
 
     }
 
+    public class SaveBlock
+    {
+        public Point Position { get; set; }
+    }
+
     public class SaveProcess
     {
         public String _name { get; set; }
@@ -94,6 +99,10 @@ namespace GidraSIM.GUI.Utility
         public List<SaveResources> _resources { get; set; }
         public List<SaveProcConnection> _procConnection { get; set; }
         public List<SaveResConnection> _resConnection { get; set; }
+
+        // Начальный и конечные блоки
+        public SaveBlock _Start { get; set; }
+        public SaveBlock _End { get; set; }
 
         public SaveProcess()
         {
@@ -180,6 +189,10 @@ namespace GidraSIM.GUI.Utility
                     else if (Start is StartBlockWPF)
                     {
                         StartProc = new SaveProcedures() { Id = new Guid() };
+                        temp._Start = new SaveBlock()
+                        {
+                            Position = Start.Position
+                        };
                     }
 
                     if (End is ProcedureWPF)
@@ -196,9 +209,14 @@ namespace GidraSIM.GUI.Utility
                             EndProc = temp._procedures.Where(x => x.Id.CompareTo(processes[End as ProcedureWPF]) == 0).First(); // Достаём из словар
                         }
                     }
+
                     else if (End is EndBlockWPF)
                     {
                         EndProc = new SaveProcedures() { Id = new Guid() };
+                        temp._End = new SaveBlock()
+                        {
+                            Position = End.Position
+                        };
                     }
 
                     //}
@@ -230,39 +248,86 @@ namespace GidraSIM.GUI.Utility
             return save;
         }
 
-        public void ActLoadProcess(SaveProcess process, ref DrawArea area, StartBlockWPF startBlock, EndBlockWPF endBlock)
+        public void ActLoadProcess(SaveProcess process, ref DrawArea area)
         {
-            //foreach (var t in process._procedures)
-            //{
-            //    ProcedureWPF proc = SaveProcedures.ToNormal(t);
-            //    area.Children.Add(proc);
-            //}
+            StartBlockWPF startBlock = new StartBlockWPF(process._Start.Position);
+            EndBlockWPF endBlock = new EndBlockWPF(process._End.Position);         
+
+            area.Children.Add(startBlock);
+            area.Children.Add(endBlock);
+
+            // Тут лежат уже обработанные блоки
+            Dictionary<Guid, ProcedureWPF> worksavelist = new Dictionary<Guid, ProcedureWPF>();
+            ProcedureWPF Start = null;
+            ProcedureWPF End = null;
 
             foreach (var t in process._procConnection)
             {
-                BlockWPF Start = null;
-                BlockWPF End = null;
-
+                // Тут не обрабатываем начальный и конечный блоки
                 if (t.StartId.CompareTo(new Guid()) != 0 && (t.EndId.CompareTo(new Guid()) != 0))
                 {
-                    if (t.StartId.CompareTo(new Guid()) != 0)
+                    // Достаём блоки у связи
+                    // Проверяем, есть ли стартовый блок в сохранённых
+                    if (!worksavelist.ContainsKey(t.StartId))
                     {
                         Start = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.StartId) == 0).First());
+                        worksavelist.Add(t.StartId, Start);
+                        area.Children.Add(Start);
                     }
-                    else Start = startBlock;
+                    else Start = worksavelist[t.StartId];
 
-                    if (t.EndId.CompareTo(new Guid()) != 0)
+                    if (!worksavelist.ContainsKey(t.EndId))
                     {
                         End = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.EndId) == 0).First());
+                        worksavelist.Add(t.EndId, End);
+                        area.Children.Add(End);
                     }
-                    else End = endBlock;
+                    else End = worksavelist[t.EndId];
 
                     ProcConnectionWPF proc = new ProcConnectionWPF(Start, End, t.relativeStartPosition, t.relativeEndPosition, t.StartPort, t.EndPort);
 
-                    area.Children.Add(Start);
-                    area.Children.Add(End);
+                    // Проставлем связи
+                    Start.AddInPutConnection(proc);
+                    End.AddOutPutConnection(proc);
                     area.Children.Add(proc);
+                }
 
+                // Если у связи старт - старотвый блок
+                if (t.StartId.CompareTo(new Guid()) == 0)
+                {
+                    if (!worksavelist.ContainsKey(t.EndId))
+                    {
+                        End = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.EndId) == 0).First());
+                        worksavelist.Add(t.EndId, End);
+                        area.Children.Add(End);
+                    }
+                    else End = worksavelist[t.EndId];
+
+                    ProcConnectionWPF proc = new ProcConnectionWPF(startBlock, End, t.relativeStartPosition, t.relativeEndPosition, t.StartPort, t.EndPort);
+
+                    startBlock.AddOutPutConnection(proc);
+                    End.AddInPutConnection(proc);
+                    area.Children.Add(proc);
+                }
+
+                // Если конец - конечный блок
+                if (t.EndId.CompareTo(new Guid()) == 0)
+                {
+                    if (!worksavelist.ContainsKey(t.StartId))
+                    {
+                        Start = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.StartId) == 0).First());
+                        worksavelist.Add(t.StartId, End);
+                        area.Children.Add(Start);
+                    }
+                    else Start = worksavelist[t.StartId];
+
+                    ProcConnectionWPF proc = new ProcConnectionWPF(Start, endBlock, t.relativeStartPosition, t.relativeEndPosition, t.StartPort, t.EndPort);
+
+                    startBlock.AddOutPutConnection(proc);
+                    End.AddInPutConnection(proc);
+                    endBlock.AddInPutConnection(proc);
+                    startBlock.AddOutPutConnection(proc);
+                    area.Children.Add(proc);
                 }
             }
         }

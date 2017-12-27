@@ -27,6 +27,7 @@
 
         <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="5,5,10,10"></ListBox>
 
+        
         <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged">
             <TabItem Header="Процесс 1" >
                 <!--<local:DrawArea x:Name="drawArea"></local:DrawArea>-->

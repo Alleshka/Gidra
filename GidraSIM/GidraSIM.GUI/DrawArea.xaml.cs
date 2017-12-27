@@ -369,7 +369,7 @@ namespace GidraSIM.GUI
             SelectArrowMode();
         }
 
-        private void MakeStartAndEnd()
+        public void MakeStartAndEnd()
         {
             double bord = 5;
             double d = SquareBlockWPF.DEFAULT_HEIGHT / 2.0;

@@ -262,7 +262,7 @@ namespace GidraSIM.GUI
                 // Создаём область рисование
                 var drawArea = new DrawArea
                 {
-                    Processes = processes
+                    Processes = processes,
                 };
 
                 //добавляем в список
@@ -271,8 +271,7 @@ namespace GidraSIM.GUI
                 tabItem.Content = drawArea;
                 //и добавляем вкладку
                 testTabControl.Items.Add(tabItem);
-
-                saver.ActLoadProcess(proc, ref drawArea, null, null);
+                saver.ActLoadProcess(proc, ref drawArea);
             }
         }
     }
