@@ -26,6 +26,8 @@ namespace GidraSIM.GUI
 
         Mode mode = (Mode)10;
 
+        private bool isHaveStartAndEnd;
+
         public List<Process> Processes { get; set; }
 
         private bool AllChildrenIsSelectable
@@ -45,6 +47,8 @@ namespace GidraSIM.GUI
         public DrawArea()
         {
             InitializeComponent();
+
+            isHaveStartAndEnd = false;
         }
 
         /// <summary>
@@ -165,9 +169,6 @@ namespace GidraSIM.GUI
                     BlockWPF block = figure as BlockWPF;
                     if (block.IsMouseOver)
                     {
-
-                        // гдето тут пехнём костыль
-
 
                         if (selectedFigure != null)
                         {
@@ -365,19 +366,26 @@ namespace GidraSIM.GUI
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             MakeStartAndEnd();
             SelectArrowMode();
+            
         }
 
         public void MakeStartAndEnd()
         {
-            double bord = 5;
-            double d = SquareBlockWPF.DEFAULT_HEIGHT / 2.0;
-            double x = workArea.ActualWidth;
-            double y = workArea.ActualHeight / 2.0;
+            if (isHaveStartAndEnd == false)
+            {
+                double bord = 5;
+                double d = SquareBlockWPF.DEFAULT_HEIGHT / 2.0;
+                double x = workArea.ActualWidth;
+                double y = workArea.ActualHeight / 2.0;
 
-            workArea.Children.Add(new StartBlockWPF(new Point(bord, y - d)));
-            workArea.Children.Add(new EndBlockWPF(new Point(x - bord - 2 * d, y - d)));
+                workArea.Children.Add(new StartBlockWPF(new Point(bord, y - d)));
+                workArea.Children.Add(new EndBlockWPF(new Point(x - bord - 2 * d, y - d)));
+
+                isHaveStartAndEnd = true;
+            }
         }
 
         /// <summary>

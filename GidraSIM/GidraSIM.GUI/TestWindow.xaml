@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
-        Title="TestWindow" Height="600" Width="800">
+        Title="СИМ САПР" Height="600" Width="800">
     <DockPanel>
         <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
             <MenuItem Header="Файл"/>
             <MenuItem Header="Процесс">
                 <MenuItem  Header="Новый процесс" Click="CreateProcessButton_Click" />
+            </MenuItem>
+            <MenuItem Header="Моделирование">
+                <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
             </MenuItem>
             <MenuItem Header="Настройки"/>
         </Menu>
@@ -20,7 +23,7 @@
             <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
             <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
-            <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="TestBtn_Click"/>
+            <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="StartModeling_Executed"/>
             <Button x:Name="Save" Content="Сохранить" Click="Save_Click"></Button>
             <Button x:Name="Open" Content="Открыть" Click="Open_Click"></Button>
         </StackPanel>
