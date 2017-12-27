@@ -250,11 +250,16 @@ namespace GidraSIM.GUI.Utility
 
         public void ActLoadProcess(SaveProcess process, ref DrawArea area)
         {
+            // Создаём начальный и конечный блоки
             StartBlockWPF startBlock = new StartBlockWPF(process._Start.Position);
             EndBlockWPF endBlock = new EndBlockWPF(process._End.Position);         
 
+            // Кидаем их на поле
             area.Children.Add(startBlock);
             area.Children.Add(endBlock);
+
+            // Помечаем, что они уже есть
+            area.IsHaveStartEnd = true;
 
             // Тут лежат уже обработанные блоки
             Dictionary<Guid, ProcedureWPF> worksavelist = new Dictionary<Guid, ProcedureWPF>();

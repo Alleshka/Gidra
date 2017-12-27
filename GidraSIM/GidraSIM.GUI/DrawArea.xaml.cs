@@ -27,6 +27,11 @@ namespace GidraSIM.GUI
         Mode mode = (Mode)10;
 
         private bool isHaveStartAndEnd;
+        public bool IsHaveStartEnd
+        {
+            get => isHaveStartAndEnd;
+            set => isHaveStartAndEnd = value;
+        }
 
         public List<Process> Processes { get; set; }
 
