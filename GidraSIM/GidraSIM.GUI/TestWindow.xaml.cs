@@ -28,6 +28,16 @@ namespace GidraSIM.GUI
         List<Process> processes = new List<Process>();
         List<DrawArea> drawAreas = new List<DrawArea>();
 
+        /// <summary>
+        /// сложность начальной задачи
+        /// </summary>
+        double complexity = 10;
+
+        /// <summary>
+        /// шаг моделирования
+        /// </summary>
+        double dt = 1;
+
         public TestWindow()
         {
             InitializeComponent();
@@ -157,7 +167,7 @@ namespace GidraSIM.GUI
             //добавляем на стартовый блок токен
             mainProcess.AddToken(new Token(0, 10), 0);
             //double i = 0;
-            ModelingTime modelingTime = new ModelingTime() { Delta = 1, Now = 0 };
+            ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
             for(modelingTime.Now=0;modelingTime.Now<1000 ;modelingTime.Now+=modelingTime.Delta)
             {
                 mainProcess.Update(modelingTime);
@@ -276,6 +286,16 @@ namespace GidraSIM.GUI
                 {
                     drawArea.Children.Add(block);
                 }
+            }
+        }
+
+        private void ModelingParametersButton_Click(object sender, RoutedEventArgs e)
+        {
+            TestComplexitySelectionDialog dialog = new TestComplexitySelectionDialog();
+            if(dialog.ShowDialog() == true)
+            {
+                complexity = dialog.Complexity;
+                dt = dialog.Step;
             }
         }
     }

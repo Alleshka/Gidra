@@ -12,6 +12,9 @@
             <MenuItem Header="Процесс">
                 <MenuItem  Header="Новый процесс" Click="CreateProcessButton_Click" />
             </MenuItem>
+            <MenuItem Header="Моделирование">
+                <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
+            </MenuItem>
             <MenuItem Header="Настройки"/>
         </Menu>
         <StackPanel HorizontalAlignment="Left" Margin="0">
