@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
-        Title="GidraSIM" Height="600" Width="800">
+        Title="СИМ САПР" Height="600" Width="800">
     <DockPanel>
         <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
             <MenuItem Header="Файл"/>
