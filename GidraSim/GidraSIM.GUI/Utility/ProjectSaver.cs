@@ -12,142 +12,259 @@ using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
-    public class ProjectSaver : IProjectSaver
+    /// Класс, сериализующий процедуры
+    public class SaveProcedures
     {
-        private ProjectSave save;
+        public Guid Id { get; set; }
+        public String ProcessName { get; set; } // Имя процесса 
+        public Point Position { get; set; } // Позиция блока 
+        public int InputCount { get; set; } // Количество входом
+        public int OutputCount { get; set; } // Количество выходов
 
-        public List<ProcedureWPF> LoadProcess(ProcessSave save)
+        public static SaveProcedures ToSave(ProcedureWPF proc)
         {
-            List<ProcedureWPF> list = new List<ProcedureWPF>();
-
-            foreach (var block in save.ProcedureList)
+            return new SaveProcedures()
             {
-
-                list.Add(new ProcedureWPF(block.Position, block.BlockName, block.InputsCount, block.OutputsCount));
-
-            }
-
-            return list;
-        }
-
-        public ProjectSave LoadProject(string path)
-        {
-            ProjectSave save;
-
-            using (FileStream stream = new FileStream(path, FileMode.Open))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ProjectSave));
-                save = (ProjectSave)ser.ReadObject(stream);
-            }
-
-            return save;
-        }
-
-        public ProcessSave SaveProcess(UIElementCollection elementCollection, String ProcessName)
-        {
-            ProcessSave save = new ProcessSave
-            {
-                NameProcess = ProcessName
+                InputCount = proc.InputCount,
+                OutputCount = proc.OutputCount,
+                Position = proc.Position,
+                ProcessName = proc.BlockName,
+                Id = Guid.NewGuid()
             };
-
-            /// Проходим по всем элементам
-            foreach (var element in elementCollection)
-            {
-                ///// Если блок проверки качества 
-                //if (element is QualityCheckProcedureViewModel)
-                //{
-                //    var temp = element as QualityCheckProcedureViewModel;
-                //    save.ProcedureList.Add(new LitleBlockWPF()
-                //    {
-                //        BlockName = temp.BlockName,
-                //        Position = temp.Position,
-                //        InputsCount = 1,
-                //        OutputsCount = 2,
-                //    }); // Добавляем блок
-                //    continue;
-                //}
-
-                if (element is ProcedureWPF)
-                {
-                    var temp = element as ProcedureWPF;
-                    save.ProcedureList.Add(new LitleBlockWPF()
-                    {
-                        BlockName = temp.BlockName,
-                        Position = temp.Position,
-                        InputsCount = temp.InputCount,
-                        OutputsCount = temp.OutputCount,
-                    }); // Добавляем блок
-                    continue;
-                }
-            }
-            return save;
         }
-        public void SaveProject(TabControl tabControl, string path)
-        {
-            save = new ProjectSave();
 
-            // Проходим по всем вкладкам
-            foreach (var tabitem in tabControl.Items)
+        public static ProcedureWPF ToNormal(SaveProcedures proc)
+        {
+            return new ProcedureWPF(proc.Position, proc.ProcessName, proc.InputCount, proc.OutputCount);
+        }
+    }
+
+    /// <summary>
+    ///  Класс сериализуюзий ресурсы
+    /// </summary>
+    public class SaveResources
+    {
+        public Guid Id { get; set; }
+        public Point Position { get; set; }
+        public String Name { get; set; }
+
+        public static ResourceWPF ToNormal(SaveResources res)
+        {
+            return new ResourceWPF(res.Position, res.Name);
+        }
+
+        public static SaveResources ToSave(ResourceWPF res)
+        {
+            return new SaveResources()
+            {
+                Id = Guid.NewGuid(),
+                Name = res.Name,
+                Position = res.Position
+            };
+        }
+    }
+
+    public class SaveProcConnection
+    {
+        public Guid StartId { get; set; }
+        public Guid EndId { get; set; }
+
+        public Point relativeStartPosition { get; set; }
+        public Point relativeEndPosition { get; set; }
+
+        public int StartPort { get; set; }
+        public int EndPort { get; set; }
+    }
+
+    public class SaveResConnection
+    {
+        public Guid StartID { get; set; }
+        public Guid EndID { get; set; }
+
+    }
+
+    public class SaveProcess
+    {
+        public String _name { get; set; }
+        public List<SaveProcedures> _procedures { get; set; }
+        public List<SaveResources> _resources { get; set; }
+        public List<SaveProcConnection> _procConnection { get; set; }
+        public List<SaveResConnection> _resConnection { get; set; }
+
+        public SaveProcess()
+        {
+            _procConnection = new List<SaveProcConnection>();
+            _procedures = new List<SaveProcedures>();
+            _resources = new List<SaveResources>();
+            _resConnection = new List<SaveResConnection>();
+        }
+    }
+
+    public class SaveProject
+    {
+        public List<SaveProcess> _processes;
+
+        public SaveProject()
+        {
+            _processes = new List<SaveProcess>();
+        }
+    }
+
+    public class ProjectSaver
+    {
+        private SaveProject save;
+
+        public void ActSaveProject(TabControl tabcontrol, String path)
+        {
+            save = new Utility.SaveProject();
+            foreach (var tabitem in tabcontrol.Items)
             {
                 var tab = tabitem as TabItem;
                 var drawArea = tab.Content as DrawArea;
-                save.SaveList.Add(SaveProcess(drawArea.Children, tab.Header.ToString())); // Добавляем сохранённый процесс
+                save._processes.Add(ActSaveProcess(drawArea.Children, tab.Header.ToString()));
             }
 
             using (FileStream stream = new FileStream(path, FileMode.Create))
             {
-                var ser = new DataContractJsonSerializer(typeof(ProjectSave));
-                ser.WriteObject(stream, save); // Записываем проект
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(SaveProject));
+                ser.WriteObject(stream, save);
             }
         }
-    }
 
-    /// <summary>
-    ///  Представляет облегчённый блок
-    /// </summary>
-    public class LitleBlockWPF
-    {
-        // Название блока
-        public String BlockName { get; set; }
-
-        // Позиция
-        public System.Windows.Point Position { get; set; }
-
-        // Количество входов
-        public int InputsCount;
-       
-        // Количество выходов
-        public int OutputsCount;
-    }
-
-    /// <summary>
-    ///  Сохранёныный процесс
-    /// </summary>
-    public class ProcessSave
-    {
-        // Имя процесса
-        public String NameProcess { get; set; }
-        // Список процедур в текущем процессе
-        public List<LitleBlockWPF> ProcedureList { get; set; }
-
-        public ProcessSave()
+        public SaveProcess ActSaveProcess(UIElementCollection elementCollection, String ProcessName)
         {
-            ProcedureList = new List<LitleBlockWPF>();
+            SaveProcess temp = new SaveProcess();
+            Dictionary<ProcedureWPF, Guid> processes = new Dictionary<ProcedureWPF, Guid>(); // Список отмеченных процессов
+            UIElement[] mdds = new UIElement[elementCollection.Count];
+            elementCollection.CopyTo(mdds, 0);
+
+            // Проходим по всем элементам
+            foreach (var element in elementCollection)
+            {
+                // Смотрим только на связи
+
+                // Если текущая связь - связь ресурсов
+                if (element is ProcConnectionWPF)
+                {
+                    ProcConnectionWPF connect = element as ProcConnectionWPF; // Забираем связь
+
+                    BlockWPF Start = connect.StartBlock; // Начальо
+                    BlockWPF End = connect.EndBlock; // Конец
+
+                    SaveProcedures StartProc = null;
+                    SaveProcedures EndProc = null;
+
+                    // Если не начальный и не конечный блок
+                    //if ((!(Start is StartBlockWPF)) && (!(End is EndBlockWPF)))
+                    //{
+
+                    // Если процедура
+                    if (Start is ProcedureWPF)
+                    {
+                        // Если данный блок ещё не видели
+                        if (!processes.ContainsKey(Start as ProcedureWPF))
+                        {
+                            StartProc = SaveProcedures.ToSave(Start as ProcedureWPF);
+                            processes.Add(Start as ProcedureWPF, StartProc.Id);
+                            temp._procedures.Add(StartProc);
+                        }
+                        else
+                        {
+                            StartProc = temp._procedures.Where(x => x.Id.CompareTo(processes[Start as ProcedureWPF]) == 0).First(); // Достаём из словар
+                        }
+                    }
+                    else if (Start is StartBlockWPF)
+                    {
+                        StartProc = new SaveProcedures() { Id = new Guid() };
+                    }
+
+                    if (End is ProcedureWPF)
+                    {
+
+                        if (!processes.ContainsKey(End as ProcedureWPF))
+                        {
+                            EndProc = SaveProcedures.ToSave(End as ProcedureWPF);
+                            processes.Add(End as ProcedureWPF, EndProc.Id);
+                            temp._procedures.Add(EndProc);
+                        }
+                        else
+                        {
+                            EndProc = temp._procedures.Where(x => x.Id.CompareTo(processes[End as ProcedureWPF]) == 0).First(); // Достаём из словар
+                        }
+                    }
+                    else if (End is EndBlockWPF)
+                    {
+                        EndProc = new SaveProcedures() { Id = new Guid() };
+                    }
+
+                    //}
+
+                    // Сохраняем отношение
+                    SaveProcConnection saveProc = new SaveProcConnection()
+                    {
+                        EndId = EndProc.Id,
+                        EndPort = connect.EndPort,
+                        StartPort = connect.StartPort,
+                        StartId = StartProc.Id,
+                        relativeEndPosition = connect.RelateEnd,
+                        relativeStartPosition = connect.RelateStart
+                    };
+                    temp._procConnection.Add(saveProc); // Добавляем в связи
+                }
+            }
+
+            return temp;
         }
-    }
 
-    // Сохранённый проект
-    public class ProjectSave
-    {
-        // Набор сохранений процессов
-        public List<ProcessSave> SaveList { get; set; }
-
-        public ProjectSave()
+        public SaveProject ActLoadProject(String path)
         {
-            SaveList = new List<ProcessSave>();
+            using (FileStream stream = new FileStream(path, FileMode.Open))
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(SaveProject));
+                save = (SaveProject)ser.ReadObject(stream);
+            }
+            return save;
+        }
+
+        public void ActLoadProcess(SaveProcess process, ref DrawArea area, StartBlockWPF startBlock, EndBlockWPF endBlock)
+        {
+            //foreach (var t in process._procedures)
+            //{
+            //    ProcedureWPF proc = SaveProcedures.ToNormal(t);
+            //    area.Children.Add(proc);
+            //}
+
+            foreach (var t in process._procConnection)
+            {
+                BlockWPF Start = null;
+                BlockWPF End = null;
+
+                if (t.StartId.CompareTo(new Guid()) != 0 && (t.EndId.CompareTo(new Guid()) != 0))
+                {
+                    if (t.StartId.CompareTo(new Guid()) != 0)
+                    {
+                        Start = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.StartId) == 0).First());
+                    }
+                    else Start = startBlock;
+
+                    if (t.EndId.CompareTo(new Guid()) != 0)
+                    {
+                        End = SaveProcedures.ToNormal(process._procedures.Where(x => x.Id.CompareTo(t.EndId) == 0).First());
+                    }
+                    else End = endBlock;
+
+                    ProcConnectionWPF proc = new ProcConnectionWPF(Start, End, t.relativeStartPosition, t.relativeEndPosition, t.StartPort, t.EndPort);
+
+                    area.Children.Add(Start);
+                    area.Children.Add(End);
+                    area.Children.Add(proc);
+
+                }
+            }
         }
     }
 }

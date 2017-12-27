@@ -33,6 +33,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         /// </summary>
         private Point relativeEndPosition;
 
+        public Point RelateStart => relativeStartPosition;
+        public Point RelateEnd => relativeEndPosition;
+
         public int StartPort { get; private set; }
 
         public int EndPort { get; private set; }
