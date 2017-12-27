@@ -8,7 +8,7 @@
         xmlns:cr="clr-namespace:GidraSIM.Core.Model.Resources;assembly=GidraSIM.Core.Model"
         xmlns:mv="clr-namespace:GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;assembly=GidraSIM.GUI.Core"
         mc:Ignorable="d"
-        Title="TestResourceSelectionDialog" Height="300" Width="300">
+        Title="Выберите тип ресурса" Height="300" Width="300">
     <Window.Resources>
 
         <!--<ResourceDictionary>
