@@ -56,8 +56,22 @@ namespace GidraSIM.GUI
             processes.Add(mainProcess);
 
 
-            //
+
+            // Стандартные команды
+            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
+            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Project_Executed));
+            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Project_Executed));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
+
+            // Кастомные команды
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Arrow, Arrow_Executed));
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Procedure, Procedure_Executed));
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Connect, Connect_Executed));
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
+            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
+
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
@@ -149,7 +163,7 @@ namespace GidraSIM.GUI
             drawAreas.ForEach(area => area.SelectSubProcessMode());
         }
 
-        private void TestBtn_Click(object sender, RoutedEventArgs e)
+        private void StartModeling_Executed(object sender, RoutedEventArgs e)
         {
             ViewModelConverter converter = new ViewModelConverter();
 
@@ -165,7 +179,7 @@ namespace GidraSIM.GUI
             //converter.Map(drawAreas[0].Children, mainProcess);
 
             //добавляем на стартовый блок токен
-            mainProcess.AddToken(new Token(0, 10), 0);
+            mainProcess.AddToken(new Token(0, complexity), 0);
             //double i = 0;
             ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
             for(modelingTime.Now=0;modelingTime.Now<1000 ;modelingTime.Now+=modelingTime.Delta)
