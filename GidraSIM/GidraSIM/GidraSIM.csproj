@@ -122,9 +122,6 @@
       <DependentUpon>CreateProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase_ModelingSession.cs" />
-    <Compile Include="DrawArea.xaml.cs">
-      <DependentUpon>DrawArea.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Imitation.cs" />
     <Compile Include="MainWindowCommands.cs" />
     <Compile Include="Modeling.xaml.cs">
@@ -198,10 +195,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateProject.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DrawArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
