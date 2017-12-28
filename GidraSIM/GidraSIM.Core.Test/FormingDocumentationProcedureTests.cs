@@ -20,8 +20,8 @@ namespace GidraSIM.Core.Model.Procedures.Tests
             FormingDocumentationProcedure procedure = new FormingDocumentationProcedure(new TokensCollector());
             procedure.AddResorce(new WorkerResource()
             {
-                Name = "Alleshka",
-                Position = "Работяга",
+                //Name = "Alleshka",
+                //Position = "Работяга",
                 WorkerQualification = Qualification.FirstCategory
             });
             procedure.AddResorce(new TechincalSupportResource()

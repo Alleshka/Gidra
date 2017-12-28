@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
-        Title="Настройка сложности объекта моделирования" Height="300" Width="300">
+        Title="Настройка имитации" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <ListBox x:Name="listBox1"  DisplayMemberPath="BlockName" Grid.Row="0" Margin="10,10,10,0">
@@ -17,9 +18,12 @@
         </ListBox>
         <StackPanel Grid.Row="1" Margin="10,10,10,0">
             <TextBlock Text="Шаг моделирования" />
-            <Separator />
             <TextBox x:Name="stepTextBox" Text="0,1" />
         </StackPanel>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+        <StackPanel Grid.Row="2" Margin="10,10,10,0">
+            <TextBlock Text="Общее время моделирования" />
+            <TextBox x:Name="summaryTimeTextBox" Text="1000" />
+        </StackPanel>
+        <Button x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
     </Grid>
 </Window>

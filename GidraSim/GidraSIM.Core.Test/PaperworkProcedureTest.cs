@@ -50,8 +50,8 @@ namespace GidraSIM.Core.Test
                 PaperworkProcedure paperworkProcedure = new PaperworkProcedure(new TokensCollector());
             paperworkProcedure.AddResorce(new WorkerResource()
             {
-                Name = "Alleshka",
-                Position = "Работяга",
+                //Name = "Alleshka",
+                //Position = "Работяга",
                 WorkerQualification = Qualification.FirstCategory
             });
             paperworkProcedure.AddResorce(new TechincalSupportResource()

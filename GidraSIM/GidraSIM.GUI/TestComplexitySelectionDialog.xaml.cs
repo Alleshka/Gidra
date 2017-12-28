@@ -35,6 +35,7 @@ namespace GidraSIM.GUI
 
         public double Complexity { get; set; }
         public double Step { get; set; }
+        public double MaxTime { get; set; }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -59,6 +60,7 @@ namespace GidraSIM.GUI
                     break;
             };
             Step = double.Parse(stepTextBox.Text);
+            MaxTime = double.Parse(summaryTimeTextBox.Text);
 
             this.DialogResult = true;
         }

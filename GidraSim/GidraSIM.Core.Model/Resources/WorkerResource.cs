@@ -28,8 +28,8 @@ namespace GidraSIM.Core.Model.Resources
 
         public WorkerResource()
         {
-            Name = "Михалыч";
-            Position = "Работяга";
+            //Name = "Михалыч";
+            //Position = "Работяга";
             Description = "Простой работник";
         }
 
@@ -40,22 +40,22 @@ namespace GidraSIM.Core.Model.Resources
             set;
         }
 
-        /// <summary>
-        /// ФИО
-        /// </summary>
-        public string Name
-        {
-            get;
-            set;
-        }
+        ///// <summary>
+        ///// ФИО
+        ///// </summary>
+        //public string Name
+        //{
+        //    get;
+        //    set;
+        //}
 
-        /// <summary>
-        /// должность
-        /// </summary>
-        public string Position
-        {
-            get;
-            set;
-        }
+        ///// <summary>
+        ///// должность
+        ///// </summary>
+        //public string Position
+        //{
+        //    get;
+        //    set;
+        //}
     }
 }

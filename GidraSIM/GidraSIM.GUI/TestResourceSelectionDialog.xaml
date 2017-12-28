@@ -60,10 +60,10 @@
             <StackPanel Margin="10,10,10,0">
                 <TextBlock Text="Работник" />
                 <Separator />
-                <TextBlock Text="Имя" />
+                <!--<TextBlock Text="Имя" />
                 <TextBox Text="{Binding Path=Name}"/>
-                <TextBlock Text="Должность" />
-                <TextBox Text="{Binding Path=Position}"/>
+                <TextBlock Text="Должность" />-->
+                <!--<TextBox Text="{Binding Path=Position}"/>-->
                 <TextBlock Text="Квалификация" />
                 <ComboBox  ItemsSource="{Binding Source={local:Enumeration {x:Type cr:Qualification}} }" 
                             DisplayMemberPath="Description" 

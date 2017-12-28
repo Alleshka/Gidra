@@ -21,8 +21,8 @@ namespace GidraSIM.Core.Test
 
             electricalScheme.AddResorce(new WorkerResource()
             {
-                Name = "Alleshka",
-                Position = "Работяга",
+                //Name = "Alleshka",
+                //Position = "Работяга",
                 WorkerQualification = Qualification.SecondCategory
             });
 

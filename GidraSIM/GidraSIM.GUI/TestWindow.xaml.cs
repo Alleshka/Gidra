@@ -38,6 +38,11 @@ namespace GidraSIM.GUI
         /// </summary>
         double dt = 1;
 
+        /// <summary>
+        /// максимальное время моделирования
+        /// </summary>
+        double maxTime = 1000;
+
         public TestWindow()
         {
             InitializeComponent();
@@ -182,7 +187,7 @@ namespace GidraSIM.GUI
             mainProcess.AddToken(new Token(0, complexity), 0);
             //double i = 0;
             ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
-            for(modelingTime.Now=0;modelingTime.Now<1000 ;modelingTime.Now+=modelingTime.Delta)
+            for(modelingTime.Now=0;modelingTime.Now<maxTime ;modelingTime.Now+=modelingTime.Delta)
             {
                 mainProcess.Update(modelingTime);
                 //на конечном блоке на выходе появился токен
@@ -198,7 +203,7 @@ namespace GidraSIM.GUI
             mainProcess.Collector.GetHistory().Clear();
 
             //выводим число токенов и время затраченное (в заголовке)
-            MessageBox.Show(modelingTime.Now.ToString());
+            MessageBox.Show("Время, затраченное на имитацию "+modelingTime.Now.ToString(), "Имитация закончена");
             foreach(var process in processes)
             {
                 process.ClearProcess();
@@ -306,6 +311,7 @@ namespace GidraSIM.GUI
             {
                 complexity = dialog.Complexity;
                 dt = dialog.Step;
+                maxTime = dialog.MaxTime;
             }
         }
     }

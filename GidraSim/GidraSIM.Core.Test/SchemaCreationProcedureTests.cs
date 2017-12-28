@@ -27,7 +27,7 @@ namespace GidraSIM.Core.Test
             //подготовка
             SchemaCreationProcedure procedure = new SchemaCreationProcedure(new TokensCollector());
             procedure.AddResorce(new CadResource());
-            procedure.AddResorce(new WorkerResource() { Name = "Test", Position = "Работяга", WorkerQualification = Qualification.SecondCategory });
+            procedure.AddResorce(new WorkerResource() { WorkerQualification = Qualification.SecondCategory });
             procedure.AddResorce(new TechincalSupportResource() { Frequency = 1.5, Ram = 2, Vram = 1 });
             procedure.AddToken(new Token(0, 10), 0);
 
