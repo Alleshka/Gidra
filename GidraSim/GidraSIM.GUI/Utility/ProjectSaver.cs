@@ -16,9 +16,11 @@ using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
+
     /// Класс, сериализующий процедуры
     public class SaveProcedure
     {
+        public String TypeProc { get; set; }
         public Guid Id { get; set; }
         public String ProcessName { get; set; } // Имя процесса 
         public Point Position { get; set; } // Позиция блока 
@@ -29,6 +31,7 @@ namespace GidraSIM.GUI.Utility
         {
             return new SaveProcedure()
             {
+                TypeProc = ConvertTypeToSave(proc),
                 InputCount = proc.InputCount,
                 OutputCount = proc.OutputCount,
                 Position = proc.Position,
@@ -37,34 +40,130 @@ namespace GidraSIM.GUI.Utility
             };
         }
 
+        public static String ConvertTypeToSave(ProcedureWPF procedureWPF)
+        {
+            if (procedureWPF is FixedTimeBlockViewModel)
+            {
+                return (procedureWPF as FixedTimeBlockViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is QualityCheckProcedureViewModel)
+            {
+                return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is SchemaCreationProcedureViewModel)
+            {
+                return (procedureWPF as SchemaCreationProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is ArrangementProcedureViewModel)
+            {
+                return (procedureWPF as ArrangementProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is ClientCoordinationPrrocedureViewModel)
+            {
+                return (procedureWPF as ClientCoordinationPrrocedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is DocumentationCoordinationProcedureViewModel)
+            {
+                return (procedureWPF as DocumentationCoordinationProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is ElectricalSchemeSimulationViewModel)
+            {
+                return (procedureWPF as ElectricalSchemeSimulationViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is FormingDocumentationProcedureViewModel)
+            {
+                return (procedureWPF as FormingDocumentationProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is PaperworkProcedureViewModel)
+            {
+                return (procedureWPF as PaperworkProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is QualityCheckProcedureViewModel)
+            {
+                return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is SampleTestingProcedureViewModel)
+            {
+                return (procedureWPF as SampleTestingProcedureViewModel).GetType().ToString();
+            }
+            else if (procedureWPF is TracingProcedureViewModel)
+            {
+                return (procedureWPF as TracingProcedureViewModel).GetType().ToString();
+            }
+
+            else if (procedureWPF is SubProcessWPF)
+                return (procedureWPF as SubProcessWPF).GetType().ToString();
+
+            else if (procedureWPF == null)
+            {
+                throw new NullReferenceException("Для процедуры WPF не указан прототип");
+            }
+            else
+            {
+                throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
+            }
+        }
+
         public static ProcedureWPF ToNormal(SaveProcedure proc)
         {
-            return new ProcedureWPF(proc.Position, proc.ProcessName, proc.InputCount, proc.OutputCount);
+            //return new ProcedureWPF(proc.Position, proc.ProcessName, proc.InputCount, proc.OutputCount);
+            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
+            Type type = asm.GetType(proc.TypeProc, true, true);
+            return (ProcedureWPF)System.Activator.CreateInstance(type, proc.Position, proc.ProcessName);
         }
     }
 
-    /// <summary>
+    /// <summary>   
     ///  Класс сериализуюзий ресурсы
     /// </summary>
     public class SaveResource
     {
+        public String TypeRes { get; set; }
         public Guid Id { get; set; }
         public Point Position { get; set; }
         public String Name { get; set; }
 
         public static ResourceWPF ToNormal(SaveResource res)
         {
-            return new ResourceWPF(res.Position, res.Name);
+            //return new ResourceWPF(res.Position, res.Name);
+            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
+            Type type = asm.GetType(res.TypeRes, true, true);
+            return (ResourceWPF)Activator.CreateInstance(type, res.Position, res.Name);
         }
 
         public static SaveResource ToSave(ResourceWPF res)
         {
             return new SaveResource()
             {
+                TypeRes = ConvertTypeResToSave(res),
                 Id = Guid.NewGuid(),
                 Name = res.BlockName,
                 Position = res.Position
             };
+        }
+
+        private static String ConvertTypeResToSave(ResourceWPF resourceWPF)
+        {
+            if (resourceWPF is CadResourceViewModel)
+            {
+                return (resourceWPF as CadResourceViewModel).GetType().ToString();
+            }
+            else if (resourceWPF is WorkerResourceViewModel)
+            {
+                return (resourceWPF as WorkerResourceViewModel).GetType().ToString();
+            }
+            else if (resourceWPF is TechincalSupportResourceViewModel)
+            {
+                return (resourceWPF as TechincalSupportResourceViewModel).GetType().ToString();
+            }
+            else if (resourceWPF is MethodolgicalSupportResourceViewModel)
+            {
+                return (resourceWPF as MethodolgicalSupportResourceViewModel).GetType().ToString(); ;
+            }
+            else
+            {
+                return resourceWPF.GetType().ToString();
+            }
         }
     }
 

@@ -374,7 +374,15 @@ namespace GidraSIM.GUI
             
             MakeStartAndEnd();
             SelectArrowMode();
-            
+
+            // Для обновления связей ресурсов под актуальные размеры
+            foreach (var ch in workArea.Children)
+            {
+                if (ch is ResConnectionWPF)
+                {
+                    (ch as ResConnectionWPF).Refresh();
+                }
+            }
         }
 
         public void MakeStartAndEnd()
@@ -543,7 +551,6 @@ namespace GidraSIM.GUI
                 selectedFigure?.Remove();
             }
         }
-
-
+        
     }
 }

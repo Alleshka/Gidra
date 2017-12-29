@@ -170,43 +170,50 @@ namespace GidraSIM.GUI
 
         private void StartModeling_Executed(object sender, RoutedEventArgs e)
         {
-            ViewModelConverter converter = new ViewModelConverter();
-
-            //запихиваем содержимое области рисования в процесс
-            foreach (var item in testTabControl.Items)
+            try
             {
-                var tab = item as TabItem;
-                var drawArea = tab.Content as DrawArea;
-                converter.Map( drawArea.Children, tab.Header as Process);
-            }
+                ViewModelConverter converter = new ViewModelConverter();
 
-            ////запихиваем содержимое главной области рисования в процесс
-            //converter.Map(drawAreas[0].Children, mainProcess);
-
-            //добавляем на стартовый блок токен
-            mainProcess.AddToken(new Token(0, complexity), 0);
-            //double i = 0;
-            ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
-            for(modelingTime.Now=0;modelingTime.Now<maxTime ;modelingTime.Now+=modelingTime.Delta)
-            {
-                mainProcess.Update(modelingTime);
-                //на конечном блоке на выходе появился токен
-                if(mainProcess.EndBlockHasOutputToken)
+                //запихиваем содержимое области рисования в процесс
+                foreach (var item in testTabControl.Items)
                 {
-                    break;
+                    var tab = item as TabItem;
+                    var drawArea = tab.Content as DrawArea;
+                    converter.Map(drawArea.Children, tab.Header as Process);
+                }
+
+                ////запихиваем содержимое главной области рисования в процесс
+                //converter.Map(drawAreas[0].Children, mainProcess);
+
+                //добавляем на стартовый блок токен
+                mainProcess.AddToken(new Token(0, complexity), 0);
+                //double i = 0;
+                ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
+                for (modelingTime.Now = 0; modelingTime.Now < maxTime; modelingTime.Now += modelingTime.Delta)
+                {
+                    mainProcess.Update(modelingTime);
+                    //на конечном блоке на выходе появился токен
+                    if (mainProcess.EndBlockHasOutputToken)
+                    {
+                        break;
+                    }
+                }
+
+                //TODO сделать DataBinding
+                listBox1.Items.Clear();
+                mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+                mainProcess.Collector.GetHistory().Clear();
+
+                //выводим число токенов и время затраченное (в заголовке)
+                MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
+                foreach (var process in processes)
+                {
+                    process.ClearProcess();
                 }
             }
-
-            //TODO сделать DataBinding
-            listBox1.Items.Clear();
-            mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
-            mainProcess.Collector.GetHistory().Clear();
-
-            //выводим число токенов и время затраченное (в заголовке)
-            MessageBox.Show("Время, затраченное на имитацию "+modelingTime.Now.ToString(), "Имитация закончена");
-            foreach(var process in processes)
+            catch (Exception ex)
             {
-                process.ClearProcess();
+                MessageBox.Show(ex.Message);
             }
         }
 
