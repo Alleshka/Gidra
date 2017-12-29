@@ -256,15 +256,10 @@ namespace GidraSIM.GUI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-                ProjectSaver saver = new ProjectSaver();
-                saver.ActSaveProject(testTabControl, "testsave.json");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+
+            ProjectSaver saver = new ProjectSaver();
+            saver.SaveProjectExecute(testTabControl, "testsave.json");
+
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
@@ -276,13 +271,13 @@ namespace GidraSIM.GUI
 
             // Выгружаем проект
             ProjectSaver saver = new ProjectSaver();
-            var temp = saver.ActLoadProject("testsave.json"); // Считываем сохранение
+            var temp = saver.LoadProjecExecute("testsave.json"); // Считываем сохранение
 
             //Проходим по считанным процессам
             foreach (var proc in temp._processes)
             {
                 // Создаём новый процесс
-                var process = new Process(mainProcess.Collector) { Description = "aaaa" };
+                var process = new Process(mainProcess.Collector) { Description = proc.ProcessName };
                 processes.Add(process); // Добавляем в список
 
                 var tabItem = new TabItem() { Header = process };
@@ -293,6 +288,7 @@ namespace GidraSIM.GUI
                 {
                     Processes = processes,
                 };
+                
 
                 //добавляем в список
                 drawAreas.Add(drawArea);
@@ -300,7 +296,8 @@ namespace GidraSIM.GUI
                 tabItem.Content = drawArea;
                 //и добавляем вкладку
                 testTabControl.Items.Add(tabItem);
-                saver.ActLoadProcess(proc, ref drawArea);
+                // Выгружаем элементы
+                saver.LoadProcessExecute(proc, drawArea);
             }
         }
 

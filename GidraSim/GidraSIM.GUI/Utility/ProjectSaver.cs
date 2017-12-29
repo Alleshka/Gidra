@@ -123,18 +123,18 @@ namespace GidraSIM.GUI.Utility
         }
     }
 
-    public class ProjectSaver
+    public class ProjectSaver : IProjectSaver
     {
         private SaveProject save;
 
-        public void ActSaveProject(TabControl tabcontrol, String path)
+        public void SaveProjectExecute(TabControl tabcontrol, String path)
         {
             save = new Utility.SaveProject();
             foreach (var tabitem in tabcontrol.Items)
             {
                 var tab = tabitem as TabItem;
                 var drawArea = tab.Content as DrawArea;
-                save._processes.Add(ActSaveProcess(drawArea.Children, tab.Header.ToString()));
+                save._processes.Add(SaveProcessExecute(drawArea.Children, tab.Header.ToString()));
             }
 
             using (FileStream stream = new FileStream(path, FileMode.Create))
@@ -143,7 +143,7 @@ namespace GidraSIM.GUI.Utility
                 ser.WriteObject(stream, save);
             }
         }
-        public SaveProcess ActSaveProcess(UIElementCollection elementCollection, String ProcessName)
+        private SaveProcess SaveProcessExecute(UIElementCollection elementCollection, String ProcessName)
         {
             SaveProcess temp = new SaveProcess(); // Сохранённыйй процесс
 
@@ -182,6 +182,7 @@ namespace GidraSIM.GUI.Utility
                 Position = (elementCollection[1] as EndBlockWPF).Position
             };
 
+            temp.ProcessName = ProcessName;
             return temp;
         }
         // Сохранение связи процессов
@@ -307,7 +308,7 @@ namespace GidraSIM.GUI.Utility
         }
         // ---------------------------------- Сохранение отдельных блоков - конец ------------------------------------------------------
 
-        public SaveProject ActLoadProject(String path)
+        public SaveProject LoadProjecExecute(String path)
         {
             using (FileStream stream = new FileStream(path, FileMode.Open))
             {
@@ -316,7 +317,7 @@ namespace GidraSIM.GUI.Utility
             }
             return save;
         }
-        public void ActLoadProcess(SaveProcess process, ref DrawArea area)
+        public void LoadProcessExecute(SaveProcess process, DrawArea area)
         {
             // Создаём начальный и конечный блоки
             StartBlockWPF startBlock = new StartBlockWPF(process.StartElement.Position);
@@ -346,83 +347,19 @@ namespace GidraSIM.GUI.Utility
             }
 
 
-
             // Проходим по всем связям с процедурами
             foreach (SaveProcConnection connectproc in process.ProcedureConnectionList)
             {
-                ProcedureWPF procStart = null;
-                ProcedureWPF procEnd = null;
-
-                // Если начальный элемент не null
-                if (connectproc.StartId.CompareTo(new Guid()) != 0)
-                {
-                    procStart = worksavelistproc[connectproc.StartId];
-                }
-
-                // Если конечный элемент не null
-                if (connectproc.EndId.CompareTo(new Guid()) != 0)
-                {
-                    procEnd = worksavelistproc[connectproc.EndId];
-                }
-
-                ProcConnectionWPF connection;
-                // Если обе связи норм
-                if (procStart != null && procEnd != null)
-                {
-                    // Создаём связь
-                    connection = new ProcConnectionWPF(procStart, procEnd, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
-
-                    // Проставляем связь процедурам
-                    procStart.AddOutPutConnection(connection);
-                    procEnd.AddInPutConnection(connection);
-
-                    area.Children.Add(connection);
-                }
-                else
-                {
-                    if (procStart == null)
-                    {
-                        connection = new ProcConnectionWPF(startBlock, procEnd, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
-
-                        // Проставляем связь процедуре
-                        procEnd.AddInPutConnection(connection);
-
-                        // Проставляем связь блоку
-                        startBlock.AddOutPutConnection(connection);
-
-                        area.Children.Add(connection);
-                    }
-                    else
-                    {
-                        if (procEnd == null)
-                        {
-                            connection = new ProcConnectionWPF(procStart, endBlock, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
-
-                            procStart.AddOutPutConnection(connection);
-                            endBlock.AddInPutConnection(connection);
-
-                            area.Children.Add(connection);
-                        }
-                    }
-                }
+                area.Children.Add(LoadProcConnection(connectproc, worksavelistproc, startBlock, endBlock));
             }
 
             // Проходим по всем связям с ресурсами
             foreach (SaveResConnection connectres in process.ResourceConnectionList)
             {
-                ProcedureWPF procedure = null;
-                ResourceWPF resource = null;
-
-                procedure = worksavelistproc[connectres.StartID];
-                resource = worksavelistres[connectres.EndID];
-
-                ResConnectionWPF connection = new ResConnectionWPF(procedure, resource);
-
-                resource.AddResPutConnection(connection);
-                procedure.AddResPutConnection(connection);
-
-                area.Children.Add(connection);
+                area.Children.Add(LoadResConnection(connectres, worksavelistproc, worksavelistres));
             }
+
+
         }
 
         // Загрузка блока процедуры
@@ -454,6 +391,78 @@ namespace GidraSIM.GUI.Utility
                 worksavelist.Add(Block.Id, curproc); // Сохраняем в обработанные
                 return curproc; // Возвращаем
             }
+        }
+        // Загрузка связи с процедурами
+        private ResConnectionWPF LoadResConnection(SaveResConnection connectres, Dictionary<Guid, ProcedureWPF> worksavelistproc, Dictionary<Guid, ResourceWPF> worksavelistres)
+        {
+            ProcedureWPF procedure = null;
+            ResourceWPF resource = null;
+
+            procedure = worksavelistproc[connectres.StartID];
+            resource = worksavelistres[connectres.EndID];
+
+            ResConnectionWPF connection = new ResConnectionWPF(procedure, resource);
+
+            procedure.AddResPutConnection(connection);
+            resource.AddResPutConnection(connection);
+            connection.Refresh();
+            return connection;
+        }
+        // Загрузка связи с процедурами
+        private ProcConnectionWPF LoadProcConnection(SaveProcConnection connectproc, Dictionary<Guid, ProcedureWPF> worksavelistproc, StartBlockWPF startBlock, EndBlockWPF endBlock)
+        {
+            ProcedureWPF procStart = null;
+            ProcedureWPF procEnd = null;
+
+            // Если начальный элемент не null
+            if (connectproc.StartId.CompareTo(new Guid()) != 0)
+            {
+                procStart = worksavelistproc[connectproc.StartId];
+            }
+
+            // Если конечный элемент не null
+            if (connectproc.EndId.CompareTo(new Guid()) != 0)
+            {
+                procEnd = worksavelistproc[connectproc.EndId];
+            }
+
+            ProcConnectionWPF connection = null;
+
+            // Если обе связи норм
+            if (procStart != null && procEnd != null)
+            {
+                // Создаём связь
+                connection = new ProcConnectionWPF(procStart, procEnd, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
+
+                // Проставляем связь процедурам
+                procStart.AddOutPutConnection(connection);
+                procEnd.AddInPutConnection(connection);
+            }
+            else
+            {
+                if (procStart == null)
+                {
+                    connection = new ProcConnectionWPF(startBlock, procEnd, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
+
+                    // Проставляем связь процедуре
+                    procEnd.AddInPutConnection(connection);
+
+                    // Проставляем связь блоку
+                    startBlock.AddOutPutConnection(connection);
+                }
+                else
+                {
+                    if (procEnd == null)
+                    {
+                        connection = new ProcConnectionWPF(procStart, endBlock, connectproc.RelativeStartPosition, connectproc.RelativeEndPosition, connectproc.StartPort, connectproc.EndPort);
+
+                        procStart.AddOutPutConnection(connection);
+                        endBlock.AddInPutConnection(connection);
+                    }
+                }
+            }
+
+            return connection;
         }
     }
 }
