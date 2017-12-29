@@ -56,8 +56,6 @@ namespace GidraSIM.GUI
             //доабавляем процесс в список
             processes.Add(mainProcess);
 
-
-
             // Стандартные команды
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Project_Executed));
@@ -72,7 +70,6 @@ namespace GidraSIM.GUI
             //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
             //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
-
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
@@ -166,8 +163,8 @@ namespace GidraSIM.GUI
 
         private void StartModeling_Executed(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 ViewModelConverter converter = new ViewModelConverter();
 
                 //запихиваем содержимое области рисования в процесс
@@ -206,11 +203,11 @@ namespace GidraSIM.GUI
                 {
                     process.ClearProcess();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
@@ -301,8 +298,8 @@ namespace GidraSIM.GUI
 
         private void SaveAs()
         {
-            try
-            {
+            //try
+            //{
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
                 {
                     FileName = "Project",
@@ -316,15 +313,14 @@ namespace GidraSIM.GUI
                     saver.SaveProjectExecute(testTabControl, dlg.FileName);
                     savePath = dlg.FileName;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
         private void Open()
         {
-
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
                 FileName = "Project",
@@ -345,6 +341,7 @@ namespace GidraSIM.GUI
                 ProjectSaver saver = new ProjectSaver();
                 var temp = saver.LoadProjecExecute(savePath); // Считываем сохранение
 
+
                 //Проходим по считанным процессам
                 foreach (var proc in temp._processes)
                 {
@@ -361,15 +358,22 @@ namespace GidraSIM.GUI
                         Processes = processes,
                     };
 
-
                     //добавляем в список
                     drawAreas.Add(drawArea);
                     //добавляем на вкладку
                     tabItem.Content = drawArea;
+
+                    tabItem.Header = mainProcess;
+                    //доабавляем процесс в список
+                    processes.Add(mainProcess);
+
                     //и добавляем вкладку
                     testTabControl.Items.Add(tabItem);
                     // Выгружаем элементы
                     saver.LoadProcessExecute(proc, drawArea);
+
+                    this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
+                    this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
                 }
             }
         }
