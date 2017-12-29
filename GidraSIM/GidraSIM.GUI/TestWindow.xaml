@@ -8,9 +8,15 @@
         Title="СИМ САПР" Height="600" Width="800">
     <DockPanel>
         <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
-            <MenuItem Header="Файл"/>
+            <MenuItem Header="Файл">
+
+                <MenuItem x:Name="SaveItemMenu" Header="Сохранить" Click="Save_Click"/>
+                <MenuItem x:Name="SaveAsItemMenu" Header="Сохранить как ... " Click="SaveAsItemMenu_Click"/>
+                <MenuItem x:Name="OpenItemMenu" Header="Открыть проект" Click="Open_Click"/>
+                
+            </MenuItem>
             <MenuItem Header="Процесс">
-                <MenuItem  Header="Новый процесс" Click="CreateProcessButton_Click" />
+                <MenuItem Header="Новый процесс" Click="CreateProcessButton_Click" />
             </MenuItem>
             <MenuItem Header="Моделирование">
                 <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
@@ -24,8 +30,8 @@
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
             <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
             <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="StartModeling_Executed"/>
-            <Button x:Name="Save" Content="Сохранить" Click="Save_Click"></Button>
-            <Button x:Name="Open" Content="Открыть" Click="Open_Click"></Button>
+            <!--<Button x:Name="Save" Content="Сохранить" Click="Save_Click"></Button>
+            <Button x:Name="Open" Content="Открыть" Click="Open_Click"></Button>-->
         </StackPanel>
 
         <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="5,5,10,10"></ListBox>

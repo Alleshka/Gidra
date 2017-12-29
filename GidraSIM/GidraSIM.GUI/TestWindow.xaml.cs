@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 using GidraSIM.GUI.Core.BlocksWPF;
 using GidraSIM.GUI.Utility;
 using GidraSIM.Core.Model;
+using System.IO;
 
 namespace GidraSIM.GUI
 {
@@ -22,6 +16,8 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestWindow : Window
     {
+        private string savePath = "";
+
         //переменная для именования процессов
         int processNamesCounter = 1;
         Process mainProcess = new Process(new TokensCollector()) { Description = "Процесс 1" };
@@ -263,49 +259,12 @@ namespace GidraSIM.GUI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
-            ProjectSaver saver = new ProjectSaver();
-            saver.SaveProjectExecute(testTabControl, "testsave.json");
-
+            Save();
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            // Удаляем все элементы
-            testTabControl.Items.Clear();
-            processes.Clear();
-            drawAreas.Clear();
-
-            // Выгружаем проект
-            ProjectSaver saver = new ProjectSaver();
-            var temp = saver.LoadProjecExecute("testsave.json"); // Считываем сохранение
-
-            //Проходим по считанным процессам
-            foreach (var proc in temp._processes)
-            {
-                // Создаём новый процесс
-                var process = new Process(mainProcess.Collector) { Description = proc.ProcessName };
-                processes.Add(process); // Добавляем в список
-
-                var tabItem = new TabItem() { Header = process };
-                testTabControl.SelectedItem = tabItem;
-
-                // Создаём область рисование
-                var drawArea = new DrawArea
-                {
-                    Processes = processes,
-                };
-                
-
-                //добавляем в список
-                drawAreas.Add(drawArea);
-                //добавляем на вкладку
-                tabItem.Content = drawArea;
-                //и добавляем вкладку
-                testTabControl.Items.Add(tabItem);
-                // Выгружаем элементы
-                saver.LoadProcessExecute(proc, drawArea);
-            }
+            Open();
         }
 
         private void ModelingParametersButton_Click(object sender, RoutedEventArgs e)
@@ -316,6 +275,102 @@ namespace GidraSIM.GUI
                 complexity = dialog.Complexity;
                 dt = dialog.Step;
                 maxTime = dialog.MaxTime;
+            }
+        }
+        private void SaveAsItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAs();
+        }
+
+        private void Save()
+        {
+            try
+            {
+                if (savePath.Count() != 0)
+                {
+                    ProjectSaver saver = new ProjectSaver();
+                    saver.SaveProjectExecute(testTabControl, savePath);
+                }
+                else SaveAs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SaveAs()
+        {
+            try
+            {
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
+                {
+                    FileName = "Project",
+                    DefaultExt = ".json",
+                    Filter = "JSON documents .json)|*.json"
+                };
+
+                if ((bool)dlg.ShowDialog())
+                {
+                    ProjectSaver saver = new ProjectSaver();
+                    saver.SaveProjectExecute(testTabControl, dlg.FileName);
+                    savePath = dlg.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Open()
+        {
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = "Project",
+                DefaultExt = ".json",
+                Filter = "JSON documents .json)|*.json"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                savePath = dlg.FileName;
+
+                // Удаляем все элементы
+                testTabControl.Items.Clear();
+                processes.Clear();
+                drawAreas.Clear();
+
+                // Выгружаем проект
+                ProjectSaver saver = new ProjectSaver();
+                var temp = saver.LoadProjecExecute(savePath); // Считываем сохранение
+
+                //Проходим по считанным процессам
+                foreach (var proc in temp._processes)
+                {
+                    // Создаём новый процесс
+                    var process = new Process(mainProcess.Collector) { Description = proc.ProcessName };
+                    processes.Add(process); // Добавляем в список
+
+                    var tabItem = new TabItem() { Header = process };
+                    testTabControl.SelectedItem = tabItem;
+
+                    // Создаём область рисование
+                    var drawArea = new DrawArea
+                    {
+                        Processes = processes,
+                    };
+
+
+                    //добавляем в список
+                    drawAreas.Add(drawArea);
+                    //добавляем на вкладку
+                    tabItem.Content = drawArea;
+                    //и добавляем вкладку
+                    testTabControl.Items.Add(tabItem);
+                    // Выгружаем элементы
+                    saver.LoadProcessExecute(proc, drawArea);
+                }
             }
         }
     }
