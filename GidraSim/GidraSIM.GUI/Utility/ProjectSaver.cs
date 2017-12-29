@@ -10,6 +10,7 @@ using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
 using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Windows;
@@ -116,12 +117,24 @@ namespace GidraSIM.GUI.Utility
     /// <summary>   
     ///  Класс сериализуюзий ресурсы
     /// </summary>
+    ///     
+    [DataContract]
+    [KnownType(typeof(WorkerResource))]
+    [KnownType(typeof(CadResource))]
+    [KnownType(typeof(MethodolgicalSupportResource))]
+    [KnownType(typeof(TechincalSupportResource))]
     public class SaveResource
     {
+        [DataMember]
         public String TypeRes { get; set; }
+        [DataMember]
         public Guid Id { get; set; }
+        [DataMember]
         public Point Position { get; set; }
+        [DataMember]
         public String Name { get; set; }
+        [DataMember]
+        public IResource Model { get; set; }
 
         public static ResourceWPF ToNormal(SaveResource res)
         {
@@ -133,35 +146,43 @@ namespace GidraSIM.GUI.Utility
 
         public static SaveResource ToSave(ResourceWPF res)
         {
+            String type = ConvertTypeResToSave(res, out IResource model);
+
             return new SaveResource()
             {
-                TypeRes = ConvertTypeResToSave(res),
+                TypeRes = type,
                 Id = Guid.NewGuid(),
                 Name = res.BlockName,
-                Position = res.Position
+                Position = res.Position,
+                Model = model
             };
         }
 
-        private static String ConvertTypeResToSave(ResourceWPF resourceWPF)
+        private static String ConvertTypeResToSave(ResourceWPF resourceWPF, out IResource model)
         {
             if (resourceWPF is CadResourceViewModel)
             {
+                model = (resourceWPF as CadResourceViewModel).Model;
                 return (resourceWPF as CadResourceViewModel).GetType().ToString();
             }
             else if (resourceWPF is WorkerResourceViewModel)
             {
+                model = (resourceWPF as WorkerResourceViewModel).Model;
                 return (resourceWPF as WorkerResourceViewModel).GetType().ToString();
             }
             else if (resourceWPF is TechincalSupportResourceViewModel)
             {
+                model = (resourceWPF as TechincalSupportResourceViewModel).Model;
                 return (resourceWPF as TechincalSupportResourceViewModel).GetType().ToString();
             }
             else if (resourceWPF is MethodolgicalSupportResourceViewModel)
             {
+                model = (resourceWPF as MethodolgicalSupportResourceViewModel).Model;
                 return (resourceWPF as MethodolgicalSupportResourceViewModel).GetType().ToString(); ;
             }
             else
             {
+                model = null;
                 return resourceWPF.GetType().ToString();
             }
         }
@@ -212,6 +233,7 @@ namespace GidraSIM.GUI.Utility
         }
     }
 
+
     public class SaveProject
     {
         public List<SaveProcess> _processes;
@@ -222,6 +244,7 @@ namespace GidraSIM.GUI.Utility
         }
     }
 
+    
     public class ProjectSaver : IProjectSaver
     {
         private SaveProject save;

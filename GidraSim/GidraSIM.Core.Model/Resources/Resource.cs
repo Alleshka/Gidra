@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
+    [DataContract]
     public abstract class Resource : IResource
     {
+        [DataMember]
         public string Description { get; set; }
 
         public virtual void ReleaseResource()

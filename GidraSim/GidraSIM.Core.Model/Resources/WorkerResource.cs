@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
-    
+    [Serializable]
     public enum Qualification
     {
         [Description("Без категории")]
@@ -23,6 +24,7 @@ namespace GidraSIM.Core.Model.Resources
     };
 
 
+    [DataContract(Name = "Worker")]
     public class WorkerResource: Resource
     {
 
@@ -33,7 +35,7 @@ namespace GidraSIM.Core.Model.Resources
             Description = "Простой работник";
         }
 
-
+        [DataMember]
         public Qualification WorkerQualification
         {
             get;

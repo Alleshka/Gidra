@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
+    [DataContract(Name = "TechincalSupportResource")]
     public class TechincalSupportResource: Resource
     {
         public TechincalSupportResource()
