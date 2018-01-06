@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract(Name = "MethodolgicalSupportResource")]
-    public class MethodolgicalSupportResource:Resource
+    public class MethodolgicalSupportResource:AbstractResource
     {
         /// <summary>
         /// методологические ресурсы всегда доступны

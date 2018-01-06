@@ -63,10 +63,6 @@
     <Compile Include="BlocksWPF\SquareBlockWPF.cs" />
     <Compile Include="BlocksWPF\StartBlockWPF.cs" />
     <Compile Include="BlocksWPF\SubProcessWPF.cs" />
-    <Compile Include="BlocksWPF\ViewModels\Resources\CadResourceViewModel.cs" />
-    <Compile Include="BlocksWPF\ViewModels\Resources\MethodolgicalSupportResourceViewModel.cs" />
-    <Compile Include="BlocksWPF\ViewModels\Resources\TechincalSupportResourceViewModel.cs" />
-    <Compile Include="BlocksWPF\ViewModels\Resources\WorkerResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

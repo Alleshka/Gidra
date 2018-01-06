@@ -8,7 +8,6 @@ using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.IO;
@@ -160,31 +159,32 @@ namespace GidraSIM.GUI.Utility
 
         private static String ConvertTypeResToSave(ResourceWPF resourceWPF, out IResource model)
         {
-            if (resourceWPF is CadResourceViewModel)
-            {
-                model = (resourceWPF as CadResourceViewModel).Model;
-                return (resourceWPF as CadResourceViewModel).GetType().ToString();
-            }
-            else if (resourceWPF is WorkerResourceViewModel)
-            {
-                model = (resourceWPF as WorkerResourceViewModel).Model;
-                return (resourceWPF as WorkerResourceViewModel).GetType().ToString();
-            }
-            else if (resourceWPF is TechincalSupportResourceViewModel)
-            {
-                model = (resourceWPF as TechincalSupportResourceViewModel).Model;
-                return (resourceWPF as TechincalSupportResourceViewModel).GetType().ToString();
-            }
-            else if (resourceWPF is MethodolgicalSupportResourceViewModel)
-            {
-                model = (resourceWPF as MethodolgicalSupportResourceViewModel).Model;
-                return (resourceWPF as MethodolgicalSupportResourceViewModel).GetType().ToString(); ;
-            }
-            else
-            {
-                model = null;
-                return resourceWPF.GetType().ToString();
-            }
+            throw new NotImplementedException();
+            //if (resourceWPF is CadResourceViewModel)
+            //{
+            //    model = (resourceWPF as CadResourceViewModel).Model;
+            //    return (resourceWPF as CadResourceViewModel).GetType().ToString();
+            //}
+            //else if (resourceWPF is WorkerResourceViewModel)
+            //{
+            //    model = (resourceWPF as WorkerResourceViewModel).Model;
+            //    return (resourceWPF as WorkerResourceViewModel).GetType().ToString();
+            //}
+            //else if (resourceWPF is TechincalSupportResourceViewModel)
+            //{
+            //    model = (resourceWPF as TechincalSupportResourceViewModel).Model;
+            //    return (resourceWPF as TechincalSupportResourceViewModel).GetType().ToString();
+            //}
+            //else if (resourceWPF is MethodolgicalSupportResourceViewModel)
+            //{
+            //    model = (resourceWPF as MethodolgicalSupportResourceViewModel).Model;
+            //    return (resourceWPF as MethodolgicalSupportResourceViewModel).GetType().ToString(); ;
+            //}
+            //else
+            //{
+            //    model = null;
+            //    return resourceWPF.GetType().ToString();
+            //}
         }
     }
 

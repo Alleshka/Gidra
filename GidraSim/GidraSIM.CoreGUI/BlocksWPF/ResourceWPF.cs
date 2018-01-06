@@ -18,11 +18,12 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         // Соединения с процедурами
         private List<ResConnectionWPF> resPuts;
 
-        public Resource ResourceModel { get; set; }
+        public AbstractResource ResourceModel { get; private set; }
 
-        public ResourceWPF(Point position, string resourceName) : base(position, resourceName)
+        public ResourceWPF(Point position, AbstractResource resource) : base(position, resource.Description)
         {
             this.resPuts = new List<ResConnectionWPF>();
+            this.ResourceModel = resource;
 
             MakeIMG();
 

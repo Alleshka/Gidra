@@ -8,7 +8,6 @@ using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.GUI.Utility
@@ -156,26 +155,7 @@ namespace GidraSIM.GUI.Utility
         {
             if (resourceWPF == null)
                 throw new ArgumentNullException();
-            else if( resourceWPF is CadResourceViewModel)
-            {
-                return (resourceWPF as CadResourceViewModel).Model;
-            }
-            else if( resourceWPF is WorkerResourceViewModel)
-            {
-                return (resourceWPF as WorkerResourceViewModel).Model;
-            }
-            else if(resourceWPF is TechincalSupportResourceViewModel)
-            {
-                return (resourceWPF as TechincalSupportResourceViewModel).Model;
-            }
-            else if (resourceWPF is MethodolgicalSupportResourceViewModel)
-            {
-                return (resourceWPF as MethodolgicalSupportResourceViewModel).Model;
-            }
-            else
-            {
-                throw new NotImplementedException("Данный тип ресурса пока не поддерживается конвертером");
-            }
+            return (resourceWPF as ResourceWPF).ResourceModel;
         }
     }
 }

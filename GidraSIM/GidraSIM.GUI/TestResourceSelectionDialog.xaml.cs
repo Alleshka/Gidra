@@ -1,5 +1,5 @@
-﻿using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
+﻿using GidraSIM.Core.Model.Resources;
+using GidraSIM.GUI.Core.BlocksWPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,22 +21,22 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestResourceSelectionDialog : Window
     {
-        public TestResourceSelectionDialog(Point position)
+        public TestResourceSelectionDialog()
         {
             InitializeComponent();
-            listBox1.Items.Add(new CadResourceViewModel(position, "CAD"));
-            listBox1.Items.Add(new WorkerResourceViewModel(position, "Работник"));
-            listBox1.Items.Add(new TechincalSupportResourceViewModel(position, "Рабочая станция"));
-            listBox1.Items.Add(new MethodolgicalSupportResourceViewModel(position, "Методологическое обеспечение"));
+            listBox1.Items.Add(new CadResource());
+            listBox1.Items.Add(new WorkerResource());
+            listBox1.Items.Add(new TechincalSupportResource());
+            listBox1.Items.Add(new MethodolgicalSupportResource());
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
 
-        public ResourceWPF SelectedResource { get; private set; }
+        public AbstractResource SelectedResource { get; private set; }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            SelectedResource = listBox1.SelectedItem as ResourceWPF;
+            SelectedResource = listBox1.SelectedItem as AbstractResource;
             listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }

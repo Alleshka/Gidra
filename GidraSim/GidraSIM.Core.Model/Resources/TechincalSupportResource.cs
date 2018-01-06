@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract(Name = "TechincalSupportResource")]
-    public class TechincalSupportResource: Resource
+    public class TechincalSupportResource: AbstractResource
     {
         public TechincalSupportResource()
         {

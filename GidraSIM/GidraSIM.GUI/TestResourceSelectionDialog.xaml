@@ -6,7 +6,6 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         xmlns:cr="clr-namespace:GidraSIM.Core.Model.Resources;assembly=GidraSIM.Core.Model"
-        xmlns:mv="clr-namespace:GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;assembly=GidraSIM.GUI.Core"
         mc:Ignorable="d"
         Title="Выберите тип ресурса" Height="300" Width="300">
     <Window.Resources>
@@ -102,8 +101,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="1" Content="{Binding ElementName=listBox1, Path=SelectedItem.Model}" />
-        <ListBox  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="BlockName">
+        <ContentControl Grid.Row="1" Content="{Binding ElementName=listBox1, Path=SelectedItem}" />
+        <ListBox  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description">
 
         </ListBox>
         

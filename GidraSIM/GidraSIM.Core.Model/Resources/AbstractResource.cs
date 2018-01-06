@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract]
-    public abstract class Resource : IResource
+    public abstract class AbstractResource : IResource
     {
         [DataMember]
         public string Description { get; set; }
@@ -21,5 +21,7 @@ namespace GidraSIM.Core.Model.Resources
         {
             return true;
         }
+
+        public override string ToString() => Description;
     }
 }

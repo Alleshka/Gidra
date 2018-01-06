@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract(Name = "CadResource")]
-    public class CadResource:Resource
+    public class CadResource:AbstractResource
     {
         //TODO добавить типы лицензии
 
