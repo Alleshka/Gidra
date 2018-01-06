@@ -40,8 +40,7 @@ namespace GidraSIM.GUI
         private void button_Click(object sender, RoutedEventArgs e)
         {
             var process = (listBox1.SelectedItem as Process);
-            SelectedProcess = new SubProcessWPF(point, process.Description);
-            SelectedProcess.ProcedurePrototype = process;
+            SelectedProcess = new SubProcessWPF(point, process);
             listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }

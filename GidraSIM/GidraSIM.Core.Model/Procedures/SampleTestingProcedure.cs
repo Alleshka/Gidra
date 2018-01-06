@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class SampleTestingProcedure:Procedure
+    public class SampleTestingProcedure:AbstractProcedure
     {
         public override string Description => "Тестирование образца";
 
-        public SampleTestingProcedure(ITokensCollector collector):base(1,1,collector)
+        public SampleTestingProcedure():base(1,1)
         {
 
         }

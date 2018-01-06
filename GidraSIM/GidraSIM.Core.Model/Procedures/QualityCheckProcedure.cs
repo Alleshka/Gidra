@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class QualityCheckProcedure: Procedure
+    public class QualityCheckProcedure: AbstractProcedure
     {
 
         public override string Description => "Проверка качества";
 
-        public QualityCheckProcedure(ITokensCollector collector) : base(1, 2, collector)
+        public QualityCheckProcedure() : base(1, 2)
         {
         }
 

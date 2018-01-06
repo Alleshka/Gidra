@@ -20,7 +20,7 @@ namespace GidraSIM.GUI
 
         //переменная для именования процессов
         int processNamesCounter = 1;
-        Process mainProcess = new Process(new TokensCollector()) { Description = "Процесс 1" };
+        Process mainProcess = new Process() { Description = "Процесс 1" };
         List<Process> processes = new List<Process>();
         List<DrawArea> drawAreas = new List<DrawArea>();
 
@@ -213,7 +213,7 @@ namespace GidraSIM.GUI
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
         {
             //создаём новый процесс
-            var process = new Process(mainProcess.Collector) { Description = "Процесс "+ (++this.processNamesCounter)};
+            var process = new Process() { Description = "Процесс "+ (++this.processNamesCounter)};
             //добавляем в список всех процессов
             processes.Add(process);
             //надеюсь, что заголовок будет содержать название
@@ -346,7 +346,7 @@ namespace GidraSIM.GUI
                 foreach (var proc in temp._processes)
                 {
                     // Создаём новый процесс
-                    var process = new Process(mainProcess.Collector) { Description = proc.ProcessName };
+                    var process = new Process() { Description = proc.ProcessName };
                     processes.Add(process); // Добавляем в список
 
                     var tabItem = new TabItem() { Header = process };

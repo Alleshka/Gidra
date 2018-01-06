@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Core.Model
 {
-    public class Block: IBlock
+    public abstract class AbstractBlock: IBlock
     {
         public int OutputQuantity { get; protected set; }
         public int InputQuantity { get; protected set; }
@@ -34,7 +34,7 @@ namespace GidraSIM.Core.Model
         //protected double globalTime;
 
 
-        public Block(int inQuantiry, int outQuantity, ITokensCollector collector)
+        public AbstractBlock(int inQuantiry, int outQuantity)
         {
             this.InputQuantity = inQuantiry;
             this.OutputQuantity = outQuantity;
@@ -45,7 +45,7 @@ namespace GidraSIM.Core.Model
             }
 
             outputs = new Token[OutputQuantity];
-            this.collector = collector;
+            this.collector = TokensCollector.GetInstance();
         }
 
         public virtual void AddToken(Token token, int inputNumber)

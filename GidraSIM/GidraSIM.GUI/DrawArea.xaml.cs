@@ -71,12 +71,13 @@ namespace GidraSIM.GUI
             // TODO: Ввод имени процедуры и связь с моделью
             //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
 
-            TestProcedureSelectionDialog dialog = new TestProcedureSelectionDialog(procedurePosition);
+            TestProcedureSelectionDialog dialog = new TestProcedureSelectionDialog();
 
             if(dialog.ShowDialog() == true)
             {
                 var procedure = dialog.SelectedBlock;
-                workArea.Children.Add(procedure);
+
+                workArea.Children.Add(new ProcedureWPF(procedurePosition,procedure));
             }
 
             //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Фикс. процедура (10)", 1, 1));

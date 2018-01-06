@@ -22,7 +22,7 @@ namespace GidraSIM.Core.Model.Procedures.Tests
         public void UpdateWithResTest()
         {
             // arrange 
-            TracingProcedure procedure = new TracingProcedure(new TokensCollector());
+            TracingProcedure procedure = new TracingProcedure();
             procedure.AddResorce(new WorkerResource()
             {
                 //Name = "Alleshka",

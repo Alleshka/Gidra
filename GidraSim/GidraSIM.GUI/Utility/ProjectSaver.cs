@@ -8,7 +8,6 @@ using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -43,66 +42,67 @@ namespace GidraSIM.GUI.Utility
 
         public static String ConvertTypeToSave(ProcedureWPF procedureWPF)
         {
-            if (procedureWPF is FixedTimeBlockViewModel)
-            {
-                return (procedureWPF as FixedTimeBlockViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is QualityCheckProcedureViewModel)
-            {
-                return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is SchemaCreationProcedureViewModel)
-            {
-                return (procedureWPF as SchemaCreationProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is ArrangementProcedureViewModel)
-            {
-                return (procedureWPF as ArrangementProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is ClientCoordinationPrrocedureViewModel)
-            {
-                return (procedureWPF as ClientCoordinationPrrocedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is DocumentationCoordinationProcedureViewModel)
-            {
-                return (procedureWPF as DocumentationCoordinationProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is ElectricalSchemeSimulationViewModel)
-            {
-                return (procedureWPF as ElectricalSchemeSimulationViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is FormingDocumentationProcedureViewModel)
-            {
-                return (procedureWPF as FormingDocumentationProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is PaperworkProcedureViewModel)
-            {
-                return (procedureWPF as PaperworkProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is QualityCheckProcedureViewModel)
-            {
-                return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is SampleTestingProcedureViewModel)
-            {
-                return (procedureWPF as SampleTestingProcedureViewModel).GetType().ToString();
-            }
-            else if (procedureWPF is TracingProcedureViewModel)
-            {
-                return (procedureWPF as TracingProcedureViewModel).GetType().ToString();
-            }
+            throw new NotImplementedException("Модель изменилась, необхожимо пофиксить процедуру сохранения");
+            //if (procedureWPF is FixedTimeBlockViewModel)
+            //{
+            //    return (procedureWPF as FixedTimeBlockViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is QualityCheckProcedureViewModel)
+            //{
+            //    return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is SchemaCreationProcedureViewModel)
+            //{
+            //    return (procedureWPF as SchemaCreationProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is ArrangementProcedureViewModel)
+            //{
+            //    return (procedureWPF as ArrangementProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is ClientCoordinationPrrocedureViewModel)
+            //{
+            //    return (procedureWPF as ClientCoordinationPrrocedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is DocumentationCoordinationProcedureViewModel)
+            //{
+            //    return (procedureWPF as DocumentationCoordinationProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is ElectricalSchemeSimulationViewModel)
+            //{
+            //    return (procedureWPF as ElectricalSchemeSimulationViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is FormingDocumentationProcedureViewModel)
+            //{
+            //    return (procedureWPF as FormingDocumentationProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is PaperworkProcedureViewModel)
+            //{
+            //    return (procedureWPF as PaperworkProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is QualityCheckProcedureViewModel)
+            //{
+            //    return (procedureWPF as QualityCheckProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is SampleTestingProcedureViewModel)
+            //{
+            //    return (procedureWPF as SampleTestingProcedureViewModel).GetType().ToString();
+            //}
+            //else if (procedureWPF is TracingProcedureViewModel)
+            //{
+            //    return (procedureWPF as TracingProcedureViewModel).GetType().ToString();
+            //}
 
-            else if (procedureWPF is SubProcessWPF)
-                return (procedureWPF as SubProcessWPF).GetType().ToString();
+            //else if (procedureWPF is SubProcessWPF)
+            //    return (procedureWPF as SubProcessWPF).GetType().ToString();
 
-            else if (procedureWPF == null)
-            {
-                throw new NullReferenceException("Для процедуры WPF не указан прототип");
-            }
-            else
-            {
-                throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
-            }
+            //else if (procedureWPF == null)
+            //{
+            //    throw new NullReferenceException("Для процедуры WPF не указан прототип");
+            //}
+            //else
+            //{
+            //    throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
+            //}
         }
 
         public static ProcedureWPF ToNormal(SaveProcedure proc)

@@ -16,11 +16,11 @@ namespace GidraSIM.Core.Model.Tests
         public void SubprocessTest()
         {
             //arrange
-            Process process = new Process(new TokensCollector());
-            Process subprocess = new Process(process.Collector);
+            Process process = new Process();
+            Process subprocess = new Process();
 
-            SampleTestingProcedure procedure = new SampleTestingProcedure(subprocess.Collector);
-            SampleTestingProcedure procedure2 = new SampleTestingProcedure(process.Collector);
+            SampleTestingProcedure procedure = new SampleTestingProcedure();
+            SampleTestingProcedure procedure2 = new SampleTestingProcedure();
 
             subprocess.Blocks.Add(procedure);
             subprocess.StartBlock = procedure;

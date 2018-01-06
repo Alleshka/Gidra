@@ -26,27 +26,32 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         // Соединения с ресурсами
         private List<ResConnectionWPF> resputs;
 
-        public IBlock ProcedurePrototype { get; set; }
+        public IBlock BlockModel {  get; private set; }
 
         // константы для определения высоты блока
 
-        public ProcedureWPF(Point position, string processName, int inputCount, int outputCount) : base(position, processName)
+        public ProcedureWPF(Point position,IBlock block) : base(position, block.Description)
         {
-            this.InputCount = inputCount;
-            this.OutputCount = outputCount;
+            this.InputCount = block.InputQuantity;
+            this.OutputCount = block.OutputQuantity;
+            this.BlockModel = block;
 
             this.outputs = new List<ProcConnectionWPF>();
             this.inputs = new List<ProcConnectionWPF>();
             this.resputs = new List<ResConnectionWPF>();
 
             // проверка корректности inputCount и outputCount (TODO: переписать через исключения)
-            if (inputCount < 1) inputCount = 1;
-            if (outputCount < 1) outputCount = 1;
-            if (inputCount > 10) inputCount = 10;
-            if (outputCount > 10) outputCount = 10;
+            if (this.InputCount < 1)
+                throw new ArgumentOutOfRangeException("Число входов должно быть от 1 до 10");
+            if (this.OutputCount < 1)
+                throw new ArgumentOutOfRangeException("Число выходов должно быть от 1 до 10");
+            if (this.InputCount > 10)
+                throw new ArgumentOutOfRangeException("Число входов должно быть от 1 до 10");
+            if (this.OutputCount > 10)
+                throw new ArgumentOutOfRangeException("Число выходов должно быть от 1 до 10");
 
             // перерасчёт высоты блока
-            int maxCount = Math.Max(inputCount, outputCount);
+            int maxCount = Math.Max(this.InputCount, this.OutputCount);
             if(DEFAULT_HEIGHT < (2*maxCount*POINT_MARGIN + 2*RADIUS))
             {
                 SetHeight(2 * maxCount * POINT_MARGIN + 2 * RADIUS);
@@ -56,9 +61,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             // точки входа
             //MakePoint(inPointFill, DEFAULT_HEIGHT / 2, 0);
             double x = 0;
-            double y = (GetHeight() / 2.0) - POINT_MARGIN * (inputCount - 1);
+            double y = (GetHeight() / 2.0) - POINT_MARGIN * (this.InputCount - 1);
             
-            for (int i = 0; i < inputCount; i++)
+            for (int i = 0; i < this.InputCount; i++)
             {
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),
@@ -73,8 +78,8 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             // точка выхода
             //MakePoint(outPointFill, DEFAULT_HEIGHT / 2, DEFAULT_WIDTH);
             x = DEFAULT_WIDTH;
-            y = (GetHeight() / 2.0) - POINT_MARGIN * (outputCount - 1);
-            for (int i = 0; i < outputCount; i++)
+            y = (GetHeight() / 2.0) - POINT_MARGIN * (this.OutputCount - 1);
+            for (int i = 0; i < this.OutputCount; i++)
             {
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),

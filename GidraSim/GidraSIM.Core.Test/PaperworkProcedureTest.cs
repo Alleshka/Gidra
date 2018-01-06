@@ -13,7 +13,7 @@ namespace GidraSIM.Core.Test
         public void InitPaperWorkProcdeure()
         {
             // arrange 
-            PaperworkProcedure paperworkProcedure = new PaperworkProcedure(new TokensCollector());
+            PaperworkProcedure paperworkProcedure = new PaperworkProcedure();
 
             // act 
 
@@ -25,7 +25,7 @@ namespace GidraSIM.Core.Test
         public void UpdateWithoutRes()
         {
             // arrange 
-            PaperworkProcedure paperworkProcedure = new PaperworkProcedure(new TokensCollector());
+            PaperworkProcedure paperworkProcedure = new PaperworkProcedure();
             paperworkProcedure.AddToken(new Token(0, 10), 0);
             bool tes = false;
 
@@ -47,7 +47,7 @@ namespace GidraSIM.Core.Test
         public void UpdateWithRes()
         {
             // arrange 
-                PaperworkProcedure paperworkProcedure = new PaperworkProcedure(new TokensCollector());
+                PaperworkProcedure paperworkProcedure = new PaperworkProcedure();
             paperworkProcedure.AddResorce(new WorkerResource()
             {
                 //Name = "Alleshka",

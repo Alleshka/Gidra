@@ -7,12 +7,12 @@ using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class SchemaCreationProcedure : Procedure
+    public class SchemaCreationProcedure : AbstractProcedure
     {
 
         public override string Description => "Создание электрической схемы";
 
-        public SchemaCreationProcedure (ITokensCollector collector) : base(1, 1, collector)
+        public SchemaCreationProcedure () : base(1, 1)
         {
 
             

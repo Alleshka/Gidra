@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class DocumentationCoordinationProcedure: Procedure
+    public class DocumentationCoordinationProcedure: AbstractProcedure
     {
         public override string Description => "Согласование с нормоконтролем";
 
-        public DocumentationCoordinationProcedure(ITokensCollector collector):base(1,1,collector)
+        public DocumentationCoordinationProcedure():base(1,1)
         {
 
         }

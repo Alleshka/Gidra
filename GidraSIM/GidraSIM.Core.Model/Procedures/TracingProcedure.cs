@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace GidraSIM.Core.Model.Procedures
 {
     ///Компоновка
-    public class TracingProcedure : Procedure
+    public class TracingProcedure : AbstractProcedure
     {
         public override string Description => "Трассировка";
 
-        public TracingProcedure(ITokensCollector collector) : base(1, 1, collector)
+        public TracingProcedure() : base(1, 1)
         {
 
         }

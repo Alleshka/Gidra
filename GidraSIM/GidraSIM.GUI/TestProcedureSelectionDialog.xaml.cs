@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
 
 namespace GidraSIM.GUI
 {
@@ -23,31 +22,31 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestProcedureSelectionDialog : Window
     {
-        public TestProcedureSelectionDialog(Point position)
+        public TestProcedureSelectionDialog()
         {
             InitializeComponent();
-            listBox1.Items.Add( new FixedTimeBlockViewModel(position,"Блок фикс времени"));
-            listBox1.Items.Add(new QualityCheckProcedureViewModel(position, "Проверка качества"));
-            listBox1.Items.Add(new SchemaCreationProcedureViewModel(position, "Проектирование эл схемы"));
+            listBox1.Items.Add(new FixedTimeBlock(10));
+            listBox1.Items.Add(new QualityCheckProcedure());
+            listBox1.Items.Add(new SchemaCreationProcedure());
 
-            listBox1.Items.Add(new ArrangementProcedureViewModel(position, "Компоновка"));
-            listBox1.Items.Add(new ClientCoordinationPrrocedureViewModel(position, "Согласование доков с заказчиком"));
-            listBox1.Items.Add(new DocumentationCoordinationProcedureViewModel(position, "Согласование с нормоконтролем"));
-            listBox1.Items.Add(new ElectricalSchemeSimulationViewModel(position, "Моделирование эл схемы"));
-            listBox1.Items.Add(new FormingDocumentationProcedureViewModel(position, "Формирование документации"));
-            listBox1.Items.Add(new PaperworkProcedureViewModel(position, "Оформление документации"));
-            listBox1.Items.Add(new SampleTestingProcedureViewModel(position, "Тестирование образца"));
-            listBox1.Items.Add(new TracingProcedureViewModel(position, "Трассировка"));
+            listBox1.Items.Add(new ArrangementProcedure());
+            listBox1.Items.Add(new ClientCoordinationPrrocedure());
+            listBox1.Items.Add(new DocumentationCoordinationProcedure());
+            listBox1.Items.Add(new ElectricalSchemeSimulation());
+            listBox1.Items.Add(new FormingDocumentationProcedure());
+            listBox1.Items.Add(new PaperworkProcedure());
+            listBox1.Items.Add(new SampleTestingProcedure());
+            listBox1.Items.Add(new TracingProcedure());
 
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
 
-        public ProcedureWPF SelectedBlock { get; private set; }
+        public IBlock SelectedBlock { get; private set; }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            SelectedBlock = listBox1.SelectedItem as ProcedureWPF;
+            SelectedBlock = listBox1.SelectedItem as IBlock;
             listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }

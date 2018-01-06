@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class FormingDocumentationProcedure:Procedure
+    public class FormingDocumentationProcedure:AbstractProcedure
     {
         public override string Description => "Формирование документации";
 
-        public FormingDocumentationProcedure(ITokensCollector collector):base(1,1,collector)
+        public FormingDocumentationProcedure():base(1,1)
         {
 
         }

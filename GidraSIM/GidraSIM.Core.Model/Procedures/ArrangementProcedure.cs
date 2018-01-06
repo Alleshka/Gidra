@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace GidraSIM.Core.Model.Procedures
 {
     ///Компоновка
-    public class ArrangementProcedure : Procedure
+    public class ArrangementProcedure : AbstractProcedure
     {
         public override string Description => "Компоновка";
 
-        public ArrangementProcedure(ITokensCollector collector) : base(1, 1, collector)
+        public ArrangementProcedure() : base(1, 1)
         {
 
         }

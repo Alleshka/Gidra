@@ -10,6 +10,18 @@ namespace GidraSIM.Core.Model
     /// </summary>
     public class TokensCollector : ITokensCollector
     {
+        private static TokensCollector tokensCollector = new TokensCollector();
+
+        private TokensCollector()
+        {
+
+        }
+
+        public static TokensCollector GetInstance()
+        {
+            return tokensCollector;
+        }
+
         /// <summary>
         /// история всех токенов
         /// </summary>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    public class Procedure : Block, IProcedure
+    public abstract class AbstractProcedure : AbstractBlock, IProcedure
     {
         //protected ConnectionManager connectionManager = new ConnectionManager();
 
@@ -13,7 +13,7 @@ namespace GidraSIM.Core.Model.Procedures
 
         protected List<IResource> resources = new List<IResource>();
 
-        public Procedure(int inQuantity, int outQuantity, ITokensCollector collector) : base(inQuantity, outQuantity, collector)
+        public AbstractProcedure(int inQuantity, int outQuantity) : base(inQuantity, outQuantity)
         {
         }
 

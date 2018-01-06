@@ -11,11 +11,11 @@ namespace GidraSIM.Core.Model.Procedures
     /// <summary>
     /// case "Оформление документации":
     /// </summary>
-    public class PaperworkProcedure : Procedure
+    public class PaperworkProcedure : AbstractProcedure
     {
         public override string Description => "Оформление документации";
 
-        public PaperworkProcedure(ITokensCollector collector) : base(1, 1, collector)
+        public PaperworkProcedure() : base(1, 1)
         {
 
         }

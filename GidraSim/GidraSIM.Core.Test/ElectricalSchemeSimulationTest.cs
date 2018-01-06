@@ -16,7 +16,7 @@ namespace GidraSIM.Core.Test
         public void TestWithRes()
         {
             // arrange
-            ElectricalSchemeSimulation electricalScheme = new ElectricalSchemeSimulation(new TokensCollector());
+            ElectricalSchemeSimulation electricalScheme = new ElectricalSchemeSimulation();
             electricalScheme.AddToken(new Token(bornTime: 0, complexity: 100), 0);
 
             electricalScheme.AddResorce(new WorkerResource()

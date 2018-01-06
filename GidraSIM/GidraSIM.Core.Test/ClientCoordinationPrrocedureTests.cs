@@ -15,7 +15,7 @@ namespace GidraSIM.Core.Model.Procedures.Tests
         public void UpdateWithResTest()
         {
             // arrange 
-            ClientCoordinationPrrocedure procedure = new ClientCoordinationPrrocedure(new TokensCollector());
+            ClientCoordinationPrrocedure procedure = new ClientCoordinationPrrocedure();
             procedure.AddToken(new Token(bornTime: 0, complexity: 1000), 0);
             Token token = null;
 

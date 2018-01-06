@@ -10,11 +10,11 @@ namespace GidraSIM.Core.Model.Procedures
     /// <summary>
     /// case "Моделирование электрической схемы"
     /// </summary>
-    public class ElectricalSchemeSimulation : Procedure
+    public class ElectricalSchemeSimulation : AbstractProcedure
     {
         public override string Description => "Моделирование эл схемы";
 
-        public ElectricalSchemeSimulation(ITokensCollector collector) : base(1, 1, collector)
+        public ElectricalSchemeSimulation() : base(1, 1)
         {
 
         }

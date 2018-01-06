@@ -23,10 +23,9 @@ namespace GidraSIM
     {
         public TestProcedureSelectionDialog()
         {
-            TokensCollector temp = new TokensCollector();
             InitializeComponent();
-            listBox1.Items.Add(new FixedTimeBlock(temp,10));
-            listBox1.Items.Add(new QualityCheckProcedure(temp));
+            listBox1.Items.Add(new FixedTimeBlock(10));
+            listBox1.Items.Add(new QualityCheckProcedure());
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 using GidraSIM.GUI.Core;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
@@ -16,6 +17,8 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         // Соединения с процедурами
         private List<ResConnectionWPF> resPuts;
+
+        public Resource ResourceModel { get; set; }
 
         public ResourceWPF(Point position, string resourceName) : base(position, resourceName)
         {

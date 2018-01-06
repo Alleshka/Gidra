@@ -17,7 +17,7 @@ namespace GidraSIM.Core.Model.Procedures.Tests
         public void UpdateWithResTest()
         {
             // arrange 
-            FormingDocumentationProcedure procedure = new FormingDocumentationProcedure(new TokensCollector());
+            FormingDocumentationProcedure procedure = new FormingDocumentationProcedure();
             procedure.AddResorce(new WorkerResource()
             {
                 //Name = "Alleshka",

@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Block.cs" />
+    <Compile Include="AbstractBlock.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IConnectionManager.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Procedures\FixedTimeBlock.cs" />
     <Compile Include="Procedures\FormingDocumentationProcedure.cs" />
     <Compile Include="Procedures\PaperworkProcedure.cs" />
-    <Compile Include="Procedures\Procedure.cs" />
+    <Compile Include="Procedures\AbstractProcedure.cs" />
     <Compile Include="Procedures\QualityCheckProcedure.cs" />
     <Compile Include="Procedures\SampleTestingProcedure.cs" />
     <Compile Include="Procedures\SchemaCreationProcedure.cs" />

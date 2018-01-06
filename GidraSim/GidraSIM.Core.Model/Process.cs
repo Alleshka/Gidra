@@ -9,7 +9,7 @@ namespace GidraSIM.Core.Model
     /// <summary>
     /// блок, имеющию внутри другие блоки
     /// </summary>
-    public class Process:Block
+    public class Process:AbstractBlock
     {
         public IConnectionManager Connections
         {
@@ -33,7 +33,7 @@ namespace GidraSIM.Core.Model
             set;
         }
 
-        public Process(ITokensCollector collector):base(1,1, collector)
+        public Process():base(1,1)
         {
             Blocks = new List<IBlock>();
             Connections = new ConnectionManager();

@@ -15,7 +15,7 @@ namespace GidraSIM.Core.Model.Procedures.Tests
         public void UpdateWithResTest()
         {
             // arrange 
-            SampleTestingProcedure procedure = new SampleTestingProcedure(new TokensCollector());
+            SampleTestingProcedure procedure = new SampleTestingProcedure();
             procedure.AddToken(new Token(bornTime: 0, complexity: 1), 0);
             Token token = null;
 

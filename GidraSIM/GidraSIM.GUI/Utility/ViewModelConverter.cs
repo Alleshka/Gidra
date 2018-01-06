@@ -8,7 +8,6 @@ using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
-using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF.ViewModels.Resources;
 using System.Runtime.Serialization;
 
@@ -46,7 +45,7 @@ namespace GidraSIM.GUI.Utility
                         if (!(procedures.ContainsKey(connection.EndBlock as ProcedureWPF)))
                         {
                             //первого нет, второй значимый
-                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
+                            block = (connection.EndBlock as ProcedureWPF).BlockModel;
 
                             //добавляем его в список
                             procedures.Add(connection.EndBlock as ProcedureWPF, block);
@@ -69,7 +68,7 @@ namespace GidraSIM.GUI.Utility
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.StartBlock as ProcedureWPF)))
                         {
-                            block = this.ConvertWpfBlockToModel(connection.StartBlock as ProcedureWPF, process.Collector);
+                            block = (connection.StartBlock as ProcedureWPF).BlockModel;
                             procedures.Add(connection.StartBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
@@ -88,14 +87,14 @@ namespace GidraSIM.GUI.Utility
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.StartBlock as ProcedureWPF)))
                         {
-                            block = this.ConvertWpfBlockToModel(connection.StartBlock as ProcedureWPF, process.Collector);
+                            block = (connection.StartBlock as ProcedureWPF).BlockModel;
                             procedures.Add(connection.StartBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
                         //если в первый раз такое встречаем
                         if (!(procedures.ContainsKey(connection.EndBlock as ProcedureWPF)))
                         {
-                            block = this.ConvertWpfBlockToModel(connection.EndBlock as ProcedureWPF, process.Collector);
+                            block = (connection.EndBlock as ProcedureWPF).BlockModel;
                             procedures.Add(connection.EndBlock as ProcedureWPF, block);
                             process.Blocks.Add(block);
                         }
@@ -129,7 +128,7 @@ namespace GidraSIM.GUI.Utility
                     //если в первый раз такое встречаем
                     if (!(procedures.ContainsKey(procedure)))
                     {
-                        block = this.ConvertWpfBlockToModel(procedure, process.Collector);
+                        block = procedure.BlockModel;
                         procedures.Add(procedure, block);
                         process.Blocks.Add(block);
                     }
@@ -150,70 +149,6 @@ namespace GidraSIM.GUI.Utility
                     (block as IProcedure).AddResorce(resource);
                 }
                 
-            }
-        }
-
-        private IBlock ConvertWpfBlockToModel(ProcedureWPF procedureWPF, ITokensCollector collector)
-        {
-            if (procedureWPF is FixedTimeBlockViewModel)
-            {
-                return new FixedTimeBlock(collector, 10);
-            }
-            else if (procedureWPF is QualityCheckProcedureViewModel)
-            {
-                return new QualityCheckProcedure(collector);
-            }
-            else if (procedureWPF is SchemaCreationProcedureViewModel)
-            {
-                return new SchemaCreationProcedure(collector);
-            }
-            else if (procedureWPF is ArrangementProcedureViewModel)
-            {
-                return new ArrangementProcedure(collector);
-            }
-            else if (procedureWPF is ClientCoordinationPrrocedureViewModel)
-            {
-                return new ClientCoordinationPrrocedure(collector);
-            }
-            else if (procedureWPF is DocumentationCoordinationProcedureViewModel)
-            {
-                return new DocumentationCoordinationProcedure(collector);
-            }
-            else if (procedureWPF is ElectricalSchemeSimulationViewModel)
-            {
-                return new ElectricalSchemeSimulation(collector);
-            }
-            else if (procedureWPF is FormingDocumentationProcedureViewModel)
-            {
-                return new FormingDocumentationProcedure(collector);
-            }
-            else if (procedureWPF is PaperworkProcedureViewModel)
-            {
-                return new PaperworkProcedure(collector);
-            }
-            else if (procedureWPF is QualityCheckProcedureViewModel)
-            {
-                return new QualityCheckProcedure(collector);
-            }
-            else if (procedureWPF is SampleTestingProcedureViewModel)
-            {
-                return new SampleTestingProcedure(collector);
-            }
-            else if (procedureWPF is TracingProcedureViewModel)
-            {
-                return new TracingProcedure(collector);
-            }
-
-            else if (procedureWPF is SubProcessWPF)
-                return procedureWPF.ProcedurePrototype;
-
-            else if (procedureWPF == null)
-            {
-                throw new NullReferenceException("Для процедуры WPF не указан прототип");
-            }
-            else
-            {
-                throw new NotImplementedException("Даный тип процедуры пока нельзя ковертировать");
             }
         }
 

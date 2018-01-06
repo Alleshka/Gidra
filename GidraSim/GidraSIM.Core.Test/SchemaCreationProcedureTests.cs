@@ -12,11 +12,11 @@ namespace GidraSIM.Core.Test
         [TestMethod()]
         public void SchemaCreationProcedureTest()
         {
-            SchemaCreationProcedure schemaCreationProcedure = new SchemaCreationProcedure(null);
+            SchemaCreationProcedure schemaCreationProcedure = new SchemaCreationProcedure();
             /*if (schemaCreationProcedure != null)
                 Assert.Fail();*/
 
-            schemaCreationProcedure = new SchemaCreationProcedure(new TokensCollector());
+            schemaCreationProcedure = new SchemaCreationProcedure();
             if(schemaCreationProcedure == null)
                 Assert.Fail();
         }
@@ -25,7 +25,7 @@ namespace GidraSIM.Core.Test
         public void UpdateTest()
         {
             //подготовка
-            SchemaCreationProcedure procedure = new SchemaCreationProcedure(new TokensCollector());
+            SchemaCreationProcedure procedure = new SchemaCreationProcedure();
             procedure.AddResorce(new CadResource());
             procedure.AddResorce(new WorkerResource() { WorkerQualification = Qualification.SecondCategory });
             procedure.AddResorce(new TechincalSupportResource() { Frequency = 1.5, Ram = 2, Vram = 1 });

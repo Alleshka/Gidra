@@ -9,7 +9,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     {
         private const int BORDER = 3;
 
-        public SubProcessWPF(Point position, string processName) : base(position, processName, 1, 1)
+        public SubProcessWPF(Point position, Process process) : base(position, process)
         {
 
         }
