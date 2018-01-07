@@ -60,8 +60,8 @@ namespace GidraSIM.GUI
 
             // Стандартные команды
             //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
-            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Project_Executed));
-            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Project_Executed));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Click));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Click));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
 
             // Кастомные команды
