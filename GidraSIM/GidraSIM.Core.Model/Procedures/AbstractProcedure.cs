@@ -44,5 +44,10 @@ namespace GidraSIM.Core.Model.Procedures
             }
             base.Update(modelingTime);
         }
+
+        public void ClearResources()
+        {
+            resources.Clear();
+        }
     }
 }

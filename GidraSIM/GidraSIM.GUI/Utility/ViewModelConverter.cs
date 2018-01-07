@@ -145,7 +145,10 @@ namespace GidraSIM.GUI.Utility
                     else
                         resource = resources[resourceWPF];
 
-                    (block as IProcedure).AddResorce(resource);
+                    if (block is IProcedure)
+                        (block as IProcedure).AddResorce(resource);
+                    else
+                        throw new ArgumentException("Ресурсы поддерживает только блоки типа IProcedure");
                 }
                 
             }

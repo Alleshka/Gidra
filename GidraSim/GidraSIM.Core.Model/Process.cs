@@ -97,6 +97,12 @@ namespace GidraSIM.Core.Model
         public void ClearProcess()
         {
             Connections.GetAllConnections().Clear();
+            //по идее на обычные блоки нельзя ссылаться из других процессов, поэтому чистим и соединения ресурсов
+            foreach(var block in Blocks)
+            {
+                if (block is IProcedure)
+                    (block as IProcedure).ClearResources();
+            }
             Blocks.Clear();
             Resources.Clear();
         }
