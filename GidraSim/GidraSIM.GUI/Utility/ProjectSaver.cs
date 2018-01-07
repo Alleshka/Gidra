@@ -10,15 +10,16 @@ using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
-    
+    public enum TypeSave { xml, binary }
     public class ProjectSaver : IProjectSaver
     {
-        public void SaveProjectExecute(TabControl testTabControl, string Path)
+        public void SaveProjectExecute(TabControl testTabControl, string Path, TypeSave typeSave = TypeSave.binary)
         {
             SaveProject project = new SaveProject();
 
@@ -36,6 +37,7 @@ namespace GidraSIM.GUI.Utility
                 DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject));
                 ser.WriteObject(stream, project);
             }
+
         }
 
         /// <summary>
@@ -435,8 +437,6 @@ namespace GidraSIM.GUI.Utility
         public Point Position { get; set; } // Положение блока
         [DataMember(Name = "Model")]
         public IBlock Model { get; set; }  // "Содержимое" блока
-        //[DataMember(Name = "ProcessName")]
-        //public String ProcessName { get; set; } // Название блока
 
         /// <summary>
         /// Переводит блок WPF в форму для сохранения
@@ -460,7 +460,10 @@ namespace GidraSIM.GUI.Utility
         /// <returns></returns>
         public static ProcedureWPF ToNormal(SaveProcedure procedure)
         {
-            return new ProcedureWPF(procedure.Position, procedure.Model);
+            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
+            Type type = procedure.Model.GetType(); // Получаем тип процедуры
+            IBlock tempBlock = (IBlock)Activator.CreateInstance(type);
+            return new ProcedureWPF(procedure.Position, tempBlock);
         }
     }
 
@@ -482,7 +485,7 @@ namespace GidraSIM.GUI.Utility
         public Point Position { get; set; }
 
         [DataMember(Name = "Content")]
-        public IResource Model { get; set; }
+        public AbstractResource Model { get; set; }
 
         public static SaveResource ToSave(ResourceWPF resource)
         {
@@ -495,7 +498,10 @@ namespace GidraSIM.GUI.Utility
         }
         public static ResourceWPF ToNormal(SaveResource resource)
         {
-            return new ResourceWPF(resource.Position, resource.Model as AbstractResource);
+            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
+            Type type = resource.Model.GetType(); // Получаем тип ресурса
+            AbstractResource res = (AbstractResource)Activator.CreateInstance(type);
+            return new ResourceWPF(resource.Position, res);
         }
     }
 

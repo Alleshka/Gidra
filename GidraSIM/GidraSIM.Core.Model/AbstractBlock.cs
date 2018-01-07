@@ -36,6 +36,7 @@ namespace GidraSIM.Core.Model
         protected Tuple<IBlock,int>[] outputs;*/
         [DataMember]
         protected Token[] outputs;
+
         protected ITokensCollector collector;
 
         //protected double globalTime;
