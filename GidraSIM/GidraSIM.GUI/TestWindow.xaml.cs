@@ -240,7 +240,7 @@ namespace GidraSIM.GUI
             //{
             //    MessageBox.Show("Selected tab " + (testTabControl.SelectedItem as TabItem).Header.ToString());
             //}
-            //catch( InvalidOperationException )
+            //catch( InvalidOperationException )    
             //{
             //    //
             //}
