@@ -103,6 +103,9 @@ namespace GidraSIM.Core.Model
                 if (block is IProcedure)
                     (block as IProcedure).ClearResources();
             }
+            StartBlock = null;
+            EndBlock = null;
+            EndBlockHasOutputToken = false;
             Blocks.Clear();
             Resources.Clear();
         }
