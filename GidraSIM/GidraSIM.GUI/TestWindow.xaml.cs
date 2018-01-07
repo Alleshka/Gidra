@@ -21,6 +21,8 @@ namespace GidraSIM.GUI
         //переменная для именования процессов
         int processNamesCounter = 1;
         Process mainProcess = new Process() { Description = "Процесс 1" };
+        int mainProcessNumber;
+
         List<Process> processes = new List<Process>();
         List<DrawArea> drawAreas = new List<DrawArea>();
 
@@ -298,13 +300,13 @@ namespace GidraSIM.GUI
 
         private void SaveAs()
         {
-            //try
-            //{
+            try
+            {
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
                 {
                     FileName = "Project",
-                    DefaultExt = ".json",
-                    Filter = "JSON documents .json)|*.json"
+                    DefaultExt = ".xml",
+                    Filter = "XMl documents .xml)|*.xml"
                 };
 
                 if ((bool)dlg.ShowDialog())
@@ -313,69 +315,36 @@ namespace GidraSIM.GUI
                     saver.SaveProjectExecute(testTabControl, dlg.FileName);
                     savePath = dlg.FileName;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Open()
+        {
+            //try
+            //{
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+                {
+                    FileName = "Project",
+                    DefaultExt = ".xml",
+                    Filter = "XML documents .json)|*.xml"
+                };
+
+                if (dlg.ShowDialog() == true)
+                {
+                    this.savePath = dlg.FileName;
+
+                    ProjectSaver saver = new ProjectSaver();
+                    mainProcessNumber = saver.LoadProjectExecute(dlg.FileName, testTabControl, drawAreas, processes, out mainProcess);
+                }
             //}
             //catch (Exception ex)
             //{
             //    MessageBox.Show(ex.Message);
             //}
-        }
-        private void Open()
-        {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
-            {
-                FileName = "Project",
-                DefaultExt = ".json",
-                Filter = "JSON documents .json)|*.json"
-            };
-
-            if (dlg.ShowDialog() == true)
-            {
-                savePath = dlg.FileName;
-
-                // Удаляем все элементы
-                testTabControl.Items.Clear();
-                processes.Clear();
-                drawAreas.Clear();
-
-                // Выгружаем проект
-                ProjectSaver saver = new ProjectSaver();
-                var temp = saver.LoadProjecExecute(savePath); // Считываем сохранение
-
-
-                //Проходим по считанным процессам
-                foreach (var proc in temp._processes)
-                {
-                    // Создаём новый процесс
-                    var process = new Process() { Description = proc.ProcessName };
-                    processes.Add(process); // Добавляем в список
-
-                    var tabItem = new TabItem() { Header = process };
-                    testTabControl.SelectedItem = tabItem;
-
-                    // Создаём область рисование
-                    var drawArea = new DrawArea
-                    {
-                        Processes = processes,
-                    };
-
-                    //добавляем в список
-                    drawAreas.Add(drawArea);
-                    //добавляем на вкладку
-                    tabItem.Content = drawArea;
-
-                    tabItem.Header = mainProcess;
-                    //доабавляем процесс в список
-                    processes.Add(mainProcess);
-
-                    //и добавляем вкладку
-                    testTabControl.Items.Add(tabItem);
-                    // Выгружаем элементы
-                    saver.LoadProcessExecute(proc, drawArea);
-
-                    this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
-                    this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
-                }
-            }
         }
     }
 }

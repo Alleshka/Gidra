@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
     ///Компоновка
+    [DataContract(IsReference = true)]
     public class ArrangementProcedure : AbstractProcedure
     {
+        [DataMember]
         public override string Description => "Компоновка";
 
         public ArrangementProcedure() : base(1, 1)

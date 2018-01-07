@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GidraSIM.Core.Model.Resources;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
+    [DataContract(IsReference = true)]
     public class SchemaCreationProcedure : AbstractProcedure
     {
-
+        [DataMember]
         public override string Description => "Создание электрической схемы";
 
         public SchemaCreationProcedure () : base(1, 1)

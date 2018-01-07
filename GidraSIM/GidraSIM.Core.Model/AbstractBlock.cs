@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
 {
+    [DataContract(IsReference = true)]
     public abstract class AbstractBlock: IBlock
     {
+        [DataMember]
         public int OutputQuantity { get; protected set; }
+        [DataMember]
         public int InputQuantity { get; protected set; }
 
+        [DataMember]
         public virtual string Description
         {
             get;
@@ -22,17 +27,18 @@ namespace GidraSIM.Core.Model
             return this.Description;
         }
 
+        [DataMember]
         protected Queue<Token>[] inputQueue;
 
         /*/// <summary>
         /// пары объект-блок
         /// </summary>
         protected Tuple<IBlock,int>[] outputs;*/
+        [DataMember]
         protected Token[] outputs;
         protected ITokensCollector collector;
 
         //protected double globalTime;
-
 
         public AbstractBlock(int inQuantiry, int outQuantity)
         {

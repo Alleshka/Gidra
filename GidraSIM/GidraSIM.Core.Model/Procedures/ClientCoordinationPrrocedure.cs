@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
+    [DataContract]
     public class ClientCoordinationPrrocedure:AbstractProcedure
     {
+        [DataMember]
         public override string Description => "Согласование доков с заказчиком";
 
         public ClientCoordinationPrrocedure():base(1,1)

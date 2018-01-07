@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
+    [DataContract(IsReference = true)]
     public class DocumentationCoordinationProcedure: AbstractProcedure
     {
+        [DataMember]
         public override string Description => "Согласование с нормоконтролем";
 
         public DocumentationCoordinationProcedure():base(1,1)

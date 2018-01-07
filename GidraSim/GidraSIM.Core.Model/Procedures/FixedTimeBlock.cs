@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
+    [DataContract(IsReference = true)]
     public class FixedTimeBlock:AbstractBlock
     {
+        [DataMember]
         public double FixedTime { get; protected set; }
 
+        [DataMember]
         public override string Description => "Блок фиксированного времени";
 
         public FixedTimeBlock(double fixedTime):base(1,1)

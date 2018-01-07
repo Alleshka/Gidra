@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
     ///Компоновка
+    [DataContract(IsReference = true)]
     public class TracingProcedure : AbstractProcedure
     {
+        [DataMember]
         public override string Description => "Трассировка";
 
         public TracingProcedure() : base(1, 1)

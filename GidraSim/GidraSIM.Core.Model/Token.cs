@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
 {
@@ -10,11 +11,13 @@ namespace GidraSIM.Core.Model
     /// токнен, который гуляет по сетке
     /// представляет собой задачу
     /// </summary>
+    [DataContract]
     public class Token
     {
         /// <summary>
         /// время создания токена блоком
         /// </summary>
+        [DataMember]
         public double BornTime
         {
             get;
@@ -25,6 +28,7 @@ namespace GidraSIM.Core.Model
         /// время начала процесса
         /// (в идеале на dt больше времени создания)
         /// </summary>
+        [DataMember]
         public double ProcessStartTime
         {
             get;
@@ -35,6 +39,7 @@ namespace GidraSIM.Core.Model
         /// время окончания прцоесса
         /// (должно быть больше начала как минимум на dt)
         /// </summary>
+        [DataMember]
         public double ProcessEndTime
         {
             get;
@@ -44,6 +49,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// сложность задачи
         /// </summary>
+        [DataMember]
         public double Complexity
         {
             get;
@@ -54,6 +60,7 @@ namespace GidraSIM.Core.Model
         /// статус выполнения задачи
         /// 1 - задача выполнена
         /// </summary>
+        [DataMember]
         public double Progress
         {
             get;
@@ -62,6 +69,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// описание задачи
         /// </summary>
+        [DataMember]
         public string Description
         {
             get;
@@ -71,6 +79,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// блок, породивший токен
         /// </summary>
+        [DataMember]
         public IBlock Parent
         {
             get;
@@ -80,6 +89,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// блок, обработавший задачу
         /// </summary>
+        [DataMember]
         public IBlock ProcessedByBlock
         {
             get;

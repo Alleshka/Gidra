@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
+    [DataContract(IsReference = true)]
     public class QualityCheckProcedure: AbstractProcedure
     {
-
+        [DataMember]
         public override string Description => "Проверка качества";
 
         public QualityCheckProcedure() : base(1, 2)

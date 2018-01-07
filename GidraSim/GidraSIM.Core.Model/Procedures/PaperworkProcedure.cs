@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GidraSIM.Core.Model.Resources;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
@@ -11,8 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     /// <summary>
     /// case "Оформление документации":
     /// </summary>
+    [DataContract(IsReference = true)]
     public class PaperworkProcedure : AbstractProcedure
     {
+        [DataMember]
         public override string Description => "Оформление документации";
 
         public PaperworkProcedure() : base(1, 1)

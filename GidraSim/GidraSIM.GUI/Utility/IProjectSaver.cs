@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using GidraSIM.GUI.Core.BlocksWPF;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.GUI.Utility
 {
     public interface IProjectSaver
     {
-        /// Сохранение проекта по указанному пути
-        void SaveProjectExecute(TabControl tabcontrol, String path);
+        /// <summary>
+        /// Сохраняет проект из TabControla в файл по указанному пути
+        /// </summary>
+        /// <param name="testTabControl"></param>
+        /// <param name="Path"></param>
+        void SaveProjectExecute(TabControl testTabControl, String Path);
 
-        /// Считывание файла проекта
-        SaveProject LoadProjecExecute(String path);
-
-        /// Прорисовка загруженного процесса из класса сохранения
-        void LoadProcessExecute(SaveProcess process, DrawArea area);
+        int LoadProjectExecute(String path, TabControl testTabControl, List<DrawArea> drawAreas, List<Process> processes, out Process mainprocess);
     }
 }
