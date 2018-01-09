@@ -19,6 +19,7 @@ namespace GidraSIM.SaveTest
             String dataString;
             Byte[] bytes;
 
+            // Сериализуем
             using (MemoryStream stream = new MemoryStream())
             {
                 NetDataContractSerializer ser = new NetDataContractSerializer();
@@ -27,6 +28,7 @@ namespace GidraSIM.SaveTest
                 dataString = System.Text.Encoding.UTF8.GetString(stream.ToArray()); ;
             }
 
+            // Достаём из памяти
             using (MemoryStream stream = new MemoryStream())
             {
                 bytes = System.Text.Encoding.UTF8.GetBytes(dataString);

@@ -10,7 +10,7 @@ namespace GidraSIM.Core.Model
     /// сборщик всех блоков после обработки
     /// </summary>
     [DataContract]
-    public class TokensCollector : ITokensCollector
+    public class TokensCollector : ITokensCollector, IObjectReference
     {
         [DataMember]
         private static TokensCollector tokensCollector = new TokensCollector();
@@ -47,6 +47,20 @@ namespace GidraSIM.Core.Model
         public List<Token> GetHistory()
         {
             return history;
+        }
+
+        // Это надо для нормальной сериализации синглтона 
+
+        public object GetRealObject(StreamingContext context)
+        {
+            TokensCollector realObject = GetInstance();
+            realObject.Merge(this);
+            return realObject;
+        }
+
+        private void Merge(TokensCollector otherInstance)
+        {
+            otherInstance.history = this.history;           
         }
     }
 }

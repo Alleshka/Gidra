@@ -8,11 +8,6 @@ using GidraSIM.Core.Model.Resources;
 namespace GidraSIM.Core.Model.Procedures
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(AbstractResource))]
-    [KnownType(typeof(CadResource))]
-    [KnownType(typeof(MethodolgicalSupportResource))]
-    [KnownType(typeof(TechincalSupportResource))]
-    [KnownType(typeof(WorkerResource))]
     public abstract class AbstractProcedure : AbstractBlock, IProcedure
     {
         //protected ConnectionManager connectionManager = new ConnectionManager();
@@ -22,6 +17,7 @@ namespace GidraSIM.Core.Model.Procedures
 
         [DataMember]
         protected List<IResource> resources = new List<IResource>();
+        public int ResourceCount { get => resources.Count; }
 
         public AbstractProcedure(int inQuantity, int outQuantity) : base(inQuantity, outQuantity)
         {

@@ -27,7 +27,6 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract(Name = "Worker")]
     public class WorkerResource: AbstractResource
     {
-
         public WorkerResource()
         {
             //Name = "Михалыч";

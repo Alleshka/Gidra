@@ -52,6 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProcedureSaveTest\ArrangementProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\ClientCoordinationPrrocedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\DocumentationCoordinationProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\ElectricalSchemeSimulationSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\FixedTimeBlockSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\FormingDocumentationProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\IProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\PaperworkProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\QualityCheckProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\SampleTestingProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\SchemaCreationProcedureSaveTest.cs" />
+    <Compile Include="ProcedureSaveTest\TracingProcedureSaveTest.cs" />
     <Compile Include="ResourceSaveTest\CadResourceSaveTest.cs" />
     <Compile Include="ResourceSaveTest\IResourceSaveTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
