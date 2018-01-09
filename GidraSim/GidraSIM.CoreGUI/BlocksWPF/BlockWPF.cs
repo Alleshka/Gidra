@@ -77,6 +77,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             MouseMove += OnDragMove;
             LostMouseCapture += OnLostCapture;
             Mouse.Capture(this);
+            this.Cursor = Cursors.SizeAll;
         }
 
         /// <summary>
@@ -110,6 +111,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             MouseMove -= OnDragMove;
             LostMouseCapture -= OnLostCapture;
             UpdatePosition(e);
+            this.Cursor = Cursors.Arrow;
         }
 
         /// <summary>

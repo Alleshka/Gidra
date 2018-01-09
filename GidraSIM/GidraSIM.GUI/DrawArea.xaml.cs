@@ -238,6 +238,18 @@ namespace GidraSIM.GUI
             selectedFigure = null;
             if (selectedPoint != null) selectedPoint.UnSelect();
             selectedPoint = null;
+            switch(mode)
+            {
+                case Mode.Arrow:
+                    this.Cursor = Cursors.Arrow;
+                    break;
+                case Mode.Connect:
+                    this.Cursor = Cursors.Cross;
+                    break;
+                default:
+                    this.Cursor = Cursors.Arrow;
+                    break;
+            }
         }
 
         /// <summary>
@@ -263,6 +275,8 @@ namespace GidraSIM.GUI
                 }
 
                 mode = Mode.Arrow;
+
+                this.Cursor = Cursors.Arrow;
             }
         }
 
@@ -368,6 +382,7 @@ namespace GidraSIM.GUI
 
                 mode = Mode.Connect;
             }
+            this.Cursor = Cursors.Cross;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
