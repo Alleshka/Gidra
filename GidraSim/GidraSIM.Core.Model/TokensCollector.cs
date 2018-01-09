@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
 {
     /// <summary>
     /// сборщик всех блоков после обработки
     /// </summary>
+    [DataContract]
     public class TokensCollector : ITokensCollector
     {
+        [DataMember]
         private static TokensCollector tokensCollector = new TokensCollector();
 
         private TokensCollector()
@@ -25,6 +28,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// история всех токенов
         /// </summary>
+        [DataMember]
         List<Token> history = new List<Token>();
 
         /// <summary>

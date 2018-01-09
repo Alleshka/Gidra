@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.BlockWPF">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAgkCAKAAACAAACAABAAEAAAQAAAAIAEAAAADAAI=</HashCode>
+      <FileName>BlocksWPF\BlockWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ConnectionWPF">
+    <Position X="12" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAABAAAAAABgAJAAIACAQAAAQAAEAAAEAAAA=</HashCode>
+      <FileName>BlocksWPF\ConnectionWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ConnectPointWPF">
+    <Position X="15.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAABAAACAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>BlocksWPF\ConnectPointWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.EndBlockWPF">
+    <Position X="6.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgEAAAAAAQAAAAABBAAAAAAAABAAAAAAAAABAAA=</HashCode>
+      <FileName>BlocksWPF\EndBlockWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.GSFigure">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAEAAAAAEAAgAAAABAAABAiAAAQIAAAgQAEIAIA=</HashCode>
+      <FileName>BlocksWPF\GSFigure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ProcConnectionWPF">
+    <Position X="13" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAhAAAAAAEEAAAQgAAAAACAQAACIAAABAQQ=</HashCode>
+      <FileName>BlocksWPF\ProcConnectionWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ProcedureWPF">
+    <Position X="1.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAggEAACAgAQAAABQgAABACAQAABAAAAAAAAQBAAA=</HashCode>
+      <FileName>BlocksWPF\ProcedureWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ResConnectionWPF">
+    <Position X="10.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAFAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAA=</HashCode>
+      <FileName>BlocksWPF\ResConnectionWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.ResourceWPF">
+    <Position X="4" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIhEAAAAAAAAAAAAhAAAIAAAAAAAAAAAAgACBAAg=</HashCode>
+      <FileName>BlocksWPF\ResourceWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.RoundBlockWPF">
+    <Position X="7.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAQAAQAAAAggAAAAAA=</HashCode>
+      <FileName>BlocksWPF\RoundBlockWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.SquareBlockWPF">
+    <Position X="3" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAIAICAAAAEAEAAAIAEAEAgQCAAIAAggAAAAAAA=</HashCode>
+      <FileName>BlocksWPF\SquareBlockWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.StartBlockWPF">
+    <Position X="8.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAgEAAAAAAAAAAAQBBAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>BlocksWPF\StartBlockWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.GUI.Core.BlocksWPF.SubProcessWPF">
+    <Position X="1.75" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQQAAYAAAAAAAAAAAA=</HashCode>
+      <FileName>BlocksWPF\SubProcessWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GidraSIM.GUI.Core.BlocksWPF.ISelectable">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAQAAIAAA=</HashCode>
+      <FileName>BlocksWPF\ISelectable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GidraSIM.GUI.Core.BlocksWPF.ConnectPointWPF_Type">
+    <Position X="17.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>BlocksWPF\ConnectPointWPF.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

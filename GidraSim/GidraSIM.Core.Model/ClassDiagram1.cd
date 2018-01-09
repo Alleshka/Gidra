@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GidraSIM.Core.Model.TokensCollector" BaseTypeListCollapsed="true">
+    <Position X="17" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAgAAAAAAAAAABAgAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>TokensCollector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Token">
+    <Position X="17" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAEAAAASAAAAAAAAAAAAAQAAACAgEA=</HashCode>
+      <FileName>Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Process">
+    <Position X="3" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAIAAAoAAAAAAAIAAIAAAAAAAAAAAAACQAIAg=</HashCode>
+      <FileName>Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.ModelingTime">
+    <Position X="13.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelingTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.ConnectionManager" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQQAIAAAAAAAAAAAAAAAAIAAAAABAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>ConnectionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GidraSIM.Core.Model.AbstractBlock">
+    <Position X="15.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEQAAAQAAAAggAAEAAAAAAAAAAAAADAAAAAAAAQAIAA=</HashCode>
+      <FileName>AbstractBlock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Resources.WorkerResource">
+    <Position X="2" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Resources\WorkerResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Resources.TechincalSupportResource">
+    <Position X="4.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAACAAAAAAAAAQAAIAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Resources\TechincalSupportResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Resources.MethodolgicalSupportResource">
+    <Position X="6.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\MethodolgicalSupportResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Resources.CadResource">
+    <Position X="8.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Resources\CadResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Resources.AbstractResource">
+    <Position X="5.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAEAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Resources\AbstractResource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.TracingProcedure">
+    <Position X="25.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\TracingProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.SchemaCreationProcedure">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\SchemaCreationProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.SampleTestingProcedure">
+    <Position X="9.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\SampleTestingProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.QualityCheckProcedure">
+    <Position X="14.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\QualityCheckProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.PaperworkProcedure">
+    <Position X="18.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\PaperworkProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.FormingDocumentationProcedure">
+    <Position X="23.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\FormingDocumentationProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.FixedTimeBlock">
+    <Position X="27.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Procedures\FixedTimeBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.ElectricalSchemeSimulation">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\ElectricalSchemeSimulation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.DocumentationCoordinationProcedure">
+    <Position X="12" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\DocumentationCoordinationProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.ArrangementProcedure">
+    <Position X="16.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\ArrangementProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.ClientCoordinationPrrocedure">
+    <Position X="21" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\ClientCoordinationPrrocedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GidraSIM.Core.Model.Procedures.AbstractProcedure">
+    <Position X="15.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAgACAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Procedures\AbstractProcedure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="GidraSIM.Core.Model.ITokensCollector">
+    <Position X="18.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ITokensCollector.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GidraSIM.Core.Model.IConnectionManager">
+    <Position X="15.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQQAIAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IConnectionManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GidraSIM.Core.Model.IProcedure">
+    <Position X="21.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GidraSIM.Core.Model.IResource">
+    <Position X="23.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>IResource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GidraSIM.Core.Model.IBlock">
+    <Position X="21.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAQAAAAggAAAAAAAAAAAAAAAABAAAAAAAAAAIAA=</HashCode>
+      <FileName>IBlock.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GidraSIM.Core.Model.Resources.Qualification">
+    <Position X="2" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAABAAAAAAAAAAAAAAAQAAAQEA=</HashCode>
+      <FileName>Resources\WorkerResource.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

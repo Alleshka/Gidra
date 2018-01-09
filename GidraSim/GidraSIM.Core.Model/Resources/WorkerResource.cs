@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
-    [Serializable]
+    [DataContract]
     public enum Qualification
     {
         [Description("Без категории")]

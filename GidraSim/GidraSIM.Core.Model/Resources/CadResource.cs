@@ -23,6 +23,8 @@ namespace GidraSIM.Core.Model.Resources
         /// <summary>
         /// число экземпляров
         /// </summary>
+
+        [DataMember]
         public int Count
         {
             get;

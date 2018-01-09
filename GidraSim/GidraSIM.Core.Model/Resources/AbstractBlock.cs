@@ -37,6 +37,7 @@ namespace GidraSIM.Core.Model
         [DataMember]
         protected Token[] outputs;
 
+        [DataMember]
         protected ITokensCollector collector;
 
         //protected double globalTime;

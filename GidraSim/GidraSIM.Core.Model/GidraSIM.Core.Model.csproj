@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractBlock.cs" />
+    <Compile Include="Resources\AbstractBlock.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IConnectionManager.cs" />
@@ -71,6 +72,9 @@
     <Compile Include="Resources\WorkerResource.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TokensCollector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

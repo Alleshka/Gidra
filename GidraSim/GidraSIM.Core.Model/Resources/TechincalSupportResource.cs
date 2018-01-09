@@ -16,17 +16,20 @@ namespace GidraSIM.Core.Model.Resources
             Description = "Компьютер";
         }
 
+        [DataMember]
         public double Frequency
         {
             get;
             set;
         }
 
+        [DataMember]
         public double Ram
         {
             get;
             set;
         }
+        [DataMember]
         public double Vram
         {
             get;
@@ -36,6 +39,7 @@ namespace GidraSIM.Core.Model.Resources
         /// <summary>
         /// число экземпляров
         /// </summary>
+        [DataMember]
         public int Count
         {
             get;
