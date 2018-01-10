@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
-    [DataContract(Name = "CadResource")]
+    [DataContract(IsReference = true)]
     public class CadResource:AbstractResource
     {
         //TODO добавить типы лицензии
@@ -46,6 +46,23 @@ namespace GidraSIM.Core.Model.Resources
         {
             //TODO чисто теоретически можно верунть больше чем есть, нужна защита от дурака
             Count++;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(!base.Equals(obj))
+                return false;
+
+            CadResource temp = obj as CadResource;
+            if (temp.Count != this.Count)
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

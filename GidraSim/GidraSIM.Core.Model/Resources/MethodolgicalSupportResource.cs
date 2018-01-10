@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
-    [DataContract(Name = "MethodolgicalSupportResource")]
+    [DataContract(IsReference = true)]
     public class MethodolgicalSupportResource:AbstractResource
     {
         /// <summary>

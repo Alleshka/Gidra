@@ -39,7 +39,7 @@ namespace GidraSIM.GUI
             listBox1.Items.Add(new TracingProcedure());
 
             listBox1.SelectedIndex = 0;
-            this.button.Focus();
+            //this.button.Focus();
         }
 
         public IBlock SelectedBlock { get; private set; }

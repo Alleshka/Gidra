@@ -11,7 +11,7 @@ namespace GidraSIM.Core.Model
     /// токнен, который гуляет по сетке
     /// представляет собой задачу
     /// </summary>
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class Token
     {
         /// <summary>
@@ -120,6 +120,30 @@ namespace GidraSIM.Core.Model
                 this.ProcessedByBlock,
                 this.Progress,
                 this.Parent);
+        }
+
+        public override bool Equals(object obj)
+        {
+            Token temp = obj as Token;
+
+            if (temp.ProcessEndTime != this.ProcessEndTime)
+                return false;
+            if (temp.ProcessStartTime != this.ProcessStartTime)
+                return false;
+            if (temp.Progress != this.Progress)
+                return false;
+
+            if ((!Equals(temp.Parent, this.Parent)))
+                return false;
+            if ((!Equals(temp.ProcessedByBlock, this.ProcessedByBlock)))
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

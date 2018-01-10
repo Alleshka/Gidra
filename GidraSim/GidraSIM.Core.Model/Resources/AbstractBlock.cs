@@ -102,5 +102,49 @@ namespace GidraSIM.Core.Model
         {
             return outputs[port];
         }
+
+        public override bool Equals(object obj)
+        {
+            AbstractBlock temp = obj as AbstractBlock;
+
+            if (temp.InputQuantity != this.InputQuantity)
+                return false;
+            if (temp.inputQueue.Length != this.inputQueue.Length)
+                return false;
+            if (temp.OutputQuantity != this.OutputQuantity)
+                return false;
+            if (temp.outputs.Length != this.outputs.Length)
+                return false;
+            if ((temp.TokenCollector != this.TokenCollector))
+                return false;
+
+            for (int i = 0; i < temp.inputQueue.Count(); i++)
+            {
+                if (temp.inputQueue[i].Count() != this.inputQueue[i].Count())
+                    return false;
+
+                //var tempArray1 = temp.inputQueue[i].ToArray();
+                //var tempArray2 = this.inputQueue[i].ToArray();
+
+                //for (int j = 0; j < tempArray1.Count(); j++)
+                //{
+                //    if (!Equals(tempArray1[j], tempArray2[j])/*&&(tempArray1[i]!=tempArray2[i])*/)
+                //        return false;
+                //}
+            }
+
+            //for (int i = 0; i < temp.outputs.Length; i++)
+            //{
+            //    if((!Equals(this.outputs[i], temp.outputs[i])))
+            //        return false;
+            //}
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

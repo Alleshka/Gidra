@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.Core.Model;
 using System.Runtime.Serialization;
@@ -19,10 +20,31 @@ namespace GidraSIM.SaveTest
             String dataString;
             Byte[] bytes;
 
+            var types = new Type[]
+            {
+                typeof(CadResource),
+                typeof(WorkerResource),
+                typeof(TechincalSupportResource),
+                typeof(MethodolgicalSupportResource),
+                typeof(TokensCollector),
+                typeof(ConnectionManager),
+                typeof(ArrangementProcedure),
+                typeof(ClientCoordinationPrrocedure),
+                typeof(DocumentationCoordinationProcedure),
+                typeof(ElectricalSchemeSimulation),
+                typeof(FixedTimeBlock),
+                typeof(FormingDocumentationProcedure),
+                typeof(PaperworkProcedure),
+                typeof(QualityCheckProcedure),
+                typeof(SampleTestingProcedure),
+                typeof(SchemaCreationProcedure),
+                typeof(TracingProcedure),
+            };
+
             // Сериализуем
             using (MemoryStream stream = new MemoryStream())
             {
-                NetDataContractSerializer ser = new NetDataContractSerializer();
+                DataContractSerializer ser = new DataContractSerializer((typeof(T)), types);
                 ser.WriteObject(stream, Base); // Записываем в поток
 
                 dataString = System.Text.Encoding.UTF8.GetString(stream.ToArray()); ;
@@ -35,7 +57,7 @@ namespace GidraSIM.SaveTest
                 stream.Write(bytes, 0, bytes.Length);
                 stream.Position = 0;
 
-                NetDataContractSerializer ser = new NetDataContractSerializer();
+                DataContractSerializer ser = new DataContractSerializer((typeof(T)), types);
                 newBlock = (T) ser.ReadObject(stream);
             }
 

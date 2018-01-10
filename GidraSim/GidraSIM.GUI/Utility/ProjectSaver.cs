@@ -19,6 +19,32 @@ namespace GidraSIM.GUI.Utility
     public enum TypeSave { xml, binary }
     public class ProjectSaver : IProjectSaver
     {
+        private Type[] types;
+
+        public ProjectSaver()
+        {
+            types = new Type[]
+            {
+                typeof(CadResource),
+                typeof(WorkerResource),
+                typeof(TechincalSupportResource),
+                typeof(MethodolgicalSupportResource),
+                typeof(TokensCollector),
+                typeof(ConnectionManager),
+                typeof(ArrangementProcedure),
+                typeof(ClientCoordinationPrrocedure),
+                typeof(DocumentationCoordinationProcedure),
+                typeof(ElectricalSchemeSimulation),
+                typeof(FixedTimeBlock),
+                typeof(FormingDocumentationProcedure),
+                typeof(PaperworkProcedure),
+                typeof(QualityCheckProcedure),
+                typeof(SampleTestingProcedure),
+                typeof(SchemaCreationProcedure),
+                typeof(TracingProcedure),
+            };
+        }
+
         public void SaveProjectExecute(TabControl testTabControl, string Path, TypeSave typeSave = TypeSave.binary)
         {
             SaveProject project = new SaveProject();
@@ -34,7 +60,7 @@ namespace GidraSIM.GUI.Utility
             // Записываем информацию о проекте
             using (FileStream stream = new FileStream(Path, FileMode.Create))
             {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject));
+                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
                 ser.WriteObject(stream, project);
             }
 
@@ -56,7 +82,7 @@ namespace GidraSIM.GUI.Utility
             // Считываем иформацию о проекте
             using (FileStream stream = new FileStream(path, FileMode.Open))
             {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject));
+                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
                 temp = (ser.ReadObject(stream)) as SaveProject;
             }
 
@@ -417,18 +443,6 @@ namespace GidraSIM.GUI.Utility
     /// Сохраняет информацию о процедуре WPF
     /// </summary>
     [DataContract(IsReference = true, Name = "Procedure")]
-    [KnownType(typeof(AbstractProcedure))]
-    [KnownType(typeof(ArrangementProcedure))]
-    [KnownType(typeof(ClientCoordinationPrrocedure))]
-    [KnownType(typeof(DocumentationCoordinationProcedure))]
-    [KnownType(typeof(ElectricalSchemeSimulation))]
-    [KnownType(typeof(FixedTimeBlock))]
-    [KnownType(typeof(FormingDocumentationProcedure))]
-    [KnownType(typeof(PaperworkProcedure))]
-    [KnownType(typeof(QualityCheckProcedure))]
-    [KnownType(typeof(SampleTestingProcedure))]
-    [KnownType(typeof(SchemaCreationProcedure))]
-    [KnownType(typeof(TracingProcedure))]
     public class SaveProcedure
     {
         [DataMember(Name = "BlockID")]
@@ -460,10 +474,7 @@ namespace GidraSIM.GUI.Utility
         /// <returns></returns>
         public static ProcedureWPF ToNormal(SaveProcedure procedure)
         {
-            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
-            Type type = procedure.Model.GetType(); // Получаем тип процедуры
-            IBlock tempBlock = (IBlock)Activator.CreateInstance(type);
-            return new ProcedureWPF(procedure.Position, tempBlock);
+            return new ProcedureWPF(procedure.Position, procedure.Model);
         }
     }
 
@@ -498,10 +509,7 @@ namespace GidraSIM.GUI.Utility
         }
         public static ResourceWPF ToNormal(SaveResource resource)
         {
-            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
-            Type type = resource.Model.GetType(); // Получаем тип ресурса
-            AbstractResource res = (AbstractResource)Activator.CreateInstance(type);
-            return new ResourceWPF(resource.Position, res);
+            return new ResourceWPF(resource.Position, resource.Model);
         }
     }
 

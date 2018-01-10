@@ -3,30 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Collections;
+using GidraSIM.Core.Model.Procedures;
 
 namespace GidraSIM.Core.Model
 {
     /// <summary>
     /// блок, имеющию внутри другие блоки
     /// </summary>
-    public class Process:AbstractBlock
-    {
+    [DataContract(IsReference =true)]
+    [KnownType(typeof(TokensCollector))]
+    [KnownType(typeof(ConnectionManager))]
+    [KnownType(typeof(ArrangementProcedure))]
+    [KnownType(typeof(ClientCoordinationPrrocedure))]
+    [KnownType(typeof(DocumentationCoordinationProcedure))]
+    [KnownType(typeof(ElectricalSchemeSimulation))]
+    [KnownType(typeof(FixedTimeBlock))]
+    [KnownType(typeof(FormingDocumentationProcedure))]
+    [KnownType(typeof(PaperworkProcedure))]
+    [KnownType(typeof(QualityCheckProcedure))]
+    [KnownType(typeof(SampleTestingProcedure))]
+    [KnownType(typeof(SchemaCreationProcedure))]
+    [KnownType(typeof(TracingProcedure))]
+    public class Process: AbstractBlock
+    {        
+        [DataMember]
         public IConnectionManager Connections
         {
             get;
-            protected set;
+            /*protected*/ set;
         }
+
         public ITokensCollector Collector
         {
             get => collector;
         }
 
+        [DataMember]
         public IBlock StartBlock
         {
             get;
             set;
         }
 
+        [DataMember]
         public IBlock EndBlock
         {
             get;
@@ -40,12 +61,14 @@ namespace GidraSIM.Core.Model
             Resources = new List<IResource>();
         }
 
+        [DataMember]
         public List<IBlock> Blocks
         {
             get;
             protected set;
         }
 
+        [DataMember]
         public List<IResource> Resources
         {
             get;
@@ -55,10 +78,11 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// индикатор токена на 0 выходе последнего блока
         /// </summary>
+        [DataMember]
         public bool EndBlockHasOutputToken
         {
             get;
-            private set;
+            /*private*/ set;
         }
 
         /// <summary>
@@ -86,9 +110,7 @@ namespace GidraSIM.Core.Model
             if(EndBlock.GetOutputToken(0) != null)
             {
                 EndBlockHasOutputToken = true;
-            }
-
-            
+            }     
         }
 
         /// <summary>
@@ -122,6 +144,42 @@ namespace GidraSIM.Core.Model
             if (port != 0)
                 throw new ArgumentOutOfRangeException("Процесс содержит только один выход!");
             return EndBlock.GetOutputToken(0);
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if(!base.Equals(obj))
+                return false;
+
+            Process temp = obj as Process;
+
+            if (temp.Blocks.Count != this.Blocks.Count)
+                return false;
+            if (temp.EndBlockHasOutputToken != this.EndBlockHasOutputToken)
+                return false;
+            if (temp.Resources.Count != this.Resources.Count)
+                return false;
+
+            if (/*(temp.Connections != this.Connections)&&*/(!Equals(temp.Connections, this.Connections)))
+                return false;
+            if (/*(temp.EndBlock != this.EndBlock) && */(!Equals(temp.EndBlock, this.EndBlock)))
+                return false;
+            if (/*(temp.StartBlock != this.StartBlock) && */(!Equals(temp.StartBlock, this.StartBlock)))
+                return false;
+
+            for (int i = 0; i < temp.Resources.Count; i++)
+            {
+                if (/*temp.Resources[i] != this.Resources[i] && */!Equals(temp.Resources[i], this.Resources[i]))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
