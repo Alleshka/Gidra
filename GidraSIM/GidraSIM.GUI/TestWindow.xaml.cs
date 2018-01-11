@@ -165,8 +165,8 @@ namespace GidraSIM.GUI
 
         private void StartModeling_Executed(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 ViewModelConverter converter = new ViewModelConverter();
 
                 //запихиваем содержимое области рисования в процесс
@@ -177,12 +177,12 @@ namespace GidraSIM.GUI
                     converter.Map(drawArea.Children, tab.Header as Process);
                 }
 
-                ////запихиваем содержимое главной области рисования в процесс
-                //converter.Map(drawAreas[0].Children, mainProcess);
+                //запихиваем содержимое главной области рисования в процесс
+                converter.Map(drawAreas[0].Children, mainProcess);
 
                 //добавляем на стартовый блок токен
                 mainProcess.AddToken(new Token(0, complexity), 0);
-                //double i = 0;
+                double i = 0;
                 ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
                 for (modelingTime.Now = 0; modelingTime.Now < maxTime; modelingTime.Now += modelingTime.Delta)
                 {
@@ -199,17 +199,17 @@ namespace GidraSIM.GUI
                 mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
                 mainProcess.Collector.GetHistory().Clear();
 
-                //выводим число токенов и время затраченное (в заголовке)
+                //выводим число токенов и время затраченное(в заголовке)
                 MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
                 foreach (var process in processes)
                 {
                     process.ClearProcess();
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
@@ -283,25 +283,25 @@ namespace GidraSIM.GUI
 
         private void Save()
         {
-            //try
-            //{
+            try
+            {
                 if (savePath.Count() != 0)
                 {
                     var saver = new ProjectSaver();
                     saver.SaveProjectExecute(testTabControl, savePath);
                 }
                 else SaveAs();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SaveAs()
         {
-            //try
-            //{
+            try
+            {
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
                 {
                     FileName = "Project",
@@ -315,17 +315,17 @@ namespace GidraSIM.GUI
                     saver.SaveProjectExecute(testTabControl, dlg.FileName);
                     savePath = dlg.FileName;
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Open()
         {
-            //try
-            //{
+            try
+            {
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
                 {
                     FileName = "Project",
@@ -340,11 +340,11 @@ namespace GidraSIM.GUI
                     ProjectSaver saver = new ProjectSaver();
                     mainProcessNumber = saver.LoadProjectExecute(dlg.FileName, testTabControl, drawAreas, processes, out mainProcess);
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
