@@ -138,7 +138,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         /// <summary>
         /// Добавить соединение на выход
-        /// </summary>
+        /////// </summary>
         /// <param name="connectoin"></param>
         public void AddOutPutConnection(ProcConnectionWPF connectoin)
         {
