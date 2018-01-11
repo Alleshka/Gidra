@@ -112,11 +112,11 @@ namespace GidraSIM.GUI.Utility
             drawAreas.Clear();
             processes.Clear();
 
+            List<TabItem> tabitems = new List<TabItem>();
 
             // Проходим по каждому процессу
             for (int i = 0; i < temp.ProcessList.Count; i++)
-            {
-                
+            {         
                 // Создаём процесс
                 Process process = new Process() { Description = temp[i].ProcessName };
                 processes.Add(process); // Добавляем в список процессов
@@ -132,9 +132,6 @@ namespace GidraSIM.GUI.Utility
                 drawAreas.Add(drawArea);
                 tabItem.Content = drawArea;
 
-                //if (i == temp.MainProcessNumber) mainprocess = process
-
-
                 LoadProcess(temp[i], drawArea);
                 processWorked.Add(temp[i].ProcessId, process);
 
@@ -144,10 +141,16 @@ namespace GidraSIM.GUI.Utility
                     num = i;
 
                 }
-                testTabControl.Items.Add(tabItem);
 
+                //testTabControl.Items.Add(tabItem);
+                tabitems.Add(tabItem);
+               
             }
 
+            // А теперь добавляем, чтобы было в нормальном порядке
+            tabitems.Reverse();
+            testTabControl.ItemsSource = tabitems;
+            
             return num;
         }
 
