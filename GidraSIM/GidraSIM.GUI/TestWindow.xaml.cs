@@ -283,25 +283,25 @@ namespace GidraSIM.GUI
 
         private void Save()
         {
-            try
-            {
+            //try
+            //{
                 if (savePath.Count() != 0)
                 {
-                    ProjectSaver saver = new ProjectSaver();
+                    var saver = new ProjectSaver();
                     saver.SaveProjectExecute(testTabControl, savePath);
                 }
                 else SaveAs();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void SaveAs()
         {
-            try
-            {
+            //try
+            //{
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
                 {
                     FileName = "Project",
@@ -311,15 +311,15 @@ namespace GidraSIM.GUI
 
                 if ((bool)dlg.ShowDialog())
                 {
-                    ProjectSaver saver = new ProjectSaver();
+                    var saver = new ProjectSaver();
                     saver.SaveProjectExecute(testTabControl, dlg.FileName);
                     savePath = dlg.FileName;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void Open()

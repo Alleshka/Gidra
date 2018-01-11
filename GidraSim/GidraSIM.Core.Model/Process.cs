@@ -13,19 +13,6 @@ namespace GidraSIM.Core.Model
     /// блок, имеющию внутри другие блоки
     /// </summary>
     [DataContract(IsReference =true)]
-    [KnownType(typeof(TokensCollector))]
-    [KnownType(typeof(ConnectionManager))]
-    [KnownType(typeof(ArrangementProcedure))]
-    [KnownType(typeof(ClientCoordinationPrrocedure))]
-    [KnownType(typeof(DocumentationCoordinationProcedure))]
-    [KnownType(typeof(ElectricalSchemeSimulation))]
-    [KnownType(typeof(FixedTimeBlock))]
-    [KnownType(typeof(FormingDocumentationProcedure))]
-    [KnownType(typeof(PaperworkProcedure))]
-    [KnownType(typeof(QualityCheckProcedure))]
-    [KnownType(typeof(SampleTestingProcedure))]
-    [KnownType(typeof(SchemaCreationProcedure))]
-    [KnownType(typeof(TracingProcedure))]
     public class Process: AbstractBlock
     {        
         [DataMember]
