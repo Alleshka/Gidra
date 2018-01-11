@@ -165,13 +165,31 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Image\Resourse.png" />
+    <Resource Include="Image\Resourse.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Image\begin.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Image\end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Model.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\SubProcessButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\background3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ProcedureButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
