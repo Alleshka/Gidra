@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
 {
+    [DataContract(IsReference =true)]
     public class ConnectionManager : IConnectionManager
     {
+        [DataMember]
         Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>> connections = new Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>>();
+        [DataMember]
         HashSet<Tuple<IProcedure, IResource>> resorcesConnections = new HashSet<Tuple<IProcedure, IResource>>();
 
         //static ConnectionManager instance = null;
         public ConnectionManager()
-        {
+        {       
             
-        }
+        }   
 
         /*public static ConnectionManager GetInstance()
         {
@@ -72,6 +76,48 @@ namespace GidraSIM.Core.Model
                     inputBlock.AddToken(outputToken, inPort);
                 }
             }
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            var temp = obj as ConnectionManager;
+
+            if (temp.connections.Count != this.connections.Count)
+                return false;
+            if (temp.resorcesConnections.Count != this.resorcesConnections.Count)
+                return false;
+
+            // FIXME - затратно, хорошо бы переделать по умному
+            var connect1 = temp.connections.ToList();
+            var connect2 = this.connections.ToList();
+
+            var res1 = temp.resorcesConnections.ToList();
+            var res2 = this.resorcesConnections.ToList();
+
+            for (int i = 0; i < connect1.Count; i++)
+            {
+                if (/*(connect1[i].Key != connect2[i].Key)&&*/(!Equals(connect1[i].Key, connect2[i].Key)))
+                    return false;
+                if (!Equals(connect1[i].Value, connect2[i].Value))
+                    return false;
+            }
+
+            for (int i = 0; i < res1.Count; i++)
+            {
+                if (/*(res1[i].Item1 != res2[i].Item1)&&*/(!Equals(res1[i].Item1, res2[i].Item1)))
+                    return false;
+                if (/*(res1[i].Item2 != res2[i].Item2)&&*/(!Equals(res1[i].Item2, res2[i].Item2)))
+                    return false;
+            }
+
+            return true;
+        }
+
+        
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

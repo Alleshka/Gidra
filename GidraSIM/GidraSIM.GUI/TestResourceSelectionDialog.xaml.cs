@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace GidraSIM.GUI
 {
@@ -21,13 +22,12 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestResourceSelectionDialog : Window
     {
+        private TestResourceViewModel model;
         public TestResourceSelectionDialog()
         {
             InitializeComponent();
-            listBox1.Items.Add(new CadResource());
-            listBox1.Items.Add(new WorkerResource());
-            listBox1.Items.Add(new TechincalSupportResource());
-            listBox1.Items.Add(new MethodolgicalSupportResource());
+            model = new TestResourceViewModel();
+            this.DataContext = model;
             listBox1.SelectedIndex = 0;
             this.button.Focus();
         }
@@ -37,10 +37,41 @@ namespace GidraSIM.GUI
         private void button_Click(object sender, RoutedEventArgs e)
         {
             SelectedResource = listBox1.SelectedItem as AbstractResource;
-            listBox1.Items.Remove(listBox1.SelectedItem);
+            //listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }
     }
 
+    public class TestResourceViewModel : INotifyPropertyChanged
+    {
+        public TestResourceViewModel()
+        {
+            Blocks = new List<AbstractResource>()
+            {
+             new CadResource(),
+             new WorkerResource(),
+             new TechincalSupportResource(),
+             new MethodolgicalSupportResource(),
+            };
+        }
 
+        private List<AbstractResource> blocks;
+
+        public List<AbstractResource> Blocks
+        {
+            get => blocks;
+            set
+            {
+                blocks = value;
+                NotifyPropertyChanged("Blocks");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

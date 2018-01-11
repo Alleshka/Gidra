@@ -72,7 +72,6 @@ namespace GidraSIM.GUI
             //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
 
             TestProcedureSelectionDialog dialog = new TestProcedureSelectionDialog();
-
             if(dialog.ShowDialog() == true)
             {
                 var procedure = dialog.SelectedBlock;

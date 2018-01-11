@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class ClientCoordinationPrrocedure:AbstractProcedure
     {
         [DataMember]

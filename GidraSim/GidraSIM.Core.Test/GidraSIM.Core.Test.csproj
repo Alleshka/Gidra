@@ -50,6 +50,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompareTest\ProcedureCompareTest.cs" />
+    <Compile Include="CompareTest\ResourceCompareTest.cs" />
     <Compile Include="ElectricalSchemeSimulationTest.cs" />
     <Compile Include="PaperworkProcedureTest.cs" />
     <Compile Include="ArrangementProcedureTests.cs" />

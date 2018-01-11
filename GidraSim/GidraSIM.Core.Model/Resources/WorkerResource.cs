@@ -24,7 +24,7 @@ namespace GidraSIM.Core.Model.Resources
     };
 
 
-    [DataContract(Name = "Worker")]
+    [DataContract(IsReference = true)]
     public class WorkerResource: AbstractResource
     {
         public WorkerResource()
@@ -58,5 +58,22 @@ namespace GidraSIM.Core.Model.Resources
         //    get;
         //    set;
         //}
+
+        public override bool Equals(object obj)
+        {
+            if(!base.Equals(obj))
+                return false;
+
+            WorkerResource temp = obj as WorkerResource;
+            if (temp.WorkerQualification != this.WorkerQualification)
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

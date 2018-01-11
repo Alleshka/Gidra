@@ -19,22 +19,61 @@ namespace GidraSIM.GUI.Utility
     public enum TypeSave { xml, binary }
     public class ProjectSaver : IProjectSaver
     {
-        public void SaveProjectExecute(TabControl testTabControl, string Path, TypeSave typeSave = TypeSave.binary)
+        private Type[] types;
+        private Dictionary<Process, Guid> processSaved; // Содержит обработанные процессы
+        private TabControl tempTabControl;
+
+        private SaveProject project;
+        public ProjectSaver()
         {
-            SaveProject project = new SaveProject();
-
-            foreach (TabItem item in testTabControl.Items)
+            types = new Type[]
             {
-                String name = (item.Header as Process).Description;
+                typeof(CadResource),
+                typeof(WorkerResource),
+                typeof(TechincalSupportResource),
+                typeof(MethodolgicalSupportResource),
+                typeof(TokensCollector),
+                typeof(ConnectionManager),
+                typeof(ArrangementProcedure),
+                typeof(ClientCoordinationPrrocedure),
+                typeof(DocumentationCoordinationProcedure),
+                typeof(ElectricalSchemeSimulation),
+                typeof(FixedTimeBlock),
+                typeof(FormingDocumentationProcedure),
+                typeof(PaperworkProcedure),
+                typeof(QualityCheckProcedure),
+                typeof(SampleTestingProcedure),
+                typeof(SchemaCreationProcedure),
+                typeof(TracingProcedure),
+                typeof(Process)
+            };
+            processSaved = new Dictionary<Process, Guid>();
+        }
 
-                var drawArea = item.Content as DrawArea; // Достаём область рисования 
-                project.ProcessList.Add(SaveProcessExecute(drawArea.Children, name)); // Сохраняем процессы
+
+        public void SaveProjectExecute(TabControl testTabControl, string Path)
+        {
+            tempTabControl = testTabControl;
+
+            project = new SaveProject();
+
+            foreach (TabItem item in tempTabControl.Items)
+            {
+                if (!(processSaved.ContainsKey(item.Header as Process)))
+                {
+                    String name = (item.Header as Process).Description;
+
+                    var drawArea = item.Content as DrawArea; // Достаём область рисования 
+                    var savedProc = SaveProcessExecute(drawArea.Children, name);
+                    project.ProcessList.Add(savedProc); // Сохраняем процессы
+                    processSaved.Add(item.Header as Process, savedProc.ProcessId);
+                }
             }
 
             // Записываем информацию о проекте
             using (FileStream stream = new FileStream(Path, FileMode.Create))
             {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject));
+                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
                 ser.WriteObject(stream, project);
             }
 
@@ -56,7 +95,7 @@ namespace GidraSIM.GUI.Utility
             // Считываем иформацию о проекте
             using (FileStream stream = new FileStream(path, FileMode.Open))
             {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject));
+                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
                 temp = (ser.ReadObject(stream)) as SaveProject;
             }
 
@@ -111,34 +150,65 @@ namespace GidraSIM.GUI.Utility
             temp.EndElement = (collection[1] as EndBlockWPF).Position;
 
             temp.ProcessName = name;
+            temp.ProcessId = Guid.NewGuid();
 
-            // Проходим по каждому элементу
+            List<UIElement> procedureConnections = new List<UIElement>(); // Список с соединениями процедур
+            List<UIElement> resourceConnections = new List<UIElement>(); // Блок с соединениями ресурсов
+            List<UIElement> procedures = new List<UIElement>(); // Список с процедурами
+            List<UIElement> resourses = new List<UIElement>(); // Список с ресурсами
+
+            // Проходим по всем элементам
             foreach (UIElement element in collection)
             {
                 // Если элемент - связь процедур
                 if (element is ProcConnectionWPF)
                 {
-                    SaveProcConnection(element, ProcedureList, temp);
+                    procedureConnections.Add(element);
                 }
 
                 // Если элемент - связь ресурсов
                 if (element is ResConnectionWPF)
                 {
-                    SaveResourceConnection(element, ProcedureList, ResourceList, temp);
-                }
-
-                // Если элемент - ресурс
-                if (element is ResourceWPF)
-                {
-                    SaveBlockResourse(element as ResourceWPF, ResourceList, temp);
+                    resourceConnections.Add(element);
                 }
 
                 // Если элемент - процедура
                 if (element is ProcedureWPF)
                 {
-                    SaveBlockProcedure(element as ProcedureWPF, ProcedureList, temp);
+                    procedures.Add(element);
+                }
+
+                // Если элемент - рксурс
+                if (element is ResourceWPF)
+                {
+                    resourses.Add(element);
                 }
             }
+
+            // Проходим по всем связям с процедурами
+            foreach (var element in procedureConnections)
+            {
+                SaveProcConnection(element, ProcedureList, temp);
+            }
+
+            // Проходим по всем связям с ресурсами
+            foreach (var element in resourceConnections)
+            {
+                SaveResourceConnection(element, ProcedureList, ResourceList, temp);
+            }
+
+            // Проходим по необработанным процедурам
+            foreach (var element in procedures)
+            {
+                SaveBlockProcedure(element as ProcedureWPF, ProcedureList, temp);
+            }
+
+            // Проходимся по необработанным ресурсам
+            foreach (var element in resourses)
+            {
+                SaveBlockResourse(element as ResourceWPF, ResourceList, temp);
+            }
+
 
             return temp; // Возвращаем всю информацию о процессе
         }
@@ -235,7 +305,33 @@ namespace GidraSIM.GUI.Utility
             {
                 if (!procedures.ContainsKey(Block as ProcedureWPF))
                 {
-                    temp = SaveProcedure.ToSave(Block as ProcedureWPF);
+                    var info = (Block as ProcedureWPF).BlockModel;
+                    bool IsProcess = info is Process;
+                    Guid childId = new Guid();
+
+                    // Проверяем, не является ли содержимое подпроцессом
+                    if (IsProcess)
+                    {
+                        // Если является
+
+                        // Проверяем, сохранен ли он
+                        if (!processSaved.ContainsKey(info as Process))
+                        {
+                            // Если не сохранён, быстро сохраняем, передавая родительский блок
+                            SaveProcess childProc = ExtrSaveProcess((info as Process).Description);
+                            childId = childProc.ProcessId;
+                            processSaved.Add(info as Process, childId);
+                            project.ProcessList.Add(childProc);
+                            //processSaved.Add(info as Process, childId);
+                        }
+                        else // Сохранён
+                        {
+                            // Находим процесс
+                            childId = processSaved[info as Process]; // Достаём его ID
+                        }
+                    }
+
+                    temp = SaveProcedure.ToSave(Block as ProcedureWPF, IsProcess, childId);
                     procedures.Add(Block as ProcedureWPF, temp.Id);
                     saveProcess.ProcedureList.Add(temp);
                 }
@@ -274,6 +370,21 @@ namespace GidraSIM.GUI.Utility
             }
 
             return temp;
+        }
+
+        /// <summary>
+        /// Внеплановое сохранение процесса
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private SaveProcess ExtrSaveProcess(String name)
+        {
+            foreach (TabItem tab in tempTabControl.Items)
+            {
+                if ((tab.Header as Process).Description == name) return SaveProcessExecute((tab.Content as DrawArea).Children, name);
+            }
+
+            return null;
         }
 
         // <!--------------------------------- Сохранение - Конец ----------------------------->
@@ -412,47 +523,44 @@ namespace GidraSIM.GUI.Utility
         // <!--------------------------------- Загрузка - Конец ----------------------------->
     }
 
+    /// --------------------------------------- Сохраняемые блоки
 
     /// <summary>
     /// Сохраняет информацию о процедуре WPF
     /// </summary>
-    [DataContract(IsReference = true, Name = "Procedure")]
-    [KnownType(typeof(AbstractProcedure))]
-    [KnownType(typeof(ArrangementProcedure))]
-    [KnownType(typeof(ClientCoordinationPrrocedure))]
-    [KnownType(typeof(DocumentationCoordinationProcedure))]
-    [KnownType(typeof(ElectricalSchemeSimulation))]
-    [KnownType(typeof(FixedTimeBlock))]
-    [KnownType(typeof(FormingDocumentationProcedure))]
-    [KnownType(typeof(PaperworkProcedure))]
-    [KnownType(typeof(QualityCheckProcedure))]
-    [KnownType(typeof(SampleTestingProcedure))]
-    [KnownType(typeof(SchemaCreationProcedure))]
-    [KnownType(typeof(TracingProcedure))]
+    [DataContract(IsReference = true, Name = "BlockProcedure")]
     public class SaveProcedure
     {
-        [DataMember(Name = "BlockID")]
-        public Guid Id { get; set; } // ID блока
-        [DataMember(Name = "Position")]
-        public Point Position { get; set; } // Положение блока
-        [DataMember(Name = "Model")]
-        public IBlock Model { get; set; }  // "Содержимое" блока
+        // ID блока
+        [DataMember(Name = "ProcedureID")] public Guid Id { get; set; }
+
+        // Флаг, указывающий на то, является ли блок подпроцессом
+        [DataMember] public bool IsProcess { get; set; }
+        [DataMember] public Guid ChildBlockID { get; set; }
+
+        // Положение блока
+        [DataMember] public Point Position { get; set; }
+
+        // "Содержимое" блока
+        [DataMember(Name = "Content")] public IBlock Model { get; set; }  
 
         /// <summary>
         /// Переводит блок WPF в форму для сохранения
         /// </summary>
         /// <param name="procedure"></param>
         /// <returns></returns>
-        public static SaveProcedure ToSave(ProcedureWPF procedure)
+        public static SaveProcedure ToSave(ProcedureWPF procedure, bool IsProc = false, Guid child = new Guid())
         {
             return new SaveProcedure()
             {
                 Id = Guid.NewGuid(),
+                IsProcess = IsProc,
+                ChildBlockID = child,
                 Model = procedure.BlockModel,
-                //ProcessName = procedure.BlockName,
                 Position = procedure.Position
             };
         }
+
         /// <summary>
         /// Переводит форму для сохранения в форму блока
         /// </summary>
@@ -460,32 +568,21 @@ namespace GidraSIM.GUI.Utility
         /// <returns></returns>
         public static ProcedureWPF ToNormal(SaveProcedure procedure)
         {
-            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
-            Type type = procedure.Model.GetType(); // Получаем тип процедуры
-            IBlock tempBlock = (IBlock)Activator.CreateInstance(type);
-            return new ProcedureWPF(procedure.Position, tempBlock);
+            return new ProcedureWPF(procedure.Position, procedure.Model);
         }
     }
 
     /// <summary>
     /// Сохраняет информацию о ресурсе WPF
     /// </summary>
-    [DataContract(IsReference = true, Name = "Resource")]
-    [KnownType(typeof(AbstractResource))]
-    [KnownType(typeof(CadResource))]
-    [KnownType(typeof(MethodolgicalSupportResource))]
-    [KnownType(typeof(TechincalSupportResource))]
-    [KnownType(typeof(WorkerResource))]
+    [DataContract(IsReference = true, Name = "BlockResource")]
     public class SaveResource
     {
-        [DataMember(Name = "ResourceID")]
-        public Guid Id { get; set; }
+        [DataMember(Name = "ResourceID")] public Guid Id { get; set; }
 
-        [DataMember(Name = "Position")]
-        public Point Position { get; set; }
+        [DataMember] public Point Position { get; set; }
 
-        [DataMember(Name = "Content")]
-        public AbstractResource Model { get; set; }
+        [DataMember(Name = "Content")] public AbstractResource Model { get; set; }
 
         public static SaveResource ToSave(ResourceWPF resource)
         {
@@ -498,10 +595,7 @@ namespace GidraSIM.GUI.Utility
         }
         public static ResourceWPF ToNormal(SaveResource resource)
         {
-            System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFrom("GidraSIM.GUI.Core.dll");
-            Type type = resource.Model.GetType(); // Получаем тип ресурса
-            AbstractResource res = (AbstractResource)Activator.CreateInstance(type);
-            return new ResourceWPF(resource.Position, res);
+            return new ResourceWPF(resource.Position, resource.Model);
         }
     }
 
@@ -530,7 +624,7 @@ namespace GidraSIM.GUI.Utility
     /// <summary>
     /// Сохраняет информацию о связи с ресурсами WPF
     /// </summary>
-    [DataContract(IsReference = true)]
+    [DataContract(IsReference = true, Name = "ResourceConnection")]
     public class SaveResourceConnection
     {
         [DataMember]
@@ -542,9 +636,10 @@ namespace GidraSIM.GUI.Utility
     /// <summary>
     /// Сохраняет информацию о процессе
     /// </summary>
-    [DataContract(IsReference = true)]
+    [DataContract(IsReference = true, Name = "ProcessInfo")]
     public class SaveProcess
     {
+        [DataMember] public Guid ProcessId { get; set; }
         [DataMember]
         public String ProcessName { get; set; }
         [DataMember]

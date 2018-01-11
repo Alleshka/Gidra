@@ -11,7 +11,7 @@ namespace GidraSIM.SaveTest.ResourceSaveTest
     public class TechincalSupportResourceSaveTest : IResourceSaveTest
     {
         [TestMethod]
-        public void AsIResourceTest()
+            public void AsIResourceTest()
         {
             // Arrange 
             IResource resource1 = new TechincalSupportResource();

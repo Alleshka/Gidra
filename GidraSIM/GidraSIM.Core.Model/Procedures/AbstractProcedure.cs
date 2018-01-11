@@ -45,5 +45,32 @@ namespace GidraSIM.Core.Model.Procedures
         {
             resources.Clear();
         }
+
+        public override bool Equals(object obj)
+        {
+            if(!base.Equals(obj))
+                return false;
+
+            AbstractProcedure temp = obj as AbstractProcedure;
+
+            if (temp.Description != this.Description)
+                return false;
+            if (temp.ResourceCount != this.ResourceCount)
+                return false;
+
+
+            for (int i = 0; i < temp.ResourceCount; i++)
+            {
+                if ((!Equals(temp.resources[i], this.resources[i])))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

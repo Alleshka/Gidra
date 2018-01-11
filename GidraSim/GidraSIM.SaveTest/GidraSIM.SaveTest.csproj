@@ -64,6 +64,7 @@
     <Compile Include="ProcedureSaveTest\SampleTestingProcedureSaveTest.cs" />
     <Compile Include="ProcedureSaveTest\SchemaCreationProcedureSaveTest.cs" />
     <Compile Include="ProcedureSaveTest\TracingProcedureSaveTest.cs" />
+    <Compile Include="ProjectSaveTest.cs" />
     <Compile Include="ResourceSaveTest\CadResourceSaveTest.cs" />
     <Compile Include="ResourceSaveTest\IResourceSaveTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,7 +13,7 @@ namespace GidraSIM.GUI.Utility
         /// </summary>
         /// <param name="testTabControl"></param>
         /// <param name="Path"></param>
-        void SaveProjectExecute(TabControl testTabControl, String Path, TypeSave typeSave);
+        void SaveProjectExecute(TabControl testTabControl, String Path);
 
         int LoadProjectExecute(String path, TabControl testTabControl, List<DrawArea> drawAreas, List<Process> processes, out Process mainprocess);
     }

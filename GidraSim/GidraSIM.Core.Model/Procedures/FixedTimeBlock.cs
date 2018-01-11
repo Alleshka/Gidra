@@ -46,5 +46,20 @@ namespace GidraSIM.Core.Model.Procedures
                 }
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if(!base.Equals(obj)) return false;
+
+            FixedTimeBlock temp = obj as FixedTimeBlock;
+            if (temp.FixedTime != this.FixedTime) return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
