@@ -177,12 +177,12 @@ namespace GidraSIM.GUI
                     converter.Map(drawArea.Children, tab.Header as Process);
                 }
 
-                //запихиваем содержимое главной области рисования в процесс
-                converter.Map(drawAreas[0].Children, mainProcess);
+                ////запихиваем содержимое главной области рисования в процесс
+                //converter.Map(drawAreas[0].Children, mainProcess);
 
                 //добавляем на стартовый блок токен
                 mainProcess.AddToken(new Token(0, complexity), 0);
-                double i = 0;
+                //double i = 0;
                 ModelingTime modelingTime = new ModelingTime() { Delta = this.dt, Now = 0 };
                 for (modelingTime.Now = 0; modelingTime.Now < maxTime; modelingTime.Now += modelingTime.Delta)
                 {
