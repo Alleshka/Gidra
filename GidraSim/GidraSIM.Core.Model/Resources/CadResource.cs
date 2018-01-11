@@ -50,9 +50,11 @@ namespace GidraSIM.Core.Model.Resources
 
         public override bool Equals(object obj)
         {
+
             if(!base.Equals(obj))
                 return false;
 
+            if (!(obj is CadResource)) return false;
             CadResource temp = obj as CadResource;
             if (temp.Count != this.Count)
                 return false;

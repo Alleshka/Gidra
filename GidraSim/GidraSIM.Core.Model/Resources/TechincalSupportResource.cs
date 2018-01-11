@@ -64,8 +64,10 @@ namespace GidraSIM.Core.Model.Resources
 
         public override bool Equals(object obj)
         {
+
             if(!base.Equals(obj)) return false;
 
+            if (!(obj is TechincalSupportResource)) return false;
             TechincalSupportResource temp = obj as TechincalSupportResource;
 
             if (temp.Frequency != this.Frequency) return false;

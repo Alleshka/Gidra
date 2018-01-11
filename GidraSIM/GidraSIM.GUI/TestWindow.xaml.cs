@@ -205,12 +205,12 @@ namespace GidraSIM.GUI
                 {
                     process.ClearProcess();
                 }
-            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+}
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
         {

@@ -105,10 +105,11 @@ namespace GidraSIM.Core.Model
 
         public override bool Equals(object obj)
         {
-            AbstractBlock temp = obj as AbstractBlock;
-
-            if (temp.GetType() != this.GetType())
+            if (obj.GetType() != this.GetType())
                 return false;
+
+            if (!(obj is AbstractBlock)) return false;
+            AbstractBlock temp = obj as AbstractBlock;
 
             if (temp.InputQuantity != this.InputQuantity)
                 return false;

@@ -44,7 +44,6 @@ namespace GidraSIM.Core.Test.CompareTest
 
             //Assert
             Assert.AreEqual(cadResource1, cadResource2);
-            if (cadResource2 != cadResource1) Assert.Fail();
         }
 
         [TestMethod]

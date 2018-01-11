@@ -51,6 +51,7 @@ namespace GidraSIM.Core.Model.Procedures
             if(!base.Equals(obj))
                 return false;
 
+            if (!(obj is AbstractProcedure)) return false;
             AbstractProcedure temp = obj as AbstractProcedure;
 
             if (temp.Description != this.Description)

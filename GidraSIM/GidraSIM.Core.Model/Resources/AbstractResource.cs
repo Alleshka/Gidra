@@ -24,18 +24,9 @@ namespace GidraSIM.Core.Model.Resources
 
         public override string ToString() => Description;
 
-        public static bool operator ==(AbstractResource x, AbstractResource y)
-        {
-            return Equals(x, y);
-        }
-
-        public static bool operator !=(AbstractResource x, AbstractResource y)
-        {
-            return !Equals(x, y);
-        }
-
         public override bool Equals(object obj)
         {
+            if (!(obj is AbstractResource)) return false;
             AbstractResource res = obj as AbstractResource;
             if (res.Description != this.Description)
                 return false;
