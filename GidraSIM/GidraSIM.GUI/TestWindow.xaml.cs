@@ -110,7 +110,7 @@ namespace GidraSIM.GUI
             Canvas.SetTop(block, block.Position.Y);
             Canvas.SetLeft(block, block.Position.X);
         }
-        
+
         private void Procedure_Executed(object sender, RoutedEventArgs e)
         {
             //меняем режим для всехна процедуры
@@ -126,7 +126,7 @@ namespace GidraSIM.GUI
             //testTabControl.MouseLeftButtonDown -= Procedure_MouseDown;
             //testTabControl.MouseLeftButtonDown += Cursor_MouseDown;
         }
-        
+
         private void Pr(object sender, MouseButtonEventArgs e)
         {
 
@@ -201,16 +201,19 @@ namespace GidraSIM.GUI
 
                 //выводим число токенов и время затраченное(в заголовке)
                 MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
-                foreach (var process in processes)
-                {
-                    process.ClearProcess();
-                }
-        }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-}
+            finally
+            {
+                foreach (var process in processes)
+                {
+                    process.ClearProcess();
+                }
+            }
+        }
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
         {
@@ -288,7 +291,7 @@ namespace GidraSIM.GUI
                 if (savePath.Count() != 0)
                 {
                     var saver = new ProjectSaver();
-                    saver.SaveProjectExecute(testTabControl, savePath);
+                    saver.SaveProjectExecute(testTabControl, savePath, mainProcessNumber);
                 }
                 else SaveAs();
             }
@@ -312,7 +315,7 @@ namespace GidraSIM.GUI
                 if ((bool)dlg.ShowDialog())
                 {
                     var saver = new ProjectSaver();
-                    saver.SaveProjectExecute(testTabControl, dlg.FileName);
+                    saver.SaveProjectExecute(testTabControl, dlg.FileName, mainProcessNumber);
                     savePath = dlg.FileName;
                 }
             }

@@ -16,11 +16,11 @@ using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
-    public enum TypeSave { xml, binary }
     public class ProjectSaver : IProjectSaver
     {
         private Type[] types;
         private Dictionary<Process, Guid> processSaved; // Содержит обработанные процессы
+        Dictionary<Guid, Process> processWorked = new Dictionary<Guid, Process>();
         private TabControl tempTabControl;
 
         private SaveProject project;
@@ -51,14 +51,17 @@ namespace GidraSIM.GUI.Utility
         }
 
 
-        public void SaveProjectExecute(TabControl testTabControl, string Path)
+        public void SaveProjectExecute(TabControl testTabControl, string Path, int mainNumber)
         {
             tempTabControl = testTabControl;
 
             project = new SaveProject();
 
-            foreach (TabItem item in tempTabControl.Items)
+            for(int i=0; i<tempTabControl.Items.Count; i++)
+            //foreach (TabItem item in tempTabControl.Items)
             {
+                TabItem item = tempTabControl.Items[i] as TabItem;
+
                 if (!(processSaved.ContainsKey(item.Header as Process)))
                 {
                     String name = (item.Header as Process).Description;
@@ -67,6 +70,8 @@ namespace GidraSIM.GUI.Utility
                     var savedProc = SaveProcessExecute(drawArea.Children, name);
                     project.ProcessList.Add(savedProc); // Сохраняем процессы
                     processSaved.Add(item.Header as Process, savedProc.ProcessId);
+
+                    if (mainNumber == i) project.MainProcessID = savedProc.ProcessId;
                 }
             }
 
@@ -100,15 +105,18 @@ namespace GidraSIM.GUI.Utility
             }
 
             mainprocess = null;
+            int num = 0;
 
             // Очищаем информацию
             testTabControl.Items.Clear();
             drawAreas.Clear();
             processes.Clear();
 
+
             // Проходим по каждому процессу
             for (int i = 0; i < temp.ProcessList.Count; i++)
             {
+                
                 // Создаём процесс
                 Process process = new Process() { Description = temp[i].ProcessName };
                 processes.Add(process); // Добавляем в список процессов
@@ -124,14 +132,23 @@ namespace GidraSIM.GUI.Utility
                 drawAreas.Add(drawArea);
                 tabItem.Content = drawArea;
 
-                if (i == temp.MainProcessNumber) mainprocess = process;
+                //if (i == temp.MainProcessNumber) mainprocess = process
+
 
                 LoadProcess(temp[i], drawArea);
+                processWorked.Add(temp[i].ProcessId, process);
 
-                testTabControl.Items.Add(tabItem);        
+                if (temp.MainProcessID == temp[i].ProcessId)
+                {
+                    mainprocess = process;
+                    num = i;
+
+                }
+                testTabControl.Items.Add(tabItem);
+
             }
 
-            return temp.MainProcessNumber;
+            return num;
         }
 
         // <!--------------------------------- Сохранение - Начало ----------------------------->
@@ -441,8 +458,14 @@ namespace GidraSIM.GUI.Utility
             }
             else
             {
+                if (Block.IsProcess)
+                {
+                    Block.Model = processWorked[Block.ChildBlockID];
+                }
+
                 ProcedureWPF curProc = SaveProcedure.ToNormal(Block);
                 worksavelist.Add(Block.Id, curProc);
+
                 return curProc;
             }
         }
@@ -669,7 +692,7 @@ namespace GidraSIM.GUI.Utility
     public class SaveProject
     {
         [DataMember]
-        public int MainProcessNumber { get; set; }
+        public Guid MainProcessID { get; set; }
         [DataMember]
         public List<SaveProcess> ProcessList { get; set; }
 
@@ -677,7 +700,6 @@ namespace GidraSIM.GUI.Utility
 
         public SaveProject()
         {
-            MainProcessNumber = 0;
             ProcessList = new List<SaveProcess>();
         }
     }
