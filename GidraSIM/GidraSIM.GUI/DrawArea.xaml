@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GidraSIM.GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded" Background="White">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <Grid>
         <ScrollViewer>
-            <Canvas Background="White" x:Name="workArea">
+            <Canvas Background="#BBFFFFFF" x:Name="workArea">
             </Canvas>
         </ScrollViewer>
     </Grid>

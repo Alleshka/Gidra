@@ -102,7 +102,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="1" Content="{Binding ElementName=listBox1, Path=SelectedItem}" />
-        <ListBox  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description">
+        <ListBox  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
 
         </ListBox>
         

@@ -3,10 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GidraSIM.GUI"
+        xmlns:command="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
         Title="СИМ САПР" Height="600" Width="800">
     <DockPanel>
+
+        <DockPanel.Background>
+            <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/background3.jpg" Stretch="UniformToFill" />
+        </DockPanel.Background>
+
         <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
             <MenuItem Header="Файл">
 
@@ -23,21 +28,69 @@
             </MenuItem>
             <MenuItem Header="Настройки"/>
         </Menu>
-        <StackPanel HorizontalAlignment="Left" Margin="0">
-            <Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
+        <StackPanel HorizontalAlignment="Left" Margin="5" Background="#BBFFFFFF">
+            <!--<Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
             <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
             <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
-            <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>
-            <Button x:Name="TestBtn" Content="Test"  Margin="5"  Width="74" Click="StartModeling_Executed"/>
-            <!--<Button x:Name="Save" Content="Сохранить" Click="Save_Click"></Button>
-            <Button x:Name="Open" Content="Открыть" Click="Open_Click"></Button>-->
+            <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>-->
+            
+            
+            <!-- Указатель -->
+            <Button Height="35" HorizontalAlignment="Stretch" Margin="5" Name="button_arrow" VerticalAlignment="Stretch" Width="35" ToolTip="Курсор  (Alt+Q)" Command="command:MainWindowCommands.Arrow" BorderThickness="1" IsEnabled="True">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Arrow.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <!-- Выбор процедуры -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_procedure" VerticalAlignment="Top" Width="35" Foreground="Black" OpacityMask="{x:Null}" ToolTip="Добавить процедуру  (Alt+W)" Command="command:MainWindowCommands.Procedure">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/ProcedureButton.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <!-- Выбор ресурса -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_resourse" VerticalAlignment="Top" Width="35" ToolTip="Добавить ресурс (Alt+E)" Command="command:MainWindowCommands.Resourse">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Resourse.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <!-- Соединение блоков -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_connect" VerticalAlignment="Top" Width="35" ToolTip="Добавить соединение (Alt+R)" Command="command:MainWindowCommands.Connect">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Connect.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <!-- Вложенный процесс -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_SubProcess" ToolTip="Добавить вложенный процесс (Alt+T)" VerticalAlignment="Bottom" Width="35" Command="command:MainWindowCommands.SubProcess">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/SubProcessButton.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+
+            <Button Height="35" HorizontalAlignment="Left" x:Name="TestBtn" Margin="5"  Width="35" ToolTip="Запустить моделирование (F5)"  Command="command:MainWindowCommands.StartModeling">
+                <StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Model.png" />
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            
         </StackPanel>
 
-        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="5,5,10,10"></ListBox>
+        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="0,5,5,5" Background="#BBFFFFFF" ></ListBox>
 
-        
-        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged">
+
+        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged" Background="#BBFFFFFF">
             <TabItem Header="Процесс 1" >
                 <!--<local:DrawArea x:Name="drawArea"></local:DrawArea>-->
             </TabItem>

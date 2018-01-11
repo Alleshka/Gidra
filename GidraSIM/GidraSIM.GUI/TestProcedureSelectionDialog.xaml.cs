@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.GUI.Core.BlocksWPF;
+using System.ComponentModel;
 
 namespace GidraSIM.GUI
 {
@@ -22,24 +23,15 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class TestProcedureSelectionDialog : Window
     {
+        TestProcedureViewModel model;
         public TestProcedureSelectionDialog()
         {
             InitializeComponent();
-            listBox1.Items.Add(new FixedTimeBlock(10));
-            listBox1.Items.Add(new QualityCheckProcedure());
-            listBox1.Items.Add(new SchemaCreationProcedure());
 
-            listBox1.Items.Add(new ArrangementProcedure());
-            listBox1.Items.Add(new ClientCoordinationPrrocedure());
-            listBox1.Items.Add(new DocumentationCoordinationProcedure());
-            listBox1.Items.Add(new ElectricalSchemeSimulation());
-            listBox1.Items.Add(new FormingDocumentationProcedure());
-            listBox1.Items.Add(new PaperworkProcedure());
-            listBox1.Items.Add(new SampleTestingProcedure());
-            listBox1.Items.Add(new TracingProcedure());
+            model = new TestProcedureViewModel();
+            this.DataContext = model;
 
-            listBox1.SelectedIndex = 0;
-            //this.button.Focus();
+            this.button.Focus();
         }
 
         public IBlock SelectedBlock { get; private set; }
@@ -47,8 +39,49 @@ namespace GidraSIM.GUI
         private void button_Click(object sender, RoutedEventArgs e)
         {
             SelectedBlock = listBox1.SelectedItem as IBlock;
-            listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
+        }
+    }
+
+
+    public class TestProcedureViewModel : INotifyPropertyChanged
+    {
+        public TestProcedureViewModel()
+        {
+            Blocks = new List<IBlock>()
+            {
+                new FixedTimeBlock(10),
+             new QualityCheckProcedure(),
+             new SchemaCreationProcedure(),
+
+             new ArrangementProcedure(),
+             new ClientCoordinationPrrocedure(),
+             new DocumentationCoordinationProcedure(),
+             new ElectricalSchemeSimulation(),
+             new FormingDocumentationProcedure(),
+             new PaperworkProcedure(),
+             new SampleTestingProcedure(),
+             new TracingProcedure()
+            };
+        }
+
+        private List<IBlock> blocks;
+
+        public List<IBlock> Blocks
+        {
+            get => blocks;
+            set
+            {
+                blocks = value;
+                NotifyPropertyChanged("Blocks");
+            }
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

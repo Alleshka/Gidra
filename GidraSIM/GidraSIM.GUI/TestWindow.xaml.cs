@@ -65,11 +65,11 @@ namespace GidraSIM.GUI
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
 
             // Кастомные команды
-            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Arrow, Arrow_Executed));
-            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Procedure, Procedure_Executed));
-            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
-            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Connect, Connect_Executed));
-            //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Arrow, Arrow_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Procedure, Procedure_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Resourse, Resourse_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.Connect, Connect_Executed));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
             //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
         }
@@ -111,7 +111,7 @@ namespace GidraSIM.GUI
             Canvas.SetLeft(block, block.Position.X);
         }
         
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void Procedure_Executed(object sender, RoutedEventArgs e)
         {
             //меняем режим для всехна процедуры
             drawAreas.ForEach(area => area.SelectProcedureMode());
@@ -119,7 +119,7 @@ namespace GidraSIM.GUI
             //testTabControl.MouseLeftButtonDown += Procedure_MouseDown;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Arrow_Executed(object sender, RoutedEventArgs e)
         {
             //меняем режим для всех на выделение
             drawAreas.ForEach(area => area.SelectArrowMode());
@@ -136,7 +136,7 @@ namespace GidraSIM.GUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button3_Click(object sender, RoutedEventArgs e)
+        private void Resourse_Executed(object sender, RoutedEventArgs e)
         {
             //меняем режим для всех на ресурсы
             drawAreas.ForEach(area => area.SelectResourseMode());
@@ -146,7 +146,7 @@ namespace GidraSIM.GUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button4_Click(object sender, RoutedEventArgs e)
+        private void Connect_Executed(object sender, RoutedEventArgs e)
         {
             //меняем для всех на связи
             drawAreas.ForEach(area => area.SelectConnectMode());
@@ -157,7 +157,7 @@ namespace GidraSIM.GUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button5_Click(object sender, RoutedEventArgs e)
+        private void SubProcess_Executed(object sender, RoutedEventArgs e)
         {
             //меняем для всех на подпроцессы
             drawAreas.ForEach(area => area.SelectSubProcessMode());
