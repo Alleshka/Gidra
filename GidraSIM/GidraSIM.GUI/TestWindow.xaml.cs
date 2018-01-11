@@ -370,7 +370,7 @@ namespace GidraSIM.GUI
 
         private void Statictics()
         {
-            using (FileStream stream = new FileStream(Guid.NewGuid().ToString() + ".xml", FileMode.Create))
+            using (FileStream stream = new FileStream($"tokens-log-{System.DateTime.Now.ToString("dd.MM.yyyy hh-mm-ss")}.xml", FileMode.Create))
             {
                 Type[] types = new Type[]
                 {
