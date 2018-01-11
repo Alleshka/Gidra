@@ -107,6 +107,9 @@ namespace GidraSIM.Core.Model
         {
             AbstractBlock temp = obj as AbstractBlock;
 
+            if (temp.GetType() != this.GetType())
+                return false;
+
             if (temp.InputQuantity != this.InputQuantity)
                 return false;
             if (temp.inputQueue.Length != this.inputQueue.Length)
