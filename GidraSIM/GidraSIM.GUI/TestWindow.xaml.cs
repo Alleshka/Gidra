@@ -9,6 +9,10 @@ using GidraSIM.GUI.Utility;
 using GidraSIM.Core.Model;
 using System.IO;
 
+using GidraSIM.Core.Model;
+using GidraSIM.Core.Model.Resources;
+using GidraSIM.Core.Model.Procedures;
+
 namespace GidraSIM.GUI
 {
     /// <summary>
@@ -194,6 +198,8 @@ namespace GidraSIM.GUI
                     }
                 }
 
+                Statictics();
+
                 //TODO сделать DataBinding
                 listBox1.Items.Clear();
                 mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
@@ -347,6 +353,49 @@ namespace GidraSIM.GUI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SaveStatistic_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                throw new NotImplementedException("В разработке");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Statictics()
+        {
+            using (FileStream stream = new FileStream(Guid.NewGuid().ToString() + ".xml", FileMode.Create))
+            {
+                Type[] types = new Type[]
+                {
+                typeof(CadResource),
+                typeof(WorkerResource),
+                typeof(TechincalSupportResource),
+                typeof(MethodolgicalSupportResource),
+                typeof(TokensCollector),
+                typeof(ConnectionManager),
+                typeof(ArrangementProcedure),
+                typeof(ClientCoordinationPrrocedure),
+                typeof(DocumentationCoordinationProcedure),
+                typeof(ElectricalSchemeSimulation),
+                typeof(FixedTimeBlock),
+                typeof(FormingDocumentationProcedure),
+                typeof(PaperworkProcedure),
+                typeof(QualityCheckProcedure),
+                typeof(SampleTestingProcedure),
+                typeof(SchemaCreationProcedure),
+                typeof(TracingProcedure),
+                typeof(Process)
+                };
+
+                System.Runtime.Serialization.DataContractSerializer ser = new System.Runtime.Serialization.DataContractSerializer(typeof(TokensCollector), types);
+                ser.WriteObject(stream, TokensCollector.GetInstance());
             }
         }
     }
