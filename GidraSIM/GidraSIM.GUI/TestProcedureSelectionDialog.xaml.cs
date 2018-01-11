@@ -30,8 +30,8 @@ namespace GidraSIM.GUI
 
             model = new TestProcedureViewModel();
             this.DataContext = model;
-
             this.button.Focus();
+            listBox1.SelectedIndex = 0;
         }
 
         public IBlock SelectedBlock { get; private set; }
