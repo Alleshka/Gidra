@@ -16,6 +16,8 @@ using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
+
+
     public class ProjectSaver : IProjectSaver
     {
         private Type[] types;
@@ -49,6 +51,9 @@ namespace GidraSIM.GUI.Utility
             };
             processSaved = new Dictionary<Process, Guid>();
         }
+
+        // Если кто-то будет смотреть или редактировать этот код
+        // Простите меня ;(
 
 
         public void SaveProjectExecute(TabControl testTabControl, string Path, int mainNumber)

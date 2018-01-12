@@ -66,7 +66,7 @@ namespace GidraSIM.GUI
             processes.Add(mainProcess);
 
             // Стандартные команды
-            //this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, Create_Project_Executed));
+            this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, NewProjectItemMenu_Click));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Click));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open, Open_Click));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed));
@@ -317,6 +317,7 @@ namespace GidraSIM.GUI
         {
             try
             {
+
                 Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog
                 {
                     FileName = "Project",

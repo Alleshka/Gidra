@@ -20,10 +20,10 @@
         <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
             <MenuItem Header="Файл">
 
-                <MenuItem x:Name="NewProjectMenuItem" Header="Новый проект" Click="NewProjectItemMenu_Click"/>
-                <MenuItem x:Name="SaveItemMenu" Header="Сохранить" Click="Save_Click"/>
+                <MenuItem x:Name="NewProjectMenuItem" Header="Новый проект (Ctrl+N)" Click="NewProjectItemMenu_Click"/>
+                <MenuItem x:Name="SaveItemMenu" Header="Сохранить (Ctrl+S)" Click="Save_Click"/>
                 <MenuItem x:Name="SaveAsItemMenu" Header="Сохранить как ... " Click="SaveAsItemMenu_Click"/>
-                <MenuItem x:Name="OpenItemMenu" Header="Открыть проект" Click="Open_Click"/>
+                <MenuItem x:Name="OpenItemMenu" Header="Открыть проект (Ctrl+O)" Click="Open_Click"/>
 
             </MenuItem>
             <MenuItem Header="Процесс">
