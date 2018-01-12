@@ -348,6 +348,7 @@ namespace GidraSIM.GUI
 
                     ProjectSaver saver = new ProjectSaver();
                     mainProcessNumber = saver.LoadProjectExecute(dlg.FileName, testTabControl, drawAreas, processes, out mainProcess);
+                    processNamesCounter = testTabControl.Items.Count;
                 }
             }
             catch (Exception ex)
@@ -397,6 +398,36 @@ namespace GidraSIM.GUI
                 System.Runtime.Serialization.DataContractSerializer ser = new System.Runtime.Serialization.DataContractSerializer(typeof(TokensCollector), types);
                 ser.WriteObject(stream, TokensCollector.GetInstance());
             }
+        }
+
+        private void NewProjectItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+            // Устанавливаем дефолтные значения
+            testTabControl.Items.Clear();
+            mainProcess = new Process() { Description = "Процесс 1" };
+            mainProcessNumber = 0;
+            processNamesCounter = 1;
+            drawAreas.Clear();
+            processes.Clear();
+
+            // Создаём процесс
+            Process process = new Process() { Description = mainProcess.Description };
+            processes.Add(process); // Добавляем в список процессов
+
+            var tabItem = new TabItem() { Header = mainProcess };
+            testTabControl.SelectedItem = tabItem;
+
+            // Создаём область рисования
+            var drawArea = new DrawArea()
+            {
+                Processes = processes
+            };
+
+            drawAreas.Add(drawArea);
+            tabItem.Content = drawArea;
+
+            testTabControl.Items.Add(tabItem);
+            //drawArea.MakeStartAndEnd();
         }
     }
 }

@@ -144,13 +144,18 @@ namespace GidraSIM.GUI.Utility
 
                 //testTabControl.Items.Add(tabItem);
                 tabitems.Add(tabItem);
-               
+                              
             }
 
             // А теперь добавляем, чтобы было в нормальном порядке
             tabitems.Reverse();
-            testTabControl.ItemsSource = tabitems;
-            
+
+            foreach (var ch in tabitems)
+            {
+                testTabControl.Items.Add(ch);
+            }
+            //testTabControl.ItemsSource = tabitems;
+
             return num;
         }
 
