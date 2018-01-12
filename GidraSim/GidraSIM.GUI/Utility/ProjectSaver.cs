@@ -461,12 +461,18 @@ namespace GidraSIM.GUI.Utility
             }
             else
             {
+                ProcedureWPF curProc;
                 if (Block.IsProcess)
                 {
                     Block.Model = processWorked[Block.ChildBlockID];
+                    curProc = new SubProcessWPF(Block.Position, Block.Model as Process);
+                }
+                else
+                {
+                    curProc = SaveProcedure.ToNormal(Block);
+
                 }
 
-                ProcedureWPF curProc = SaveProcedure.ToNormal(Block);
                 worksavelist.Add(Block.Id, curProc);
 
                 return curProc;
