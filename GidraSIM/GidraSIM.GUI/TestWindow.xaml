@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:command="clr-namespace:GidraSIM.GUI"
+        xmlns:gui="clr-namespace:GidraSIM.GUI.Core.BlocksWPF;assembly=GidraSIM.GUI.Core"
         mc:Ignorable="d"
         Title="СИМ САПР" Height="600" Width="800">
-    <DockPanel>
-
+    <!--<Window.Resources>
+        <Style TargetType="gui:GSFigure" x:Key="GSFigureStyle">
+            <Setter Property="GSFigure.ShadowColor" Value="120" />
+        </Style>
+    </Window.Resources>-->
+    <DockPanel x:Name="DockPanel1" >
         <DockPanel.Background>
             <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/background3.jpg" Stretch="UniformToFill" />
         </DockPanel.Background>
@@ -19,7 +24,7 @@
                 <MenuItem x:Name="SaveItemMenu" Header="Сохранить" Click="Save_Click"/>
                 <MenuItem x:Name="SaveAsItemMenu" Header="Сохранить как ... " Click="SaveAsItemMenu_Click"/>
                 <MenuItem x:Name="OpenItemMenu" Header="Открыть проект" Click="Open_Click"/>
-                
+
             </MenuItem>
             <MenuItem Header="Процесс">
                 <MenuItem Header="Новый процесс" Click="CreateProcessButton_Click" />
@@ -28,16 +33,21 @@
             <MenuItem Header="Моделирование">
                 <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
             </MenuItem>
-            <MenuItem Header="Настройки"/>
+            <MenuItem Header="Настройки" >
+                <MenuItem Header="Тема" >
+                    <MenuItem x:Name="ClassicThemeMenuItem" Header="Классическая" IsCheckable="True" IsChecked="True" Click="ClassicThemeMenuItem_Click" Checked="ClassicThemeMenuItem_Checked"/>
+                    <MenuItem x:Name="DarkThemeMenuItem" Header="Тёмная" IsCheckable="True" Checked="DarkThemeMenuItem_Checked" Click="DarkThemeMenuItem_Click"/>
+                </MenuItem>
+            </MenuItem>
         </Menu>
-        <StackPanel HorizontalAlignment="Left" Margin="5" Background="#BBFFFFFF">
+        <StackPanel HorizontalAlignment="Left" Margin="5">
             <!--<Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
             <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
             <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
             <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
             <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>-->
-            
-            
+
+
             <!-- Указатель -->
             <Button Height="35" HorizontalAlignment="Stretch" Margin="5" Name="button_arrow" VerticalAlignment="Stretch" Width="35" ToolTip="Курсор  (Alt+Q)" Command="command:MainWindowCommands.Arrow" BorderThickness="1" IsEnabled="True">
                 <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
@@ -167,13 +177,13 @@
                     </Canvas>
                 </Viewbox>
             </Button>
-            
+
         </StackPanel>
 
-        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="0,5,5,5" Background="#BBFFFFFF" ></ListBox>
+        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="0,5,5,5" ></ListBox>
 
 
-        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged" Background="#BBFFFFFF">
+        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged">
             <TabItem Header="Процесс 1" >
                 <!--<local:DrawArea x:Name="drawArea"></local:DrawArea>-->
             </TabItem>

@@ -8,8 +8,9 @@ using GidraSIM.GUI.Core.BlocksWPF;
 using GidraSIM.GUI.Utility;
 using GidraSIM.Core.Model;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
-using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.Core.Model.Procedures;
 
@@ -45,6 +46,8 @@ namespace GidraSIM.GUI
         /// </summary>
         double maxTime = 1000;
 
+        Brush imageBackground;
+
         public TestWindow()
         {
             InitializeComponent();
@@ -76,6 +79,9 @@ namespace GidraSIM.GUI
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.SubProcess, SubProcess_Executed));
             //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
+
+            imageBackground = DockPanel1.Background;
+            SetClassicTheme();
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
@@ -224,11 +230,11 @@ namespace GidraSIM.GUI
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
         {
             //создаём новый процесс
-            var process = new Process() { Description = "Процесс "+ (++this.processNamesCounter)};
+            var process = new Process() { Description = "Процесс " + (++this.processNamesCounter) };
             //добавляем в список всех процессов
             processes.Add(process);
             //надеюсь, что заголовок будет содержать название
-            var tabItem = new TabItem() { Header = process};
+            var tabItem = new TabItem() { Header = process };
             //переключаемся на новую вкладку, чтобы не было проблем с добавлением
             testTabControl.SelectedItem = tabItem;
             //теперь создаём область рисования
@@ -278,7 +284,7 @@ namespace GidraSIM.GUI
         private void ModelingParametersButton_Click(object sender, RoutedEventArgs e)
         {
             TestComplexitySelectionDialog dialog = new TestComplexitySelectionDialog();
-            if(dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
                 complexity = dialog.Complexity;
                 dt = dialog.Step;
@@ -355,6 +361,70 @@ namespace GidraSIM.GUI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ClassicThemeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ClassicThemeMenuItem.IsChecked = true;
+            DarkThemeMenuItem.IsChecked = false;
+
+            SetClassicTheme();
+        }
+
+        private void DarkThemeMenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClassicThemeMenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void DarkThemeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //background FF2D2D30
+            //2D2D30
+
+            ClassicThemeMenuItem.IsChecked = false;
+            DarkThemeMenuItem.IsChecked = true;
+
+            SetDarkTheme();
+        }
+
+        private void SetClassicTheme()
+        {
+
+            ResourceDictionary dictionary = new ResourceDictionary();
+            //dictionary.Source = new Uri("Orange.xaml", UriKind.Relative);
+
+            // Динамически меняем коллекцию MergedDictionaries
+            Application.Current.Resources.MergedDictionaries[0] = dictionary;
+
+            //Background="#BBFFFFFF
+            foreach (var tab in testTabControl.Items)
+            {
+                ((tab as TabItem).Content as DrawArea).workArea.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BBFFFFFF"));
+            }
+            testTabControl.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BBFFFFFF"));
+            DockPanel1.Background = imageBackground;
+            listBox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BBFFFFFF"));
+        }
+
+        private void SetDarkTheme()
+        {
+            ResourceDictionary dictionary = new ResourceDictionary();
+            dictionary.Source = new Uri("pack://application:,,,/Selen.Wpf.SystemStyles;component/Styles.xaml", UriKind.RelativeOrAbsolute);
+            //DockPanel1.Background = ;
+
+            // Динамически меняем коллекцию MergedDictionaries
+            Application.Current.Resources.MergedDictionaries[0] = dictionary;
+
+            foreach (var tab in testTabControl.Items)
+            {
+                ((tab as TabItem).Content as DrawArea).workArea.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+            }
+            DockPanel1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2D2D30"));
+            listBox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
         }
 
         private void SaveStatistic_Click(object sender, RoutedEventArgs e)
