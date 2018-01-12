@@ -80,6 +80,10 @@ namespace GidraSIM.GUI
             //this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartCheck, StartCheck_Executed));
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.StartModeling, StartModeling_Executed));
 
+
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.BlackTheme, DarkThemeMenuItem_Click));
+            this.CommandBindings.Add(new CommandBinding(MainWindowCommands.WhiteTheme, ClassicThemeMenuItem_Click));
+
             imageBackground = DockPanel1.Background;
             SetClassicTheme();
         }
@@ -226,6 +230,7 @@ namespace GidraSIM.GUI
                 }
             }
         }
+
 
         private void CreateProcessButton_Click(object sender, RoutedEventArgs e)
         {

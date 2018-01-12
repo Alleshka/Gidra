@@ -28,15 +28,15 @@
             </MenuItem>
             <MenuItem Header="Процесс">
                 <MenuItem Header="Новый процесс" Click="CreateProcessButton_Click" />
-                <MenuItem Header="Сохранить статистику" x:Name="SaveStatistic" Click="SaveStatistic_Click"/>
+                <!--<MenuItem Header="Сохранить статистику" x:Name="SaveStatistic" Click="SaveStatistic_Click"/>-->
             </MenuItem>
             <MenuItem Header="Моделирование">
                 <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
             </MenuItem>
             <MenuItem Header="Настройки" >
                 <MenuItem Header="Тема" >
-                    <MenuItem x:Name="ClassicThemeMenuItem" Header="Классическая" IsCheckable="True" IsChecked="True" Click="ClassicThemeMenuItem_Click" Checked="ClassicThemeMenuItem_Checked"/>
-                    <MenuItem x:Name="DarkThemeMenuItem" Header="Тёмная" IsCheckable="True" Checked="DarkThemeMenuItem_Checked" Click="DarkThemeMenuItem_Click"/>
+                    <MenuItem x:Name="ClassicThemeMenuItem" Header="Классическая (Ctrl+K)" IsCheckable="True" IsChecked="True" Click="ClassicThemeMenuItem_Click" Checked="ClassicThemeMenuItem_Checked"/>
+                    <MenuItem x:Name="DarkThemeMenuItem" Header="Тёмная (Ctrl+B)" IsCheckable="True" Checked="DarkThemeMenuItem_Checked" Click="DarkThemeMenuItem_Click"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
