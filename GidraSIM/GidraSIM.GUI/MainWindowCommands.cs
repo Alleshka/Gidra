@@ -11,6 +11,8 @@ namespace GidraSIM.GUI
         public static RoutedCommand SubProcess { get; set; }
         public static RoutedCommand StartCheck { get; set; }
         public static RoutedCommand StartModeling { get; set; }
+        public static RoutedCommand BlackTheme { get; set; }
+        public static RoutedCommand WhiteTheme { get; set; }
 
         static MainWindowCommands()
         {
@@ -41,6 +43,14 @@ namespace GidraSIM.GUI
             inputs = new InputGestureCollection();
             inputs.Add(new KeyGesture(Key.F5, ModifierKeys.None, "F5"));
             StartModeling = new RoutedCommand("StartCheck", typeof(MainWindowCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.B, ModifierKeys.Control, "Ctrl+B"));
+            BlackTheme = new RoutedCommand("BlackTheme", typeof(MainWindowCommands), inputs);
+
+            inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.K, ModifierKeys.Control, "Ctrl+B"));
+            WhiteTheme = new RoutedCommand("WhiteTheme", typeof(MainWindowCommands), inputs);
         }
     }
 }

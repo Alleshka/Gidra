@@ -16,6 +16,8 @@ using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
+
+
     public class ProjectSaver : IProjectSaver
     {
         private Type[] types;
@@ -49,6 +51,9 @@ namespace GidraSIM.GUI.Utility
             };
             processSaved = new Dictionary<Process, Guid>();
         }
+
+        // Если кто-то будет смотреть или редактировать этот код
+        // Простите меня ;(
 
 
         public void SaveProjectExecute(TabControl testTabControl, string Path, int mainNumber)
@@ -144,13 +149,18 @@ namespace GidraSIM.GUI.Utility
 
                 //testTabControl.Items.Add(tabItem);
                 tabitems.Add(tabItem);
-               
+                              
             }
 
             // А теперь добавляем, чтобы было в нормальном порядке
             tabitems.Reverse();
-            testTabControl.ItemsSource = tabitems;
-            
+
+            foreach (var ch in tabitems)
+            {
+                testTabControl.Items.Add(ch);
+            }
+            //testTabControl.ItemsSource = tabitems;
+
             return num;
         }
 
