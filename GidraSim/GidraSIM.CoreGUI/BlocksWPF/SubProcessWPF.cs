@@ -23,8 +23,8 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             // path тела процесса
             bodyPath = new Path();
-            bodyPath.Stroke = stroke;
-            bodyPath.Fill = fill;
+            bodyPath.Stroke = Stroke;
+            bodyPath.Fill = Fill;
             // содержимое path
             GeometryGroup bodyGroup = new GeometryGroup();
             bodyGroup.FillRule = FillRule.Nonzero;

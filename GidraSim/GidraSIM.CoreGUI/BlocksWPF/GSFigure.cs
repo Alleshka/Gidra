@@ -18,6 +18,11 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     {
         public const int POINT_SIZE = 5; // возможно стоит вывести все константы в одно место
 
+        public GSFigure()
+        {
+            ShadowColor = Colors.Purple;
+            Stroke = Brushes.Black;
+        }
 
         /// <summary>
         /// Координата верхнего левого угла блока
@@ -63,12 +68,12 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             }
         }
 
-        protected static Brush stroke = Brushes.Black;
+        public Brush Stroke { get; set; }
 
         private bool isSelectable;
 
         // параметры тени выделенной фигуры
-        private Color shadowColor = Colors.Purple;
+        public Color ShadowColor { get; set; }
         private const int SHADOW_BLUR_RADIUS = 10;
 
         /// <summary>
@@ -97,7 +102,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             if (IsSelectable)
             {
                 DropShadowEffect shadow = new DropShadowEffect();
-                shadow.Color = shadowColor;
+                shadow.Color = ShadowColor;
                 shadow.BlurRadius = SHADOW_BLUR_RADIUS;
 
                 this.Effect = shadow;
