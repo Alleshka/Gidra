@@ -567,5 +567,11 @@ namespace GidraSIM.GUI
             }
         }
         
+        public new Brush Background { get => workArea.Background;
+            set
+            {
+                workArea.Background = value;
+            }
+        }
     }
 }
