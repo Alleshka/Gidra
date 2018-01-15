@@ -5,6 +5,9 @@
     <Style TargetType="DockPanel">
         <Setter Property="Background" Value="#FF2D2D30" />
     </Style>
+    <Style TargetType="ListView">
+        <Setter Property="Background" Value="#252526" />
+    </Style>
     <Style TargetType="local:DrawArea">
         <Setter Property="Background" Value="#252526" />
     </Style>
