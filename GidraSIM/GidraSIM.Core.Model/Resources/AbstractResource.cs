@@ -26,7 +26,9 @@ namespace GidraSIM.Core.Model.Resources
 
         public override bool Equals(object obj)
         {
-            if (!(obj is AbstractResource)) return false;
+            if (!(obj is AbstractResource))
+                return false;
+
             AbstractResource res = obj as AbstractResource;
             if (res.Description != this.Description)
                 return false;

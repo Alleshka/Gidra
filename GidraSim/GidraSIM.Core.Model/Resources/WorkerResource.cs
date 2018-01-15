@@ -64,7 +64,8 @@ namespace GidraSIM.Core.Model.Resources
             if(!base.Equals(obj))
                 return false;
 
-            if (!(obj is WorkerResource)) return false;
+            if (!(obj is WorkerResource))
+                return false;
             WorkerResource temp = obj as WorkerResource;
             if (temp.WorkerQualification != this.WorkerQualification)
                 return false;

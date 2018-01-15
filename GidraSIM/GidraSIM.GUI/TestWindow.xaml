@@ -6,7 +6,7 @@
         xmlns:command="clr-namespace:GidraSIM.GUI"
         xmlns:gui="clr-namespace:GidraSIM.GUI.Core.BlocksWPF;assembly=GidraSIM.GUI.Core"
         mc:Ignorable="d"
-        Title="СИМ САПР" Height="600" Width="800">
+        Title="САПР СИМ" Height="600" Width="800">
     <!--<Window.Resources>
         <Style TargetType="gui:GSFigure" x:Key="GSFigureStyle">
             <Setter Property="GSFigure.ShadowColor" Value="120" />

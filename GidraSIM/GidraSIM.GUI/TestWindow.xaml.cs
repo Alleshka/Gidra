@@ -327,7 +327,7 @@ namespace GidraSIM.GUI
                 {
                     FileName = "Project",
                     DefaultExt = ".xml",
-                    Filter = "XMl documents .xml)|*.xml"
+                    Filter = "(XMl documents .xml)|*.xml"
                 };
 
                 if ((bool)dlg.ShowDialog())
@@ -351,7 +351,7 @@ namespace GidraSIM.GUI
                 {
                     FileName = "Project",
                     DefaultExt = ".xml",
-                    Filter = "XML documents .json)|*.xml"
+                    Filter = "(XML documents .xml)|*.xml"
                 };
 
                 if (dlg.ShowDialog() == true)
@@ -429,6 +429,7 @@ namespace GidraSIM.GUI
             {
                 ((tab as TabItem).Content as DrawArea).workArea.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
             }
+
             DockPanel1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2D2D30"));
             listBox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
         }

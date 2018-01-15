@@ -40,6 +40,7 @@ namespace GidraSIM.Core.Model.Procedures
                 if (token.Progress > 0.99)
                 {
                     inputQueue[0].Dequeue();
+                    token.ProcessEndTime = modelingTime.Now;
                     collector.Collect(token);
 
                     outputs[0] = new Token(modelingTime.Now, token.Complexity) { Parent = this };

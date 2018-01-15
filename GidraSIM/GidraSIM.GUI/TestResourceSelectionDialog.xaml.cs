@@ -30,15 +30,16 @@ namespace GidraSIM.GUI
             listBox1.Items.Add(new TechincalSupportResource());
             listBox1.Items.Add(new MethodolgicalSupportResource());
             listBox1.SelectedIndex = 0;
+            SelectedResource = new List<AbstractResource>();
             this.button.Focus();
         }
 
-        public AbstractResource SelectedResource { get; private set; }
+        public List<AbstractResource> SelectedResource { get; private set; }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            SelectedResource = listBox1.SelectedItem as AbstractResource;
-            listBox1.Items.Remove(listBox1.SelectedItem);
+            foreach (AbstractResource item in listBox1.SelectedItems) SelectedResource.Add(item);
+            //listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }
     }

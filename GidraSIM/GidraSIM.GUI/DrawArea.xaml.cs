@@ -125,8 +125,11 @@ namespace GidraSIM.GUI
 
             if (dialog.ShowDialog() == true)
             {
-                var resource = dialog.SelectedResource;
-                workArea.Children.Add(new ResourceWPF(resourcePosition,resource));
+                var resources = dialog.SelectedResource;
+
+                // Проходим по выбранным ресурсам
+                foreach(var resource in resources)
+                workArea.Children.Add(new ResourceWPF(new Point(resourcePosition.X += ResourceWPF.DEFAULT_WIDTH, resourcePosition.Y), resource));
             }
         }
 

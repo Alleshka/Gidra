@@ -102,9 +102,9 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="1" Content="{Binding ElementName=listBox1, Path=SelectedItem}" />
-        <ListBox  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
+        <ListView  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
 
-        </ListBox>
+        </ListView>
         
         <Button Grid.Row="2" x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
     </Grid>
