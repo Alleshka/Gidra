@@ -79,7 +79,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             {
                 // path тела линии
                 Path linePath = new Path();
-                linePath.Stroke = stroke;
+                linePath.Stroke = Stroke;
                 linePath.StrokeThickness = THICKNESS;
                 // содержимое path
                 

@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <Grid>
         <ScrollViewer>
-            <Canvas Background="#BBFFFFFF" x:Name="workArea">
+            <Canvas x:Name="workArea" >
             </Canvas>
         </ScrollViewer>
     </Grid>

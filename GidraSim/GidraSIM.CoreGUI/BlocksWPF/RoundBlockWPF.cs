@@ -13,6 +13,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         private const int BORDER = 3;
         private const int IMG_SIZE = 60;
 
+        public Brush Foreground { get; set; }
+        public Brush Fill { get; set; }
+
         /// <summary>
         /// Координата центра левой стороны блока
         /// </summary>
@@ -43,17 +46,18 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         {
             this.Width = IMG_SIZE;
             this.Height = IMG_SIZE;
+            Foreground = Brushes.White;
+            Fill = Brushes.Black;
         }
 
         protected void MakeBody(string unicodeIcon)
         {
-            Brush fill = Brushes.Black;
             //круг для фона
             Ellipse ellipse = new Ellipse();
             ellipse.Width = IMG_SIZE;
             ellipse.Height = IMG_SIZE;
-            ellipse.Stroke = stroke;
-            ellipse.Fill = fill;
+            ellipse.Stroke = Stroke;
+            ellipse.Fill = Fill;
             
             this.Children.Add(ellipse);
 
@@ -61,7 +65,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             TextBlock icon = new TextBlock();
             icon.Text = unicodeIcon;
             icon.TextWrapping = TextWrapping.Wrap;
-            icon.Foreground = Brushes.White;
+            icon.Foreground = Foreground;
             icon.FontSize = IMG_SIZE*2/3;
             icon.HorizontalAlignment = HorizontalAlignment.Center;
             icon.VerticalAlignment = VerticalAlignment.Center;

@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 using GidraSIM.GUI.Core;
 using GidraSIM.Core.Model.Resources;
+using System.Windows.Media;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
@@ -20,10 +21,13 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         public AbstractResource ResourceModel { get; private set; }
 
+        public Brush Foreground { get; set; }
+
         public ResourceWPF(Point position, AbstractResource resource) : base(position, resource.Description)
         {
             this.resPuts = new List<ResConnectionWPF>();
             this.ResourceModel = resource;
+            Foreground = Brushes.Black;
 
             MakeIMG();
 
@@ -57,7 +61,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             TextBlock icon = new TextBlock();
             icon.Text = "⚙";
             icon.TextWrapping = TextWrapping.Wrap;
-            icon.Foreground = System.Windows.Media.Brushes.Black;
+            icon.Foreground = Foreground;
             icon.FontSize = IMG_SIZE * 2 / 3;
             icon.Width = IMG_SIZE;
             icon.Height = IMG_SIZE;

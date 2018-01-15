@@ -23,9 +23,9 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         protected const int TEXT_LEFT = 5;
         protected const int TEXT_TOP = 16;
 
-        protected static Brush fill = Brushes.White;
-        protected static Brush inPointFill = Brushes.Black;
-        protected static Brush outPointFill = Brushes.Green;
+        public Brush Fill { get; set; }
+        public Brush InPointFill { get; set; }
+        public Brush OutPointFill { get; set; }
 
         public string BlockName { get; private set; }
 
@@ -61,9 +61,10 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         public SquareBlockWPF(Point position, string squareBlockName) : base(position)
         {
+            BlockName = squareBlockName;
+
             // построить заголовок
             this.MakeTitle(squareBlockName);
-            BlockName = squareBlockName;
         }
 
 
@@ -93,10 +94,15 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         protected override void MakeBody()
         {
+            //костыль, переделаеть с помощью интерфейсов или ещё чего
+            InPointFill = Brushes.Black;
+            OutPointFill = Brushes.Green;
+            Fill = Brushes.White;
+
             bodyPath = new Path();
 
-            bodyPath.Stroke = stroke;
-            bodyPath.Fill = fill;
+            bodyPath.Stroke = Stroke;
+            bodyPath.Fill = Fill;
             // содержимое path
             bodyGeometry = new RectangleGeometry(new Rect(new Size(DEFAULT_WIDTH, DEFAULT_HEIGHT)), RADIUS, RADIUS);
             bodyPath.Data = bodyGeometry;

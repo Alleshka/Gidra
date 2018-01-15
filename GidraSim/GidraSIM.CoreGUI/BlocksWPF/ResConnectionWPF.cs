@@ -11,7 +11,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
     /// </summary>
     public class ResConnectionWPF : ConnectionWPF
     {
-        new protected static Brush stroke = Brushes.Gray;
+        //new protected static Brush Stroke = Brushes.Gray;
 
         private Line line = null;
 
@@ -30,6 +30,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             }
 
             MakeLine();
+            Stroke = Brushes.Gray;
 
             // установить ZIndex
             //SetZIngex();
@@ -54,7 +55,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
             if (line == null)
             {
                 line = new Line();
-                line.Stroke = stroke;
+                line.Stroke = Stroke;
                 line.StrokeThickness = THICKNESS;
                 SetLinePoints(startPoint, endPoint);
 

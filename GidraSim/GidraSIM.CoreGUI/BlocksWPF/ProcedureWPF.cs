@@ -68,7 +68,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),
                     i,
-                    inPointFill,
+                    InPointFill,
                     ConnectPointWPF_Type.inPut,
                     this));
 
@@ -84,7 +84,7 @@ namespace GidraSIM.GUI.Core.BlocksWPF
                 this.Children.Add(new ConnectPointWPF(
                     new Point(x, y),
                     i,
-                    outPointFill,
+                    OutPointFill,
                     ConnectPointWPF_Type.outPut,
                     this));
 
