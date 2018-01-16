@@ -88,6 +88,9 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="MainWindowCommands.cs" />
+    <Compile Include="ResultWindow.xaml.cs">
+      <DependentUpon>ResultWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResultWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

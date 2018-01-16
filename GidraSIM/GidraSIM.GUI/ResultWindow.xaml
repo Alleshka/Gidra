@@ -1,0 +1,55 @@
+﻿<Window x:Class="GidraSIM.GUI.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM.GUI"
+        mc:Ignorable="d"
+        Title="Результаты моделирования" Height="311.765" Width="715.966">
+
+    <Grid >
+        <Grid.RowDefinitions >
+            <RowDefinition Height="193"/>
+            <RowDefinition Height="Auto" MinHeight="51" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <StackPanel  Orientation="Vertical" Margin="10,10,10,10" Grid.Row="0">
+            <TextBlock>
+            Сложность
+            </TextBlock>
+            <TextBlock Name="Complexity"></TextBlock>
+            <Separator></Separator>
+            <TextBlock>
+            Общее время
+            </TextBlock>
+            <TextBlock Name="SummaryTime"></TextBlock>
+            <Separator></Separator>
+            <TextBlock>
+            Задержки в ходе выполнения
+            </TextBlock>
+            <TextBlock Name="WastedTime"></TextBlock>
+            <Separator></Separator>
+            <TextBlock>
+            Общее время без задержек
+            </TextBlock>
+            <TextBlock Name="EffectiveTime"></TextBlock>
+            <Separator></Separator>
+            <TextBlock>
+            Задачи
+            </TextBlock>
+
+        </StackPanel>
+
+        <DataGrid Name="Tokens" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=ProcessedByBlock.Description}"/>
+                <DataGridTextColumn Header="Создан" Binding="{Binding Path=BornTime}"/>
+                <DataGridTextColumn Header="Из" Binding="{Binding Path=Parent.Description}"/>
+                <DataGridTextColumn Header="Начало" Binding="{Binding Path=ProcessStartTime}"/>
+                <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="Button_Click"  Grid.Row="2">OK</Button>
+    </Grid>
+</Window>

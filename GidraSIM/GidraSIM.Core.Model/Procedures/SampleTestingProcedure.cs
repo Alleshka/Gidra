@@ -26,7 +26,7 @@ namespace GidraSIM.Core.Model.Procedures
                 var token = inputQueue[0].Peek();
 
 
-                if (token.Progress < 0.01)
+                if (token.Progress < 0.0001)
                 {
                     token.ProcessedByBlock = this;
                     token.ProcessStartTime = modelingTime.Now;

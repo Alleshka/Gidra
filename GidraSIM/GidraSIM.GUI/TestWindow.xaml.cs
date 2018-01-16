@@ -212,11 +212,13 @@ namespace GidraSIM.GUI
 
                 //TODO сделать DataBinding
                 listBox1.Items.Clear();
+                ResultWindow resultWindow = new ResultWindow(mainProcess.Collector.GetHistory(), this.complexity);
+                resultWindow.ShowDialog();
                 mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
                 mainProcess.Collector.GetHistory().Clear();
 
                 //выводим число токенов и время затраченное(в заголовке)
-                MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
+                //MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
             }
             catch (Exception ex)
             {
@@ -436,8 +438,8 @@ namespace GidraSIM.GUI
                 ((tab as TabItem).Content as DrawArea).workArea.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
             }
 
-            DockPanel1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2D2D30"));
-            listBox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
+            //DockPanel1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2D2D30"));
+            //listBox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252526"));
         }
 
         private void SaveStatistic_Click(object sender, RoutedEventArgs e)

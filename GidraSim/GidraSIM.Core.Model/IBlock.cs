@@ -17,6 +17,7 @@ namespace GidraSIM.Core.Model
         void Update(ModelingTime modelingTime);
         Token GetOutputToken(int port);
         void ClearOutputs();
+        void CleaInputs();
         string Description { get; }
     }
 }
