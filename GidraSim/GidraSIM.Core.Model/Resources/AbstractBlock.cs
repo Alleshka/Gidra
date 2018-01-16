@@ -150,5 +150,13 @@ namespace GidraSIM.Core.Model
         {
             return base.GetHashCode();
         }
+
+        public void CleaInputs()
+        {
+            foreach (var q in inputQueue)
+            {
+                q.Clear();
+            }
+        }
     }
 }

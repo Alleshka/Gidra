@@ -21,6 +21,10 @@ namespace GidraSIM.GUI.Core.BlocksWPF
 
         protected override void MakeBody()
         {
+            InPointFill = Brushes.Black;
+            OutPointFill = Brushes.Green;
+            Fill = Brushes.White;
+
             // path тела процесса
             bodyPath = new Path();
             bodyPath.Stroke = Stroke;
