@@ -146,6 +146,8 @@ namespace GidraSIM.GUI
         {
             // Смотрим длительность
             double duration = (block.ProcessEndTime - block.ProcessStartTime);
+            if (duration == 0) duration = 1;
+
             if (MinDuration == 0) MinDuration = 1;
             int count = Convert.ToInt32(duration / MinDuration); // Количество блоков, которые создадим (чтобы отобразить длительность)
 
