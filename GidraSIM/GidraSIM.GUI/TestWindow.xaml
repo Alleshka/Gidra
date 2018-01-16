@@ -32,6 +32,7 @@
             </MenuItem>
             <MenuItem Header="Моделирование">
                 <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
+                <MenuItem x:Name="TokenViewerItemMenu" Header="Просмотреть данные моделирования" Click="TokenViewerItemMenu_Click"/>
             </MenuItem>
             <MenuItem Header="Настройки" >
                 <MenuItem Header="Тема" >

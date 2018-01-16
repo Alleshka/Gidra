@@ -16,11 +16,14 @@ using GidraSIM.Core.Model.Procedures;
 
 namespace GidraSIM.GUI
 {
+    public enum Theme { Classic, Dark }
+
     /// <summary>
     /// Логика взаимодействия для TestWindow.xaml
     /// </summary>
     public partial class TestWindow : Window
     {
+        private Theme theme;
         private string savePath = "";
 
         //переменная для именования процессов
@@ -52,19 +55,6 @@ namespace GidraSIM.GUI
         {
             InitializeComponent();
 
-            //добавление первого процесса
-
-            var drawArea = new DrawArea();
-            drawArea.Processes = processes;
-            //добавляем область рисования
-            drawAreas.Add(drawArea);
-            //запихиваем область рисования во вкладку
-            (this.testTabControl.Items[0] as TabItem).Content = drawArea;
-            //переименовываем вкладку
-            (this.testTabControl.Items[0] as TabItem).Header = mainProcess;
-            //доабавляем процесс в список
-            processes.Add(mainProcess);
-
             // Стандартные команды
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.New, NewProjectItemMenu_Click));
             this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Save, Save_Click));
@@ -85,7 +75,13 @@ namespace GidraSIM.GUI
             this.CommandBindings.Add(new CommandBinding(MainWindowCommands.WhiteTheme, ClassicThemeMenuItem_Click));
 
             imageBackground = DockPanel1.Background;
-            SetClassicTheme();
+
+
+            theme = Theme.Classic;
+
+            // Добавление первого процесса
+            CreateNewProject();
+
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
@@ -207,6 +203,9 @@ namespace GidraSIM.GUI
                         break;
                     }
                 }
+
+                TokenViewer show = new TokenViewer(mainProcess.TokenCollector as TokensCollector);
+                show.Show();
 
                 Statictics();
 
@@ -361,7 +360,9 @@ namespace GidraSIM.GUI
                     ProjectSaver saver = new ProjectSaver();
                     mainProcessNumber = saver.LoadProjectExecute(dlg.FileName, testTabControl, drawAreas, processes, out mainProcess);
                     processNamesCounter = testTabControl.Items.Count;
+                    SetTheme();
                 }
+
             }
             catch (Exception ex)
             {
@@ -479,6 +480,11 @@ namespace GidraSIM.GUI
 
         private void NewProjectItemMenu_Click(object sender, RoutedEventArgs e)
         {
+            CreateNewProject();
+        }
+
+        private void CreateNewProject()
+        {
             // Устанавливаем дефолтные значения
             testTabControl.Items.Clear();
             mainProcess = new Process() { Description = "Процесс 1" };
@@ -504,7 +510,38 @@ namespace GidraSIM.GUI
             tabItem.Content = drawArea;
 
             testTabControl.Items.Add(tabItem);
-            //drawArea.MakeStartAndEnd();
+
+            SetTheme();
+        }
+
+        private void SetTheme()
+        {
+            switch (theme)
+            {
+                case Theme.Classic:
+                    {
+                        SetClassicTheme();
+                        break;
+                    }
+                case Theme.Dark:
+                    {
+                        SetDarkTheme();
+                        break;
+                    }
+            }
+        }
+
+        private void TokenViewerItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TokenViewer viewer = new TokenViewer();
+                viewer.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

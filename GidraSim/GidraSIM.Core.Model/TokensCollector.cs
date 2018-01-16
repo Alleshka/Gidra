@@ -17,7 +17,7 @@ namespace GidraSIM.Core.Model
 
         private TokensCollector()
         {
-
+            history = new List<Token>();
         }
 
         public static TokensCollector GetInstance()
@@ -29,7 +29,7 @@ namespace GidraSIM.Core.Model
         /// история всех токенов
         /// </summary>
         [DataMember]
-        List<Token> history = new List<Token>();
+        List<Token> history; /* = new List<Token>();*/
 
         /// <summary>
         /// поместить токен в историю
@@ -60,7 +60,12 @@ namespace GidraSIM.Core.Model
 
         private void Merge(TokensCollector otherInstance)
         {
-            otherInstance.history = this.history;           
+            ////otherInstance.history = this.history;           
+            //foreach (var h in otherInstance.history)
+            //{
+            //    this.history.Add(h);
+            //}
+            this.history = otherInstance.history;
         }
     }
 }
