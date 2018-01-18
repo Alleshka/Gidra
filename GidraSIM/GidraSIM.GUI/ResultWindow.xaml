@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
-        Title="Результаты моделирования" Height="311.765" Width="715.966">
+        Title="Результаты моделирования"  SizeToContent="WidthAndHeight" >
 
     <Grid >
         <Grid.RowDefinitions >
-            <RowDefinition Height="193"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="Auto" MinHeight="51" />
-            <RowDefinition Height="25" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <StackPanel  Orientation="Vertical" Margin="10,10,10,10" Grid.Row="0">
@@ -43,11 +43,11 @@
 
         <DataGrid Name="Tokens" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Path=ProcessedByBlock.Description}"/>
+                <!--<DataGridTextColumn Header="Название" Binding="{Binding Path=ProcessedByBlock.Description}"/>
                 <DataGridTextColumn Header="Создан" Binding="{Binding Path=BornTime}"/>
                 <DataGridTextColumn Header="Из" Binding="{Binding Path=Parent.Description}"/>
                 <DataGridTextColumn Header="Начало" Binding="{Binding Path=ProcessStartTime}"/>
-                <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>
+                <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>-->
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="Button_Click"  Grid.Row="2">OK</Button>

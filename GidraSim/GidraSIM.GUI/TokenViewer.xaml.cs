@@ -53,7 +53,7 @@ namespace GidraSIM.GUI
             {
                 FileName = "TokenCollectorlog",
                 DefaultExt = ".xml",
-                Filter = "(XML documents .xml)|*.xml"
+                Filter = "(XML documents .xml)|*.xml",
             };
 
             if (dlg.ShowDialog() == true)
@@ -139,7 +139,6 @@ namespace GidraSIM.GUI
                 }
             }
 
-
         }
 
         private void AddBlock(Token block)
@@ -156,9 +155,15 @@ namespace GidraSIM.GUI
             for (int i = 0; i < count; i++)
             {
                 //Создаём блок
-                ProcedureWPF wpf = new ProcedureWPF(new Point(this.baseX+i*ProcedureWPF.DEFAULT_WIDTH, this.baseY), block.ProcessedByBlock);
+                ProcedureWPF wpf = new ProcedureWPF(new Point(this.baseX + i * ProcedureWPF.DEFAULT_WIDTH, this.baseY), block.ProcessedByBlock)
+                {
+                    IsSelectable = false
+                };
+                wpf.Freeze();
                 // Добавляем на рабочую область
                 MainWindow.Children.Add(wpf);
+                wpf.IsSelectable = false;
+
             }
 
             // Передвигаем следующий

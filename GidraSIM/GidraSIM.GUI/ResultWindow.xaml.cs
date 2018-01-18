@@ -25,16 +25,14 @@ namespace GidraSIM.GUI
             InitializeComponent();
             this.Complexity.Text = complexity.ToString();
 
-            var Token = tokens.ToList()[0];
-
             var tokens2 = from token in tokens
                           select new
                           {
-                               token.ProcessedByBlock,
-                               token.BornTime,
-                               token.Parent,
-                               token.ProcessStartTime,
-                               token.ProcessEndTime
+                               Описание = token.ProcessedByBlock.Description,
+                               Создан = token.BornTime,
+                               Из = token.Parent == null ? " " : token.Parent.Description,
+                               Начало = token.ProcessStartTime,
+                               Конец = token.ProcessEndTime
                           };
 
             this.Tokens.ItemsSource = tokens2;
