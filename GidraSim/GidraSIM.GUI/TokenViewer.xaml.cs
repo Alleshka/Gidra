@@ -61,6 +61,8 @@ namespace GidraSIM.GUI
                 using (System.IO.FileStream stream = new System.IO.FileStream(dlg.FileName, System.IO.FileMode.Open))
                 {
                     Type[] types = new Type[] {
+                         typeof(AndBlock),
+                        typeof(DuplicateOutputsBlock),
                         typeof(CadResource),
                         typeof(WorkerResource),
                         typeof(TechincalSupportResource),
@@ -106,7 +108,14 @@ namespace GidraSIM.GUI
             var list = _collector.GetHistory(); // Получаем список токенов
             list = list.OrderBy(x => x.ProcessStartTime).ToList(); // Выстраиваем по времени начала
 
-            MinDuration = list.Min(x => x.ProcessEndTime - x.ProcessStartTime); // Находим минимальную продолжительность
+            try
+            {
+                MinDuration = list.Min(x => x.ProcessEndTime - x.ProcessStartTime); // Находим минимальную продолжительность
+            }
+            catch(InvalidOperationException ex)
+            {
+                throw new InvalidOperationException("TokenViewer: список токенов содержит 0 токенов");
+            }
 
             // Проставляем блоки
             foreach (var l in list)

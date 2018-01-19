@@ -26,6 +26,8 @@ namespace GidraSIM.GUI
         public TestProcedureSelectionDialog()
         {
             InitializeComponent();
+            listBox1.Items.Add(new AndBlock(2));
+            listBox1.Items.Add(new DuplicateOutputsBlock(2));
             listBox1.Items.Add(new FixedTimeBlock(10));
             listBox1.Items.Add(new QualityCheckProcedure());
             listBox1.Items.Add(new SchemaCreationProcedure());

@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\AbstractBlock.cs" />
+    <Compile Include="Procedures\AndBlock.cs" />
+    <Compile Include="Procedures\AbstractBlock.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IConnectionManager.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Procedures\ArrangementProcedure.cs" />
     <Compile Include="Procedures\ClientCoordinationPrrocedure.cs" />
     <Compile Include="Procedures\DocumentationCoordinationProcedure.cs" />
+    <Compile Include="Procedures\DuplicateOutputsBlock.cs" />
     <Compile Include="Procedures\ElectricalSchemeSimulation.cs" />
     <Compile Include="Procedures\FixedTimeBlock.cs" />
     <Compile Include="Procedures\FormingDocumentationProcedure.cs" />
