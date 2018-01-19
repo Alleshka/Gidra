@@ -60,11 +60,15 @@
     <Compile Include="Procedures\ElectricalSchemeSimulation.cs" />
     <Compile Include="Procedures\FixedTimeBlock.cs" />
     <Compile Include="Procedures\FormingDocumentationProcedure.cs" />
+    <Compile Include="Procedures\Geometry2D.cs" />
+    <Compile Include="Procedures\KDT.cs" />
+    <Compile Include="Procedures\KinematicСalculations.cs" />
     <Compile Include="Procedures\PaperworkProcedure.cs" />
     <Compile Include="Procedures\AbstractProcedure.cs" />
     <Compile Include="Procedures\QualityCheckProcedure.cs" />
     <Compile Include="Procedures\SampleTestingProcedure.cs" />
     <Compile Include="Procedures\SchemaCreationProcedure.cs" />
+    <Compile Include="Procedures\StrengthСalculations.cs" />
     <Compile Include="Procedures\TracingProcedure.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
