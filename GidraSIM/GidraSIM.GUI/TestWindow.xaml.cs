@@ -219,7 +219,7 @@ namespace GidraSIM.GUI
                 //выводим число токенов и время затраченное(в заголовке)
                 //MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
             }
-            catch (Exception ex)
+            catch (InvalidCastException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -461,6 +461,8 @@ namespace GidraSIM.GUI
             {
                 Type[] types = new Type[]
                 {
+                typeof(AndBlock),
+                typeof(DuplicateOutputsBlock),
                 typeof(CadResource),
                 typeof(WorkerResource),
                 typeof(TechincalSupportResource),

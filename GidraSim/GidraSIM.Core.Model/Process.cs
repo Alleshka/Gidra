@@ -78,10 +78,14 @@ namespace GidraSIM.Core.Model
         /// <param name="globalTime"></param>
         public override void Update(ModelingTime modelingTime)
         {
-            //апдейт блоков пост-фактум
-            for (int i = 0; i < Blocks.Count; i++)
+            //костыль для работы блоков параллельности и и
+            if (modelingTime.Now != 0)
             {
-                Blocks[i].ClearOutputs();
+                //апдейт блоков пост-фактум
+                for (int i = 0; i < Blocks.Count; i++)
+                {
+                    Blocks[i].ClearOutputs();
+                }
             }
 
 

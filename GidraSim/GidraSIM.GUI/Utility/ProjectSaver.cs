@@ -36,6 +36,8 @@ namespace GidraSIM.GUI.Utility
                 typeof(MethodolgicalSupportResource),
                 typeof(TokensCollector),
                 typeof(ConnectionManager),
+                typeof(AndBlock),
+                typeof(DuplicateOutputsBlock),
                 typeof(ArrangementProcedure),
                 typeof(Assembling),
                 typeof(ClientCoordinationPrrocedure),

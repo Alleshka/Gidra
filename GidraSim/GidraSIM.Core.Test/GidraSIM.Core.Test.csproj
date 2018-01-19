@@ -58,6 +58,8 @@
     <Compile Include="FormingDocumentationProcedureTests.cs" />
     <Compile Include="DocumentationCoordinationProcedureTests.cs" />
     <Compile Include="ClientCoordinationPrrocedureTests.cs" />
+    <Compile Include="AndBlockTests.cs" />
+    <Compile Include="DuplicateOutputsBlockTests.cs" />
     <Compile Include="ProcessTests.cs" />
     <Compile Include="SampleTestingProcedureTests.cs" />
     <Compile Include="TracingProcedureTests.cs" />
@@ -72,6 +74,9 @@
       <Project>{49f3ef53-5534-4d59-acf3-d2c50d83cce8}</Project>
       <Name>GidraSIM.Core.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Procedures\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
