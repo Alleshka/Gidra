@@ -44,6 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Procedures\Assembling.cs" />
+    <Compile Include="Procedures\Geometry2D.cs" />
+    <Compile Include="Procedures\KDT.cs" />
+    <Compile Include="Procedures\KinematicСalculations.cs" />
+    <Compile Include="Procedures\StrengthСalculations.cs" />
     <Compile Include="Resources\AbstractBlock.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
