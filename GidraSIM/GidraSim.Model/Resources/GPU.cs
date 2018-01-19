@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GidraSim.Model.Resources
 {
-    public class Gpu:ResurcePrice
+    public class Gpu:ThePrice
     {
         private short _frequency;
         private short _memory;

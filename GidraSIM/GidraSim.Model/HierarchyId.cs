@@ -8,10 +8,6 @@ namespace GidraSim.Model
 {
     public class HierarchyId
     {
-        public int Value { get; set; }  
-
-
-
-
+        //TODO:
     }
 }

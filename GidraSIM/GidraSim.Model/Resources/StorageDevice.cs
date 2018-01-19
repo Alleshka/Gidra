@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GidraSim.Model.Resources
 {
-    public class StorageDevice :ResurcePrice
+    public class StorageDevice :ThePrice
     {
         private short _speedWrite;
         private short _speedRead;

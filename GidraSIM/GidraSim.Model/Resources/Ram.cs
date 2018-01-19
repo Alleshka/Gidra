@@ -2,7 +2,7 @@
 
 namespace GidraSim.Model.Resources
 {
-    public class Ram:ResurcePrice
+    public class Ram:ThePrice
     {
         private byte _size;
         private short _frequency;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GidraSim.Model.Processes;
 
 namespace GidraSim.Model.Resources
 {
@@ -22,7 +23,7 @@ namespace GidraSim.Model.Resources
 
     }
 
-    public class Software:ResurcePrice
+    public class Software:ThePrice
     {
         private string _name;
         private string _licenseStatus;
@@ -59,5 +60,7 @@ namespace GidraSim.Model.Resources
                     _licenseStatus = value;
             }
         }
+
+        public IEnumerable<Process> Processes { get; set; } 
     }
 }

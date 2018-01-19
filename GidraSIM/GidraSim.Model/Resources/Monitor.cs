@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GidraSim.Model.Resources
 {
-    public class Monitor:ResurcePrice
+    public class Monitor:ThePrice
     {
         private byte _diagonal;
         public virtual short MonitorId { get; set; }

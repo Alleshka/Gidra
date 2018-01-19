@@ -12,28 +12,13 @@ namespace GidraSim.Model.Resources
         Мышка
     }
 
-    public class InputDevices
+    public class InputDevices:ThePrice
     {
-        private decimal _price;
-        public short InputDevicesId { get; set; }
+        public virtual short InputDevicesId { get; set; }
 
-        public decimal Price
-        {
-            get { return _price; }
-            set
-            {
-                if (value > 0)
-                {
-                    _price = value;
-                }
-                else
-                {
-                    throw new Exception("Значение не может быть отрицательным");
-                }
-            }
-        }
+        public virtual TypeInputDevices Type { get; set; }
 
-        public TypeInputDevices Type { get; set; }
+        public IEnumerable<TechnicalSupport> TechnicalSupports { get; set; }    
 
     }
 }

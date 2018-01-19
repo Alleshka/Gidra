@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GidraSim.Model.Resources
+namespace GidraSim.Model
 {
-    public abstract class ResurcePrice
+    public abstract class ThePrice
     {
         private decimal _price;
 

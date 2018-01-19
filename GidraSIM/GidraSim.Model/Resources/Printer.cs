@@ -14,7 +14,7 @@ namespace GidraSim.Model.Resources
         МФУ, //сканер+принте+копир
     }
 
-    public class Printer:ResurcePrice
+    public class Printer:ThePrice
     {
         private byte _speed;
         public virtual short PrinterId { get; set; }
@@ -34,5 +34,7 @@ namespace GidraSim.Model.Resources
         }
 
         public TypePrinter Type { get; set; }
+
+        public IEnumerable<TechnicalSupport> TechnicalSupports { get; set; }    
     }
 }
