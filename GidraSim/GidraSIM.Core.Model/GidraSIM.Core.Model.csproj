@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Procedures\Assembling.cs" />
     <Compile Include="Resources\AbstractBlock.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
