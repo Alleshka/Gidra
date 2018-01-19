@@ -10,12 +10,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class ClientCoordinationPrrocedure:AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Согласование доков с заказчиком";
 
         public ClientCoordinationPrrocedure():base(1,1)
         {
-
+            Description = "Согласование доков с заказчиком";
         }
 
         public override void Update(ModelingTime modelingTime)

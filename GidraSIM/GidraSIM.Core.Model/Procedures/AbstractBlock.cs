@@ -10,16 +10,49 @@ namespace GidraSIM.Core.Model
     [DataContract(IsReference = true)]
     public abstract class AbstractBlock: IBlock
     {
-        [DataMember]
-        public int OutputQuantity { get; protected set; }
-        [DataMember]
-        public int InputQuantity { get; protected set; }
+        protected int outputQuantity;
+        protected int inputQuantity;
 
         [DataMember]
-        public virtual string Description
+        public int OutputQuantity
+        {
+            get => outputQuantity;
+            set
+            {
+                outputQuantity = value;
+                OnOutputQuantityChanged();
+            }
+        }
+        [DataMember]
+        public int InputQuantity
+        {
+            get => inputQuantity;
+            set
+            {
+                inputQuantity = value;
+                OnInputQuantityChanged();
+            }
+        }
+
+        [DataMember]
+        public string Description
         {
             get;
             set;
+        }
+
+        public virtual void OnOutputQuantityChanged()
+        {
+            outputs = new Token[OutputQuantity];
+        }
+
+        public virtual void OnInputQuantityChanged()
+        {
+            inputQueue = new Queue<Token>[InputQuantity];
+            for (int i = 0; i < InputQuantity; i++)
+            {
+                inputQueue[i] = new Queue<Token>();
+            }
         }
 
         public override string ToString()
@@ -47,14 +80,7 @@ namespace GidraSIM.Core.Model
         {
             this.InputQuantity = inQuantiry;
             this.OutputQuantity = outQuantity;
-            inputQueue = new Queue<Token>[InputQuantity];
-            for(int i=0; i<InputQuantity; i++)
-            {
-                inputQueue[i] = new Queue<Token>();
-            }
-
-            outputs = new Token[OutputQuantity];
-            this.collector = TokensCollector.GetInstance();
+            collector = TokensCollector.GetInstance();
         }
 
         public virtual void AddToken(Token token, int inputNumber)

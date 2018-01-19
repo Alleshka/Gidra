@@ -10,12 +10,10 @@ namespace GidraSIM.Core.Model.Procedures
 {
     public class StrengthСalculations : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Прочностные рассчёты";
 
         public StrengthСalculations() : base(1, 1)
         {
-
+            Description = "Прочностные рассчёты";
         }
 
         public override void Update(ModelingTime modelingTime)

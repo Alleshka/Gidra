@@ -12,12 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class KinematicСalculations : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Кинематические рассчёты";
 
         public KinematicСalculations() : base(1, 1)
         {
-
+            Description = "Кинематические рассчёты";
         }
 
         public override void Update(ModelingTime modelingTime)

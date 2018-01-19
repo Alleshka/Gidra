@@ -11,13 +11,11 @@ namespace GidraSIM.Core.Model.Procedures
     public class FixedTimeBlock:AbstractBlock
     {
         [DataMember]
-        public double FixedTime { get; protected set; }
-
-        [DataMember]
-        public override string Description => "Блок фиксированного времени";
+        public double FixedTime { get; set; }
 
         public FixedTimeBlock(double fixedTime):base(1,1)
         {
+            Description = "Блок фиксированного времени";
             FixedTime = fixedTime;
         }
 

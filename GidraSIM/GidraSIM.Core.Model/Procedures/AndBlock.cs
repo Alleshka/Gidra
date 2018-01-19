@@ -11,11 +11,9 @@ namespace GidraSIM.Core.Model.Procedures
     public class AndBlock : AbstractBlock
     {
 
-        [DataMember]
-        public override string Description => "&";
-
         public AndBlock(int inputsQuantity) : base(inputsQuantity, 1)
         {
+            Description = "&";
         }
 
         /// <summary>

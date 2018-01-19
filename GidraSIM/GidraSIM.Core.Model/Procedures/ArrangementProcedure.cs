@@ -12,12 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class ArrangementProcedure : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Компоновка";
 
         public ArrangementProcedure() : base(1, 1)
         {
-
+            Description = "Компоновка";
         }
 
         public override void Update(ModelingTime modelingTime)

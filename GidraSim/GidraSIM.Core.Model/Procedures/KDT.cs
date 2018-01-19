@@ -11,12 +11,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class KDT : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Оформление и выпуск KDT";
 
         public KDT() : base(1, 1)
         {
-
+            Description = "Оформление и выпуск KDT";
         }
 
         public override void Update(ModelingTime modelingTime)

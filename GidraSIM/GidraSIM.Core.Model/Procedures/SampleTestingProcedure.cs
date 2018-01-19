@@ -10,12 +10,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class SampleTestingProcedure:AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Тестирование образца";
 
         public SampleTestingProcedure():base(1,1)
         {
-
+            Description = "Тестирование образца";
         }
 
         public override void Update(ModelingTime modelingTime)

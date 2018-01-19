@@ -11,10 +11,19 @@ namespace GidraSIM.Core.Model.Procedures
     public class QualityCheckProcedure: AbstractProcedure
     {
         [DataMember]
-        public override string Description => "Проверка качества";
+        /// <summary>
+        /// вероятность успешщно пройти проверку
+        /// </summary>
+        public int Probability
+        {
+            get;
+            set;
+        }
 
         public QualityCheckProcedure() : base(1, 2)
         {
+            Probability = 70;
+            Description = "Проверка качества";
         }
 
         public override void Update(ModelingTime modelingTime)
@@ -41,7 +50,7 @@ namespace GidraSIM.Core.Model.Procedures
                     inputQueue[0].Dequeue();
                     token.ProcessEndTime = modelingTime.Now;
                     collector.Collect(token);
-                    if(rand.Next(0,100) > 70)
+                    if(rand.Next(0,100) < Probability)
                         outputs[0] = new Token(modelingTime.Now, token.Complexity) { Parent = this };
                     else
                         outputs[1] = new Token(modelingTime.Now, token.Complexity) { Parent = this };

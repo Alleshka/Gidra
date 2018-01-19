@@ -11,13 +11,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class SchemaCreationProcedure : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Создание электрической схемы";
 
         public SchemaCreationProcedure () : base(1, 1)
         {
-
-            
+            Description = "Создание электрической схемы";
         }
 
         public override void Update(ModelingTime modelingTime)

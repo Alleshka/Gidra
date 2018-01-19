@@ -10,11 +10,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class DuplicateOutputsBlock : AbstractBlock
     {
-        [DataMember]
-        public override string Description => "🔱";
 
         public DuplicateOutputsBlock(int outputsQuantity) : base(1,outputsQuantity)
         {
+            Description = "🔱";
         }
 
         public override void AddToken(Token token, int inputNumber)

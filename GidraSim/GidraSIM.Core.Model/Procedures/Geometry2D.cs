@@ -12,12 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class Geometry2D : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "2-D геометрия";
 
         public Geometry2D() : base(1, 1)
         {
-
+            Description = "2-D геометрия";
         }
 
         public override void Update(ModelingTime modelingTime)

@@ -11,12 +11,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class FormingDocumentationProcedure:AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Формирование документации";
 
         public FormingDocumentationProcedure():base(1,1)
         {
-
+            Description = "Формирование документации";
         }
 
         public override void Update(ModelingTime modelingTime)

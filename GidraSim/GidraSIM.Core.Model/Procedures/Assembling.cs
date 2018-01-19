@@ -12,12 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class Assembling : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "3-D ассемблирование";
 
         public Assembling() : base(1, 1)
         {
-
+            Description = "3-D ассемблирование";
         }
 
         public override void Update(ModelingTime modelingTime)

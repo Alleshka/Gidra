@@ -15,12 +15,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class ElectricalSchemeSimulation : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Моделирование эл схемы";
 
         public ElectricalSchemeSimulation() : base(1, 1)
         {
-
+            Description = "Моделирование эл схемы";
         }
 
         public override void Update(ModelingTime modelingTime)

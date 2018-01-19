@@ -13,15 +13,12 @@ namespace GidraSIM.Core.Model.Procedures
         //protected ConnectionManager connectionManager = new ConnectionManager();
 
         [DataMember]
-        public override string Description => "Procedure";
-
-        [DataMember]
         protected List<IResource> resources = new List<IResource>();
         public int ResourceCount { get => resources.Count; }
 
         public AbstractProcedure(int inQuantity, int outQuantity) : base(inQuantity, outQuantity)
         {
-
+            Description = "Procedure";
         }
 
         public void AddResorce(IResource resource)

@@ -12,12 +12,10 @@ namespace GidraSIM.Core.Model.Procedures
     [DataContract(IsReference = true)]
     public class TracingProcedure : AbstractProcedure
     {
-        [DataMember]
-        public override string Description => "Трассировка";
 
         public TracingProcedure() : base(1, 1)
         {
-
+            Description = "Трассировка";
         }
 
         public override void Update(ModelingTime modelingTime)
