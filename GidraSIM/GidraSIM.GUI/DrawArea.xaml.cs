@@ -485,6 +485,20 @@ namespace GidraSIM.GUI
                 (block2 is ResourceWPF) ||
                 (block2 is StartBlockWPF)) return false;
 
+            //только одно соединение для стартового блока
+            if (block1 is StartBlockWPF)
+            {
+                if((block1 as StartBlockWPF).ProcedureConnections.Count > 0)
+                    return false;
+            }
+
+            //только одно соединение для конечного блока
+            if (block2 is EndBlockWPF)
+            {
+                if((block2 as EndBlockWPF).ProcedureConnections.Count > 0)
+                    return false;
+            }
+
             // TODO: Добавить обработку и вывод ошибок
 
 

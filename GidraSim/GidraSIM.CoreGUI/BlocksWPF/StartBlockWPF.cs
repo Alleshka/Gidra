@@ -14,7 +14,10 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         // Выходы
         private List<ProcConnectionWPF> outPuts;
 
-        
+        public ICollection<ProcConnectionWPF> ProcedureConnections
+        {
+            get => outPuts;
+        }
 
         public StartBlockWPF(Point position) : base (position)
         {

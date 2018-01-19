@@ -14,6 +14,11 @@ namespace GidraSIM.GUI.Core.BlocksWPF
         //Входы
         private List<ProcConnectionWPF> inPuts;
 
+        public ICollection<ProcConnectionWPF> ProcedureConnections
+        {
+            get => inPuts;
+        }
+
         public EndBlockWPF(Point position) : base(position)
         {
             this.inPuts = new List<ProcConnectionWPF>();
