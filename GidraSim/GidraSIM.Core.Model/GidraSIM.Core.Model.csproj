@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Procedures\AndBlock.cs" />
     <Compile Include="Procedures\AbstractBlock.cs" />
+    <Compile Include="Procedures\Assembling.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="IBlock.cs" />
     <Compile Include="IConnectionManager.cs" />

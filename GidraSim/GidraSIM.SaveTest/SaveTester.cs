@@ -29,16 +29,22 @@ namespace GidraSIM.SaveTest
                 typeof(TokensCollector),
                 typeof(ConnectionManager),
                 typeof(ArrangementProcedure),
+                typeof(Assembling),
                 typeof(ClientCoordinationPrrocedure),
                 typeof(DocumentationCoordinationProcedure),
                 typeof(ElectricalSchemeSimulation),
                 typeof(FixedTimeBlock),
                 typeof(FormingDocumentationProcedure),
+                typeof(Geometry2D),
+                typeof(KDT),
+                typeof(KinematicСalculations),
                 typeof(PaperworkProcedure),
                 typeof(QualityCheckProcedure),
                 typeof(SampleTestingProcedure),
                 typeof(SchemaCreationProcedure),
+                typeof(StrengthСalculations),
                 typeof(TracingProcedure),
+                typeof(Process)
             };
 
             // Сериализуем
