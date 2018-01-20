@@ -10,7 +10,9 @@ namespace GidraSim.Model.Resources
     public class Worker
     {
         private string _name;
+
         private decimal _salaryPerHour;
+
         public virtual short WorkerId { get; set; }
 
         public virtual string Name
