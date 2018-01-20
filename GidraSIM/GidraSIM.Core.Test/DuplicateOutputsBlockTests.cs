@@ -28,7 +28,7 @@ namespace GidraSIM.Core.Model.Tests
             duplicateOutputsBlock = new DuplicateOutputsBlock(2);
 
             duplicateOutputsBlock.AddToken(new Token(0, 0), 0);
-            duplicateOutputsBlock.AddToken(new Token(0, 0), 1);
+            //duplicateOutputsBlock.AddToken(new Token(0, 0), 1);
             //првоеряем, родил ли блок токен
             Assert.IsNotNull(duplicateOutputsBlock.GetOutputToken(0));
             Assert.IsNotNull(duplicateOutputsBlock.GetOutputToken(1));

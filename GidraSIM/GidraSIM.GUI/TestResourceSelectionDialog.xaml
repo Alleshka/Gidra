@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:GidraSIM.GUI"
         xmlns:cr="clr-namespace:GidraSIM.Core.Model.Resources;assembly=GidraSIM.Core.Model"
         mc:Ignorable="d"
-        Title="Выберите тип ресурса" Height="300" Width="300">
+        Title="Выберите тип ресурса" Height="300" Width="300"
+        SizeToContent="WidthAndHeight">
     <Window.Resources>
 
         <!--<ResourceDictionary>
