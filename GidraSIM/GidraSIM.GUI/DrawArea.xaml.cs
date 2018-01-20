@@ -16,14 +16,13 @@ using GidraSIM.GUI.Core.BlocksWPF;
 
 namespace GidraSIM.GUI
 {
+    public enum Mode { Arrow, Procedure, Resourse, Connect, SubProcess }
+
     /// <summary>
     /// Логика взаимодействия для DrawArea.xaml
     /// </summary>
     public partial class DrawArea : UserControl
     {
-
-        enum Mode { Arrow, Procedure, Resourse , Connect , SubProcess }
-
         Mode mode = (Mode)10;
 
         private bool isHaveStartAndEnd;
@@ -590,5 +589,7 @@ namespace GidraSIM.GUI
                 workArea.Background = value;
             }
         }
+
+        public Mode Mode { get => mode; }
     }
 }

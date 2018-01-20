@@ -10,6 +10,7 @@ using GidraSIM.Core.Model;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Effects;
 
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.Core.Model.Procedures;
@@ -82,6 +83,8 @@ namespace GidraSIM.GUI
             // Добавление первого процесса
             CreateNewProject();
 
+
+            PushButton(button_arrow);
         }
 
         private void Delete_Executed(object sender, RoutedEventArgs e)//выбрали пункт меню Удалить
@@ -123,18 +126,56 @@ namespace GidraSIM.GUI
 
         private void Procedure_Executed(object sender, RoutedEventArgs e)
         {
-            //меняем режим для всехна процедуры
+            if (drawAreas.First().Mode == Mode.Procedure)
+            {
+                SwitchToArrowMode();
+            }
+            else
+            {
+                SwitchTProcedureMode();
+            }
+        }
+
+        private void SwitchTProcedureMode()
+        {
+            //меняем режим для всех на процедуры
             drawAreas.ForEach(area => area.SelectProcedureMode());
-            //testTabControl.MouseLeftButtonDown -= Cursor_MouseDown;
-            //testTabControl.MouseLeftButtonDown += Procedure_MouseDown;
+
+            PushButton(button_procedure);
         }
 
         private void Arrow_Executed(object sender, RoutedEventArgs e)
         {
+            SwitchToArrowMode();
+        }
+
+        /// <summary>
+        /// Реализация эффекта нажатой кнопки
+        /// </summary>
+        /// <param name="pushedButton">Кнопка, которую нужно нажать</param>
+        private void PushButton(Button pushedButton)
+        {
+            // снятие выделения со всех кнопок
+            foreach (var buttonObj in buttonPanel.Children)
+            {
+                if(buttonObj is Button)
+                {
+                    (buttonObj as Button).Effect = null;
+                    (buttonObj as Button).Opacity = 1;
+                }
+            }
+
+            // добавление выделения на pushedButton
+            pushedButton.Effect = new BlurEffect() { Radius = 4 };
+            pushedButton.Opacity = 0.8;
+        }
+
+        private void SwitchToArrowMode()
+        {
             //меняем режим для всех на выделение
             drawAreas.ForEach(area => area.SelectArrowMode());
-            //testTabControl.MouseLeftButtonDown -= Procedure_MouseDown;
-            //testTabControl.MouseLeftButtonDown += Cursor_MouseDown;
+
+            PushButton(button_arrow);
         }
 
         private void Pr(object sender, MouseButtonEventArgs e)
@@ -148,9 +189,25 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void Resourse_Executed(object sender, RoutedEventArgs e)
         {
+            if (drawAreas.First().Mode == Mode.Resourse)
+            {
+                SwitchToArrowMode();
+            }
+            else
+            {
+                SwitchToResourseMode();
+            }
+        }
+
+        private void SwitchToResourseMode()
+        {
             //меняем режим для всех на ресурсы
             drawAreas.ForEach(area => area.SelectResourseMode());
+
+            PushButton(button_resourse);
         }
+
+
         /// <summary>
         /// связи
         /// </summary>
@@ -158,8 +215,22 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void Connect_Executed(object sender, RoutedEventArgs e)
         {
+            if (drawAreas.First().Mode == Mode.Connect)
+            {
+                SwitchToArrowMode();
+            }
+            else
+            {
+                SwitchToConnectMode();
+            }
+        }
+
+        private void SwitchToConnectMode()
+        {
             //меняем для всех на связи
             drawAreas.ForEach(area => area.SelectConnectMode());
+
+            PushButton(button_connect);
         }
 
         /// <summary>
@@ -169,8 +240,22 @@ namespace GidraSIM.GUI
         /// <param name="e"></param>
         private void SubProcess_Executed(object sender, RoutedEventArgs e)
         {
+            if (drawAreas.First().Mode == Mode.SubProcess)
+            {
+                SwitchToArrowMode();
+            }
+            else
+            {
+                SwitchToSubProcessMode();
+            }
+        }
+
+        private void SwitchToSubProcessMode()
+        {
             //меняем для всех на подпроцессы
             drawAreas.ForEach(area => area.SelectSubProcessMode());
+
+            PushButton(button_SubProcess);
         }
 
         private void StartModeling_Executed(object sender, RoutedEventArgs e)

@@ -41,7 +41,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StackPanel HorizontalAlignment="Left" Margin="5">
+        <StackPanel x:Name="buttonPanel" HorizontalAlignment="Left" Margin="5">
             <!--<Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
             <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
             <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
