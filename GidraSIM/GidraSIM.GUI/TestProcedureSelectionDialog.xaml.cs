@@ -39,6 +39,11 @@ namespace GidraSIM.GUI
             listBox1.Items.Add(new PaperworkProcedure());
             listBox1.Items.Add(new SampleTestingProcedure());
             listBox1.Items.Add(new TracingProcedure());
+            listBox1.Items.Add(new Assembling());
+            listBox1.Items.Add(new Geometry2D());
+            listBox1.Items.Add(new KDT());
+            listBox1.Items.Add(new KinematicСalculations());
+            listBox1.Items.Add(new StrengthСalculations());
 
             this.button.Focus();
             listBox1.SelectedIndex = 0;

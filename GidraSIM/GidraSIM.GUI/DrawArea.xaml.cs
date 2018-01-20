@@ -145,7 +145,7 @@ namespace GidraSIM.GUI
             {
                 if (figure.IsMouseOver)
                 {
-                    if(selectedFigure != null) selectedFigure.Select();
+                    if(selectedFigure != null) selectedFigure.UnSelect();
                     figure.Select();
                     selectedFigure = figure;
                     IsSomeFigureSelected = true;

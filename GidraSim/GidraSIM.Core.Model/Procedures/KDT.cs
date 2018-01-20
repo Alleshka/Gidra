@@ -14,7 +14,7 @@ namespace GidraSIM.Core.Model.Procedures
 
         public KDT() : base(1, 1)
         {
-            Description = "Оформление и выпуск KDT";
+            Description = "Оформление и выпуск КТД";
         }
 
         public override void Update(ModelingTime modelingTime)

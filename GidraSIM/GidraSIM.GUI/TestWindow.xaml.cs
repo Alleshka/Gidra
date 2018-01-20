@@ -289,8 +289,8 @@ namespace GidraSIM.GUI
                     }
                 }
 
-                TokenViewer show = new TokenViewer(mainProcess.TokenCollector as TokensCollector);
-                show.Show();
+                //TokenViewer show = new TokenViewer(mainProcess.TokenCollector as TokensCollector);
+                //show.Show();
 
                 Statictics();
 
@@ -304,7 +304,7 @@ namespace GidraSIM.GUI
                 //выводим число токенов и время затраченное(в заголовке)
                 //MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
