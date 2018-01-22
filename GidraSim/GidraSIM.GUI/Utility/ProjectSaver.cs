@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using GidraSIM.Core.Model;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.GUI.Core.BlocksWPF;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Windows;
 
@@ -90,7 +86,7 @@ namespace GidraSIM.GUI.Utility
             // Записываем информацию о проекте
             using (FileStream stream = new FileStream(Path, FileMode.Create))
             {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
+                DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);             
                 ser.WriteObject(stream, project);
             }
 
@@ -343,7 +339,7 @@ namespace GidraSIM.GUI.Utility
                 if (!procedures.ContainsKey(Block as ProcedureWPF))
                 {
                     var info = (Block as ProcedureWPF).BlockModel;
-                    bool IsProcess = info is Process;
+                        bool IsProcess = info is Process;
                     Guid childId = new Guid();
 
                     // Проверяем, не является ли содержимое подпроцессом
@@ -584,11 +580,11 @@ namespace GidraSIM.GUI.Utility
         [DataMember(Name = "ProcedureID")] public Guid Id { get; set; }
 
         // Флаг, указывающий на то, является ли блок подпроцессом
-        [DataMember] public bool IsProcess { get; set; }
-        [DataMember] public Guid ChildBlockID { get; set; }
+        [DataMember(EmitDefaultValue = false)] public bool IsProcess { get; set; }
+        [DataMember(EmitDefaultValue = false)] public Guid ChildBlockID { get; set; }
 
         // Положение блока
-        [DataMember] public Point Position { get; set; }
+        [DataMember(EmitDefaultValue = false)] public Point Position { get; set; }
 
         // "Содержимое" блока
         [DataMember(Name = "Content")] public IBlock Model { get; set; }  
@@ -629,7 +625,7 @@ namespace GidraSIM.GUI.Utility
     {
         [DataMember(Name = "ResourceID")] public Guid Id { get; set; }
 
-        [DataMember] public Point Position { get; set; }
+        [DataMember(EmitDefaultValue = false)] public Point Position { get; set; }
 
         [DataMember(Name = "Content")] public AbstractResource Model { get; set; }
 
@@ -654,19 +650,19 @@ namespace GidraSIM.GUI.Utility
     [DataContract(IsReference = true, Name = "ProcedureConnection")]
     public class SaveProcedureConnection
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Guid StartID { get; set; } // ID стартового блока 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Guid EndID { get; set; } // ID конечного блока
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Point RelativeStartPosition { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Point RelativeEndPosition { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int StartPort { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int EndPort { get; set; }
     }
 
@@ -676,9 +672,9 @@ namespace GidraSIM.GUI.Utility
     [DataContract(IsReference = true, Name = "ResourceConnection")]
     public class SaveResourceConnection
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Guid StartID { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Guid EndID { get; set; }
     }
 
@@ -688,21 +684,21 @@ namespace GidraSIM.GUI.Utility
     [DataContract(IsReference = true, Name = "ProcessInfo")]
     public class SaveProcess
     {
-        [DataMember] public Guid ProcessId { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)] public Guid ProcessId { get; set; }
+        [DataMember(EmitDefaultValue = false)]
         public String ProcessName { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SaveProcedure> ProcedureList { get; set; }  // Сохраняет список процедур 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SaveResource> ResourceList { get; set; } // Сохраняет список ресурсов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SaveResourceConnection> ResourceConnectionList { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SaveProcedureConnection> ProcedureConnectonList { get; set; }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Point StartElement { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Point EndElement { get; set; }
 
         public SaveProcess()
@@ -717,9 +713,9 @@ namespace GidraSIM.GUI.Utility
     [DataContract(IsReference = true)]
     public class SaveProject
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Guid MainProcessID { get; set; }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SaveProcess> ProcessList { get; set; }
 
         public SaveProcess this[int index] => ProcessList[index];

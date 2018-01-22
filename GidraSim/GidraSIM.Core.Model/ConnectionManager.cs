@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
@@ -9,9 +8,9 @@ namespace GidraSIM.Core.Model
     [DataContract(IsReference =true)]
     public class ConnectionManager : IConnectionManager
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>> connections = new Dictionary<Tuple<IBlock, int>, Tuple<IBlock, int>>();
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         HashSet<Tuple<IProcedure, IResource>> resorcesConnections = new HashSet<Tuple<IProcedure, IResource>>();
 
         //static ConnectionManager instance = null;

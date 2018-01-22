@@ -8,7 +8,7 @@ namespace GidraSIM.AdmSet
     [DataContract]
     public class Settings
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public String NamePC { get; set; } // Имя компьютера 
         // Другие настройки, лол
     }

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Collections;
-using GidraSIM.Core.Model.Procedures;
 
 namespace GidraSIM.Core.Model
 {
@@ -15,7 +10,7 @@ namespace GidraSIM.Core.Model
     [DataContract(IsReference =true)]
     public class Process: AbstractBlock
     {        
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public IConnectionManager Connections
         {
             get;
@@ -27,14 +22,14 @@ namespace GidraSIM.Core.Model
             get => collector;
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public IBlock StartBlock
         {
             get;
             set;
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public IBlock EndBlock
         {
             get;
@@ -48,14 +43,14 @@ namespace GidraSIM.Core.Model
             Resources = new List<IResource>();
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<IBlock> Blocks
         {
             get;
             protected set;
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<IResource> Resources
         {
             get;
@@ -65,7 +60,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// индикатор токена на 0 выходе последнего блока
         /// </summary>
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public bool EndBlockHasOutputToken
         {
             get;
@@ -109,7 +104,6 @@ namespace GidraSIM.Core.Model
         /// </summary>
         public void ClearProcess()
         {
-            Connections.GetAllConnections().Clear();
             //по идее на обычные блоки нельзя ссылаться из других процессов, поэтому чистим и соединения ресурсов
             foreach(var block in Blocks)
             {
@@ -118,6 +112,7 @@ namespace GidraSIM.Core.Model
                 block.CleaInputs();
                 block.ClearOutputs();
             }
+            Connections.GetAllConnections().Clear();
             StartBlock = null;
             EndBlock = null;
             EndBlockHasOutputToken = false;

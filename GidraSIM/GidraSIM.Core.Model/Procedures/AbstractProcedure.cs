@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.Core.Model.Procedures
 {
@@ -12,7 +8,7 @@ namespace GidraSIM.Core.Model.Procedures
     {
         //protected ConnectionManager connectionManager = new ConnectionManager();
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         protected List<IResource> resources = new List<IResource>();
         public int ResourceCount { get => resources.Count; }
 

@@ -7,34 +7,34 @@ namespace GidraSIM
     [DataContract]
     public class Process_
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Name;                           //имя процесса
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public bool Correct;                          //коррекность процесса
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Time_in_days;                  //время выполнения процесса в днях
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Time_in_format;                //время выполнения процесса в читабельном формате
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Time_accidents_in_days;                 //время задержек из-за непредвиденных событий в днях
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Time_accidents_in_format;                 //время задержек из-за непредвиденных событий в читабельном формате
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int IsSub;                             //является ли процесс вложенным и если да, то куда (номер в списке процессов),
                                                       //-1 - никуда не вложен
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<StructureObject> StructProcess;   //структура процесса
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<Procedure> Procedures;           //список процедур
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<Resource> Resources;             //список ресурсов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<SubProcess> SubProcesses;               //список вложенных процессов (их номеров в списке процессов проекта)
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<ParallelProcess> Parallels;      //список параллельных процессов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<Connection_Line> connection_lines;         //список соединительных линий
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<BlockObject> images_in_tabItem;          //список блоков в конкретной вкладке
 
         public Process_(string new_Name)

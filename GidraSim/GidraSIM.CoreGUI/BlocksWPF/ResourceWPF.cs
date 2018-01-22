@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using System.Collections.Generic;
-using GidraSIM.GUI.Core;
 using GidraSIM.Core.Model.Resources;
 using System.Windows.Media;
 

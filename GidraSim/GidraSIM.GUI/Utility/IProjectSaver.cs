@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using GidraSIM.GUI.Core.BlocksWPF;
 using GidraSIM.Core.Model;
 
 namespace GidraSIM.GUI.Utility

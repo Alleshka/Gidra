@@ -48,9 +48,9 @@ namespace CommonData   //содержит общие структуры и да�
     [DataContract]
     public class Connection_Line    //линия связи между блоками
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int block1;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int block2;
 
         public Line object_line;
@@ -66,9 +66,9 @@ namespace CommonData   //содержит общие структуры и да�
     [DataContract]
     public class Neibour    //сосед объекта
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ObjectTypes type;   //его тип
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int number;         //номер в списке соответствующих объектов
 
         public Neibour(ObjectTypes new_type, int new_number)
@@ -81,11 +81,11 @@ namespace CommonData   //содержит общие структуры и да�
     [DataContract]
     public class StructureObject   //структура объекта процесса
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ObjectTypes Type;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int number;        //номер объекта в списке соотвветствующих объектов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Point point;       // координаты середины блока
     }
 
@@ -94,35 +94,35 @@ namespace CommonData   //содержит общие структуры и да�
     {
         public Image image;  //картинка блока
         public TextBlock label;  //надпись в блоке 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public StructureObject object_of_block;   //инф-я о блоке
     }
 
     [DataContract]
     public class ComponentsParameters  //параметры компонентов платы
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int quantity_elements;         //число элементов конкретного типа
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ComponentsTypes type_element;  //тип элемента
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int quantity_pins_min;       //макс и мин число выводов у микросхем и прочего
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int quantity_pins_max;
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int quantity_pins_often;              //наиболее часто встречающееся количество выводов у элемента
     }
 
     [DataContract]
     public class ModelingProperties  //параметры моделирования (объекта проектирования)
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ComponentsParameters[] elements;  //список параметров компонентов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double board_square;                  //площадь платы
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double elements_square;               //общая площадь элементов
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int layers;                           //число слоев
        
         public ModelingProperties()

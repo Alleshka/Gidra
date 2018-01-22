@@ -9,13 +9,13 @@ namespace GidraSIM
     [DataContract]
     public class ParallelProcess
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         int CountBranches;         //число параллельных ветвей
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         Neibour Left_Neibour;      //левый сосед
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         Neibour Right_Neibour;     //правый сосед        
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         List<Procedure>[] Parallel;//массив ветвей
 
         public ParallelProcess(int count)

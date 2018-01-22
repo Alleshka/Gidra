@@ -8,13 +8,13 @@ namespace GidraSIM
     [DataContract]
     public class Project
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string NameProject;      //имя проекта
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string WayProject;   //путь к файлу проекта
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<Process_> Processes;//список процессов проекта
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ModelingProperties modelingProperties; //параметры моделирования (объекта проектирования)
 
         //  public List<List<BlockObject>> images_in_tabControl;    //список блоков во всех вкладках

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
@@ -13,7 +10,7 @@ namespace GidraSIM.Core.Model
         protected int outputQuantity;
         protected int inputQuantity;
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int OutputQuantity
         {
             get => outputQuantity;
@@ -23,7 +20,7 @@ namespace GidraSIM.Core.Model
                 OnOutputQuantityChanged();
             }
         }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int InputQuantity
         {
             get => inputQuantity;
@@ -34,7 +31,7 @@ namespace GidraSIM.Core.Model
             }
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Description
         {
             get;
@@ -60,17 +57,17 @@ namespace GidraSIM.Core.Model
             return this.Description;
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         protected Queue<Token>[] inputQueue;
 
         /*/// <summary>
         /// пары объект-блок
         /// </summary>
         protected Tuple<IBlock,int>[] outputs;*/
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         protected Token[] outputs;
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         protected ITokensCollector collector;
         public ITokensCollector TokenCollector { get => collector; }
 
@@ -179,8 +176,12 @@ namespace GidraSIM.Core.Model
 
         public void CleaInputs()
         {
+            //for (int i = 0; i < InputQuantity; i++)
+            //{
+            //    inputQueue[i] = new Queue<Token>();
+            //}           
             foreach (var q in inputQueue)
-            {
+            {             
                 q.Clear();
             }
         }

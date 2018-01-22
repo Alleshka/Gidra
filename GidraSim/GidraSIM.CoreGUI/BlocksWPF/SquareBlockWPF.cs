@@ -2,8 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
-using System.Collections.Generic;
-using System;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.GUI.Core.BlocksWPF

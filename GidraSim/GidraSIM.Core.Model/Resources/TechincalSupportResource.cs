@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
 {
@@ -16,20 +11,20 @@ namespace GidraSIM.Core.Model.Resources
             Description = "Компьютер";
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Frequency
         {
             get;
             set;
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Ram
         {
             get;
             set;
         }
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Vram
         {
             get;
@@ -39,7 +34,7 @@ namespace GidraSIM.Core.Model.Resources
         /// <summary>
         /// число экземпляров
         /// </summary>
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int Count
         {
             get;

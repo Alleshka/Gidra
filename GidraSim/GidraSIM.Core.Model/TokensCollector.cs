@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model
@@ -12,7 +9,7 @@ namespace GidraSIM.Core.Model
     [DataContract]
     public class TokensCollector : ITokensCollector, IObjectReference
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)] 
         private static TokensCollector tokensCollector = new TokensCollector();
 
         private TokensCollector()
@@ -28,7 +25,7 @@ namespace GidraSIM.Core.Model
         /// <summary>
         /// история всех токенов
         /// </summary>
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         List<Token> history; /* = new List<Token>();*/
 
         /// <summary>

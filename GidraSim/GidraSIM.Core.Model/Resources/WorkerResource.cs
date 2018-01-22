@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Resources
@@ -34,7 +30,7 @@ namespace GidraSIM.Core.Model.Resources
             Description = "Простой работник";
         }
 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Qualification WorkerQualification
         {
             get;

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GidraSIM.Core.Model.Procedures;
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.Core.Model;

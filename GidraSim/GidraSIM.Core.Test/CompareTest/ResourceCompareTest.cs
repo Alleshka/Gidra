@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using GidraSIM.Core.Model.Resources;
-using GidraSIM.Core.Model;
 
 namespace GidraSIM.Core.Test.CompareTest
 {

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace GidraSIM.Core.Model.Procedures
 {
     [DataContract(IsReference = true)]
     public class FixedTimeBlock:AbstractBlock
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double FixedTime { get; set; }
 
         public FixedTimeBlock(double fixedTime):base(1,1)

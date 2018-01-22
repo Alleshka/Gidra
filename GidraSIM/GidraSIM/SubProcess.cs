@@ -6,11 +6,11 @@ namespace GidraSIM
     [DataContract]
     public class SubProcess
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int number_in_processes; //номер этого подпроцесса в списке процессов проекта
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Neibour Left_Neibour;      //левый сосед
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Neibour Right_Neibour;     //правый сосед
 
         public SubProcess()

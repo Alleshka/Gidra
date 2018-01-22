@@ -6,9 +6,9 @@ namespace GidraSIM
     [DataContract]
     public class Resource
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public int id;                    //id строки в таблице ресурса указанного типа type
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public ResourceTypes Type;        //тип ресурса
 
         public Resource()

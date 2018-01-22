@@ -7,21 +7,21 @@ namespace GidraSIM
     [DataContract]
     public class Procedure
     {
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Name {get; set;}              //имя процедуры
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public bool is_common;              //типовая ли
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string common_type;      //тип 
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public double Time_in_days {get; set;}                //длительность выполнения процедуры В ДНЯХ
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public string Time_in_format { get; set; }       //длительность выполнения процедуры В читабельном формате
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Neibour Left_Neibour;      //левый сосед
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public Neibour Right_Neibour;     //правый сосед
-        [DataMember]
+        [DataMember(EmitDefaultValue = false)]
         public List<int> Resources;       //список подключенных номеров ресурсов из списка ресурсов (project.Resourses)
 
         public Procedure()

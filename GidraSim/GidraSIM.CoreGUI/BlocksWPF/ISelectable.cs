@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GidraSIM.GUI.Core.BlocksWPF
+﻿namespace GidraSIM.GUI.Core.BlocksWPF
 {
     /// <summary>
     /// Определяет функционал выделения фигуры

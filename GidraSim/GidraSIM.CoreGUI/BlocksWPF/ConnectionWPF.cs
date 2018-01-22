@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Shapes;
-using System.Windows.Media;
+﻿using System.Windows.Controls;
 
 namespace GidraSIM.GUI.Core.BlocksWPF
 {
