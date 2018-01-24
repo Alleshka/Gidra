@@ -12,8 +12,8 @@ namespace GidraSIM.GUI
         {
             InitializeComponent();
             
-            listBox1.Items.Add(new ListBoxItem() { Content = "Очень легкая"} );//0
-            listBox1.Items.Add(new ListBoxItem() { Content = "Легкая" } );//1
+            listBox1.Items.Add(new ListBoxItem() { Content = "Очень низкая"} );//0
+            listBox1.Items.Add(new ListBoxItem() { Content = "Низкая" } );//1
             listBox1.Items.Add(new ListBoxItem() { Content = "Средняя " } );//2
             listBox1.Items.Add(new ListBoxItem() { Content = "Сложная" } );//3
             listBox1.Items.Add(new ListBoxItem() { Content = "Оень сложная" } );//4

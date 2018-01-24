@@ -8,22 +8,24 @@
         Title="Настройка имитации" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="listBox1"  DisplayMemberPath="BlockName" Grid.Row="0" Margin="10,10,10,0">
+        <TextBlock Text="Сложность задачи" Margin="10,0,10,0"/>
+        <ListBox x:Name="listBox1"  DisplayMemberPath="BlockName" Grid.Row="1" Margin="10,0,10,0">
 
         </ListBox>
-        <StackPanel Grid.Row="1" Margin="10,10,10,0">
+        <StackPanel Grid.Row="2" Margin="10,10,10,0">
             <TextBlock Text="Шаг моделирования" />
             <TextBox x:Name="stepTextBox" Text="0,1" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Margin="10,10,10,0">
+        <StackPanel Grid.Row="3" Margin="10,10,10,0">
             <TextBlock Text="Общее время моделирования" />
             <TextBox x:Name="summaryTimeTextBox" Text="1000" />
         </StackPanel>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+        <Button x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
     </Grid>
 </Window>
