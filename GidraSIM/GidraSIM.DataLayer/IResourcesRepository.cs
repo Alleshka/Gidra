@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace GidraSIM.DataLayer
 {
@@ -13,5 +14,7 @@ namespace GidraSIM.DataLayer
         IEnumerable<T> GetAll();
 
         IEnumerable<T> Get(short id);
+        
+        T Parse(SqlDataReader reader);
     }       
 }

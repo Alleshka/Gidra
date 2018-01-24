@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CpuRepository.cs" />
+    <Compile Include="GpuRepository.cs" />
+    <Compile Include="InformationSupportRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
