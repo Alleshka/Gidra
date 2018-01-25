@@ -583,6 +583,31 @@ namespace GidraSIM.GUI
             }
         }
 
-        public Mode Mode { get => mode; }
+        public Mode Mode
+        {
+            get => mode;
+            set
+            {
+                mode = value;
+                switch(value)
+                {
+                    case Mode.Arrow:
+                        SelectArrowMode();
+                        break;
+                    case Mode.Connect:
+                        SelectConnectMode();
+                        break;
+                    case Mode.Procedure:
+                        SelectProcedureMode();
+                        break;
+                    case Mode.Resourse:
+                        SelectResourseMode();
+                        break;
+                    case Mode.SubProcess:
+                        SelectSubProcessMode();
+                        break;
+                }
+            }
+        }
     }
 }

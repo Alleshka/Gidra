@@ -331,12 +331,16 @@ namespace GidraSIM.GUI
             var drawArea = new DrawArea();
             //добавляем ссылку на все ресурсы
             drawArea.Processes = processes;
+            drawArea.Mode = drawAreas.First().Mode;
             //добавляем в список
             drawAreas.Add(drawArea);
             //добавляем на вкладку
             tabItem.Content = drawArea;
             //и добавляем вкладку
             testTabControl.Items.Add(tabItem);
+
+            //применение темы для новой вкладки
+            SetTheme();
         }
 
         private void testTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
