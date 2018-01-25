@@ -58,6 +58,10 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 2;
                 }
 
+                //прототип инцидентов
+                if (!worker.TryUseResource(modelingTime))
+                    return;
+
                 double time = rand.Next(1, 30);
 
                 // Влияние ПК
