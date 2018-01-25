@@ -43,7 +43,10 @@
     <Compile Include="CpuRepository.cs" />
     <Compile Include="GpuRepository.cs" />
     <Compile Include="InformationSupportRepository.cs" />
+    <Compile Include="MonitorRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoftwareRepository.cs" />
+    <Compile Include="StorageDeviceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GidraSIM.DataLayer\GidraSIM.DataLayer.csproj">
