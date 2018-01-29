@@ -19,7 +19,7 @@
             </ObjectDataProvider>
             <ValueConverters:VCMyEnumToString x:Key="vcMyEnumToString"/>
         </ResourceDictionary>-->
-        
+
         <!--<ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -29,11 +29,10 @@
 
         <DataTemplate  DataType="{x:Type cr:CadResource}">
             <StackPanel Margin="10,10,10,0">
-                <TextBlock Text="CAD" />
-                <Separator />
-
-                <TextBlock Text="Название" MinWidth="100" />
-                <TextBox Text="{Binding Path=Description}" />
+                <!--<TextBlock Text="CAD" />-->
+                <!--<Separator />-->
+                <!--<TextBlock Text="Название" MinWidth="100" />
+                <TextBox Text="{Binding Path=Description}" />-->
                 <TextBlock Text="Количество" />
                 <TextBox Text="{Binding Path=Count}" />
             </StackPanel>
@@ -58,8 +57,8 @@
         </DataTemplate>-->
         <DataTemplate DataType="{x:Type cr:WorkerResource}">
             <StackPanel Margin="10,10,10,0">
-                <TextBlock Text="Работник" />
-                <Separator />
+                <!--<TextBlock Text="Работник" />
+                <Separator />-->
                 <!--<TextBlock Text="Имя" />
                 <TextBox Text="{Binding Path=Name}"/>
                 <TextBlock Text="Должность" />-->
@@ -73,16 +72,16 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type cr:MethodolgicalSupportResource}">
             <StackPanel Margin="10,10,10,0">
-                <TextBlock Text="Методологическая поддержка" />
-                <Separator/>
-                <TextBlock Text="Название" />
-                <TextBox Text="{Binding Path=Description}"/>
+                <!--<TextBlock Text="Методологическая поддержка" />
+                <Separator/>-->
+                <!--<TextBlock Text="Название" />
+                <TextBox Text="{Binding Path=Description}"/>-->
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cr:TechincalSupportResource}">
             <StackPanel Margin="10,10,10,0">
-                <TextBlock Text="Рабочая станция" />
-                <Separator />
+                <!--<TextBlock Text="Рабочая станция" />
+                <Separator />-->
                 <TextBlock Text="Количество" />
                 <TextBox Text="{Binding Path=Count}" />
                 <TextBlock Text="Частота" />
@@ -94,19 +93,25 @@
             </StackPanel>
         </DataTemplate>
 
-      
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150*"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="1" Content="{Binding ElementName=listBox1, Path=SelectedItem}" />
-        <ListView  Grid.Row="0" x:Name="listBox1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
+        <ListView  Grid.Row="0" x:Name="listView1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
 
         </ListView>
-        
-        <Button Grid.Row="2" x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+        <StackPanel  Grid.Row="1" Margin="10,10,10,0">
+            <TextBlock Text="Название" MinWidth="100" />
+            <TextBox Text="{Binding SelectedItem.Description, ElementName=listView1}" />
+        </StackPanel>
+        <ContentControl Grid.Row="2" Content="{Binding SelectedItem, ElementName=listView1}" />
+
+
+        <Button Grid.Row="3" x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
     </Grid>
 </Window>

@@ -48,7 +48,7 @@ namespace GidraSIM.GUI
                     Complexity = 10;
                     break;
             };
-            Step = double.Parse(stepTextBox.Text);
+            Step = double.Parse(stepTextBox.Text, System.Globalization.CultureInfo.InvariantCulture);
             MaxTime = double.Parse(summaryTimeTextBox.Text);
 
             this.DialogResult = true;

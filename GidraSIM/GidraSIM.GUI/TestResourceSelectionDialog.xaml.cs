@@ -12,11 +12,11 @@ namespace GidraSIM.GUI
         public TestResourceSelectionDialog()
         {
             InitializeComponent();
-            listBox1.Items.Add(new CadResource());
-            listBox1.Items.Add(new WorkerResource());
-            listBox1.Items.Add(new TechincalSupportResource());
-            listBox1.Items.Add(new MethodolgicalSupportResource());
-            listBox1.SelectedIndex = 0;
+            listView1.Items.Add(new CadResource());
+            listView1.Items.Add(new WorkerResource());
+            listView1.Items.Add(new TechincalSupportResource());
+            listView1.Items.Add(new MethodolgicalSupportResource());
+            listView1.SelectedIndex = 0;
             SelectedResource = new List<AbstractResource>();
             this.button.Focus();
         }
@@ -25,7 +25,7 @@ namespace GidraSIM.GUI
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (AbstractResource item in listBox1.SelectedItems) SelectedResource.Add(item);
+            foreach (AbstractResource item in listView1.SelectedItems) SelectedResource.Add(item);
             //listBox1.Items.Remove(listBox1.SelectedItem);
             this.DialogResult = true;
         }
