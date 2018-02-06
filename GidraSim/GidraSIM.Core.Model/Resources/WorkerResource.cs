@@ -21,7 +21,7 @@ namespace GidraSIM.Core.Model.Resources
 
 
     [DataContract(IsReference = true)]
-    public class WorkerResource: AbstractResource
+    public class WorkerResource : AbstractResource
     {
         public WorkerResource()
         {
@@ -57,7 +57,7 @@ namespace GidraSIM.Core.Model.Resources
 
         public override bool Equals(object obj)
         {
-            if(!base.Equals(obj))
+            if (!base.Equals(obj))
                 return false;
 
             if (!(obj is WorkerResource))

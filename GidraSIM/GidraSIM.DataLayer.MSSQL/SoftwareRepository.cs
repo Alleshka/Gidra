@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -34,7 +34,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.Parameters.AddWithValue("@LicenseStatus", newResources.LicenseStatus);
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.SoftwareId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -121,7 +121,7 @@ namespace GidraSIM.DataLayer.MSSQL
         {
             return new Software
             {
-                SoftwareId = reader.GetInt16(reader.GetOrdinal("SoftwareId")),
+                ID = reader.GetInt16(reader.GetOrdinal("SoftwareId")),
                 Type = (TypeSoftware)Enum.Parse(typeof(TypeSoftware), reader.GetString(reader.GetOrdinal("Type"))),
                 Name = reader.GetString(reader.GetOrdinal("Name")),
                 LicenseForm = (TypeLicenseForm)Enum.Parse(typeof(TypeLicenseForm),reader.GetString(reader.GetOrdinal("LicenseForm"))),

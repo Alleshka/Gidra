@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
-namespace GidraSim.Model
+namespace GidraSIM.Core.Model
 {
+    [DataContract(IsReference = true)]
     public abstract class ThePrice
     {
+        [DataMember]
         private decimal _price;
 
         public virtual decimal Price

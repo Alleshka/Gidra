@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -33,7 +33,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.Parameters.AddWithValue("@Size", newResources.Size);
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.StorageDeviceId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -119,7 +119,7 @@ namespace GidraSIM.DataLayer.MSSQL
         {
             return new StorageDevice
             {
-                StorageDeviceId = reader.GetInt16(reader.GetOrdinal("StorageDeviceId")),
+                ID = reader.GetInt16(reader.GetOrdinal("StorageDeviceId")),
                 SpeedRead = reader.GetInt16(reader.GetOrdinal("SpeedRead")),
                 SpeedWrite = reader.GetInt16(reader.GetOrdinal("SpeedWrite")),
                 Size = reader.GetInt16(reader.GetOrdinal("Size")),

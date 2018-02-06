@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace GidraSIM.Core.Model
 {
     [DataContract(IsReference = true)]
-    public abstract class AbstractBlock: IBlock
+    public abstract class AbstractBlock: ThePrice, IBlock
     {
         protected int outputQuantity;
         protected int inputQuantity;

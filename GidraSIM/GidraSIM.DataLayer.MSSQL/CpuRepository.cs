@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
-    public class CpuRepository:IResourcesRepository<Cpu>
+    public class CpuRepository:IResourcesRepository<CPU>
     {
-
         private readonly string _connectionString;
 
         public CpuRepository(string connectionString)
@@ -16,7 +15,7 @@ namespace GidraSIM.DataLayer.MSSQL
             _connectionString = connectionString;
         }
 
-        public Cpu Create(Cpu newResources)
+        public CPU Create(CPU newResources)
         {
             using (var sqlConnection=new SqlConnection(_connectionString))
             {
@@ -29,7 +28,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.Parameters.AddWithValue("@Frequency", newResources.Frequency);
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.CpuId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -50,7 +49,7 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public Cpu Update(Cpu updateResources)
+        public CPU Update(CPU updateResources)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -69,7 +68,7 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public IEnumerable<Cpu> GetAll()
+        public IEnumerable<CPU> GetAll()
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -89,7 +88,7 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public IEnumerable<Cpu> Get(short id)
+        public IEnumerable<CPU> Get(short id)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -110,11 +109,11 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public Cpu Parse(SqlDataReader reader)
+        public CPU Parse(SqlDataReader reader)
         {
-            return new Cpu
+            return new CPU
             {
-                CpuId = reader.GetInt16(reader.GetOrdinal("CPUId")),
+                ID = reader.GetInt16(reader.GetOrdinal("CPUId")),
                 QuantityCore = reader.GetByte(reader.GetOrdinal("QuantityCore")),
                 Frequency = reader.GetInt16(reader.GetOrdinal("Frequency")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))

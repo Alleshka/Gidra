@@ -49,6 +49,10 @@
     <Compile Include="StorageDeviceRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GidraSIM.Core.Model\GidraSIM.Core.Model.csproj">
+      <Project>{49f3ef53-5534-4d59-acf3-d2c50d83cce8}</Project>
+      <Name>GidraSIM.Core.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GidraSIM.DataLayer\GidraSIM.DataLayer.csproj">
       <Project>{e01d09ec-4365-469e-a351-f48e9340b0c2}</Project>
       <Name>GidraSIM.DataLayer</Name>

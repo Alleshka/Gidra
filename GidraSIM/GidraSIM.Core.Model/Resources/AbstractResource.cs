@@ -3,8 +3,11 @@
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract(IsReference = true)]
-    public abstract class AbstractResource : IResource
+    public abstract class AbstractResource : ThePrice, IResource
     {
+        [DataMember]
+        public short ID { get; set; }
+
         [DataMember(EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -26,8 +29,11 @@ namespace GidraSIM.Core.Model.Resources
                 return false;
 
             AbstractResource res = obj as AbstractResource;
+
             if (res.Description != this.Description)
                 return false;
+
+            if (res.Price != this.Price) return false;
 
             return true;
         }

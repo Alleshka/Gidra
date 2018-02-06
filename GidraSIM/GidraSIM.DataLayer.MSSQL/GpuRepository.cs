@@ -5,13 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
-    public class GpuRepository:IResourcesRepository<Gpu>
+    public class GpuRepository : IResourcesRepository<GPU>
     {
-
         private readonly string _connectionString;
 
         public GpuRepository(string connectionString)
@@ -19,20 +18,20 @@ namespace GidraSIM.DataLayer.MSSQL
             _connectionString = connectionString;
         }
 
-        public Gpu Create(Gpu newResources)
+        public GPU Create(GPU newResources)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = "Resources.CPU_Create";
+                    sqlCommand.CommandText = "Resources.GPU_Create";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@Memory", newResources.Memory);
                     sqlCommand.Parameters.AddWithValue("@Frequency", newResources.Frequency);
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.GpuId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -53,16 +52,16 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public Gpu Update(Gpu updateResources)
+        public GPU Update(GPU updateResources)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
                 using (var sqlCommand = sqlConnection.CreateCommand())
                 {
-                    sqlCommand.CommandText = "Resources.GggggggggggPU_Update";
+                    sqlCommand.CommandText = "Resources.GPU_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@GPUId", updateResources.GpuId);
+                    sqlCommand.Parameters.AddWithValue("@GPUId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@Memory", updateResources.Memory);
                     sqlCommand.Parameters.AddWithValue("@Frequency", updateResources.Frequency);
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);
@@ -72,7 +71,7 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public IEnumerable<Gpu> GetAll()
+        public IEnumerable<GPU> GetAll()
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -92,7 +91,7 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public IEnumerable<Gpu> Get(short id)
+        public IEnumerable<GPU> Get(short id)
         {
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -113,14 +112,15 @@ namespace GidraSIM.DataLayer.MSSQL
             }
         }
 
-        public Gpu Parse(SqlDataReader reader)
+        public GPU Parse(SqlDataReader reader)
         {
-            return new Gpu
+            return new GPU
             {
-                GpuId = reader.GetInt16(reader.GetOrdinal("GPUId")),
+                ID = reader.GetInt16(reader.GetOrdinal("GPUId")),
                 Memory = reader.GetByte(reader.GetOrdinal("Memory")),
                 Frequency = reader.GetInt16(reader.GetOrdinal("Frequency")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
             };
         }
+    }
 }

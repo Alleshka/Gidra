@@ -1,7 +1,7 @@
 ﻿namespace GidraSIM.DataLayer
 {
-    public interface IProcesseRepository
-    {
+    //public interface IProcesseRepository
+    //{
 
-    }
+    //}
 }

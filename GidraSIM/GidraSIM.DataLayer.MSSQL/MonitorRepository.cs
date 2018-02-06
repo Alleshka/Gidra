@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -30,7 +30,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.Parameters.AddWithValue("@Diagonal", newResources.Diagonal);
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.MonitorId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -114,7 +114,7 @@ namespace GidraSIM.DataLayer.MSSQL
         {
             return new Monitor
             {
-                MonitorId = reader.GetInt16(reader.GetOrdinal("MonitorId")),
+                ID = reader.GetInt16(reader.GetOrdinal("MonitorId")),
                 Diagonal = reader.GetByte(reader.GetOrdinal("Diagonal")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
             };

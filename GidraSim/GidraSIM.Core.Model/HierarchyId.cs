@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GidraSim.Model
+namespace GidraSIM.Core.Model
 {
     public class HierarchyId
     {

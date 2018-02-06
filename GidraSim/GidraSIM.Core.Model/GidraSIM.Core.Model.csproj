@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HierarchyId.cs" />
     <Compile Include="Procedures\AndBlock.cs" />
     <Compile Include="Procedures\AbstractBlock.cs" />
     <Compile Include="Procedures\Assembling.cs" />
@@ -73,10 +74,23 @@
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CadResource.cs" />
+    <Compile Include="Resources\CPU.cs" />
+    <Compile Include="Resources\GPU.cs" />
+    <Compile Include="Resources\InformationSupport.cs" />
+    <Compile Include="Resources\InputDevices.cs" />
     <Compile Include="Resources\MethodolgicalSupportResource.cs" />
     <Compile Include="Resources\AbstractResource.cs" />
+    <Compile Include="Resources\Monitor.cs" />
+    <Compile Include="Resources\Printer.cs" />
+    <Compile Include="Resources\Qualification.cs" />
+    <Compile Include="Resources\Ram.cs" />
+    <Compile Include="Resources\Software.cs" />
+    <Compile Include="Resources\StorageDevice.cs" />
     <Compile Include="Resources\TechincalSupportResource.cs" />
+    <Compile Include="Resources\TechnicalSupport.cs" />
+    <Compile Include="Resources\Worker.cs" />
     <Compile Include="Resources\WorkerResource.cs" />
+    <Compile Include="ThePrice.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TokensCollector.cs" />
   </ItemGroup>

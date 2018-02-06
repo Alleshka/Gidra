@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using GidraSim.Model.Resources;
+using GidraSIM.Core.Model.Resources;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -25,10 +25,10 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.CommandText = "Resources.InformationSupports_Create";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@MultiClientUse", newResources.MultiClientUse);
-                    sqlCommand.Parameters.AddWithValue("@Type", newResources.Type);
+                    sqlCommand.Parameters.AddWithValue("@Type", Convert.ToString(newResources.Type));
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
-                    result.InformationSupportId = Convert.ToInt16(sqlCommand.ExecuteScalar());
+                    result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
                     return result;
                 }
             }
@@ -113,7 +113,7 @@ namespace GidraSIM.DataLayer.MSSQL
         {
             return new InformationSupport
             {
-                InformationSupportId = reader.GetInt16(reader.GetOrdinal("InformationSupportId")),
+                ID = reader.GetInt16(reader.GetOrdinal("InformationSupportId")),
                 MultiClientUse = reader.GetBoolean(reader.GetOrdinal("MultiClientUse")),
                 Type =(TypeIS)Enum.Parse(typeof(TypeIS),reader.GetString(reader.GetOrdinal("Type"))),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
