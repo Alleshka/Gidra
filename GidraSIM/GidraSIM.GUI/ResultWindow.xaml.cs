@@ -36,6 +36,7 @@ namespace GidraSIM.GUI
             this.WastedTime.Text = wastedTime.ToString();
             this.SummaryTime.Text = totalTime.ToString();
             this.EffectiveTime.Text = (totalTime - wastedTime).ToString();
+            this.button1.Focus();
         }
 
 

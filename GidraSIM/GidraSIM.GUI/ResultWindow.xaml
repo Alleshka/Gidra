@@ -50,6 +50,6 @@
                 <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="Button_Click"  Margin="5,5,5,5" Grid.Row="2">OK</Button>
+        <Button x:Name="button1" Click="Button_Click"  Margin="5,5,5,5" Grid.Row="2">OK</Button>
     </Grid>
 </Window>

@@ -77,6 +77,10 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 3;
                 }
 
+                //прототип инцидентов
+                if (!worker.TryUseResource(modelingTime))
+                    return;
+
                 //общее время, которое должно бытьл затрачено на процедуру
                 double time = token.Complexity;
 

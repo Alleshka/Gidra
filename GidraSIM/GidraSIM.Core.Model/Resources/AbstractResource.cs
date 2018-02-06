@@ -36,5 +36,10 @@ namespace GidraSIM.Core.Model.Resources
         {
             return base.GetHashCode();
         }
+
+        public virtual bool TryUseResource(ModelingTime time)
+        {
+            return true;
+        }
     }
 }

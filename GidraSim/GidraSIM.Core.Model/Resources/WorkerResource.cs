@@ -7,15 +7,15 @@ namespace GidraSIM.Core.Model.Resources
     [Serializable]
     public enum Qualification
     {
-        [Description("Без категории")]
+        [Description("Без опыта")]
         NoCategory,
-        [Description("Первая категория")]
+        [Description("Новичок")]
         FirstCategory,
-        [Description("Вторая категория")]
+        [Description("Среднячок")]
         SecondCategory,
-        [Description("Третья категория")]
+        [Description("Опытный")]
         ThirdCategory,
-        [Description("Ведущий специалист")]
+        [Description("Гуру")]
         LeadCategory//Ведущий инженеар, например
     };
 
@@ -72,6 +72,30 @@ namespace GidraSIM.Core.Model.Resources
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        private double accidentEndTime = 0;
+        private const int accidentProbability = 20;
+
+        public override bool TryUseResource(ModelingTime time)
+        {
+            //время инцидента  вышло
+            if (accidentEndTime <= time.Now)
+            {
+                Random random = new Random();
+                if (random.Next(0, 100) < accidentProbability)
+                {
+                    accidentEndTime = time.Now + random.Next(5, 12);
+                    return false;
+                }
+                return true;
+            }
+            //время инцидента  не вышло
+            else
+            {
+                return false;
+            }
+            //return base.TryUseResource(time);
         }
     }
 }
