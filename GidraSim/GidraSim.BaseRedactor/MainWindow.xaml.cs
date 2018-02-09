@@ -28,6 +28,9 @@ namespace GidraSim.BaseRedactor
         public MainWindow()
         {
             InitializeComponent();
+
+            _connectionString = System.Configuration.ConfigurationManager.
+                ConnectionStrings["connectionString"].ConnectionString;
         }
 
         private void CpuAddItem_Click(object sender, RoutedEventArgs e)
