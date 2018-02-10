@@ -25,12 +25,32 @@ namespace GidraSim.BaseRedactor
     {
         private String _connectionString = "Data Source=DESKTOP-H4JQP0V;Initial Catalog=SimSapr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+        CpuRepository cpuRepository;
+        GpuRepository gpuRepository;
+        InformationSupportRepository informationSupportRepository;
+
+        private  string[] types = new string[]
+        {
+            "GPU",
+            "CPU",
+            "Information support"
+        };
+
         public MainWindow()
         {
             InitializeComponent();
 
+
+
+            listBox1.ItemsSource = types;
+
             _connectionString = System.Configuration.ConfigurationManager.
                 ConnectionStrings["connectionString"].ConnectionString;
+
+
+            cpuRepository = new CpuRepository(_connectionString);
+            gpuRepository = new GpuRepository(_connectionString);
+            informationSupportRepository = new InformationSupportRepository(_connectionString);
         }
 
         private void CpuAddItem_Click(object sender, RoutedEventArgs e)
@@ -41,8 +61,8 @@ namespace GidraSim.BaseRedactor
 
                 if (redactor.ShowDialog() == true)
                 {
-                    CpuRepository repository = new CpuRepository(_connectionString);
-                    repository.Create(redactor.curCPU);
+                    //CpuRepository repository = new CpuRepository(_connectionString);
+                    cpuRepository.Create(redactor.curCPU);
                 }
             }
             catch (Exception ex)
@@ -56,8 +76,8 @@ namespace GidraSim.BaseRedactor
             var redactor = new GPURedactor();
             if (redactor.ShowDialog() == true)
             {
-                var repository = new GpuRepository(_connectionString);
-                repository.Create(redactor.curGPU);
+                //var repository = new GpuRepository(_connectionString);
+                gpuRepository.Create(redactor.curGPU);
             }
         }
 
@@ -66,8 +86,24 @@ namespace GidraSim.BaseRedactor
             var redactor = new InformationSupportRedactor();
             if (redactor.ShowDialog() == true)
             {
-                var repository = new InformationSupportRepository(_connectionString);
-                repository.Create(redactor.curINF);
+                //var repository = new InformationSupportRepository(_connectionString);
+                informationSupportRepository.Create(redactor.curINF);
+            }
+        }
+
+        private void listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if((string)listBox1.SelectedItem == types[0])
+            {
+                dataGrid1.ItemsSource = gpuRepository.GetAll();
+            }
+            else if ((string)listBox1.SelectedItem == types[1])
+            {
+                dataGrid1.ItemsSource = cpuRepository.GetAll();
+            }
+            else if ((string)listBox1.SelectedItem == types[2])
+            {
+                dataGrid1.ItemsSource = informationSupportRepository.GetAll();
             }
         }
     }
