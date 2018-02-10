@@ -117,7 +117,7 @@ namespace GidraSIM.DataLayer.MSSQL
             return new GPU
             {
                 ID = reader.GetInt16(reader.GetOrdinal("GPUId")),
-                Memory = reader.GetByte(reader.GetOrdinal("Memory")),
+                Memory = reader.GetInt16(reader.GetOrdinal("Memory")),
                 Frequency = reader.GetInt16(reader.GetOrdinal("Frequency")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
             };
