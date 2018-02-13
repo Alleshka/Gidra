@@ -23,7 +23,7 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract(IsReference = true)]
     public class Software : AbstractResource
     {
-        public virtual short SoftwareId { get; set; }
+        //public virtual short SoftwareId { get; set; }
 
         [DataMember]
         private string _name;

@@ -6,28 +6,29 @@ using System.Windows;
 namespace GidraSim.BaseRedactor
 {
     /// <summary>
-    /// Логика взаимодействия для InformationSupportRedactor.xaml
+    /// Логика взаимодействия для SoftRedactor.xaml
     /// </summary>
-    public partial class InformationSupportRedactor : Window
+    public partial class SoftRedactor : Window
     {
-        public InformationSupportRedactor()
+        public SoftRedactor()
         {
             InitializeComponent();
         }
 
-        public InformationSupport curINF;
+        public Software curSoft;
 
-        private void InfSupSave_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                curINF = new InformationSupport()
+                curSoft = new Software()
                 {
+                    LicenseForm = (TypeLicenseForm)_LicenseForm.SelectedIndex,
+                    LicenseStatus = _licenseStatus.Text,
+                    Name = _name.Text,
                     Price = Convert.ToDecimal(_price.Text),
-                    Type = (TypeIS)type.SelectedIndex,
-                    MultiClientUse = (bool)_MultiClientUse.IsChecked       
+                    Type = (TypeSoftware)_Type.SelectedIndex
                 };
-
                 this.DialogResult = true;
             }
             catch (Exception ex)

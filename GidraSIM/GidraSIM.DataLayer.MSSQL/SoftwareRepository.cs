@@ -28,10 +28,10 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.Softwares_Create";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@Type", newResources.Type);
+                    sqlCommand.Parameters.AddWithValue("@Type", newResources.Type.ToString());
                     sqlCommand.Parameters.AddWithValue("@Name", newResources.Name);
-                    sqlCommand.Parameters.AddWithValue("@LicenseForm", newResources.LicenseForm);
-                    sqlCommand.Parameters.AddWithValue("@LicenseStatus", newResources.LicenseStatus);
+                    sqlCommand.Parameters.AddWithValue("@LicenseForm", newResources.LicenseForm.ToString());
+                    sqlCommand.Parameters.AddWithValue("@LicenseStatus", newResources.LicenseStatus.ToString());
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
                     result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
@@ -64,7 +64,7 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.Softwares_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@SoftwareId", updateResources.SoftwareId);
+                    sqlCommand.Parameters.AddWithValue("@SoftwareId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@Type", updateResources.Type);
                     sqlCommand.Parameters.AddWithValue("@Name", updateResources.Name);
                     sqlCommand.Parameters.AddWithValue("@LicenseForm", updateResources.LicenseForm);

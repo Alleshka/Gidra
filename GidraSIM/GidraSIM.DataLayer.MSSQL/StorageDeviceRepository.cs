@@ -63,7 +63,7 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.StorageDevices_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@StorageDeviceId", updateResources.StorageDeviceId);
+                    sqlCommand.Parameters.AddWithValue("@StorageDeviceId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@SpeedWrite", updateResources.SpeedWrite);
                     sqlCommand.Parameters.AddWithValue("@SpeedRead", updateResources.SpeedRead);
                     sqlCommand.Parameters.AddWithValue("@SpeedRead", updateResources.Size);

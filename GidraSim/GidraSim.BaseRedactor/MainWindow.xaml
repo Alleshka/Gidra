@@ -13,12 +13,14 @@
                     <MenuItem Header="CPU" x:Name="CpuAddItem" Click="CpuAddItem_Click"/>
                     <MenuItem Header="GPU" x:Name="GpuAddItem" Click="GpuAddItem_Click"/>
                     <MenuItem Header="InformationSupport" x:Name="InfSupAddItem" Click="InfSupAddItem_Click"/>
+                    <MenuItem Header="Монитор" x:Name="MonitorItem" Click="MonitorItem_Click"/>
+                    <MenuItem Header="Софт" x:Name="SoftItemAdd" Click="SoftItemAdd_Click"/>
                 </MenuItem>
             </MenuItem>
 
         </Menu>
         <ListBox x:Name="listBox1" Margin="10,25,0,10" HorizontalAlignment="Left" Width="150" SelectionChanged="listBox1_SelectionChanged"/>
-        <DataGrid x:Name="dataGrid1" Margin="165,25,10,10"/>
+        <DataGrid x:Name="dataGrid1" Margin="165,25,10,10" IsEnabled="False"/>
 
     </Grid>
 </Window>

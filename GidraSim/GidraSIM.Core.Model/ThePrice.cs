@@ -14,7 +14,7 @@ namespace GidraSIM.Core.Model
             get { return _price; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     _price = value;
                 }

@@ -10,7 +10,7 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract(IsReference = true)]
     public class Worker
     {
-        public virtual short WorkerId { get; set; }
+        //public virtual short WorkerId { get; set; }
 
         [DataMember]
         private string _name;

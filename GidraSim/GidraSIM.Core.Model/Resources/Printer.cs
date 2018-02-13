@@ -19,7 +19,7 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember]
         private byte _speed;
 
-        public virtual short PrinterId { get; set; }
+        //public virtual short PrinterId { get; set; }
 
         public virtual byte Speed 
         {

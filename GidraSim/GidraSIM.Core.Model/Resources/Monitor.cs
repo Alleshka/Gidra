@@ -13,7 +13,7 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember]
         private byte _diagonal;
 
-        public virtual short MonitorId { get; set; }
+        //public virtual short MonitorId { get; set; }
 
         public virtual byte Diagonal
         {

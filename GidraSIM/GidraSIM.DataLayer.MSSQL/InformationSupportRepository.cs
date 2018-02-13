@@ -58,7 +58,7 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.InformationSupports_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@InformationSupportId", updateResources.InformationSupportId);
+                    sqlCommand.Parameters.AddWithValue("@InformationSupportId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@MultiClientUse", updateResources.MultiClientUse);
                     sqlCommand.Parameters.AddWithValue("@Type", updateResources.Type);
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);

@@ -23,18 +23,25 @@ namespace GidraSim.BaseRedactor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private String _connectionString = "Data Source=DESKTOP-H4JQP0V;Initial Catalog=SimSapr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //private String _connectionString = "Data Source=DESKTOP-H4JQP0V;Initial Catalog=SimSapr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+        private String _connectionString;
 
         CpuRepository cpuRepository;
         GpuRepository gpuRepository;
         InformationSupportRepository informationSupportRepository;
+        MonitorRepository monitorRepository;
+        SoftwareRepository softwareRepository;
 
-        private  string[] types = new string[]
+        private string[] types = new string[]
         {
             "GPU",
             "CPU",
-            "Information support"
+            "Information support",
+            "Monitor",
+            "Soft",
         };
+
 
         public MainWindow()
         {
@@ -51,6 +58,8 @@ namespace GidraSim.BaseRedactor
             cpuRepository = new CpuRepository(_connectionString);
             gpuRepository = new GpuRepository(_connectionString);
             informationSupportRepository = new InformationSupportRepository(_connectionString);
+            monitorRepository = new MonitorRepository(_connectionString);
+            softwareRepository = new SoftwareRepository(_connectionString);
         }
 
         private void CpuAddItem_Click(object sender, RoutedEventArgs e)
@@ -93,17 +102,52 @@ namespace GidraSim.BaseRedactor
 
         private void listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if((string)listBox1.SelectedItem == types[0])
+            try
             {
-                dataGrid1.ItemsSource = gpuRepository.GetAll();
+                String type = listBox1.SelectedItem.ToString();
+
+                if (type == types[0])
+                {
+                    dataGrid1.ItemsSource = gpuRepository.GetAll();
+                }
+                else if (type == types[1])
+                {
+                    dataGrid1.ItemsSource = cpuRepository.GetAll();
+                }
+                else if (type == types[2])
+                {
+                    dataGrid1.ItemsSource = informationSupportRepository.GetAll();
+                }
+                else if (type == types[3])
+                {
+                    dataGrid1.ItemsSource = monitorRepository.GetAll();
+                }
+                else if (type == types[4])
+                {
+                    dataGrid1.ItemsSource = softwareRepository.GetAll();
+                }
             }
-            else if ((string)listBox1.SelectedItem == types[1])
+            catch (Exception ex)
             {
-                dataGrid1.ItemsSource = cpuRepository.GetAll();
+                MessageBox.Show(ex.Message);
             }
-            else if ((string)listBox1.SelectedItem == types[2])
+        }
+
+        private void MonitorItem_Click(object sender, RoutedEventArgs e)
+        {
+            var redactor = new MonitorRedactor();
+            if (redactor.ShowDialog()==true)
             {
-                dataGrid1.ItemsSource = informationSupportRepository.GetAll();
+                monitorRepository.Create(redactor.curMonitor);
+            }
+        }
+
+        private void SoftItemAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var red = new SoftRedactor();
+            if (red.ShowDialog() == true)
+            {
+                softwareRepository.Create(red.curSoft);
             }
         }
     }

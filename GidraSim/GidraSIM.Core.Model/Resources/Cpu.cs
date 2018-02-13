@@ -11,7 +11,7 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember]
         private short _frequency;
 
-        public virtual short CpuId { get; set; }
+        //public virtual short CpuId { get; set; }
 
         public virtual byte QuantityCore
         {

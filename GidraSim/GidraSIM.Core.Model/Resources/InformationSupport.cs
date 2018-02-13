@@ -12,7 +12,7 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract(IsReference = true)]
     public class InformationSupport : AbstractResource
     {
-        public virtual short InformationSupportId { get; set; }
+        //public virtual short InformationSupportId { get; set; }
 
         [DataMember]
         public virtual bool MultiClientUse { get; set; }

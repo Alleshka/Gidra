@@ -17,7 +17,7 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract]
     public class InputDevices : AbstractResource
     {
-        public virtual short InputDevicesId { get; set; }
+        //public virtual short InputDevicesId { get; set; }
 
         [DataMember]
         public virtual TypeInputDevices Type { get; set; }

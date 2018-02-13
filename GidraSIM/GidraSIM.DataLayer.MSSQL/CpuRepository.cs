@@ -58,7 +58,7 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.CPU_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@CPUId", updateResources.CpuId);
+                    sqlCommand.Parameters.AddWithValue("@CPUId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@QuantityCore", updateResources.QuantityCore);
                     sqlCommand.Parameters.AddWithValue("@Frequency", updateResources.Frequency);
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);

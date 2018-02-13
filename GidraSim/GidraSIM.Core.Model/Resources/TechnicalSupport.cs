@@ -10,7 +10,7 @@ namespace GidraSIM.Core.Model.Resources
     [DataContract(IsReference = true)]
     public class TechnicalSupport : AbstractResource
     {
-        public short TechnicalSupportId { get; set; }
+        //public short TechnicalSupportId { get; set; }
 
         [DataMember]
         public CPU Cpu { get; set; }

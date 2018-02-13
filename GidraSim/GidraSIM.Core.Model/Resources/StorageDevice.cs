@@ -13,7 +13,7 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember]
         private short _size;
 
-        public virtual short StorageDeviceId { get; set; }
+        //public virtual short StorageDeviceId { get; set; }
 
         public virtual short SpeedWrite
         {

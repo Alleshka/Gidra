@@ -60,7 +60,7 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.Monitors_Update ";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@MonitorId", updateResources.MonitorId);
+                    sqlCommand.Parameters.AddWithValue("@MonitorId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@Diagonal", updateResources.Diagonal);
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);
                     sqlCommand.ExecuteNonQuery();

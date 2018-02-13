@@ -12,7 +12,7 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember]
         private short _memory;
 
-        public virtual short GpuId { get; set; }
+        //public virtual short GpuId { get; set; }
 
         public virtual short Frequency
         {
