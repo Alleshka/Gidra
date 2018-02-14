@@ -1,0 +1,73 @@
+﻿<Window x:Class="GidraSIM.GUI.ProcedureSelectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM.GUI"
+        xmlns:cr="clr-namespace:GidraSIM.Core.Model.Procedures;assembly=GidraSIM.Core.Model"
+        mc:Ignorable="d" Height="268.908" Width="300" Title="Выберите тип процедуры" 
+        SizeToContent="WidthAndHeight">
+       
+    <Window.Resources>
+        <DataTemplate  DataType="{x:Type cr:FixedTimeBlock}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Время исполнения" />
+                <TextBox Text="{Binding Path=FixedTime}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  DataType="{x:Type cr:AndBlock}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Число входов" />
+                <TextBox Text="{Binding Path=InputQuantity}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  DataType="{x:Type cr:DuplicateOutputsBlock}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Число выходов" />
+                <TextBox Text="{Binding Path=OutputQuantity}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  DataType="{x:Type cr:QualityCheckProcedure}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Вероятность пройти проверку" />
+                <TextBox Text="{Binding Path=Probability}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate  DataType="{x:Type cr:ArrangementProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:Assembling}" />
+        <DataTemplate  DataType="{x:Type cr:ClientCoordinationPrrocedure}" />
+        <DataTemplate  DataType="{x:Type cr:DocumentationCoordinationProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:ElectricalSchemeSimulation}" />
+        <DataTemplate  DataType="{x:Type cr:FormingDocumentationProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:Geometry2D}" />
+        <DataTemplate  DataType="{x:Type cr:KDT}" />
+        <DataTemplate  DataType="{x:Type cr:KinematicСalculations}" />
+        <DataTemplate  DataType="{x:Type cr:PaperworkProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:SampleTestingProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:SchemaCreationProcedure}" />
+        <DataTemplate  DataType="{x:Type cr:StrengthСalculations}" />
+        <DataTemplate  DataType="{x:Type cr:TracingProcedure}" />
+
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listBox1"  DisplayMemberPath="Description" Margin="10,10,10,0" ItemsSource="{Binding Blocks}" Grid.Row="0"/>
+        <StackPanel  Grid.Row="1" Margin="10,10,10,0">
+            <TextBlock Text="Название" MinWidth="100" />
+            <TextBox Text="{Binding  ElementName=listBox1, Path=SelectedItem.Description}" />
+        </StackPanel>
+        <ContentControl Grid.Row="2" Content="{Binding ElementName=listBox1, Path=SelectedItem}" />
+        <Button x:Name="button" Grid.Row="3" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+    </Grid>
+</Window>

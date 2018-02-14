@@ -1,0 +1,19 @@
+﻿<Window x:Class="GidraSIM.GUI.SubProcessSelectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GidraSIM.GUI"
+        mc:Ignorable="d"
+        Title="Выберите подпроцесс" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listBox1" Margin="10,10,10,0">
+
+        </ListBox>
+        <Button x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+    </Grid>
+</Window>

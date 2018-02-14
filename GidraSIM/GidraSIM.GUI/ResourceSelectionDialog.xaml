@@ -1,0 +1,117 @@
+﻿<Window x:Class="GidraSIM.GUI.ResourceSelectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:GidraSIM.GUI"
+        xmlns:cr="clr-namespace:GidraSIM.Core.Model.Resources;assembly=GidraSIM.Core.Model"
+        mc:Ignorable="d"
+        Title="Выберите тип ресурса" Height="300" Width="300"
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+
+        <!--<ResourceDictionary>
+            <ObjectDataProvider x:Key="cr:Qualification" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="Enum:cr:Qualification" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ValueConverters:VCMyEnumToString x:Key="vcMyEnumToString"/>
+        </ResourceDictionary>-->
+
+        <!--<ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="cr:Qualification"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>-->
+
+        <DataTemplate  DataType="{x:Type cr:CadResource}">
+            <StackPanel Margin="10,10,10,0">
+                <!--<TextBlock Text="CAD" />-->
+                <!--<Separator />-->
+                <!--<TextBlock Text="Название" MinWidth="100" />
+                <TextBox Text="{Binding Path=Description}" />-->
+                <TextBlock Text="Количество" />
+                <TextBox Text="{Binding Path=Count}" />
+            </StackPanel>
+        </DataTemplate>
+        <!--<DataTemplate  DataType="{x:Type cr:TechincalSupportResource}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Технологическая поддержка" />
+                <TextBox Text="{Binding Path=Description}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate  DataType="{x:Type cr:WorkerResource}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Рабочий" />
+                <TextBox Text="{Binding Path=Description}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate  DataType="{x:Type cr:MethodolgicalSupportResource}">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Text="Метода" />
+                <TextBox Text="{Binding Path=Description}" />
+            </StackPanel>
+        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type cr:WorkerResource}">
+            <StackPanel Margin="10,10,10,0">
+                <!--<TextBlock Text="Работник" />
+                <Separator />-->
+                <!--<TextBlock Text="Имя" />
+                <TextBox Text="{Binding Path=Name}"/>
+                <TextBlock Text="Должность" />-->
+                <!--<TextBox Text="{Binding Path=Position}"/>-->
+                <TextBlock Text="Квалификация" />
+                <ComboBox  ItemsSource="{Binding Source={local:Enumeration {x:Type cr:Qualification}} }" 
+                            DisplayMemberPath="Description" 
+                            SelectedValue="{Binding Path=WorkerQualification}"  
+                            SelectedValuePath="Value"  />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type cr:MethodolgicalSupportResource}">
+            <StackPanel Margin="10,10,10,0">
+                <!--<TextBlock Text="Методологическая поддержка" />
+                <Separator/>-->
+                <!--<TextBlock Text="Название" />
+                <TextBox Text="{Binding Path=Description}"/>-->
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type cr:TechincalSupportResource}">
+            <StackPanel Margin="10,10,10,0">
+                <!--<TextBlock Text="Рабочая станция" />
+                <Separator />-->
+                <TextBlock Text="Количество" />
+                <TextBox Text="{Binding Path=Count}" />
+                <TextBlock Text="Частота" />
+                <TextBox Text="{Binding Path=Frequency}" />
+                <TextBlock Text="ОЗУ" />
+                <TextBox Text="{Binding Path=Ram}" />
+                <TextBlock Text="Видопамять" />
+                <TextBox Text="{Binding Path=Vram}" />
+            </StackPanel>
+        </DataTemplate>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListView  Grid.Row="0" x:Name="listView1" Margin="10,10,10,0" DisplayMemberPath="Description" ItemsSource="{Binding Blocks}">
+
+        </ListView>
+        <StackPanel  Grid.Row="1" Margin="10,10,10,0">
+            <TextBlock Text="Название" MinWidth="100" />
+            <TextBox Text="{Binding SelectedItem.Description, ElementName=listView1}" />
+        </StackPanel>
+        <ContentControl Grid.Row="2" Content="{Binding SelectedItem, ElementName=listView1}" />
+
+
+        <Button Grid.Row="3" x:Name="button" Content="OK" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="75" TabIndex="0" Click="button_Click"/>
+    </Grid>
+</Window>

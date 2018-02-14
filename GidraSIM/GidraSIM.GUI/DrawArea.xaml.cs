@@ -63,7 +63,7 @@ namespace GidraSIM.GUI
             // TODO: Ввод имени процедуры и связь с моделью
             //workArea.Children.Add(new ProcedureWPF(procedurePosition, "Процедура", rand.Next(1, 11), rand.Next(1, 11)));
 
-            TestProcedureSelectionDialog dialog = new TestProcedureSelectionDialog();
+            ProcedureSelectionDialog dialog = new ProcedureSelectionDialog();
             if(dialog.ShowDialog() == true)
             {
                 var procedure = dialog.SelectedBlock;
@@ -90,7 +90,7 @@ namespace GidraSIM.GUI
 
             // Добавление
             // TODO: Ввод имени подпроцесса и связь с моделью
-            TestSubProcessSelectionDialog dialog = new TestSubProcessSelectionDialog(subProcessPosition, Processes);
+            SubProcessSelectionDialog dialog = new SubProcessSelectionDialog(subProcessPosition, Processes);
             if (dialog.ShowDialog() == true)
             {
                 var process = dialog.SelectedProcess;
@@ -113,7 +113,7 @@ namespace GidraSIM.GUI
             // Добавление
             // TODO: Ввод имени процедуры и связь с моделью
             //workArea.Children.Add(new ResourceWPF(resourcePosition, "Ресурс"));
-            TestResourceSelectionDialog dialog = new TestResourceSelectionDialog();
+            ResourceSelectionDialog dialog = new ResourceSelectionDialog();
 
             if (dialog.ShowDialog() == true)
             {

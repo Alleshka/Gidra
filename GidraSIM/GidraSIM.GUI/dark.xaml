@@ -11,16 +11,16 @@
     <Style TargetType="local:DrawArea">
         <Setter Property="Background" Value="#252526" />
     </Style>
-    <Style TargetType="local:TestComplexitySelectionDialog">
+    <Style TargetType="local:ComplexitySelectionDialog">
         <Setter Property="Background" Value="#252526" />
     </Style>
-    <Style TargetType="local:TestProcedureSelectionDialog">
+    <Style TargetType="local:ProcedureSelectionDialog">
         <Setter Property="Background" Value="#252526" />
     </Style>
-    <Style TargetType="local:TestResourceSelectionDialog">
+    <Style TargetType="local:ResourceSelectionDialog">
         <Setter Property="Background" Value="#252526" />
     </Style>
-    <Style TargetType="local:TestSubProcessSelectionDialog">
+    <Style TargetType="local:SubProcessSelectionDialog">
         <Setter Property="Background" Value="#252526" />
     </Style>
     <!--<Style TargetType="local:TestSubProcessSelectionDialog">

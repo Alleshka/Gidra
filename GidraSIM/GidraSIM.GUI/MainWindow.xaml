@@ -1,0 +1,194 @@
+﻿<Window x:Class="GidraSIM.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:command="clr-namespace:GidraSIM.GUI"
+        xmlns:gui="clr-namespace:GidraSIM.GUI.Core.BlocksWPF;assembly=GidraSIM.GUI.Core"
+        mc:Ignorable="d"
+        Title="САПР СИМ" Height="600" Width="800">
+    <!--<Window.Resources>
+        <Style TargetType="gui:GSFigure" x:Key="GSFigureStyle">
+            <Setter Property="GSFigure.ShadowColor" Value="120" />
+        </Style>
+    </Window.Resources>-->
+    <DockPanel x:Name="DockPanel1" >
+        <!--<DockPanel.Background>
+            <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/background3.jpg" Stretch="UniformToFill" />
+        </DockPanel.Background>-->
+
+        <Menu Height="19" Margin="0,0,0,0" DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+
+                <MenuItem x:Name="NewProjectMenuItem" Header="Новый проект (Ctrl+N)" Click="NewProjectItemMenu_Click"/>
+                <MenuItem x:Name="SaveItemMenu" Header="Сохранить (Ctrl+S)" Click="Save_Click"/>
+                <MenuItem x:Name="SaveAsItemMenu" Header="Сохранить как ... " Click="SaveAsItemMenu_Click"/>
+                <MenuItem x:Name="OpenItemMenu" Header="Открыть проект (Ctrl+O)" Click="Open_Click"/>
+
+            </MenuItem>
+            <MenuItem Header="Процесс">
+                <MenuItem Header="Новый процесс" Click="CreateProcessButton_Click" />
+                <!--<MenuItem Header="Сохранить статистику" x:Name="SaveStatistic" Click="SaveStatistic_Click"/>-->
+            </MenuItem>
+            <MenuItem Header="Моделирование">
+                <MenuItem x:Name="ModelingParametersButton"  Header="Параметры моделирования" Click="ModelingParametersButton_Click"/>
+                <MenuItem x:Name="StartModelingButton" Header="Запуск моделирования" Click="StartModeling_Executed"/>
+                <!--<MenuItem x:Name="TokenViewerItemMenu" Header="Просмотреть данные моделирования" Click="TokenViewerItemMenu_Click"/>-->
+            </MenuItem>
+            <MenuItem Header="Настройки" x:Name="SettingsMenuItem" Click="SettingsMenuItem_Click">
+                <!--<MenuItem Header="Тема" >
+                    <MenuItem x:Name="ClassicThemeMenuItem" Header="Классическая (Ctrl+K)" IsCheckable="True" IsChecked="True" Click="ClassicThemeMenuItem_Click" Checked="ClassicThemeMenuItem_Checked"/>
+                    <MenuItem x:Name="DarkThemeMenuItem" Header="Тёмная (Ctrl+B)" IsCheckable="True" Checked="DarkThemeMenuItem_Checked" Click="DarkThemeMenuItem_Click"/>
+                </MenuItem>-->
+            </MenuItem>
+        </Menu>
+        <StackPanel x:Name="buttonPanel" HorizontalAlignment="Left" Margin="5">
+            <!--<Button x:Name="button1" Content="Указатель" Margin="5" Click="button1_Click"/>
+            <Button x:Name="button2" Content="Процедура" Margin="5" Click="button2_Click"/>
+            <Button x:Name="button3" Content="Ресурс" Margin="5" Click="button3_Click"/>
+            <Button x:Name="button4" Content="Связи" Margin="5" Click="button4_Click"/>
+            <Button x:Name="button5" Content="Подпроцесс" Margin="5" Click="button5_Click"/>-->
+
+
+            <!-- Указатель -->
+            <Button Height="35" HorizontalAlignment="Stretch" Margin="5" Name="button_arrow" VerticalAlignment="Stretch" Width="35" ToolTip="Курсор  (Alt+Q)" Command="command:MainWindowCommands.Arrow" BorderThickness="1" IsEnabled="True">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Arrow.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox >
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M10.07,14.27C10.57,14.03 
+                              11.16,14.25 11.4,14.75L13.7,19.74L15.5,
+                              18.89L13.19,13.91C12.95,13.41 13.17,12.81 
+                              13.67,12.58L13.95,12.5L16.25,12.05L8,5.12V15.9L9.82,
+                              14.43L10.07,14.27M13.64,21.97C13.14,22.21 12.54,22 
+                              12.31,21.5L10.13,16.76L7.62,18.78C7.45,18.92 7.24,19 
+                              7,19A1,1 0 0,1 6,18V3A1,1 0 0,1 7,2C7.24,2 7.47,2.09 
+                              7.64,2.23L7.65,2.22L19.14,11.86C19.57,12.22 19.62,12.85 
+                              19.27,13.27C19.12,13.45 18.91,13.57 18.7,13.61L15.54,14.23L17.74,
+                              18.96C18,19.46 17.76,20.05 17.26,20.28L13.64,21.97Z"
+
+                        Fill="Black" Stroke="Gray" />
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- Выбор процедуры -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_procedure" VerticalAlignment="Top" Width="35" Foreground="Black" OpacityMask="{x:Null}" ToolTip="Добавить процедуру  (Alt+W)" Command="command:MainWindowCommands.Procedure">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/ProcedureButton.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox>
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M18,18H6V6H18M18,4H6A2,2 0 0,0 4,6V18A2,2 0 0,0 6,20H18A2,2 0 0,0 20,18V6C20,4.89 19.1,4 18,4Z" 
+                              Fill="Black" Stroke="Gray"/>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- Выбор ресурса -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_resourse" VerticalAlignment="Top" Width="35" ToolTip="Добавить ресурс (Alt+E)" Command="command:MainWindowCommands.Resourse">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Resourse.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox>
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M17.25,12C17.25,12.23 17.23,12.46 17.2,12.68L18.68,13.84C18.81,13.95 18.85,14.13 18.76,14.29L17.36,16.71C17.27,16.86 17.09,16.92 16.93,16.86L15.19,16.16C14.83,16.44 14.43,16.67 14,16.85L13.75,18.7C13.72,18.87 13.57,19 13.4,19H10.6C10.43,19 10.28,18.87 10.25,18.7L10,16.85C9.56,16.67 9.17,16.44 8.81,16.16L7.07,16.86C6.91,16.92 6.73,16.86 6.64,16.71L5.24,14.29C5.15,14.13 5.19,13.95 5.32,13.84L6.8,12.68C6.77,12.46 6.75,12.23 6.75,12C6.75,11.77 6.77,11.54 6.8,11.32L5.32,10.16C5.19,10.05 5.15,9.86 5.24,9.71L6.64,7.29C6.73,7.13 6.91,7.07 7.07,7.13L8.81,7.84C9.17,7.56 9.56,7.32 10,7.15L10.25,5.29C10.28,5.13 10.43,5 10.6,5H13.4C13.57,5 13.72,5.13 13.75,5.29L14,7.15C14.43,7.32 14.83,7.56 15.19,7.84L16.93,7.13C17.09,7.07 17.27,7.13 17.36,7.29L18.76,9.71C18.85,9.86 18.81,10.05 18.68,10.16L17.2,11.32C17.23,11.54 17.25,11.77 17.25,12M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M12,10C10.89,10 10,10.89 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,10.89 13.1,10 12,10Z" 
+                              Stroke="Black" Fill="Gray"/>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- Соединение блоков -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_connect" VerticalAlignment="Top" Width="35" ToolTip="Добавить соединение (Alt+R)" Command="command:MainWindowCommands.Connect">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Connect.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                    <Canvas Name="connection" Width="24" Height="24">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <!--Unknown tag: metadata-->
+                        <!--Unknown tag: sodipodi:namedview-->
+                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="17" Canvas.Top="2" Width="5" Height="5" Name="rect5619" Fill="#FFCCCCCC" StrokeThickness="1.00157475" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1"/>
+                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="4" Canvas.Top="16" Width="5" Height="5" Name="rect56197" Fill="#FFCCCCCC" StrokeThickness="1.00157475" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1"/>
+                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5638" StrokeThickness="1" Stroke="#FF000000" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+                            <Path.Data>
+                                <PathGeometry Figures="m 9 19 c 0 0 5 1 5.016949 -2.830508 C 14.035398 12.000006 11 11 11.050847 6.8474576 11.101331 2.7246611 17 4 17 4" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+            <!-- Вложенный процесс -->
+            <Button Height="35" HorizontalAlignment="Left" Margin="5" Name="button_SubProcess" ToolTip="Добавить вложенный процесс (Alt+T)" VerticalAlignment="Bottom" Width="35" Command="command:MainWindowCommands.SubProcess">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/SubProcessButton.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                    <Canvas Name="subsqare" Width="24" Height="24">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <!--Unknown tag: metadata-->
+                        <!--Unknown tag: sodipodi:namedview-->
+                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5050" Fill="#000000">
+                            <Path.Data>
+                                <PathGeometry Figures="M 19 19 H 5 V 5 H 19 M 18 4 H 6 C 4.8954305 4 4 4.8954305 4 6 v 12 c 0 1.104569 0.8954305 2 2 2 h 12 c 1.104569 0 2 -0.895431 2 -2 V 6 C 20 4.89 19.1 4 18 4 Z" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="6.983501" Canvas.Top="7.983501" Width="10.244863" Height="8.0329981" Name="rect5615" Fill="#FFCCCCCC" StrokeThickness="0.96857655" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1"/>
+                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5617" Fill="#FFCCCCCC" StrokeThickness="0.10185506" Stroke="#FF000000" StrokeMiterLimit="4" Opacity="1">
+                            <Path.Data>
+                                <PathGeometry Figures="M 5.063713 11.997733 V 5.0316313 h 6.966102 6.966101 v 6.9661017 6.966102 H 12.029815 5.063713 Z m 12.711864 0 V 7.4723093 H 12.13151 6.4874418 v 4.5254237 4.525424 h 5.6440682 5.644067 z" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+
+            <Button Height="35" HorizontalAlignment="Left" x:Name="TestBtn" Margin="5"  Width="35" ToolTip="Запустить моделирование (F5)"  Command="command:MainWindowCommands.StartModeling">
+                <!--<StackPanel Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.8">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/GidraSIM.GUI;component/Image/Model.png" />
+                    </StackPanel.Background>
+                </StackPanel>-->
+                <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                    <Canvas Name="play" Width="24" Height="24">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Canvas.RenderTransform>
+                        <Canvas.Resources/>
+                        <!--Unknown tag: metadata-->
+                        <!--Unknown tag: sodipodi:namedview-->
+                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5646" Fill="#FF000000" StrokeThickness="1" Stroke="#FF000000" StrokeLineJoin="Miter" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+                            <Path.Data>
+                                <PathGeometry Figures="M 5 4 20 12 5 20 Z" FillRule="NonZero"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Viewbox>
+            </Button>
+
+        </StackPanel>
+
+        <ListBox x:Name="listBox1" DockPanel.Dock="Bottom" Height="150" Margin="0,5,5,5" ></ListBox>
+
+
+        <TabControl x:Name="testTabControl" Margin="0,0,5,5" SelectionChanged="testTabControl_SelectionChanged">
+            <TabItem Header="Процесс 1" >
+                <!--<local:DrawArea x:Name="drawArea"></local:DrawArea>-->
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

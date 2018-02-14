@@ -77,6 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdmSet\ProgrammSetting.cs" />
+    <Compile Include="AdmSet\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrawArea.xaml.cs">
       <DependentUpon>DrawArea.xaml</DependentUpon>
     </Compile>
@@ -94,20 +98,20 @@
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestComplexitySelectionDialog.xaml.cs">
-      <DependentUpon>TestComplexitySelectionDialog.xaml</DependentUpon>
+    <Compile Include="ComplexitySelectionDialog.xaml.cs">
+      <DependentUpon>ComplexitySelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestProcedureSelectionDialog.xaml.cs">
-      <DependentUpon>TestProcedureSelectionDialog.xaml</DependentUpon>
+    <Compile Include="ProcedureSelectionDialog.xaml.cs">
+      <DependentUpon>ProcedureSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestResourceSelectionDialog.xaml.cs">
-      <DependentUpon>TestResourceSelectionDialog.xaml</DependentUpon>
+    <Compile Include="ResourceSelectionDialog.xaml.cs">
+      <DependentUpon>ResourceSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestSubProcessSelectionDialog.xaml.cs">
-      <DependentUpon>TestSubProcessSelectionDialog.xaml</DependentUpon>
+    <Compile Include="SubProcessSelectionDialog.xaml.cs">
+      <DependentUpon>SubProcessSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestWindow.xaml.cs">
-      <DependentUpon>TestWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TokenViewer.xaml.cs">
       <DependentUpon>TokenViewer.xaml</DependentUpon>
@@ -116,6 +120,10 @@
     <Compile Include="Utility\IViewModelConverter.cs" />
     <Compile Include="Utility\ProjectSaver.cs" />
     <Compile Include="Utility\ViewModelConverter.cs" />
+    <Page Include="AdmSet\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="classic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,23 +148,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestComplexitySelectionDialog.xaml">
+    <Page Include="ComplexitySelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestProcedureSelectionDialog.xaml">
+    <Page Include="ProcedureSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TestResourceSelectionDialog.xaml">
+    <Page Include="ResourceSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestSubProcessSelectionDialog.xaml">
+    <Page Include="SubProcessSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
