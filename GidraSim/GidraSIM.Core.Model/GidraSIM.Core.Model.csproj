@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accident.cs" />
+    <Compile Include="AccidentsCollector.cs" />
     <Compile Include="HierarchyId.cs" />
+    <Compile Include="IAccidentsCollector.cs" />
     <Compile Include="Procedures\AndBlock.cs" />
     <Compile Include="Procedures\AbstractBlock.cs" />
     <Compile Include="Procedures\Assembling.cs" />

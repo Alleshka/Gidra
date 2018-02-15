@@ -68,6 +68,8 @@
                             DisplayMemberPath="Description" 
                             SelectedValue="{Binding Path=WorkerQualification}"  
                             SelectedValuePath="Value"  />
+                <TextBlock Text="Вероятность заболеть в день, %" />
+                <TextBox Text="{Binding Path=AccidentProbability}" />
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type cr:MethodolgicalSupportResource}">
@@ -88,7 +90,7 @@
                 <TextBox Text="{Binding Path=Frequency}" />
                 <TextBlock Text="ОЗУ" />
                 <TextBox Text="{Binding Path=Ram}" />
-                <TextBlock Text="Видопамять" />
+                <TextBlock Text="Видеопамять" />
                 <TextBox Text="{Binding Path=Vram}" />
             </StackPanel>
         </DataTemplate>

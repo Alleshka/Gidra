@@ -74,26 +74,51 @@ namespace GidraSIM.Core.Model.Resources
             return base.GetHashCode();
         }
 
-        private double accidentEndTime = 0;
-        private const int accidentProbability = 20;
+        [DataMember(EmitDefaultValue = false)]
+        private Accident accident = null;
+        private double accidentProbability = 20;
+
+        [DataMember(EmitDefaultValue = false)]
+        public double AccidentProbability { get => accidentProbability; set { accidentProbability = value; } }
 
         public override bool TryUseResource(ModelingTime time)
         {
-            //время инцидента  вышло
-            if (accidentEndTime <= time.Now)
+            //нет текущего инцидента
+            if (accident == null)
             {
+                //пробуем создать новый инцидент
                 Random random = new Random();
-                if (random.Next(0, 100) < accidentProbability)
+                double r = random.NextDouble() * time.Delta*100.0;
+                if (r < accidentProbability)
                 {
-                    accidentEndTime = time.Now + random.Next(5, 12);
-                    return false;
+                    accident = new Accident() { Source = this, Description = "Болезнь работника" };
+
+                    accident.StartTime = time.Now;
+                    //от 5 до 11 дней болезни
+                    accident.EndTime = time.Now + random.Next(5, 12);
+                    //всё, заболел
+                    return true;
                 }
+                //не удалось, всё ок
                 return true;
             }
-            //время инцидента  не вышло
+            //есть инцидент
             else
             {
-                return false;
+                //время инцидента  вышло      
+                if (accident.EndTime <= time.Now)
+                {
+                    Collector.Collect(accident);
+                    accident = null;
+                    //всё ок
+                    return true;
+                }
+                //время инцидента  не вышло
+                else
+                {
+                    //всё ещё болеет
+                    return false;
+                }
             }
             //return base.TryUseResource(time);
         }

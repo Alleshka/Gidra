@@ -58,9 +58,6 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 2;
                 }
 
-                //прототип инцидентов
-                if (!worker.TryUseResource(modelingTime))
-                    return;
 
                 double time = rand.Next(1, 30);
 
@@ -109,7 +106,7 @@ namespace GidraSIM.Core.Model.Procedures
                 #endregion
 
 
-                if (resourceCount == 2)
+                if (resourceCount == 2 && worker.TryUseResource(modelingTime))
                 {
                     token.Progress += modelingTime.Delta / time;
                 }

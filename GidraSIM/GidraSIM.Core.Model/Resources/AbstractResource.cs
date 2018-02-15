@@ -11,6 +11,14 @@ namespace GidraSIM.Core.Model.Resources
         [DataMember(EmitDefaultValue = false)]
         public string Description { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
+        public IAccidentsCollector Collector;
+
+        public AbstractResource()
+        {
+            Collector = AccidentsCollector.GetInstance();
+        }
+
         public virtual void ReleaseResource()
         {
             //do nothing

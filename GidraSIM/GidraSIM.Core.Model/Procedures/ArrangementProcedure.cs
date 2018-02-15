@@ -67,9 +67,6 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 3;
                 }
 
-                //прототип инцидентов
-                if (!worker.TryUseResource(modelingTime))
-                    return;
 
                 double time = token.Complexity / 100;//базовое время
 
@@ -90,7 +87,7 @@ namespace GidraSIM.Core.Model.Procedures
                 time += 0.02 * rand.NextDouble(); //30(0,02 дня) минут - максимальное время для анализа
                 #endregion
 
-                if (resourceCount == 3)
+                if (resourceCount == 3 && worker.TryUseResource(modelingTime))
                 {
                     token.Progress += modelingTime.Delta/time;
                 }

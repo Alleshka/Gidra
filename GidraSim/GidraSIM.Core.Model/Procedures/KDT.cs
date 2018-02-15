@@ -60,9 +60,6 @@ namespace GidraSIM.Core.Model.Procedures
                     resourceCount = 2;
                 }
 
-                //прототип инцидентов
-                if (!worker.TryUseResource(modelingTime))
-                    return;
 
                 //общее время, которое должно бытьл затрачено на процедуру
                 double time = token.Complexity;
@@ -119,7 +116,7 @@ namespace GidraSIM.Core.Model.Procedures
                 #endregion
 
                 // Если все ресурсы взяли, то выполняем задачу
-                if (resourceCount == 2)
+                if (resourceCount == 2 && worker.TryUseResource(modelingTime))
                 {
                     // Обновляем прогресс задачи
                     token.Progress += modelingTime.Delta / time;

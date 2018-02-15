@@ -259,6 +259,7 @@ namespace GidraSIM.GUI
 
         private void StartModeling_Executed(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 ViewModelConverter converter = new ViewModelConverter();
@@ -291,14 +292,20 @@ namespace GidraSIM.GUI
                 //TokenViewer show = new TokenViewer(mainProcess.TokenCollector as TokensCollector);
                 //show.Show();
 
-                Statictics();
+                //Statictics();
 
                 //TODO сделать DataBinding
                 listBox1.Items.Clear();
                 ResultWindow resultWindow = new ResultWindow(mainProcess.Collector.GetHistory(), this.complexity);
                 resultWindow.ShowDialog();
                 mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+                //добавляем ещё инцидентры в историю
+                AccidentsCollector collector = AccidentsCollector.GetInstance();
+                collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+
+
                 mainProcess.Collector.GetHistory().Clear();
+                collector.GetHistory().Clear();
 
                 //выводим число токенов и время затраченное(в заголовке)
                 //MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");

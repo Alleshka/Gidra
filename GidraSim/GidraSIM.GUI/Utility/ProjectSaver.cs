@@ -30,6 +30,8 @@ namespace GidraSIM.GUI.Utility
                 typeof(WorkerResource),
                 typeof(TechincalSupportResource),
                 typeof(MethodolgicalSupportResource),
+                typeof(AccidentsCollector),
+                typeof(Accident),
                 typeof(TokensCollector),
                 typeof(ConnectionManager),
                 typeof(AndBlock),
