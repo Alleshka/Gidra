@@ -296,12 +296,15 @@ namespace GidraSIM.GUI
 
                 //TODO сделать DataBinding
                 listBox1.Items.Clear();
-                ResultWindow resultWindow = new ResultWindow(mainProcess.Collector.GetHistory(), this.complexity);
-                resultWindow.ShowDialog();
-                mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+
                 //добавляем ещё инцидентры в историю
                 AccidentsCollector collector = AccidentsCollector.GetInstance();
                 collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+
+                ResultWindow resultWindow = new ResultWindow(mainProcess.Collector.GetHistory(), collector.GetHistory(),  this.complexity);
+                resultWindow.ShowDialog();
+                mainProcess.Collector.GetHistory().ForEach(item => listBox1.Items.Add(item));
+
 
 
                 mainProcess.Collector.GetHistory().Clear();
@@ -310,7 +313,7 @@ namespace GidraSIM.GUI
                 //выводим число токенов и время затраченное(в заголовке)
                 //MessageBox.Show("Время, затраченное на имитацию " + modelingTime.Now.ToString(), "Имитация закончена");
             }
-            catch (Exception ex)
+            catch (NotImplementedException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -597,15 +600,16 @@ namespace GidraSIM.GUI
         {
             // Устанавливаем дефолтные значения
             testTabControl.Items.Clear();
-            mainProcess = new Process() { Description = "Процесс 1" };
-            mainProcessNumber = 0;
-            processNamesCounter = 1;
             drawAreas.Clear();
             processes.Clear();
 
+            mainProcess = new Process() { Description = "Процесс 1" };
+            mainProcessNumber = 0;
+            processNamesCounter = 1;
+
             // Создаём процесс
-            Process process = new Process() { Description = mainProcess.Description };
-            processes.Add(process); // Добавляем в список процессов
+            //Process process = new Process() { Description = mainProcess.Description };
+            processes.Add(mainProcess); // Добавляем в список процессов
 
             var tabItem = new TabItem() { Header = mainProcess };
             testTabControl.SelectedItem = tabItem;

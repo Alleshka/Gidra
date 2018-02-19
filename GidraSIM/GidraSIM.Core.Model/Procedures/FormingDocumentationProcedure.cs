@@ -51,7 +51,7 @@ namespace GidraSIM.Core.Model.Procedures
                     {
                         resourceCount++;
                     }
-                    else comp.TryGetResource();
+                    else comp.ReleaseResource();
                 }
                 else
                 {

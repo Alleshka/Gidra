@@ -12,35 +12,19 @@ namespace GidraSIM.Core.Model.Resources
         public CadResource()
         {
             Count = 10;
+            MaxCount = 10;
             Description = "CAD";
-        }
-
-        /// <summary>
-        /// число экземпляров
-        /// </summary>
-
-        [DataMember(EmitDefaultValue = false)]
-        public int Count
-        {
-            get;
-            set;
         }
 
 
         public override bool TryGetResource()
         {
-            if (Count > 0)
-            {
-                Count--;
-                return true;
-            }
-            return false;
+            return base.TryGetResource();
         }
 
         public override void ReleaseResource()
         {
-            //TODO чисто теоретически можно верунть больше чем есть, нужна защита от дурака
-            Count++;
+             base.ReleaseResource();
         }
 
         public override bool Equals(object obj)

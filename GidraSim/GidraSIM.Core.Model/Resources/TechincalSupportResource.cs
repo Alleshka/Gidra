@@ -7,7 +7,6 @@ namespace GidraSIM.Core.Model.Resources
     {
         public TechincalSupportResource()
         {
-            Count = 1;
             Description = "Компьютер";
         }
 
@@ -31,30 +30,14 @@ namespace GidraSIM.Core.Model.Resources
             set;
         }
 
-        /// <summary>
-        /// число экземпляров
-        /// </summary>
-        [DataMember(EmitDefaultValue = false)]
-        public int Count
-        {
-            get;
-            set;
-        }
-
         public override bool TryGetResource()
         {
-            if(Count > 0)
-            {
-                Count--;
-                return true;
-            }
-            return false;
+            return base.TryGetResource();
         }
 
         public override void ReleaseResource()
         {
-            //TODO чисто теоретически можно верунть больше чем есть, нужна защита от дурака
-            Count++;
+             base.ReleaseResource();
         }
 
         public override bool Equals(object obj)

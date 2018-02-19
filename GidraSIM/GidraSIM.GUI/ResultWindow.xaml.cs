@@ -41,7 +41,7 @@ namespace GidraSIM.GUI
             double totalTime = 0;
             foreach(var token in tokens)
             {
-                wastedTime += token.ProcessStartTime - token.BornTime;
+                //wastedTime += token.ProcessStartTime - token.BornTime;
                 totalTime += token.ProcessEndTime - token.BornTime;
             }
 
