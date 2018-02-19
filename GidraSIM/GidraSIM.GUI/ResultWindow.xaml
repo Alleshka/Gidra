@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GidraSIM.GUI"
         mc:Ignorable="d"
-        Title="Результаты моделирования"  SizeToContent="WidthAndHeight" >
+        Title="Результаты моделирования"  SizeToContent="WidthAndHeight" Width="481.132" >
 
     <Grid >
         <Grid.RowDefinitions >
@@ -40,16 +40,22 @@
             </TextBlock>
 
         </StackPanel>
+        <StackPanel  Grid.Row="1" Orientation="Horizontal">
+            <DataGrid Name="Tokens" Margin="5,5,5,5">
+                <DataGrid.Columns>
+                    <!--<DataGridTextColumn Header="Название" Binding="{Binding Path=ProcessedByBlock.Description}"/>
+                    <DataGridTextColumn Header="Создан" Binding="{Binding Path=BornTime}"/>
+                    <DataGridTextColumn Header="Из" Binding="{Binding Path=Parent.Description}"/>
+                    <DataGridTextColumn Header="Начало" Binding="{Binding Path=ProcessStartTime}"/>
+                    <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>-->
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <DataGrid Name="Tokens" Margin="5,5,5,5" Grid.Row="1">
-            <DataGrid.Columns>
-                <!--<DataGridTextColumn Header="Название" Binding="{Binding Path=ProcessedByBlock.Description}"/>
-                <DataGridTextColumn Header="Создан" Binding="{Binding Path=BornTime}"/>
-                <DataGridTextColumn Header="Из" Binding="{Binding Path=Parent.Description}"/>
-                <DataGridTextColumn Header="Начало" Binding="{Binding Path=ProcessStartTime}"/>
-                <DataGridTextColumn Header="Конец" Binding="{Binding Path=ProcessEndTime}"/>-->
-            </DataGrid.Columns>
-        </DataGrid>
+            <DataGrid Name="Accidents" Margin="5,5,5,5">
+                <DataGrid.Columns>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
         <Button x:Name="button1" Click="Button_Click"  Margin="5,5,5,5" Grid.Row="2">OK</Button>
     </Grid>
 </Window>

@@ -10,7 +10,7 @@ namespace GidraSIM.GUI
     /// </summary>
     public partial class ResultWindow : Window
     {
-        public ResultWindow(ICollection<Token> tokens, double complexity)
+        public ResultWindow(ICollection<Token> tokens, ICollection<Accident> accidents, double complexity)
         {
             InitializeComponent();
             this.Complexity.Text = complexity.ToString();
@@ -26,12 +26,28 @@ namespace GidraSIM.GUI
                           };
 
             this.Tokens.ItemsSource = tokens2;
+
+            var accidents2 = from accident in accidents
+                          select new
+                          {
+                              Описание = accident.Description,
+                              Источник = accident.Source == null ? " " : accident.Source.Description,
+                              Начался = accident.StartTime,
+                              Закончился = accident.EndTime
+                          };
+            this.Accidents.ItemsSource = accidents2;
+
             double wastedTime = 0;
             double totalTime = 0;
             foreach(var token in tokens)
             {
                 wastedTime += token.ProcessStartTime - token.BornTime;
                 totalTime += token.ProcessEndTime - token.BornTime;
+            }
+
+            foreach (var accident in accidents)
+            {
+                wastedTime += accident.EndTime - accident.StartTime;
             }
             this.WastedTime.Text = wastedTime.ToString();
             this.SummaryTime.Text = totalTime.ToString();
