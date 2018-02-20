@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 using GidraSIM.Core.Model.Resources;
 using GidraSIM.DataLayer.MSSQL;
+using GidraSIM.GUI.AdmSet;
 
 namespace GidraSim.BaseRedactor
 {
@@ -32,6 +33,7 @@ namespace GidraSim.BaseRedactor
         InformationSupportRepository informationSupportRepository;
         MonitorRepository monitorRepository;
         SoftwareRepository softwareRepository;
+        Settings settings;
 
         private string[] types = new string[]
         {
@@ -51,8 +53,24 @@ namespace GidraSim.BaseRedactor
 
             listBox1.ItemsSource = types;
 
-            _connectionString = System.Configuration.ConfigurationManager.
-                ConnectionStrings["connectionString"].ConnectionString;
+            //попытка чтения без рекурсии
+            if (SettingsReader.TryRead(out settings))
+            {
+            }
+            else
+            {
+                SettingsView settings = new SettingsView();
+                settings.ShowDialog();
+                if (settings.DialogResult != true)
+                {
+                    MessageBox.Show("Нет строки подключения, завершение программы");
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
+
+            //_connectionString = System.Configuration.ConfigurationManager.
+            //    ConnectionStrings["connectionString"].ConnectionString;
+            _connectionString = SettingsReader.ResourcesConnectionString;
 
 
             cpuRepository = new CpuRepository(_connectionString);
@@ -60,6 +78,7 @@ namespace GidraSim.BaseRedactor
             informationSupportRepository = new InformationSupportRepository(_connectionString);
             monitorRepository = new MonitorRepository(_connectionString);
             softwareRepository = new SoftwareRepository(_connectionString);
+
         }
 
         private void CpuAddItem_Click(object sender, RoutedEventArgs e)
@@ -148,6 +167,16 @@ namespace GidraSim.BaseRedactor
             if (red.ShowDialog() == true)
             {
                 softwareRepository.Create(red.curSoft);
+            }
+        }
+
+        private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsView settings = new SettingsView();
+            settings.ShowDialog();
+            if(settings.DialogResult == true)
+            {
+
             }
         }
     }

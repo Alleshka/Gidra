@@ -17,7 +17,7 @@
                     <MenuItem Header="Софт" x:Name="SoftItemAdd" Click="SoftItemAdd_Click"/>
                 </MenuItem>
             </MenuItem>
-
+            <MenuItem x:Name="SettingsMenuItem" Header="Настройки" Click="SettingsMenuItem_Click" />
         </Menu>
         <ListBox x:Name="listBox1" Margin="10,25,0,10" HorizontalAlignment="Left" Width="150" SelectionChanged="listBox1_SelectionChanged"/>
         <DataGrid x:Name="dataGrid1" Margin="165,25,10,10" IsEnabled="False"/>

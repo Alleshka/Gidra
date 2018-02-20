@@ -1,0 +1,345 @@
+<SaveProject z:Id="i1" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.GUI.Utility" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+	<MainProcessID>d3936000-3811-42e4-9ecb-73e6de416168</MainProcessID>
+	<ProcessList>
+		<ProcessInfo z:Id="i2">
+			<EndElement xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+				<a:_x>1173</a:_x>
+				<a:_y>329.52000000000004</a:_y>
+			</EndElement>
+			<ProcedureConnectonList>
+				<ProcedureConnection z:Id="i3">
+					<EndID>db6a657e-30e9-491f-b510-0da35e69b31c</EndID>
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>0</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>57</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+				</ProcedureConnection>
+				<ProcedureConnection z:Id="i4">
+					<EndID>aef6a5df-9114-41e5-829f-c18fbedc64dc</EndID>
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>0</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>100</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+					<StartID>db6a657e-30e9-491f-b510-0da35e69b31c</StartID>
+				</ProcedureConnection>
+				<ProcedureConnection z:Id="i5">
+					<EndID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</EndID>
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>0</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>100</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+					<StartID>aef6a5df-9114-41e5-829f-c18fbedc64dc</StartID>
+				</ProcedureConnection>
+				<ProcedureConnection z:Id="i6">
+					<EndID>3b614f78-1801-4112-8568-af8c04b6c96e</EndID>
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>0</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>100</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+					<StartID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</StartID>
+				</ProcedureConnection>
+				<ProcedureConnection z:Id="i7">
+					<EndID>d8a1c1eb-7e1c-4449-861e-f87630499455</EndID>
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>0</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>100</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+					<StartID>3b614f78-1801-4112-8568-af8c04b6c96e</StartID>
+				</ProcedureConnection>
+				<ProcedureConnection z:Id="i8">
+					<RelativeEndPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>3</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeEndPosition>
+					<RelativeStartPosition xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>100</a:_x>
+						<a:_y>30</a:_y>
+					</RelativeStartPosition>
+					<StartID>d8a1c1eb-7e1c-4449-861e-f87630499455</StartID>
+				</ProcedureConnection>
+			</ProcedureConnectonList>
+			<ProcedureList>
+				<BlockProcedure z:Id="i9">
+					<Content z:Id="i10" i:type="a:Assembling" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Procedures">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<Description xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">3-D ассемблирование</Description>
+						<InputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</InputQuantity>
+						<OutputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</OutputQuantity>
+						<collector i:type="TokensCollector" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<history/>
+						</collector>
+						<inputQueue xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model" xmlns:b="http://schemas.datacontract.org/2004/07/System.Collections.Generic">
+							<b:QueueOfTokenuah9H_PHH>
+								<b:_array/>
+								<b:_head>0</b:_head>
+								<b:_size>0</b:_size>
+								<b:_tail>0</b:_tail>
+								<b:_version>0</b:_version>
+							</b:QueueOfTokenuah9H_PHH>
+						</inputQueue>
+						<outputs xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<Token i:nil="true"/>
+						</outputs>
+						<a:resources xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>277</a:_x>
+						<a:_y>323.04</a:_y>
+					</Position>
+					<ProcedureID>db6a657e-30e9-491f-b510-0da35e69b31c</ProcedureID>
+				</BlockProcedure>
+				<BlockProcedure z:Id="i11">
+					<Content z:Id="i12" i:type="a:Geometry2D" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Procedures">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<Description xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">2-D геометрия</Description>
+						<InputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</InputQuantity>
+						<OutputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</OutputQuantity>
+						<collector i:type="TokensCollector" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<history/>
+						</collector>
+						<inputQueue xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model" xmlns:b="http://schemas.datacontract.org/2004/07/System.Collections.Generic">
+							<b:QueueOfTokenuah9H_PHH>
+								<b:_array/>
+								<b:_head>0</b:_head>
+								<b:_size>0</b:_size>
+								<b:_tail>0</b:_tail>
+								<b:_version>0</b:_version>
+							</b:QueueOfTokenuah9H_PHH>
+						</inputQueue>
+						<outputs xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<Token i:nil="true"/>
+						</outputs>
+						<a:resources xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>478</a:_x>
+						<a:_y>317.04</a:_y>
+					</Position>
+					<ProcedureID>aef6a5df-9114-41e5-829f-c18fbedc64dc</ProcedureID>
+				</BlockProcedure>
+				<BlockProcedure z:Id="i13">
+					<Content z:Id="i14" i:type="a:KinematicСalculations" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Procedures">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<Description xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">Кинематические рассчёты</Description>
+						<InputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</InputQuantity>
+						<OutputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</OutputQuantity>
+						<collector i:type="TokensCollector" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<history/>
+						</collector>
+						<inputQueue xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model" xmlns:b="http://schemas.datacontract.org/2004/07/System.Collections.Generic">
+							<b:QueueOfTokenuah9H_PHH>
+								<b:_array/>
+								<b:_head>0</b:_head>
+								<b:_size>0</b:_size>
+								<b:_tail>0</b:_tail>
+								<b:_version>0</b:_version>
+							</b:QueueOfTokenuah9H_PHH>
+						</inputQueue>
+						<outputs xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<Token i:nil="true"/>
+						</outputs>
+						<a:resources xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>637</a:_x>
+						<a:_y>323.04</a:_y>
+					</Position>
+					<ProcedureID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</ProcedureID>
+				</BlockProcedure>
+				<BlockProcedure z:Id="i15">
+					<Content z:Id="i16" i:type="a:StrengthСalculations" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Procedures">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<Description xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">Прочностные рассчёты</Description>
+						<InputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</InputQuantity>
+						<OutputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</OutputQuantity>
+						<collector i:type="TokensCollector" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<history/>
+						</collector>
+						<inputQueue xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model" xmlns:b="http://schemas.datacontract.org/2004/07/System.Collections.Generic">
+							<b:QueueOfTokenuah9H_PHH>
+								<b:_array/>
+								<b:_head>0</b:_head>
+								<b:_size>0</b:_size>
+								<b:_tail>0</b:_tail>
+								<b:_version>0</b:_version>
+							</b:QueueOfTokenuah9H_PHH>
+						</inputQueue>
+						<outputs xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<Token i:nil="true"/>
+						</outputs>
+						<a:resources xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>790</a:_x>
+						<a:_y>331.04</a:_y>
+					</Position>
+					<ProcedureID>3b614f78-1801-4112-8568-af8c04b6c96e</ProcedureID>
+				</BlockProcedure>
+				<BlockProcedure z:Id="i17">
+					<Content z:Id="i18" i:type="a:KDT" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Procedures">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<Description xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">Оформление и выпуск КТД</Description>
+						<InputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</InputQuantity>
+						<OutputQuantity xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">1</OutputQuantity>
+						<collector i:type="TokensCollector" xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<history/>
+						</collector>
+						<inputQueue xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model" xmlns:b="http://schemas.datacontract.org/2004/07/System.Collections.Generic">
+							<b:QueueOfTokenuah9H_PHH>
+								<b:_array/>
+								<b:_head>0</b:_head>
+								<b:_size>0</b:_size>
+								<b:_tail>0</b:_tail>
+								<b:_version>0</b:_version>
+							</b:QueueOfTokenuah9H_PHH>
+						</inputQueue>
+						<outputs xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">
+							<Token i:nil="true"/>
+						</outputs>
+						<a:resources xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>964</a:_x>
+						<a:_y>323.04</a:_y>
+					</Position>
+					<ProcedureID>d8a1c1eb-7e1c-4449-861e-f87630499455</ProcedureID>
+				</BlockProcedure>
+			</ProcedureList>
+			<ProcessId>d3936000-3811-42e4-9ecb-73e6de416168</ProcessId>
+			<ProcessName>Процесс 1</ProcessName>
+			<ResourceConnectionList>
+				<ResourceConnection z:Id="i19">
+					<EndID>6ba7bafe-5bc4-4d68-85cb-8d4b366880e5</EndID>
+					<StartID>db6a657e-30e9-491f-b510-0da35e69b31c</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i20">
+					<EndID>6ba7bafe-5bc4-4d68-85cb-8d4b366880e5</EndID>
+					<StartID>aef6a5df-9114-41e5-829f-c18fbedc64dc</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i21">
+					<EndID>6ba7bafe-5bc4-4d68-85cb-8d4b366880e5</EndID>
+					<StartID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i22">
+					<EndID>6ba7bafe-5bc4-4d68-85cb-8d4b366880e5</EndID>
+					<StartID>3b614f78-1801-4112-8568-af8c04b6c96e</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i23">
+					<EndID>82c417d4-3d27-489f-9d44-6804e083d701</EndID>
+					<StartID>db6a657e-30e9-491f-b510-0da35e69b31c</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i24">
+					<EndID>82c417d4-3d27-489f-9d44-6804e083d701</EndID>
+					<StartID>aef6a5df-9114-41e5-829f-c18fbedc64dc</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i25">
+					<EndID>82c417d4-3d27-489f-9d44-6804e083d701</EndID>
+					<StartID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i26">
+					<EndID>82c417d4-3d27-489f-9d44-6804e083d701</EndID>
+					<StartID>3b614f78-1801-4112-8568-af8c04b6c96e</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i27">
+					<EndID>82c417d4-3d27-489f-9d44-6804e083d701</EndID>
+					<StartID>d8a1c1eb-7e1c-4449-861e-f87630499455</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i28">
+					<EndID>902cb691-a143-47f2-be7c-4b20e3d5ad59</EndID>
+					<StartID>db6a657e-30e9-491f-b510-0da35e69b31c</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i29">
+					<EndID>902cb691-a143-47f2-be7c-4b20e3d5ad59</EndID>
+					<StartID>aef6a5df-9114-41e5-829f-c18fbedc64dc</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i30">
+					<EndID>902cb691-a143-47f2-be7c-4b20e3d5ad59</EndID>
+					<StartID>c3e82a57-2803-4ff9-a6ff-8ca83c4efd1a</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i31">
+					<EndID>902cb691-a143-47f2-be7c-4b20e3d5ad59</EndID>
+					<StartID>3b614f78-1801-4112-8568-af8c04b6c96e</StartID>
+				</ResourceConnection>
+				<ResourceConnection z:Id="i32">
+					<EndID>902cb691-a143-47f2-be7c-4b20e3d5ad59</EndID>
+					<StartID>d8a1c1eb-7e1c-4449-861e-f87630499455</StartID>
+				</ResourceConnection>
+			</ResourceConnectionList>
+			<ResourceList>
+				<BlockResource z:Id="i33">
+					<Content z:Id="i34" i:type="a:CadResource" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Resources">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<a:Collector i:type="b:AccidentsCollector" xmlns:b="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model"/>
+						<a:Count>1</a:Count>
+						<a:Description>CAD</a:Description>
+						<a:ID>0</a:ID>
+						<a:MaxCount>10</a:MaxCount>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>328</a:_x>
+						<a:_y>478.04</a:_y>
+					</Position>
+					<ResourceID>6ba7bafe-5bc4-4d68-85cb-8d4b366880e5</ResourceID>
+				</BlockResource>
+				<BlockResource z:Id="i35">
+					<Content z:Id="i36" i:type="a:WorkerResource" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Resources">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<a:Collector i:type="b:AccidentsCollector" xmlns:b="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model"/>
+						<a:Count>1</a:Count>
+						<a:Description>Простой работник</a:Description>
+						<a:ID>0</a:ID>
+						<a:MaxCount>1</a:MaxCount>
+						<a:AccidentProbability>20</a:AccidentProbability>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>507</a:_x>
+						<a:_y>472.04</a:_y>
+					</Position>
+					<ResourceID>82c417d4-3d27-489f-9d44-6804e083d701</ResourceID>
+				</BlockResource>
+				<BlockResource z:Id="i37">
+					<Content z:Id="i38" i:type="a:TechincalSupportResource" xmlns:a="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model.Resources">
+						<_price xmlns="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model">0</_price>
+						<a:Collector i:type="b:AccidentsCollector" xmlns:b="http://schemas.datacontract.org/2004/07/GidraSIM.Core.Model"/>
+						<a:Count>1</a:Count>
+						<a:Description>Компьютер</a:Description>
+						<a:ID>0</a:ID>
+						<a:MaxCount>1</a:MaxCount>
+						<a:Frequency>2</a:Frequency>
+						<a:Ram>2</a:Ram>
+						<a:Vram>2</a:Vram>
+					</Content>
+					<Position xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+						<a:_x>803</a:_x>
+						<a:_y>465.04</a:_y>
+					</Position>
+					<ResourceID>902cb691-a143-47f2-be7c-4b20e3d5ad59</ResourceID>
+				</BlockResource>
+			</ResourceList>
+			<StartElement xmlns:a="http://schemas.datacontract.org/2004/07/System.Windows">
+				<a:_x>80</a:_x>
+				<a:_y>326.52000000000004</a:_y>
+			</StartElement>
+		</ProcessInfo>
+	</ProcessList>
+</SaveProject>

@@ -139,6 +139,10 @@
       <Project>{5f345990-2f35-45ea-b531-938ed93e4c01}</Project>
       <Name>GidraSIM.DataLayer.MSSQL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GidraSIM.GUI\GidraSIM.GUI.csproj">
+      <Project>{a8dabeae-c41e-4eca-86ce-faa21e8d2248}</Project>
+      <Name>GidraSIM.GUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
