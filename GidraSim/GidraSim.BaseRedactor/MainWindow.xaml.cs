@@ -174,9 +174,17 @@ namespace GidraSim.BaseRedactor
         {
             SettingsView settings = new SettingsView();
             settings.ShowDialog();
+            //перезагрузка рпеозиториев
             if(settings.DialogResult == true)
             {
+                _connectionString = SettingsReader.ResourcesConnectionString;
 
+
+                cpuRepository = new CpuRepository(_connectionString);
+                gpuRepository = new GpuRepository(_connectionString);
+                informationSupportRepository = new InformationSupportRepository(_connectionString);
+                monitorRepository = new MonitorRepository(_connectionString);
+                softwareRepository = new SoftwareRepository(_connectionString);
             }
         }
     }
