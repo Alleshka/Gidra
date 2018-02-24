@@ -127,23 +127,23 @@ namespace GidraSim.BaseRedactor
 
                 if (type == types[0])
                 {
-                    dataGrid1.ItemsSource = gpuRepository.GetAll();
+                    dataGrid1.ItemsSource =  gpuRepository.GetAll().ToList();
                 }
                 else if (type == types[1])
                 {
-                    dataGrid1.ItemsSource = cpuRepository.GetAll();
+                    dataGrid1.ItemsSource = cpuRepository.GetAll().ToList();
                 }
                 else if (type == types[2])
                 {
-                    dataGrid1.ItemsSource = informationSupportRepository.GetAll();
+                    dataGrid1.ItemsSource = informationSupportRepository.GetAll().ToList();
                 }
                 else if (type == types[3])
                 {
-                    dataGrid1.ItemsSource = monitorRepository.GetAll();
+                    dataGrid1.ItemsSource = monitorRepository.GetAll().ToList();
                 }
                 else if (type == types[4])
                 {
-                    dataGrid1.ItemsSource = softwareRepository.GetAll();
+                    dataGrid1.ItemsSource = softwareRepository.GetAll().ToList();
                 }
             }
             catch (Exception ex)
@@ -185,6 +185,39 @@ namespace GidraSim.BaseRedactor
                 informationSupportRepository = new InformationSupportRepository(_connectionString);
                 monitorRepository = new MonitorRepository(_connectionString);
                 softwareRepository = new SoftwareRepository(_connectionString);
+            }
+        }
+
+        private void dataGrid1_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+            if( e.GetType() == typeof(GPU))
+            {
+                gpuRepository.Create(e.NewItem as GPU);
+            }
+        }
+
+        private void dataGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+        }
+
+        private void dataGrid1_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            if (this.dataGrid1.SelectedItem != null)
+            {
+                (sender as DataGrid).RowEditEnding -= dataGrid1_RowEditEnding;
+                (sender as DataGrid).CommitEdit();
+                if(dataGrid1.SelectedItem.GetType() == typeof(GPU))
+                    gpuRepository.Update((this.dataGrid1.SelectedItem as GPU));
+                if (dataGrid1.SelectedItem.GetType() == typeof(CPU))
+                    cpuRepository.Update((this.dataGrid1.SelectedItem as CPU));
+                if (dataGrid1.SelectedItem.GetType() == typeof(InformationSupport))
+                    informationSupportRepository.Update((this.dataGrid1.SelectedItem as InformationSupport));
+                if (dataGrid1.SelectedItem.GetType() == typeof(Monitor))
+                    monitorRepository.Update((this.dataGrid1.SelectedItem as Monitor));
+                if (dataGrid1.SelectedItem.GetType() == typeof(Software))
+                    softwareRepository.Update((this.dataGrid1.SelectedItem as Software));
+                (sender as DataGrid).Items.Refresh();
+                (sender as DataGrid).RowEditEnding += dataGrid1_RowEditEnding;
             }
         }
     }
