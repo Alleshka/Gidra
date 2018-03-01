@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace GidraSIM.Core.Model.Resources
 {
     [DataContract]
     public enum TypeInputDevices
     {
-        Клавиатура,
-        Мышка
+        [Description("Клавиатура")]
+        KeyBoard,
+        [Description("Мышка")]
+        Mouse
     }
 
     [DataContract]
@@ -24,8 +27,6 @@ namespace GidraSIM.Core.Model.Resources
 
         // TODO: Это что??? Надо ли это????
         //public IEnumerable<TechnicalSupport> TechnicalSupports { get; set; }    
-
-
 
         public override bool Equals(object obj)
         {
