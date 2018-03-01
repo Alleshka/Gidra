@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace GidraSIM.Core.Model.Resources
 {
     public enum TypeSoftware
     {
-        ОС,
-        Редактор,
-        САПР
+        [Description("ОС")]
+        OS,
+        [Description("Редактор")]
+        Redactor,
+        [Description("САПР")]
+        CAD
     }
 
     public enum TypeLicenseForm
     {
-        Открытая,
-        Бесплатная,
-        Условно_бесплатная,
-        Коммерческая
+        [Description("Открытая")]
+        Open,
+        [Description("Бесплатная")]
+        Free,
+        [Description("Условно-бесплатная")]
+        ShareWare,
+        [Description("Коммерческая")]
+        Commerc
 
     }
 

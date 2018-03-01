@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace GidraSIM.Core.Model.Resources
 {
     public enum TypeIS
     {
+        [Description("Бумажный")]
         Бумажный,
+        [Description("Электронный")]
         Электронный
     }
 

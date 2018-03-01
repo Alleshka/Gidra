@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Accident.cs" />
     <Compile Include="AccidentsCollector.cs" />
+    <Compile Include="EnumExtension.cs" />
     <Compile Include="HierarchyId.cs" />
     <Compile Include="IAccidentsCollector.cs" />
     <Compile Include="Procedures\AndBlock.cs" />

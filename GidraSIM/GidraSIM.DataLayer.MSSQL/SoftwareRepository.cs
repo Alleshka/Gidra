@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GidraSIM.Core.Model.Resources;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -28,9 +29,9 @@ namespace GidraSIM.DataLayer.MSSQL
                 {
                     sqlCommand.CommandText = "Resources.Softwares_Create";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@Type", newResources.Type.ToString());
+                    sqlCommand.Parameters.AddWithValue("@Type", EnumExtension.Description<TypeSoftware>(newResources.Type));
                     sqlCommand.Parameters.AddWithValue("@Name", newResources.Name);
-                    sqlCommand.Parameters.AddWithValue("@LicenseForm", newResources.LicenseForm.ToString());
+                    sqlCommand.Parameters.AddWithValue("@LicenseForm", EnumExtension.Description<TypeLicenseForm>(newResources.LicenseForm));
                     sqlCommand.Parameters.AddWithValue("@LicenseStatus", newResources.LicenseStatus.ToString());
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
@@ -65,9 +66,9 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.CommandText = "Resources.Softwares_Update";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@SoftwareId", updateResources.ID);
-                    sqlCommand.Parameters.AddWithValue("@Type", updateResources.Type);
+                    sqlCommand.Parameters.AddWithValue("@Type", EnumExtension.Description<TypeSoftware>(updateResources.Type));
                     sqlCommand.Parameters.AddWithValue("@Name", updateResources.Name);
-                    sqlCommand.Parameters.AddWithValue("@LicenseForm", updateResources.LicenseForm);
+                    sqlCommand.Parameters.AddWithValue("@LicenseForm", EnumExtension.Description<TypeLicenseForm>(updateResources.LicenseForm));
                     sqlCommand.Parameters.AddWithValue("@LicenseStatus", updateResources.LicenseStatus);
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);
                     sqlCommand.ExecuteNonQuery();
@@ -122,9 +123,9 @@ namespace GidraSIM.DataLayer.MSSQL
             return new Software
             {
                 ID = reader.GetInt16(reader.GetOrdinal("SoftwareId")),
-                Type = (TypeSoftware)Enum.Parse(typeof(TypeSoftware), reader.GetString(reader.GetOrdinal("Type"))),
+                Type = EnumExtension.GetEnum<TypeSoftware>(reader.GetString(reader.GetOrdinal("Type"))),
                 Name = reader.GetString(reader.GetOrdinal("Name")),
-                LicenseForm = (TypeLicenseForm)Enum.Parse(typeof(TypeLicenseForm),reader.GetString(reader.GetOrdinal("LicenseForm"))),
+                LicenseForm = EnumExtension.GetEnum<TypeLicenseForm>(reader.GetString(reader.GetOrdinal("LicenseForm"))),
                 LicenseStatus = reader.GetString(reader.GetOrdinal("LicenseStatus")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
             };

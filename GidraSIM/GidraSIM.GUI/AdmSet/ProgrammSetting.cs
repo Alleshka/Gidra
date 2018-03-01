@@ -17,7 +17,7 @@ namespace GidraSIM.GUI.AdmSet
     {
         private static string settingsFile = "Settings.json";
         //private static string settingsDirectory = "Adm";
-        private static string settingsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+"//SaprSIM";
+        private static string settingsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+"\\SaprSIM";
 
         /// <summary>
         /// попытка чтения с созданием директории при необходимости
@@ -102,7 +102,7 @@ namespace GidraSIM.GUI.AdmSet
             get
             {
                 //return "metadata = res://*/ResourcesDB.csdl|res://*/ResourcesDB.ssdl|res://*/ResourcesDB.msl;provider=System.Data.SqlClient;provider connection string=';data source=" + Read().NamePC + ";initial catalog=Resources;integrated security=True;multipleactiveresultsets=True;App=EntityFramework'";
-                return "Data Source="+ Read().NamePC+"\\SQLEXPRESS;Initial Catalog=SimSapr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                return "Data Source="+ Read().NamePC+";Initial Catalog=SimSapr;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             }
         }
 

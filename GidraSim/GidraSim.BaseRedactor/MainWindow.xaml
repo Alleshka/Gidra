@@ -15,6 +15,7 @@
                     <MenuItem Header="InformationSupport" x:Name="InfSupAddItem" Click="InfSupAddItem_Click"/>
                     <MenuItem Header="Монитор" x:Name="MonitorItem" Click="MonitorItem_Click"/>
                     <MenuItem Header="Софт" x:Name="SoftItemAdd" Click="SoftItemAdd_Click"/>
+                    <MenuItem Header="Запоминающий диск" x:Name="StorageItemAdd" Click="StorageItemAdd_Click"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="SettingsMenuItem" Header="Настройки" Click="SettingsMenuItem_Click" />

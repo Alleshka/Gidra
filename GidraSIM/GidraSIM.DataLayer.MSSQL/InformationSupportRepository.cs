@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using GidraSIM.Core.Model.Resources;
+using GidraSIM.Core.Model;
 
 namespace GidraSIM.DataLayer.MSSQL
 {
@@ -25,7 +26,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.CommandText = "Resources.InformationSupports_Create";
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@MultiClientUse", newResources.MultiClientUse);
-                    sqlCommand.Parameters.AddWithValue("@Type", Convert.ToString(newResources.Type));
+                    sqlCommand.Parameters.AddWithValue("@Type", EnumExtension.Description<TypeIS>(newResources.Type));
                     sqlCommand.Parameters.AddWithValue("@Price", newResources.Price);
                     var result = newResources;
                     result.ID = Convert.ToInt16(sqlCommand.ExecuteScalar());
@@ -60,7 +61,7 @@ namespace GidraSIM.DataLayer.MSSQL
                     sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@InformationSupportId", updateResources.ID);
                     sqlCommand.Parameters.AddWithValue("@MultiClientUse", updateResources.MultiClientUse);
-                    sqlCommand.Parameters.AddWithValue("@Type", updateResources.Type);
+                    sqlCommand.Parameters.AddWithValue("@Type", EnumExtension.Description<TypeIS>(updateResources.Type));
                     sqlCommand.Parameters.AddWithValue("@Price", updateResources.Price);
                     sqlCommand.ExecuteNonQuery();
                     return updateResources;
@@ -115,7 +116,7 @@ namespace GidraSIM.DataLayer.MSSQL
             {
                 ID = reader.GetInt16(reader.GetOrdinal("InformationSupportId")),
                 MultiClientUse = reader.GetBoolean(reader.GetOrdinal("MultiClientUse")),
-                Type =(TypeIS)Enum.Parse(typeof(TypeIS),reader.GetString(reader.GetOrdinal("Type"))),
+                Type = EnumExtension.GetEnum<TypeIS>(reader.GetString(reader.GetOrdinal("Type"))),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
             };
         }

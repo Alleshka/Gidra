@@ -12,10 +12,10 @@ using System.Windows;
 
 namespace GidraSIM.GUI.Utility
 {
-
-
     public class ProjectSaver : IProjectSaver
     {
+        private int SaveVersion = 0;
+
         private Type[] types;
         private Dictionary<Process, Guid> processSaved; // Содержит обработанные процессы
         Dictionary<Guid, Process> processWorked = new Dictionary<Guid, Process>();
@@ -65,9 +65,12 @@ namespace GidraSIM.GUI.Utility
         {
             tempTabControl = testTabControl;
 
-            project = new SaveProject();
+            project = new SaveProject
+            {
+                SaveVersion = this.SaveVersion // Задаём версию сохранения
+            };
 
-            for(int i=0; i<tempTabControl.Items.Count; i++)
+            for (int i=0; i<tempTabControl.Items.Count; i++)
             //foreach (TabItem item in tempTabControl.Items)
             {
                 TabItem item = tempTabControl.Items[i] as TabItem;
@@ -113,6 +116,8 @@ namespace GidraSIM.GUI.Utility
                 DataContractSerializer ser = new DataContractSerializer(typeof(SaveProject), types);
                 temp = (ser.ReadObject(stream)) as SaveProject;
             }
+
+            if (temp.SaveVersion < this.SaveVersion) throw new Exception("Сохранение несовместимо с текущей версией");
 
             mainprocess = null;
             int num = 0;
@@ -715,6 +720,8 @@ namespace GidraSIM.GUI.Utility
     [DataContract(IsReference = true)]
     public class SaveProject
     {
+        [DataMember]
+        public int SaveVersion { get; set; }
         [DataMember(EmitDefaultValue = false)]
         public Guid MainProcessID { get; set; }
         [DataMember(EmitDefaultValue = false)]

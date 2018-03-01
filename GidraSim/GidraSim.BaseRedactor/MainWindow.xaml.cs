@@ -33,6 +33,8 @@ namespace GidraSim.BaseRedactor
         InformationSupportRepository informationSupportRepository;
         MonitorRepository monitorRepository;
         SoftwareRepository softwareRepository;
+        StorageDeviceRepository storageRepository;
+
         Settings settings;
 
         private string[] types = new string[]
@@ -42,15 +44,13 @@ namespace GidraSim.BaseRedactor
             "Information support",
             "Monitor",
             "Soft",
+            "Storage"
         };
 
 
         public MainWindow()
         {
             InitializeComponent();
-
-
-
             listBox1.ItemsSource = types;
 
             //попытка чтения без рекурсии
@@ -72,13 +72,7 @@ namespace GidraSim.BaseRedactor
             //    ConnectionStrings["connectionString"].ConnectionString;
             _connectionString = SettingsReader.ResourcesConnectionString;
 
-
-            cpuRepository = new CpuRepository(_connectionString);
-            gpuRepository = new GpuRepository(_connectionString);
-            informationSupportRepository = new InformationSupportRepository(_connectionString);
-            monitorRepository = new MonitorRepository(_connectionString);
-            softwareRepository = new SoftwareRepository(_connectionString);
-
+            LoadRep();
         }
 
         private void CpuAddItem_Click(object sender, RoutedEventArgs e)
@@ -127,7 +121,7 @@ namespace GidraSim.BaseRedactor
 
                 if (type == types[0])
                 {
-                    dataGrid1.ItemsSource =  gpuRepository.GetAll().ToList();
+                    dataGrid1.ItemsSource = gpuRepository.GetAll().ToList();
                 }
                 else if (type == types[1])
                 {
@@ -144,6 +138,10 @@ namespace GidraSim.BaseRedactor
                 else if (type == types[4])
                 {
                     dataGrid1.ItemsSource = softwareRepository.GetAll().ToList();
+                }
+                else if (type == types[5])
+                {
+                    dataGrid1.ItemsSource = storageRepository.GetAll().ToList();
                 }
             }
             catch (Exception ex)
@@ -170,6 +168,15 @@ namespace GidraSim.BaseRedactor
             }
         }
 
+        private void StorageItemAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var red = new StorageRedactor();
+            if (red.ShowDialog() == true)
+            {
+                storageRepository.Create(red._curStorage);
+            }
+        }
+
         private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
             SettingsView settings = new SettingsView();
@@ -178,13 +185,7 @@ namespace GidraSim.BaseRedactor
             if(settings.DialogResult == true)
             {
                 _connectionString = SettingsReader.ResourcesConnectionString;
-
-
-                cpuRepository = new CpuRepository(_connectionString);
-                gpuRepository = new GpuRepository(_connectionString);
-                informationSupportRepository = new InformationSupportRepository(_connectionString);
-                monitorRepository = new MonitorRepository(_connectionString);
-                softwareRepository = new SoftwareRepository(_connectionString);
+                LoadRep();
             }
         }
 
@@ -216,9 +217,23 @@ namespace GidraSim.BaseRedactor
                     monitorRepository.Update((this.dataGrid1.SelectedItem as Monitor));
                 if (dataGrid1.SelectedItem.GetType() == typeof(Software))
                     softwareRepository.Update((this.dataGrid1.SelectedItem as Software));
+                if (dataGrid1.SelectedItem.GetType() == typeof(StorageDevice))
+                    storageRepository.Update((this.dataGrid1.SelectedItem as StorageDevice));
                 (sender as DataGrid).Items.Refresh();
                 (sender as DataGrid).RowEditEnding += dataGrid1_RowEditEnding;
             }
+        }
+
+
+
+        private void LoadRep()
+        {
+            cpuRepository = new CpuRepository(_connectionString);
+            gpuRepository = new GpuRepository(_connectionString);
+            informationSupportRepository = new InformationSupportRepository(_connectionString);
+            monitorRepository = new MonitorRepository(_connectionString);
+            softwareRepository = new SoftwareRepository(_connectionString);
+            storageRepository = new StorageDeviceRepository(_connectionString);
         }
     }
 }

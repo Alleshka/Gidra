@@ -29,17 +29,8 @@
 
         <TextBox x:Name="_name" Grid.Row="0" Grid.Column="1"/>
         <TextBox x:Name="_licenseStatus" Grid.Row="1" Grid.Column="1"/>
-        <ComboBox x:Name="_Type" Grid.Row="2" Grid.Column="1">
-            <ComboBoxItem>ОС</ComboBoxItem>
-            <ComboBoxItem>Редактор</ComboBoxItem>
-            <ComboBoxItem>САПР</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="_LicenseForm" Grid.Row="3" Grid.Column="1">
-            <ComboBoxItem>Открытая</ComboBoxItem>
-            <ComboBoxItem>Бесплатная</ComboBoxItem>
-            <ComboBoxItem>Условно_бесплатная</ComboBoxItem>
-            <ComboBoxItem>Коммерческая</ComboBoxItem>
-        </ComboBox>
+        <ComboBox x:Name="_Type" Grid.Row="2" Grid.Column="1"/>
+        <ComboBox x:Name="_LicenseForm" Grid.Row="3" Grid.Column="1"/>
         <TextBox x:Name="_price" Grid.Row="4" Grid.Column="1"/>
 
         <Button x:Name="Save" Content="Сохранить" Click="Save_Click"  Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" />
