@@ -15,20 +15,86 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0EFD86BD5A027FAC86629BC5887875DA"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_137759D34FAC4FF0D57F48EB92B39D6A"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_137ED255D0289252F5AE190AFAF02889"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_28865261044CF58ECCA84F0854598888"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3602A3359C24FD7EE391BC27B21704B3"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3F58754074071C2CECA3317A4ADF7050"
+        "OwnerKey" = "8:_3602A3359C24FD7EE391BC27B21704B3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3F58754074071C2CECA3317A4ADF7050"
+        "OwnerKey" = "8:_9CD5AC0C65F11BEB955194CD13D0B085"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3F58754074071C2CECA3317A4ADF7050"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6A9D3B33EA479C099BABDDBB69806CEF"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6A9D3B33EA479C099BABDDBB69806CEF"
+        "OwnerKey" = "8:_A210050947838F8E97F219580A94CE54"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6C8037483EA6C7B69FC941D95DADAD33"
         "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F0A590B2D0CAF1BC16BBB8016F4F2B4"
-        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmKey" = "8:_6C8037483EA6C7B69FC941D95DADAD33"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F0A590B2D0CAF1BC16BBB8016F4F2B4"
-        "OwnerKey" = "8:_FC02CE22E34027A17DD84D51FF7564F6"
+        "MsmKey" = "8:_7D69B31328E68A75F07CCF544EF7BD4D"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7D69B31328E68A75F07CCF544EF7BD4D"
+        "OwnerKey" = "8:_0EFD86BD5A027FAC86629BC5887875DA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,32 +105,158 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FC02CE22E34027A17DD84D51FF7564F6"
+        "MsmKey" = "8:_9CD5AC0C65F11BEB955194CD13D0B085"
         "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A210050947838F8E97F219580A94CE54"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_0EFD86BD5A027FAC86629BC5887875DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_7D69B31328E68A75F07CCF544EF7BD4D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_A210050947838F8E97F219580A94CE54"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
+        "OwnerKey" = "8:_28865261044CF58ECCA84F0854598888"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F09B9CC4C6EC833AEFE7D5CDDFE8EE74"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F09B9CC4C6EC833AEFE7D5CDDFE8EE74"
+        "OwnerKey" = "8:_137ED255D0289252F5AE190AFAF02889"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E25634A76E4E4C15BED37CB550059601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0EFD86BD5A027FAC86629BC5887875DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7D69B31328E68A75F07CCF544EF7BD4D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A210050947838F8E97F219580A94CE54"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6A9D3B33EA479C099BABDDBB69806CEF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9CD5AC0C65F11BEB955194CD13D0B085"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_137ED255D0289252F5AE190AFAF02889"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F09B9CC4C6EC833AEFE7D5CDDFE8EE74"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_137759D34FAC4FF0D57F48EB92B39D6A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3602A3359C24FD7EE391BC27B21704B3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3F58754074071C2CECA3317A4ADF7050"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_28865261044CF58ECCA84F0854598888"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6C8037483EA6C7B69FC941D95DADAD33"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_857E7CCEE7754379920239504DAB2395"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FC02CE22E34027A17DD84D51FF7564F6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6F0A590B2D0CAF1BC16BBB8016F4F2B4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -85,6 +277,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -101,6 +301,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -130,6 +338,223 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0EFD86BD5A027FAC86629BC5887875DA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GidraSIM.GUI, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0EFD86BD5A027FAC86629BC5887875DA"
+                    {
+                    "Name" = "8:GidraSIM.GUI.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:GidraSIM.GUI.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_137759D34FAC4FF0D57F48EB92B39D6A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Selen.Wpf.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc472ed4b6daaa58, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_137759D34FAC4FF0D57F48EB92B39D6A"
+                    {
+                    "Name" = "8:Selen.Wpf.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Selen.Wpf.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_137ED255D0289252F5AE190AFAF02889"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Selen.Wpf.GenericAppTree, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc472ed4b6daaa58, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_137ED255D0289252F5AE190AFAF02889"
+                    {
+                    "Name" = "8:Selen.Wpf.GenericAppTree.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Selen.Wpf.GenericAppTree.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_28865261044CF58ECCA84F0854598888"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GidraSIM.GUI.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_28865261044CF58ECCA84F0854598888"
+                    {
+                    "Name" = "8:GidraSIM.GUI.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:GidraSIM.GUI.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3602A3359C24FD7EE391BC27B21704B3"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3602A3359C24FD7EE391BC27B21704B3"
+                    {
+                    "Name" = "8:MahApps.Metro.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MahApps.Metro.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3F58754074071C2CECA3317A4ADF7050"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3F58754074071C2CECA3317A4ADF7050"
+                    {
+                    "Name" = "8:System.Windows.Interactivity.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Windows.Interactivity.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6A9D3B33EA479C099BABDDBB69806CEF"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GidraSIM.DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_6A9D3B33EA479C099BABDDBB69806CEF"
+                    {
+                    "Name" = "8:GidraSIM.DataLayer.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:GidraSIM.DataLayer.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6C8037483EA6C7B69FC941D95DADAD33"
             {
             "AssemblyRegister" = "3:1"
@@ -161,14 +586,107 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F0A590B2D0CAF1BC16BBB8016F4F2B4"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7D69B31328E68A75F07CCF544EF7BD4D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GidraSIM.GUI.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7D69B31328E68A75F07CCF544EF7BD4D"
+                    {
+                    "Name" = "8:GidraSIM.GUI.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:GidraSIM.GUI.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9CD5AC0C65F11BEB955194CD13D0B085"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Selen.Wpf.SystemStyles, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc472ed4b6daaa58, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9CD5AC0C65F11BEB955194CD13D0B085"
+                    {
+                    "Name" = "8:Selen.Wpf.SystemStyles.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Selen.Wpf.SystemStyles.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A210050947838F8E97F219580A94CE54"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GidraSIM.DataLayer.MSSQL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A210050947838F8E97F219580A94CE54"
+                    {
+                    "Name" = "8:GidraSIM.DataLayer.MSSQL.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:GidraSIM.DataLayer.MSSQL.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BBBB0E0BD83C7BC1E586151FBA39FCB9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:GidraSIM.Core.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6F0A590B2D0CAF1BC16BBB8016F4F2B4"
+                    "_BBBB0E0BD83C7BC1E586151FBA39FCB9"
                     {
                     "Name" = "8:GidraSIM.Core.Model.dll"
                     "Attributes" = "3:512"
@@ -192,20 +710,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FC02CE22E34027A17DD84D51FF7564F6"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F09B9CC4C6EC833AEFE7D5CDDFE8EE74"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:GidraSIM.GUI.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Selen.Wpf.GenericAppTree.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc472ed4b6daaa58, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FC02CE22E34027A17DD84D51FF7564F6"
+                    "_F09B9CC4C6EC833AEFE7D5CDDFE8EE74"
                     {
-                    "Name" = "8:GidraSIM.GUI.Core.dll"
+                    "Name" = "8:Selen.Wpf.GenericAppTree.Contracts.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:GidraSIM.GUI.Core.dll"
+            "SourcePath" = "8:Selen.Wpf.GenericAppTree.Contracts.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
@@ -411,6 +929,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_146F571FE92D4895BD22E01B28181E67"
+            {
+            "Name" = "8:Редактор БД САПР СИМ"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E25634A76E4E4C15BED37CB550059601"
+            "Folder" = "8:_0DFC3ACDDFDF47F286B6CC64B6DE457E"
+            "WorkingFolder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_57FA60CDCC234F5AA54C8DEFC84F4A7C"
             {
             "Name" = "8:САПР СИМ"
@@ -826,7 +1358,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_857E7CCEE7754379920239504DAB2395"
             {
-            "SourcePath" = "8:..\\GidraSIM.GUI\\obj\\Release\\GidraSIM.GUI.exe"
+            "SourcePath" = "8:..\\GidraSIM.GUI\\obj\\Debug\\GidraSIM.GUI.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
@@ -875,6 +1407,62 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:RuntimeImplementation"
             "OutputProjectGuid" = "8:{A8DABEAE-C41E-4ECA-86CE-FAA21E8D2248}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BA11BD114AB8405788C0E83B1504DA7F"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:RuntimeImplementation"
+            "OutputProjectGuid" = "8:{FB91C2D2-D751-4266-BD16-A959704A8D4B}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E25634A76E4E4C15BED37CB550059601"
+            {
+            "SourcePath" = "8:..\\GidraSim.BaseRedactor\\obj\\Debug\\GidraSim.BaseRedactor.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_31E031893ED540AB99342526AC5A7D43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{FB91C2D2-D751-4266-BD16-A959704A8D4B}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
